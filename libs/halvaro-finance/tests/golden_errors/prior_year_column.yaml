@@ -1,0 +1,9 @@
+# Golden error case of halvaro-finance.prior_year_column: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: prior_year_column
+why: every frame is empty, so the columns the function reads are missing
+args:
+- frame: {}
+- frame: {}
+context: month12
+raises: FrameError
+message: finance-reporting.statement_line frame lacks column(s) rpt_key, statement, line_code, amount, prior_year_amount; load the source columns without renaming them

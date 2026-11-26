@@ -1,0 +1,27 @@
+id: e01-measurement-sensor-not-in-sensor
+rule: A measurement of a sensor that the sensor table does not hold is refused, because its limits and interval are needed to find alarms.
+function: recompute_alarms
+frames:
+  measurement:
+  - sns_key: SNS-900002
+    ts: 2031-03-01 00:00
+    value: 95.0
+    quality_flag: ok
+  sensor:
+  - sns_key: SNS-900001
+    net_key: NET-900001
+    zone_key: ZONE-0001
+    sensor_type: load_percent
+    interval_s: 900
+    limit_high: 90.0
+    limit_low: null
+    limit_high_crit: 100.0
+    limit_low_crit: null
+    alarm_min_duration_s: 900
+    alarm_merge_gap_s: 900
+raises:
+  error: FrameError
+  message: 1 sensors of the measurements are not in telemetry.sensor (for example SNS-900002)
+  names:
+  - SNS-900002
+  - telemetry.sensor

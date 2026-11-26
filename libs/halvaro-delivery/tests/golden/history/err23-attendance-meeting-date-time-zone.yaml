@@ -1,0 +1,23 @@
+id: err23-attendance-meeting-date-time-zone
+rule: A meeting date with a time zone is refused.
+function: attendance
+frames:
+  meeting:
+  - mtg_key: MTG-900001
+    prj_key: PRJ-900001
+    date: '2031-01-05T00:00:00+01:00'
+    meeting_type: 1
+  meeting_attendance:
+  - mtg_key: MTG-900001
+    attendee_type: employee
+    emp_key: EMP-900001
+    cnt_key: null
+    status: present
+    role_in_meeting: 1
+args: {}
+raises:
+  error: FrameError
+  message: projects.meeting.date has a time zone; dates here are calendar days
+  names:
+  - projects.meeting.date
+  - time zone

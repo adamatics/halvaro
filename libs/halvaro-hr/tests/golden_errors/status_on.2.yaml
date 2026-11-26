@@ -1,0 +1,26 @@
+# Golden error case of halvaro-hr.status_on: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: status_on
+why: the employee frame has the same emp_key twice
+args:
+- frame:
+    columns:
+    - emp_key
+    - hire_date
+    - leave_date
+    rows:
+    - - EMP-000001
+      - '2020-01-01'
+      - null
+    - - EMP-000001
+      - '2020-01-01'
+      - null
+- frame:
+    columns:
+    - emp_key
+    - leave_type
+    - start
+    - end
+    rows: []
+- 2026-03-31
+raises: FrameError
+message: hr.employee has 1 duplicate emp_key values (for example EMP-000001); one row per person is required

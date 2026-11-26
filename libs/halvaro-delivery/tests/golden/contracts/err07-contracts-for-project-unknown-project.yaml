@@ -1,0 +1,24 @@
+id: err07-contracts-for-project-unknown-project
+rule: The project asked for is not in the project frame.
+function: contracts_for_project
+frames:
+  project:
+  - prj_key: PRJ-900002
+    contract_key: CONTRACT-900001
+  contract:
+  - con_key: CON-900001
+    type: 1
+    sup_key: SUP-900001
+    cus_key: CUS-900001
+    parent_con_key: PARENT-900001
+  purchase_order:
+  - prj_key: PRJ-900001
+    con_key: CON-900001
+args:
+  prj_key: PRJ-900001
+raises:
+  error: FrameError
+  message: project PRJ-900001 is not in the project frame exactly once
+  names:
+  - project
+  - PRJ-900001

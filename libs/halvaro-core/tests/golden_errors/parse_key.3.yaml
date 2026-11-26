@@ -1,0 +1,7 @@
+# Golden error case of halvaro-core.parse_key: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: parse_key
+why: the prefix is not in the key list
+args:
+- XXX-000001
+raises: KeyFormatError
+message: '''XXX-000001'' is not a typed key: expected PREFIX-digits with a prefix of design/keys.yaml (natural labels go through parse_label)'

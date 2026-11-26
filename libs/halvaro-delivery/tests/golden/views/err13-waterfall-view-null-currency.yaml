@@ -1,0 +1,17 @@
+id: err13-waterfall-view-null-currency
+rule: An estimate line with a null currency is refused.
+function: waterfall_view
+frames:
+  lines:
+  - prj_key: PRJ-900001
+    type: tender
+    category: civil
+    amount: 1
+    currency: null
+args: {}
+raises:
+  error: FrameError
+  message: estimate lines with a null currency
+  names:
+  - estimate lines
+  - currency

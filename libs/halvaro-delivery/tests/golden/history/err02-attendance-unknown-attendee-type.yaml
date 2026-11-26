@@ -1,0 +1,23 @@
+id: err02-attendance-unknown-attendee-type
+rule: An attendee_type other than employee or external is refused, with the value named.
+function: attendance
+frames:
+  meeting:
+  - mtg_key: MTG-900001
+    prj_key: PRJ-900001
+    date: '2031-01-05'
+    meeting_type: 1
+  meeting_attendance:
+  - mtg_key: MTG-900001
+    attendee_type: visitor
+    emp_key: EMP-900001
+    cnt_key: CNT-900001
+    status: present
+    role_in_meeting: 1
+args: {}
+raises:
+  error: FrameError
+  message: 'projects.meeting_attendance.attendee_type has unknown value ''visitor''; known: employee, external'
+  names:
+  - attendee_type
+  - visitor

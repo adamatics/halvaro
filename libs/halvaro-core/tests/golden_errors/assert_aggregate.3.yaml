@@ -1,0 +1,16 @@
+# Golden error case of halvaro-core.assert_aggregate: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: assert_aggregate
+why: min_group is given but no count_column names the number of people
+args:
+- frame:
+    columns:
+    - dep
+    - amount
+    rows:
+    - - D1
+      - 1
+- amount
+kwargs:
+  min_group: 5
+raises: FrameError
+message: min_group needs count_column, the column with the number of people per group

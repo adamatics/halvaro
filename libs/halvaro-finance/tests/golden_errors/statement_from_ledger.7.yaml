@@ -1,0 +1,23 @@
+# Golden error case of halvaro-finance.statement_from_ledger: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: statement_from_ledger
+why: a trial balance row has no period
+args:
+- frame:
+    columns: [le_key, period, gl_key, debit, credit, closing_balance]
+    rows:
+    - [LE-X, null, GL-5100, 0.0, 100.0, 100.0]
+- frame:
+    columns: [gl_key, statement, dk_statutory_map]
+    rows:
+    - [GL-5100, IS, DK-REV]
+- frame:
+    columns: [map_code, line_code, statement, normal_side]
+    rows:
+    - [DK-REV, REV, IS, credit]
+- LE-X
+- DK
+- 2026
+kwargs: {require_full_year: false}
+context: month12
+raises: FrameError
+message: finance.trial_balance has rows without a period

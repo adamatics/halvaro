@@ -1,0 +1,18 @@
+# Golden error case of halvaro-hr.resolve_username: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: resolve_username
+why: on has a time zone
+args:
+- frame:
+    columns:
+    - username
+    - kind
+    - holder
+    - emp_key
+    - team_key
+    - valid_from
+    - valid_to
+    rows: []
+- ab
+- '2026-03-31T00:00:00+01:00'
+raises: FrameError
+message: '''2026-03-31T00:00:00+01:00'' has a time zone; dates here are calendar days'

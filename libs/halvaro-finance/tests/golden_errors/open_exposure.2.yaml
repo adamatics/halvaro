@@ -1,0 +1,15 @@
+# Golden error case of halvaro-finance.open_exposure: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: open_exposure
+why: the frame has qty_open and remaining with different numbers
+args:
+- frame:
+    columns: [prj_key, sup_key, itm_key, qty_open, source, after_effective_date, remaining]
+    rows:
+    - [PRJ-X, SUP-X, ITM-X, 5.0, po_line, true, 9.0]
+- frame:
+    columns: [sup_key, itm_key, currency, step, step_percent]
+    rows:
+    - [SUP-X, ITM-X, EUR, 1.0, 10.0]
+context: month12
+raises: FrameError
+message: the frame has qty_open and remaining with different numbers

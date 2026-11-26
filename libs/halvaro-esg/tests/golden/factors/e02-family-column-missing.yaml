@@ -1,0 +1,9 @@
+id: e02-family-column-missing
+rule: "family_key is refused when the factor frame lacks the columns that make up a family."
+function: family_key
+frames:
+  factors: [{"category": "gas", "carrier": "natural_gas"}]
+raises:
+  error: FrameError
+  message: "energy-esg.emission_factor frame lacks column(s) region, method; load the source columns without renaming them"
+  names: ["region", "method"]

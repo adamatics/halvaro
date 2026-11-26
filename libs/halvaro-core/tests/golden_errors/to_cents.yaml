@@ -1,0 +1,7 @@
+# Golden error case of halvaro-core.to_cents: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: to_cents
+why: a null amount has no cents
+args:
+- [1.0, null]
+raises: FrameError
+message: to_cents got 1 null amount(s); cents are whole numbers and a null has no cents. Drop or fill the nulls first

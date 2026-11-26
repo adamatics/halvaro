@@ -1,0 +1,23 @@
+# Golden error case of halvaro-hr.status_on: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: status_on
+why: as_of has a time zone
+args:
+- frame:
+    columns:
+    - emp_key
+    - hire_date
+    - leave_date
+    rows: []
+- frame:
+    columns:
+    - emp_key
+    - leave_type
+    - start
+    - end
+    rows: []
+- '2026-03-31T00:00:00+01:00'
+kwargs:
+  unavailable_leave_types:
+  - sick
+raises: PeriodError
+message: as_of '2026-03-31T00:00:00+01:00' is not a date without a time zone

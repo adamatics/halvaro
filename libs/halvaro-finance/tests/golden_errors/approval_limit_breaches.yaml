@@ -1,0 +1,9 @@
+# Golden error case of halvaro-finance.approval_limit_breaches: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: approval_limit_breaches
+why: every frame is empty, so the columns the function reads are missing
+args:
+- frame: {}
+- frame: {}
+context: month12
+raises: FrameError
+message: procurement.purchase_order frame lacks column(s) po_key, total_value, currency, buyer_emp_key, order_date; load the source columns without renaming them

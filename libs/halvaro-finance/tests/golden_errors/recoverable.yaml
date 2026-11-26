@@ -1,0 +1,10 @@
+# Golden error case of halvaro-finance.recoverable: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: recoverable
+why: every frame is empty, so the columns the function reads are missing
+args:
+- frame: {}
+- frame: {}
+- frame: {}
+context: month12
+raises: FrameError
+message: open_exposure result frame lacks column(s) prj_key, exposure_dkk, step_percent_max; load the source columns without renaming them

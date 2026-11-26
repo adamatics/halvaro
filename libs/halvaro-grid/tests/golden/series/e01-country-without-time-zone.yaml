@@ -1,0 +1,14 @@
+id: e01-country-without-time-zone
+rule: A country that has no time zone in the table is refused, because local time cannot be worked out for it.
+function: to_local
+args:
+  ts:
+  - 2031-03-01 12:00
+  country: XX
+raises:
+  error: FrameError
+  message: 'no time zone for the country ''XX''; known: [''DE'', ''DK'']'
+  names:
+  - country
+  - '''XX'''
+  - known

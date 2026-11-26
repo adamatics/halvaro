@@ -1,0 +1,22 @@
+id: e01-series-sensor-not-in-sensor
+rule: A series of a sensor that the sensor table does not hold is refused, because the hours of a sample come from its interval.
+function: load_duration_curve
+frames:
+  zone_series:
+  - zone_key: ZONE-0001
+    sns_key: SNS-900001
+    level: zone
+    basis: load_percent
+    ts: 2031-01-10 00:00
+    quality_flag: ok
+    ok: true
+    load_percent: 85.0
+  sensor:
+  - sns_key: SNS-900002
+    interval_s: 3600
+raises:
+  error: FrameError
+  message: 1 sensors of the series are not in telemetry.sensor (for example SNS-900001)
+  names:
+  - SNS-900001
+  - telemetry.sensor

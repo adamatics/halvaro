@@ -1,0 +1,18 @@
+name: A receivable overdue by exactly the days of the fact is a candidate, one day less is not
+function: bad_debt_candidates
+cites: [FI.STD.021]
+by_hand: Item A is due the number of days of the fact before the date, so it is overdue by exactly that number and counts. Item B is due one day later and does not. The receivable of A is 400 open less 100 retention = 300.
+let:
+  limit: "=fact('fin.payment.bad_debt_write_off_after_days_overdue')"
+  asof: "=date(2026, 6, 30)"
+context: month3
+input:
+  open_items:
+    columns: [item_key, source, le_key, cus_key, inv_key, document_date, due_date, currency, invoice_amount, paid, written_off, open_amount, retention_held, release_date]
+    rows:
+      - [A, invoice, LE-01, CUS-1, A, "2024-01-01", "=asof - days(limit)", DKK, 400.0, 0.0, 0.0, 400.0, 100.0, null]
+      - [B, invoice, LE-01, CUS-2, B, "2024-01-01", "=asof - days(limit - 1)", DKK, 400.0, 0.0, 0.0, 400.0, 100.0, null]
+  as_of: "=asof"
+expect:
+  rows:
+    - {item_key: A, receivable_net: 300.0, days_past_due: "=limit"}

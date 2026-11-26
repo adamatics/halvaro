@@ -1,0 +1,21 @@
+id: err04-executive-gap-no-first-record
+rule: The project asked for has no row in the first-record frame, so there is no first record to compare.
+function: executive_gap
+frames:
+  first:
+  - prj_key: PRJ-900002
+    diary_date: '2031-01-05'
+  exec_attendance:
+  - mtg_key: MTG-900001
+    prj_key: PRJ-900001
+    date: '2031-01-05'
+    emp_key: EMP-900001
+    role_name: 1
+args:
+  prj_key: PRJ-900001
+raises:
+  error: FrameError
+  message: project PRJ-900001 has no first record
+  names:
+  - project
+  - PRJ-900001

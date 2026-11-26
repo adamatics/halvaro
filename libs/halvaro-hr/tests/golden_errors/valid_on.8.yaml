@@ -1,0 +1,18 @@
+# Golden error case of halvaro-hr.valid_on: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: valid_on
+why: issued holds text that is not a date (the text after the colon is the wording of pandas, so only the start is pinned)
+args:
+- frame:
+    columns:
+    - emp_key
+    - qual_key
+    - issued
+    - expires
+    rows:
+    - - EMP-X1
+      - QUAL-X
+      - never
+      - null
+- 2026-03-31
+raises: FrameError
+message_starts: 'competence.certification_held.issued holds a value that is not a date: '

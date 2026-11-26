@@ -1,0 +1,17 @@
+# Golden error case of halvaro-finance.budget_variance: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: budget_variance
+why: a budget line is listed twice
+args:
+- frame:
+    columns: [le_key, budget_version, cc_key, gl_key, period, amount, amount_dkk]
+    rows:
+    - [LE-X, BUD-X, CC-1, GL-6000, 2026-01, 100.0, 100.0]
+    - [LE-X, BUD-X, CC-1, GL-6000, 2026-01, 100.0, 100.0]
+- frame:
+    columns: [le_key, cc_key, gl_key, period, amount, amount_dkk]
+    rows:
+    - [LE-X, CC-1, GL-6000, 2026-01, 100.0, 100.0]
+kwargs: {version: BUD-X}
+context: month12
+raises: FrameError
+message: budget and actual lines need one row per entity, cost centre, account and period

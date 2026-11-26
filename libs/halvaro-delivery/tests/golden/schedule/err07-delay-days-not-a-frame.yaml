@@ -1,0 +1,11 @@
+id: err07-delay-days-not-a-frame
+rule: The delay_event argument is not a DataFrame.
+function: delay_days
+args:
+  delay_event: x
+raises:
+  error: FrameError
+  message: projects.delay_event must be a DataFrame, not str
+  names:
+  - projects.delay_event
+  - str

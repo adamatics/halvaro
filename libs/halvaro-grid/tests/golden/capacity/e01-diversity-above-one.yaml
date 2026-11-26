@@ -1,0 +1,19 @@
+id: e01-diversity-above-one
+rule: A diversity factor above one is refused, because it must be a share greater than zero and at most one.
+function: recompute_design_capacity
+frames:
+  grid_element:
+  - zone_key: ZONE-0001
+    element_type: transformer_station
+    status: in_service
+    rated_capacity: 500.0
+    capacity_unit: kVA
+args:
+  electric_diversity: 1.5
+raises:
+  error: FrameError
+  message: electric_diversity must be a number in (0, 1], not 1.5
+  names:
+  - electric_diversity
+  - (0, 1]
+  - '1.5'

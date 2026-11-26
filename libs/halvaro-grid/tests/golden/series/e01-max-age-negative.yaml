@@ -1,0 +1,20 @@
+id: e01-max-age-negative
+rule: A negative maximum age is refused, because an observation counts when it is at most that old.
+function: outdoor_at
+frames:
+  weather_observation:
+  - station_key: STN-900001
+    ts: 2031-03-01 00:00
+    temp_c: -2.0
+args:
+  ts:
+  - 2031-03-01 00:30
+  station_key: STN-900001
+  max_age_hours: -1
+raises:
+  error: FrameError
+  message: max_age_hours must be zero or more or None, not -1
+  names:
+  - max_age_hours
+  - zero or more
+  - '-1'

@@ -1,0 +1,21 @@
+id: err05-price-list-on-row-without-key
+rule: A price row without sup_key is refused.
+function: price_list_on
+frames:
+  price_list:
+  - sup_key: null
+    itm_key: ITM-900001
+    valid_from: '2031-01-05'
+    valid_to: null
+    unit_price: 1
+    currency: EUR
+    con_key: CON-900001
+    change_reason: 1
+args:
+  as_of: '2031-02-01'
+raises:
+  error: FrameError
+  message: procurement.price_list has rows without sup_key, itm_key or valid_from
+  names:
+  - procurement.price_list
+  - sup_key

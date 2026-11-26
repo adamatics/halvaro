@@ -1,0 +1,12 @@
+# Golden error case of halvaro-finance.vat_code_check: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: vat_code_check
+why: the tolerance is negative
+args:
+- frame:
+    columns: [le_key, gl_key, period, amount, vat_code, vat_base, source]
+    rows:
+    - [LE-01, GL-4710, 2026-01, -250.0, DK25, 1000.0, manual]
+kwargs: {tolerance: -1}
+context: month12
+raises: FrameError
+message: tolerance must be a number of zero or more

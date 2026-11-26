@@ -1,0 +1,20 @@
+id: e01-poor-bearing-is-text
+rule: A list of poor bearing classes given as one text is refused, because it would be split into single letters.
+function: route_conditions_summary
+frames:
+  route_shares:
+  - prj_key: PRJ-900001
+    version: 2
+    metres: 5.0
+    route_length_m: 10.0
+    bearing_capacity: poor
+    groundwater: low
+    survey_kind: desk
+args:
+  poor_bearing: poor
+raises:
+  error: FrameError
+  message: poor_bearing must be a tuple or list of values, not 'poor'
+  names:
+  - poor_bearing
+  - '''poor'''

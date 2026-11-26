@@ -1,0 +1,20 @@
+# Golden error case of halvaro-finance.recoverable: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: recoverable
+why: a clause row has no valid_from
+args:
+- frame:
+    columns: [prj_key, exposure_dkk, step_percent_max]
+    rows:
+    - [PRJ-X, 500.0, 10.0]
+- frame:
+    columns: [con_key, pass_through_percent, threshold_percent, valid_from, valid_to]
+    rows:
+    - [CON-X, 50.0, null, null, null]
+- frame:
+    columns: [prj_key, con_key, price_type]
+    rows:
+    - [PRJ-X, CON-X, indexed]
+kwargs: {'on': '2026-03-01'}
+context: month12
+raises: FrameError
+message: a price clause row has no valid_from

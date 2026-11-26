@@ -1,0 +1,11 @@
+# Golden error case of halvaro-finance.labour_absorption_check: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: labour_absorption_check
+why: amount holds text instead of a number
+args:
+- frame:
+    columns: [le_key, gl_key, period, amount]
+    rows:
+    - [LE-A, GL-6100, 2026-01, abc]
+context: month12
+raises: FrameError
+message: finance.journal_line.amount must hold numbers, not 'abc'

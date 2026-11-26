@@ -1,0 +1,8 @@
+# Golden error case of halvaro-hr.holiday_year_label: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: holiday_year_label
+why: the country is neither DK nor DE
+args:
+- ZZ
+- 2026-03-31
+raises: FrameError
+message: country 'ZZ' is not DK or DE

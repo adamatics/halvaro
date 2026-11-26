@@ -1,0 +1,26 @@
+id: err21-activity-plan-vs-actual-actual-without-plan
+rule: An actual activity that has no plan activity is refused, with the activity named.
+function: activity_plan_vs_actual
+frames:
+  plan_activity:
+  - prj_key: PRJ-900001
+    plan_version: 1
+    activity_code: ACT-1
+    name: a
+    start: '2031-01-05'
+    end: '2031-02-01'
+    predecessor: null
+    critical: false
+  actual_activity:
+  - prj_key: PRJ-900001
+    activity_code: ACT-2
+    actual_start: '2031-01-05'
+    actual_end: null
+    percent_complete: 50
+args: {}
+raises:
+  error: FrameError
+  message: 1 actual activities have no plan activity (for example PRJ-900001 ACT-2)
+  names:
+  - PRJ-900001
+  - ACT-2

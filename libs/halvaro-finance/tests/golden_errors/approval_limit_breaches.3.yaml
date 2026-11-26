@@ -1,0 +1,19 @@
+# Golden error case of halvaro-finance.approval_limit_breaches: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: approval_limit_breaches
+why: the limits do not end in None
+args:
+- frame:
+    columns: [po_key, total_value, currency, buyer_emp_key, order_date]
+    rows:
+    - [PO-X, 1000.0, DKK, EMP-X, '2026-01-05']
+- frame:
+    columns: [po_key, grade_level]
+    rows:
+    - [PO-X, 3]
+kwargs:
+  limits:
+  - [3, 1000]
+  - [5, 2000]
+context: month12
+raises: FrameError
+message: limits is a list of (grade level up to, limit) with increasing levels and None for the last step

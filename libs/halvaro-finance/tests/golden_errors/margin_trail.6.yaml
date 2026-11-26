@@ -1,0 +1,16 @@
+# Golden error case of halvaro-finance.margin_trail: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: margin_trail
+why: the write-down is in another currency than the project rows
+args:
+- frame:
+    columns: [prj_key, period, currency, contract_value, eac, actual_cost, revenue_recognised, loss_provision]
+    rows:
+    - [PRJ-X, 2026-03, DKK, 1000.0, 800.0, 400.0, 500.0, 0.0]
+- PRJ-X
+- frame:
+    columns: [posting_date, amount, amount_dkk, currency]
+    rows:
+    - ['2026-03-15', 10.0, 10.0, EUR]
+context: month12
+raises: FrameError
+message: the write-down journals are not in the currency of the project rows; amounts are never summed across currencies

@@ -1,0 +1,24 @@
+id: e01-duplicate-sensor-key
+rule: A sensor table with two rows for one sns_key is refused, because the alarm rules of a sensor must be one set.
+function: alarm_rules_table
+frames:
+  sensor:
+  - &id001
+    sns_key: SNS-900001
+    net_key: NET-900001
+    zone_key: ZONE-0001
+    sensor_type: load_percent
+    interval_s: 900
+    limit_high: 90.0
+    limit_low: null
+    limit_high_crit: 100.0
+    limit_low_crit: null
+    alarm_min_duration_s: 900
+    alarm_merge_gap_s: 900
+  - *id001
+raises:
+  error: FrameError
+  message: telemetry.sensor has more than one row for a sns_key
+  names:
+  - telemetry.sensor
+  - sns_key

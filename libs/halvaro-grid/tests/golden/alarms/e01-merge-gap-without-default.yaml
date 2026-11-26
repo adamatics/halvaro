@@ -1,0 +1,18 @@
+id: e01-merge-gap-without-default
+rule: A merge gap table without a default entry is refused, because alarm types that are not listed need a gap.
+function: incident_groups
+frames:
+  alarm:
+  - raised_ts: 2031-03-01 00:00
+    cleared_ts: 2031-03-01 02:00
+    net_key: NET-900001
+    alarm_type: load_high
+args:
+  merge_gap_hours:
+    load_high: 60.0
+raises:
+  error: FrameError
+  message: 'merge_gap_hours needs a ''default'' entry (got the keys [''load_high''])'
+  names:
+  - merge_gap_hours
+  - default

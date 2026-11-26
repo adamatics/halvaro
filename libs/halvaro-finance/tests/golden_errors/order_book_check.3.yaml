@@ -1,0 +1,11 @@
+# Golden error case of halvaro-finance.order_book_check: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: order_book_check
+why: a backlog value is null
+args:
+- frame:
+    columns: [le_key, project_type, period, backlog_opening, order_intake_total, revenue_recognised, backlog_closing]
+    rows:
+    - [LE-X, network, 2026-01, 100.0, 50.0, 30.0, null]
+context: month12
+raises: FrameError
+message: finance.order_intake_backlog has 1 null values in backlog_closing

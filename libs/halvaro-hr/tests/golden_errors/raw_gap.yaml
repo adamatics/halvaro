@@ -1,0 +1,15 @@
+# Golden error case of halvaro-hr.raw_gap: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: raw_gap
+why: the pay frame has pay columns but not the columns the gap is read from
+args:
+- frame:
+    columns:
+    - rate_dkk
+    - compa
+    rows: []
+context:
+  stage: month12
+  role: analyst
+  restricted_ok: true
+raises: FrameError
+message: pay frame (from pay_frame) frame lacks column(s) gender

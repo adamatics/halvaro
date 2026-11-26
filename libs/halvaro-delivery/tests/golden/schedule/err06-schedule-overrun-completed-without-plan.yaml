@@ -1,0 +1,18 @@
+id: err06-schedule-overrun-completed-without-plan
+rule: A completed project without a planned_end is refused, with a key named.
+function: schedule_overrun
+frames:
+  project:
+  - prj_key: PRJ-900001
+    start: '2031-01-05'
+    planned_end: null
+    actual_end: '2031-03-01'
+    forecast_end: null
+args:
+  as_of: '2031-04-01'
+raises:
+  error: FrameError
+  message: 1 completed projects have no planned_end or one before the start (for example PRJ-900001); an overrun needs a plan
+  names:
+  - PRJ-900001
+  - planned_end

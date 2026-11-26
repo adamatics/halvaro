@@ -1,0 +1,21 @@
+id: err26-executive-attendance-no-executive-set-for-date
+rule: A present attendee whose meeting date has no as_of row in the executives frame is refused.
+function: executive_attendance
+frames:
+  attendance_frame:
+  - mtg_key: MTG-900001
+    prj_key: PRJ-900001
+    date: '2031-01-05'
+    emp_key: EMP-900001
+    status: present
+  executives:
+  - emp_key: EMP-900001
+    role_name: director
+    as_of: '2031-02-02'
+args: {}
+raises:
+  error: FrameError
+  message: the executives frame has no as_of row for the meeting date 2031-01-05 of a present attendee; load the executive set of every meeting date
+  names:
+  - '2031-01-05'
+  - as_of

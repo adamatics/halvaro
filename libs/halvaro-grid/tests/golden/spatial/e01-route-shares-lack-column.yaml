@@ -1,0 +1,15 @@
+id: e01-route-shares-lack-column
+rule: A route share frame without the soil_class column is refused, because the majority soil is picked by soil class.
+function: majority_soil
+frames:
+  route_shares:
+  - prj_key: PRJ-900001
+    version: 2
+    metres: 5.0
+    route_length_m: 10.0
+raises:
+  error: FrameError
+  message: route_ground_intersection output frame lacks column(s) soil_class; load the source columns without renaming them
+  names:
+  - soil_class
+  - route_ground_intersection output

@@ -1,0 +1,49 @@
+# Golden error case of halvaro-hr.booked_renewals: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: booked_renewals
+why: a seat is booked on a course that is not after the release date
+args:
+- frame:
+    columns:
+    - event_no
+    - emp_key
+    - status
+    rows:
+    - - 7
+      - EMP-X1
+      - booked
+- frame:
+    columns:
+    - event_no
+    - qual_key
+    - date
+    - end_date
+    - capacity
+    - seats_taken
+    - country
+    - location_site_key
+    rows:
+    - - 7
+      - QUAL-X
+      - 2026-03-01
+      - 2026-03-02
+      - 10
+      - 4
+      - DK
+      - SITE-01
+- 2026-03-31
+- competence:
+    frame:
+      columns:
+      - release
+      - now
+      - generated_at
+      - base_seed
+      - increment
+      rows:
+      - - r1
+        - '2026-03-31'
+        - '2026-04-01'
+        - 1
+        - 0
+raises: FrameError
+message: '1 seats are still ''booked'' on a course that is not after 2026-03-31: the cache is stale'

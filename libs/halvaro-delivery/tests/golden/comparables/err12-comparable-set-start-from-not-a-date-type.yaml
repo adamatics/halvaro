@@ -1,0 +1,24 @@
+id: err12-comparable-set-start-from-not-a-date-type
+rule: A start_from given as a number is refused.
+function: comparable_set
+frames:
+  project:
+  - prj_key: PRJ-900001
+    country: DE
+    type: dh_network
+    soil_class: clay
+    route_length_m: 5000
+    legacy: false
+    data_depth: full
+    start: '2031-01-05'
+    actual_end: '2031-06-01'
+args:
+  as_of: '2031-12-01'
+  overrides:
+    start_from: 5
+raises:
+  error: FrameError
+  message: start_from must be a date or an ISO text, not 5
+  names:
+  - start_from
+  - date

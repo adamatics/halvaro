@@ -1,0 +1,20 @@
+# Golden error case of halvaro-core.release_now: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: release_now
+why: now is text that is not a date
+args:
+- hr:
+    frame:
+      columns:
+      - release
+      - now
+      - generated_at
+      - base_seed
+      - increment
+      rows:
+      - - r1
+        - soon
+        - '2026-12-01 08:00:00'
+        - seed-a
+        - 2
+raises: FrameError
+message: data_release.now must be a date, not 'soon'

@@ -1,0 +1,34 @@
+id: e01-min-completeness-above-one
+rule: A completeness threshold above one is refused, because it is a share of the expected samples.
+function: peak_load
+frames:
+  zone_series:
+  - zone_key: ZONE-0001
+    sns_key: SNS-900001
+    level: zone
+    basis: load_percent
+    ts: 2031-01-10 00:00
+    quality_flag: ok
+    ok: true
+    load_percent: 85.0
+  sensor:
+  - sns_key: SNS-900001
+    zone_key: ZONE-0001
+    sensor_type: load_percent
+    interval_s: 3600
+    critical_role: none
+    rated_value: 100.0
+    station_key: STN-900001
+  weather_observation:
+  - station_key: STN-900001
+    ts: 2031-01-10 00:00
+    temp_c: -5.0
+args:
+  min_completeness: 1.5
+raises:
+  error: FrameError
+  message: min_completeness must be a number in [0, 1], not 1.5
+  names:
+  - min_completeness
+  - '[0, 1]'
+  - '1.5'

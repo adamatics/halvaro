@@ -1,0 +1,11 @@
+id: e03-totals-of-one-entity
+rule: "answer_pack is refused when the totals row is of one entity and not of the whole company (le_key ALL)."
+function: answer_pack
+frames:
+  req: [{"cus_key": "CUS-900001", "request_no": 1}]
+  totals: [{"le_key": "LE-900001", "year": 2030, "months": 12, "scope1": 10.0, "scope2_location": 5.0, "scope2_market": 4.0, "scope3": 20.0}]
+  targets: [{"target_no": 1, "scope": "1", "baseline_year": 2029, "target_year": 2035, "reduction_percent": 50.0, "basis": "current", "status": "proposed"}]
+raises:
+  error: FrameError
+  message: "answer_pack takes the totals of the whole company (le_key 'ALL'), not one entity"
+  names: ["le_key", "ALL"]

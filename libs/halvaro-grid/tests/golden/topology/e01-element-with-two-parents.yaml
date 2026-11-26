@@ -1,0 +1,19 @@
+id: e01-element-with-two-parents
+rule: An element that has two parents is refused, because the connections must form a tree.
+function: build_tree
+frames:
+  network_connection:
+  - net_from: NET-900001
+    net_to: NET-900003
+    role: feeder
+    zone_key: ZONE-0001
+  - net_from: NET-900002
+    net_to: NET-900003
+    role: feeder
+    zone_key: ZONE-0001
+raises:
+  error: FrameError
+  message: 1 elements have more than one parent (for example NET-900003)
+  names:
+  - more than one parent
+  - NET-900003

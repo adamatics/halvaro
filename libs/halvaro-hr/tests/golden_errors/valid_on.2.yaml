@@ -1,0 +1,18 @@
+# Golden error case of halvaro-hr.valid_on: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: valid_on
+why: a certificate expires before it is issued
+args:
+- frame:
+    columns:
+    - emp_key
+    - qual_key
+    - issued
+    - expires
+    rows:
+    - - EMP-000001
+      - QUAL-01
+      - '2023-01-10'
+      - '2022-01-01'
+- 2026-01-01
+raises: FrameError
+message: 1 certificates expire before they are issued (for example EMP-000001)

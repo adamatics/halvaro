@@ -1,0 +1,11 @@
+# Golden error case of halvaro-finance.budget_variance: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: budget_variance
+why: every frame is empty, so the columns the function reads are missing
+args:
+- frame: {}
+- frame: {}
+kwargs:
+  version: v1
+context: month12
+raises: FrameError
+message: finance.budget_line frame lacks column(s) le_key, budget_version, cc_key, gl_key, period, amount, amount_dkk; load the source columns without renaming them

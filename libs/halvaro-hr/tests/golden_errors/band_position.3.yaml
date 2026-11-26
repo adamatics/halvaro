@@ -1,0 +1,38 @@
+# Golden error case of halvaro-hr.band_position: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: band_position
+why: a term is in a currency other than DKK or EUR
+args:
+- frame:
+    columns:
+    - emp_key
+    - gender
+    - grade_key
+    - currency
+    - rate_local
+    - compa
+    rows:
+    - - EMP-X1
+      - F
+      - GRA-X
+      - USD
+      - 40000.0
+      - 1.0
+- frame:
+    columns:
+    - gra_key
+    - band_min_dkk
+    - band_max_dkk
+    - band_min_eur
+    - band_max_eur
+    rows:
+    - - GRA-X
+      - 30000.0
+      - 50000.0
+      - 4000.0
+      - 6700.0
+context:
+  stage: month12
+  role: analyst
+  restricted_ok: true
+raises: FrameError
+message: band_position takes terms in DKK or EUR

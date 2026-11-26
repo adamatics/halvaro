@@ -1,0 +1,16 @@
+id: err09-delay-days-days-not-numeric
+rule: A text days column is refused.
+function: delay_days
+frames:
+  delay_event:
+  - prj_key: PRJ-900001
+    cause_code: weather
+    responsible_party: customer
+    days: many
+args: {}
+raises:
+  error: FrameError
+  message: projects.delay_event.days must be numeric
+  names:
+  - delay_event.days
+  - numeric

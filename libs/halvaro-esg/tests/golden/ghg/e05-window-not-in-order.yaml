@@ -1,0 +1,11 @@
+id: e05-window-not-in-order
+rule: "renewable_effect is refused when the after window is not a (first, last) pair of periods in order."
+function: renewable_effect
+frames:
+  L: [{"le_key": "LE-900001", "period": "2030-05", "scope": 2, "category": "electricity", "line_no": 1, "kgco2e": 10.0, "quantity": 5.0, "efac_key": "EF-900001", "method": "location", "ghg_category": "2", "restated_from_period": null, "supersedes_line_no": null, "is_superseded": false}]
+  C: [{"mtr_key": "MTR-900001", "period": "2030-05", "quantity": 100.0, "unit": "kWh", "contract_type": "renewable_certified"}]
+args: {"before": ["2030-01", "2030-03"], "after": ["2030-09", "2030-06"]}
+raises:
+  error: FrameError
+  message: "after must be a (first, last) pair of periods in order"
+  names: ["after", "pair"]

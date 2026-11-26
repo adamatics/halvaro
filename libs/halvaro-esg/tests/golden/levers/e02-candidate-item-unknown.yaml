@@ -1,0 +1,13 @@
+id: e02-candidate-item-unknown
+rule: "lever_material_substitution is refused when a candidate item is not in inventory.item, and the message names it."
+function: lever_material_substitution
+frames:
+  G: [{"itm_key": "ITM-900001", "quantity": 10.0}]
+  item: [{"itm_key": "ITM-900001", "category": "cable", "unit": "m", "footprint_kgco2e_per_unit": 2.0}]
+  epd: [{"itm_key": "ITM-900001", "source": "supplier EPD", "verification": null}]
+  factors: [{"category": "purchased_goods_product_footprint", "kgco2e_per_unit": 0.5}]
+args: {"cand": {"ITM-900001": "ITM-900002"}}
+raises:
+  error: FrameError
+  message: "inventory.item does not hold ['ITM-900002']"
+  names: ["inventory.item", "ITM-900002"]

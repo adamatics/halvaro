@@ -1,0 +1,20 @@
+id: err07-estimate-bridge-not-a-frame
+rule: The estimate_version argument is not a DataFrame.
+function: estimate_bridge
+frames:
+  estimate_line:
+  - prj_key: PRJ-900001
+    estimate_version: 1
+    cst_key: CST-900001
+    amount: 1
+  cost_code:
+  - cst_key: CST-900001
+    category: civil
+args:
+  estimate_version: tender
+raises:
+  error: FrameError
+  message: projects.estimate_version must be a DataFrame, not str
+  names:
+  - projects.estimate_version
+  - str

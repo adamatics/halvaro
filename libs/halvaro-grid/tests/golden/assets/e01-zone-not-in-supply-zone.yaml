@@ -1,0 +1,20 @@
+id: e01-zone-not-in-supply-zone
+rule: An element in a zone that the supply zone table does not hold is refused, because the zone area is needed for the summary.
+function: zone_strain_summary
+frames:
+  strained:
+  - net_key: NET-900001
+    zone_key: ZONE-0099
+    cus_key: CUS-900001
+    load_strained: true
+    age_strained: false
+    strained: true
+  supply_zone:
+  - zone_key: ZONE-0001
+    area_km2: 4.0
+raises:
+  error: FrameError
+  message: zone ZONE-0099 is not in gis.supply_zone
+  names:
+  - ZONE-0099
+  - gis.supply_zone

@@ -1,0 +1,47 @@
+# Golden error case of halvaro-hr.coverage_gap: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: coverage_gap
+why: min_headcount is not a whole number
+args:
+- frame:
+    columns:
+    - scope_type
+    - scope_key
+    - qual_key
+    - min_headcount
+    rows:
+    - - project
+      - PRJ-1
+      - QUAL-01
+      - 1.5
+- frame:
+    columns:
+    - emp_key
+    rows:
+    - - EMP-000001
+- frame:
+    columns:
+    - emp_key
+    - qual_key
+    - issued
+    - expires
+    rows:
+    - - EMP-000001
+      - QUAL-01
+      - '2023-01-10'
+      - '2025-01-09'
+- frame:
+    columns:
+    - emp_key
+    - qual_key
+    - course_date
+    rows: []
+- frame:
+    columns:
+    - emp_key
+    - leave_type
+    - start
+    - end
+    rows: []
+- 2026-03-31
+raises: FrameError
+message: min_headcount must be a whole number of people, zero or more

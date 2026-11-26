@@ -1,0 +1,19 @@
+id: err31-overrun-distribution-overrun-not-numeric
+rule: A text overrun column is refused.
+function: overrun_distribution
+frames:
+  overrun:
+  - prj_key: PRJ-900001
+    overrun: late
+  project:
+  - prj_key: PRJ-900001
+    final_cost: 1
+    legacy: false
+    currency: EUR
+args: {}
+raises:
+  error: FrameError
+  message: the overrun column must be numeric
+  names:
+  - overrun
+  - numeric

@@ -1,0 +1,11 @@
+id: e01-restate-keys
+rule: expected_waste_lines is refused when restate is not a mapping of exactly year and factor_date.
+function: expected_waste_lines
+frames:
+  w: [{site_key: SIT-900001, period: "2030-05", fraction: mixed, tonnes: 1.0}]
+  f: [{efac_key: EF-900001, category: waste, carrier: mixed, region: DK, method: null, kgco2e_per_unit: 0.1, unit: t, valid_from: "2030-01-01", valid_to: null, factor_set: FS-900001}]
+args: {restate: {year: 2030}}
+raises:
+  error: FrameError
+  message: "restate is {'year': 2025, 'factor_date': '2026-01-01'}"
+  names: [restate, factor_date]

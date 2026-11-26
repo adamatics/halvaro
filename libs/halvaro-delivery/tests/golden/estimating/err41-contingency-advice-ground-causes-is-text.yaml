@@ -1,0 +1,30 @@
+id: err41-contingency-advice-ground-causes-is-text
+rule: ground_causes given as one text instead of a list is refused.
+function: contingency_advice
+frames:
+  overrun_dist:
+  - measure: schedule
+    n: 1
+    n_legacy: 0
+    q25: 0.1
+    median: 0.1
+    q75: 0.2
+  shares:
+  - view: all_events
+    cause_code: ground_conditions
+    days: 1
+  lines:
+  - prj_key: PRJ-900001
+    type: tender
+    cst_key: CST-900001
+    category: civil
+    amount: 1
+    currency: EUR
+args:
+  ground_causes: ground_conditions
+raises:
+  error: FrameError
+  message: ground_causes must be a list of cause codes
+  names:
+  - ground_causes
+  - list

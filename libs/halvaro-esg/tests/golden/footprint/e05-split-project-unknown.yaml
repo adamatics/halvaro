@@ -1,0 +1,11 @@
+id: e05-split-project-unknown
+rule: "component_split is refused when a project of the footprint is not in projects.project."
+function: component_split
+frames:
+  PF: [{"prj_key": "PRJ-900002", "period": "2030-05", "materials_kgco2e": 1.0, "transport_kgco2e": 1.0, "site_kgco2e": 1.0, "subcontractor_kgco2e": 1.0}]
+  P: [{"prj_key": "PRJ-900001", "route_length_m": 50.0}]
+  cs: [{"prj_key": "PRJ-900002"}]
+raises:
+  error: FrameError
+  message: "1 projects of the footprint are not in projects.project (for example PRJ-900002)"
+  names: ["projects.project", "PRJ-900002"]

@@ -1,0 +1,8 @@
+# Golden error case of halvaro-finance.order_book_check: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: order_book_check
+why: every frame is empty, so the columns the function reads are missing
+args:
+- frame: {}
+context: month12
+raises: FrameError
+message: finance.order_intake_backlog frame lacks column(s) le_key, project_type, period, backlog_opening, order_intake_total, revenue_recognised, backlog_closing; load the source columns without renaming them

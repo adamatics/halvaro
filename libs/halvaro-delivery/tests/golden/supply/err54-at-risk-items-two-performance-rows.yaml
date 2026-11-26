@@ -1,0 +1,33 @@
+id: err54-at-risk-items-two-performance-rows
+rule: A window performance frame with two rows for the supplier is refused.
+function: at_risk_items
+frames:
+  stock:
+  - site_key: SITE-900001
+    itm_key: ITM-900001
+    on_hand: 0
+  open_lines:
+  - sup_key: SUP-900001
+    itm_key: ITM-900001
+    slip_days: 0
+    days_overdue: 0
+  alerts:
+  - sup_key: SUP-900001
+    itm_key: ITM-900001
+  window_performance:
+  - &id001
+    sup_key: SUP-900001
+    on_time_percent: 90.0
+  - *id001
+args:
+  items:
+  - ITM-900001
+  site: SITE-900001
+  sup_key: SUP-900001
+  as_of: '2031-02-01'
+raises:
+  error: FrameError
+  message: supplier_performance_window output has more than one row for SUP-900001
+  names:
+  - supplier_performance_window output
+  - SUP-900001

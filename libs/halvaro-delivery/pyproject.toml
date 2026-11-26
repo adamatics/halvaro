@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=77", "setuptools-scm==10.3.4"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "halvaro-delivery"
+dynamic = ["version"]
+description = "Delivery library of the Halvaro Infra estate: projects, comparables, procurement, inventory, contracts and crm (0.1: scaffold)"
+requires-python = ">=3.10"
+license = "Apache-2.0"
+dependencies = ["halvaro-core>=0.1,<0.2", "pandas>=2.0,<3"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "jsonschema>=4", "pyarrow>=15", "PyYAML>=6", "setuptools-scm==10.3.4"]
+
+# Version from the Git tag halvaro-delivery/v<major>.<minor>.<patch>, as halvaro-hr (lane P3, #483; default taken, proposed). setuptools-scm reads the local repository, no network.
+# The build writes src/halvaro/delivery/_version_scm.py (git-ignored, into the wheel). The tracked _version.py imports it and keeps the committed fallback for a checkout that is not built.
+[tool.setuptools_scm]
+root = "../.."
+tag_regex = "^halvaro-delivery/v(?P<version>[0-9]+\\.[0-9]+\\.[0-9]+)$"
+git_describe_command = ["git", "describe", "--dirty", "--tags", "--long", "--match", "halvaro-delivery/v*"]
+version_file = "src/halvaro/delivery/_version_scm.py"
+fallback_version = "0.1.0"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+namespaces = true
+
+[tool.setuptools.package-data]
+"halvaro.delivery" = ["py.typed", "_data/*.json", ".agents/skills/*/SKILL.md", ".agents/skills/*/references/*.md"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests", "repo_tests"]
+pythonpath = ["src", "../halvaro-core/src"]
+addopts = "-q --strict-markers"
+markers = [
+    "release: needs an exported release (set HALVARO_RELEASE_DIR)",
+    "slow: more than a few seconds",
+]

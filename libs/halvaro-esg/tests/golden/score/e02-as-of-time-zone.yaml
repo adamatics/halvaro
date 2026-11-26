@@ -1,0 +1,15 @@
+id: e02-as-of-time-zone
+rule: "indicator_values is refused when as_of carries a time zone, because the day must be a calendar day without one."
+function: indicator_values
+frames:
+  T: []
+  L: []
+  C: []
+  M: []
+  E: []
+  A: []
+args: {"as_of": "2032-02-01T00:00:00+01:00"}
+raises:
+  error: FrameError
+  message: "as_of '2032-02-01T00:00:00+01:00' is not a date without a time zone"
+  names: ["as_of", "time zone"]

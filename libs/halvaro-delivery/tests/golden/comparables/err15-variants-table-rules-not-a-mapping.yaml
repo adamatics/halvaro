@@ -1,0 +1,24 @@
+id: err15-variants-table-rules-not-a-mapping
+rule: rules given as a list instead of a mapping is refused.
+function: variants_table
+frames:
+  project:
+  - prj_key: PRJ-900001
+    country: DE
+    type: dh_network
+    soil_class: clay
+    route_length_m: 5000
+    legacy: false
+    data_depth: full
+    start: '2031-01-05'
+    actual_end: '2031-06-01'
+args:
+  as_of: '2031-12-01'
+  rules:
+  - de_all
+raises:
+  error: FrameError
+  message: rules is a mapping of rule name to filter fields
+  names:
+  - rules
+  - mapping

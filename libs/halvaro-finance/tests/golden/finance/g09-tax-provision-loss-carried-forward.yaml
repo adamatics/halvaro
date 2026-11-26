@@ -1,0 +1,19 @@
+name: A loss of one year is carried forward and used against the income of the next, up to the cap of the fact
+function: tax_provision
+cites: [FI.REF.012]
+by_hand: Year 1 has a loss of 1000, so the loss carried forward is 1000 and the taxable income is 0. Year 2 has an income of 2000. The loss used is the smaller of the loss carried in (1000) and the cap share of the fact times 2000. The taxable income is 2000 less the loss used, the current tax is the rate of the fact times it, and nothing is deferred. The stored figures are zero, so the recomputed rows do not agree with them.
+let:
+  rate: "=fact('frep.corporate_tax.DK.rate')"
+  cap: "=fact('frep.corporate_tax.tax_losses.utilisation_cap_share_of_taxable_income')"
+  used: "=min(1000, cap * 2000)"
+context: month12
+input:
+  provision:
+    columns: [le_key, fiscal_year, tax_rate, profit_before_tax, non_deductible_expenses, exempt_income, temporary_difference_movement, taxable_income_before_losses, tax_loss_utilised, tax_loss_added, tax_loss_carried_forward, taxable_income, current_tax, deferred_tax_movement, total_tax_expense]
+    rows:
+      - [LE-01, 2024, "=rate", -1000.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+      - [LE-01, 2025, "=rate", 2000.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+expect:
+  rows:
+    - {fiscal_year: 2024, tax_loss_added: 1000.0, tax_loss_carried_forward: 1000.0, taxable_income: 0.0, current_tax: 0.0, rate_is_the_fact: true}
+    - {fiscal_year: 2025, tax_loss_utilised: "=round(used, 2)", tax_loss_carried_forward: "=round(1000 - used, 2)", taxable_income: "=round(2000 - used, 2)", current_tax: "=round((2000 - used) * rate, 2)", agrees: false}

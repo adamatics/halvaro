@@ -1,0 +1,10 @@
+# Golden error case of halvaro-finance.dkk_amount: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: dkk_amount
+why: amount and currency differ in length
+args:
+- [1.0, 2.0]
+- [DKK]
+kwargs: {basis: booking}
+context: month12
+raises: FrameError
+message: amount and currency must have the same length

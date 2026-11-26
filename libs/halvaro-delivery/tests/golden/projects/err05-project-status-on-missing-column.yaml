@@ -1,0 +1,14 @@
+id: err05-project-status-on-missing-column
+rule: The project frame lacks a column the function needs, here actual_end.
+function: project_status_on
+frames:
+  project:
+  - prj_key: PRJ-900001
+    start: '2031-01-05'
+args:
+  as_of: '2031-02-01'
+raises:
+  error: FrameError
+  message: projects.project frame lacks column(s) actual_end; load the source columns without renaming them
+  names:
+  - actual_end

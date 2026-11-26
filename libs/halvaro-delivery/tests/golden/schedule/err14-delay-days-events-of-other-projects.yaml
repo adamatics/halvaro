@@ -1,0 +1,20 @@
+id: err14-delay-days-events-of-other-projects
+rule: A project frame that shares no project with the events is refused as the wrong frame.
+function: delay_days
+frames:
+  delay_event:
+  - prj_key: PRJ-900001
+    cause_code: weather
+    responsible_party: customer
+    days: 1
+  project:
+  - prj_key: PRJ-900002
+    planned_end: '2031-06-01'
+    actual_end: '2031-06-02'
+args: {}
+raises:
+  error: FrameError
+  message: the 1 projects in the delay events are not in the project frame, none of them (for example PRJ-900001); is it the right frame?
+  names:
+  - PRJ-900001
+  - right frame

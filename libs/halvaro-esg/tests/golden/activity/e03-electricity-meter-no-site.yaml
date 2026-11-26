@@ -1,0 +1,10 @@
+id: e03-electricity-meter-no-site
+rule: "electricity_contract_share is refused when an electricity meter has no site_key."
+function: electricity_contract_share
+frames:
+  c: [{"mtr_key": "MTR-900001", "period": "2030-05", "quantity": 100.0, "unit": "kWh", "contract_type": "grid_mix", "cost_amount": 10.0, "currency": "DKK"}]
+  m: [{"mtr_key": "MTR-900001", "carrier": "electricity", "kind": "grid", "scope": 2, "unit": "kWh", "site_key": null}]
+raises:
+  error: FrameError
+  message: "electricity meters without a site_key: a share per site cannot place their consumption"
+  names: ["site_key", "electricity"]

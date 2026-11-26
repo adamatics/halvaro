@@ -1,0 +1,23 @@
+id: err23-comparable-coverage-time-entry-without-prj-key
+rule: A time_entry frame without prj_key is refused.
+function: comparable_coverage
+frames:
+  comparable: &id001
+  - prj_key: PRJ-900001
+  project:
+  - prj_key: PRJ-900001
+    final_cost: 1
+    route_length_m: 1
+  estimate_version:
+  - prj_key: PRJ-900001
+    type: final
+  project_role: *id001
+  time_entry_projects:
+  - hours: 1
+args: {}
+raises:
+  error: FrameError
+  message: the time_entry frame lacks column prj_key
+  names:
+  - time_entry
+  - prj_key

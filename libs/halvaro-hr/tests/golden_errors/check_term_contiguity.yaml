@@ -1,0 +1,8 @@
+# Golden error case of halvaro-hr.check_term_contiguity: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: check_term_contiguity
+why: every frame is empty, so the columns the function reads are missing
+args:
+- frame: {}
+- frame: {}
+raises: FrameError
+message: hr.employment_term frame lacks column(s) emp_key, valid_from, valid_to

@@ -1,0 +1,31 @@
+id: err57-minimum-stock-window-weeks-not-positive
+rule: window_weeks that is not above zero is refused.
+function: minimum_stock
+frames:
+  stock_movement:
+  - site_key: SITE-900001
+    itm_key: ITM-900001
+    movement_date: '2031-01-05'
+    movement_type: issue_project
+    qty: -2
+    prj_key: null
+    reservation_no: null
+  lead_time:
+  - sup_key: SUP-900001
+    itm_key: ITM-900001
+    valid_from: '2031-01-01'
+    valid_to: null
+    lead_time_weeks: 4
+  item:
+  - itm_key: ITM-900001
+    stocked: true
+    preferred_sup_key: SUP-900001
+args:
+  as_of: '2031-02-01'
+  window_weeks: 0
+raises:
+  error: FrameError
+  message: window_weeks must be a positive number
+  names:
+  - window_weeks
+  - positive

@@ -1,0 +1,16 @@
+name: A person with a carry-over agreement is measured against the agreement cap
+function: carry_over_position
+cites: [dk/ferieloven/p-0021]
+by_hand: With the agreement flag the cap is the agreement cap, so carrying in exactly that many days leaves zero headroom. An opening row has no cap.
+let:
+  cap_agreement: "=fact('legal.DK.holiday.carryover.agreement_max_days')"
+input:
+  ent:
+    columns: [emp_key, holiday_year, carried_in_days, carry_over_agreement, opening_balance]
+    rows:
+      - [EMP-1, "2026/27", "=cap_agreement", true, false]
+      - [EMP-2, "2026/27", "=cap_agreement", true, true]
+expect:
+  rows:
+    - {emp_key: EMP-1, basis: agreement, cap: "=cap_agreement", headroom: 0.0, at_cap: true}
+    - {emp_key: EMP-2, cap: null, headroom: null, at_cap: false}

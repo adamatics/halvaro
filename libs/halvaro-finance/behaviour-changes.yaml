@@ -1,0 +1,67 @@
+# Behaviour changes of this distribution: a changed fact value, cfg parameter, KB rule version or oracle gets an entry in the same change.
+# Fields: id, date, functions, facts, kb, before, after, class (correction | policy change). The proposal is a note of the closed repository (library versioning).
+changes:
+  - id: BC-FIN-0001
+    date: 2026-11-19
+    functions: [halvaro.finance.exposure.exposure_bridge]
+    facts: []
+    kb: []
+    before: An open_exposure result in which exposure_dkk differed from exposure_po_dkk + exposure_reserved_dkk was bridged without a message and the identity difference = received_or_timing_dkk - reserved_dkk did not hold.
+    after: A row where exposure_dkk differs from the sum of its parts by more than half a cent raises FrameError naming the count and the first project. Consistent results give the same bridge as before.
+    class: correction
+  - id: BC-FIN-0002
+    date: 2026-11-21
+    functions: [halvaro.finance.project_view.margin_trail]
+    facts: []
+    kb: []
+    before: "A project_financials frame without a prj_key or period column raised a bare KeyError, because the sort ran before the column check."
+    after: "The columns prj_key and period are checked first and a missing one raises FrameError naming it. Frames with the columns give the same result as before."
+    class: correction
+  - id: BC-FIN-0003
+    date: 2026-11-21
+    functions: [halvaro.finance.payroll.employer_oncosts, halvaro.finance.payroll.labour_absorption_check, halvaro.finance.statements.statements_check, halvaro.finance.statements.statement_from_ledger, halvaro.finance.project_view.cost_per_metre_by_cost_code]
+    facts: []
+    kb: []
+    before: "Text that is not a number in an amount column the function converts (gross_salary, overtime, amount, amount_dkk, debit, credit, closing_balance, actual_amount, prior_year_amount, route_length_m, as_built_length_m) raised a bare ValueError or TypeError."
+    after: "Such a value raises FrameError naming the column and the value, only for text in a column the function reads under the chosen base (employer_oncosts reads overtime only with base gross_plus_overtime, and there a null overtime is taken as 0 as before; the columns of rows the function filters out are not read). A null in route_length_m raises FrameError saying the column has a null. Numbers, nulls where the body accepted them, and text that reads as a number give the same result as before."
+    class: correction
+  - id: BC-FIN-0004
+    date: 2026-11-21
+    functions: [halvaro.finance.payroll.labour_absorption_check]
+    facts: []
+    kb: []
+    before: "max_warranty_share that is not a number (text or None) raised a bare TypeError although Raises names FrameError."
+    after: "A max_warranty_share that is not a number raises FrameError naming the value. Numbers (int, float, Decimal) from 0 to below 1 give the same result as before."
+    class: correction
+  - id: BC-FIN-0005
+    date: 2026-11-21
+    functions: [halvaro.finance.statements.statements_check]
+    facts: []
+    kb: []
+    before: "footing=None raised a bare TypeError."
+    after: "A footing that is not a mapping raises FrameError naming the value. A mapping gives the same result as before."
+    class: correction
+  - id: BC-FIN-0006
+    date: 2026-11-21
+    functions: [halvaro.finance.exposure.supplier_spend]
+    facts: []
+    kb: []
+    before: "A start or end that is not a date raised PeriodError that named the argument as_of."
+    after: "The PeriodError names start or end (the helper _day takes the argument name, default as_of, so the other callers keep their message)."
+    class: correction
+  - id: BC-FIN-0007
+    date: 2026-11-21
+    functions: [halvaro.finance.exposure.committed_cost]
+    facts: []
+    kb: []
+    before: "An infinite unit price or open quantity gave the message that amounts and currencies must not be null (a zero quantity times infinity), or no error and a meaningless DKK amount."
+    after: "An infinite unit_price or qty_open of a counted line raises FrameError saying it must be finite, not infinity. Finite inputs give the same result as before."
+    class: correction
+  - id: BC-FIN-0008
+    date: 2026-11-21
+    functions: [halvaro.finance.statements.prior_year_column]
+    facts: []
+    kb: []
+    before: "codes that was a number, None or a sequence with a non-text item raised FrameError saying codes must not be a string."
+    after: "The message says what was found: a number or other non-iterable, or a sequence with an item that is not text; the string case keeps its meaning. No valid input changes."
+    class: correction

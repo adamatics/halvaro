@@ -1,0 +1,7 @@
+# Golden error case of halvaro-core.stage_placeholder: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: stage_placeholder
+why: the argument is a text, not a StageRefusal
+args:
+- refused
+raises: FrameError
+message: stage_placeholder takes a StageRefusal, not str

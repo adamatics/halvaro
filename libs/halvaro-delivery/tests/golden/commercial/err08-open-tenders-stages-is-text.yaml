@@ -1,0 +1,28 @@
+id: err08-open-tenders-stages-is-text
+rule: stages given as one text instead of a list is refused, with the value named.
+function: open_tenders
+frames:
+  opportunity:
+  - opp_key: OPP-900001
+    name: Tender A
+    cus_key: CUS-900001
+    stage: tender
+    is_open: true
+    project_type: district_heating
+    country: DK
+    soil_class: clay
+    route_length_m: 1
+    zone_key: ZONE-0001
+    bid_deadline: '2031-03-01'
+    requirements: null
+    carbon_limit_kgco2e_per_m: null
+    created_date: '2031-01-05'
+args:
+  as_of: '2031-02-01'
+  stages: tender
+raises:
+  error: FrameError
+  message: stages must be a tuple or list of values, not 'tender'
+  names:
+  - stages
+  - tender

@@ -1,0 +1,18 @@
+id: e01-backlog-grace-days-negative
+rule: A negative grace period is refused, because a planned ticket is late only after its grace days have passed.
+function: planned_backlog
+frames:
+  service_ticket:
+  - tkt_key: TKT-900001
+    source: planned_maintenance
+    due_date: '2031-03-10'
+    resolved_ts: '2031-03-12 10:00'
+    team_key: TEAM-900001
+args:
+  grace_days: -1
+raises:
+  error: FrameError
+  message: 'grace_days must be a whole number of days, zero or more (got -1)'
+  names:
+  - grace_days
+  - zero or more

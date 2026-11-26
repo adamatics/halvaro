@@ -1,0 +1,23 @@
+id: e01-element-not-in-grid-element
+rule: A ticket that names an element the grid element table does not hold is refused, because the part use is grouped by element type.
+function: part_usage
+frames:
+  ticket_item_use:
+  - tkt_key: TKT-900001
+    itm_key: ITM-900001
+    qty: 2
+    used_on: '2031-03-03'
+    uom: each
+  service_ticket:
+  - tkt_key: TKT-900001
+    net_key: NET-900002
+  grid_element:
+  - net_key: NET-900001
+    element_type: cable
+raises:
+  error: FrameError
+  message: service.service_ticket names elements that gis.grid_element does not hold, for example ['NET-900002']
+  names:
+  - service.service_ticket
+  - gis.grid_element
+  - NET-900002

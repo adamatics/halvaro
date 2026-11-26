@@ -1,0 +1,15 @@
+# Golden error case of halvaro-finance.exposure_bridge: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: exposure_bridge
+why: the finance exposure of a project is null
+args:
+- frame:
+    columns: [prj_key, exposure_po_dkk, exposure_reserved_dkk, exposure_dkk]
+    rows:
+    - [PRJ-X, 10.0, 5.0, 15.0]
+- frame:
+    columns: [prj_key, price_exposure_dkk]
+    rows:
+    - [PRJ-X, null]
+context: month12
+raises: FrameError
+message: the exposure results must not hold null amounts

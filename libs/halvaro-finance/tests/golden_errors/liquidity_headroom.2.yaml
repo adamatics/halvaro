@@ -1,0 +1,8 @@
+# Golden error case of halvaro-finance.liquidity_headroom: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: liquidity_headroom
+why: the context is missing (None), so the stage cannot be checked
+args:
+- frame: {}
+context: null
+raises: FrameError
+message: halvaro.finance.cash.liquidity_headroom needs context= a halvaro.core.Context (stage and role of the session), not NoneType

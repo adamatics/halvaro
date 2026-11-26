@@ -1,0 +1,17 @@
+id: err20-milestone-slippage-without-planned-date
+rule: A milestone without a planned_date is refused.
+function: milestone_slippage
+frames:
+  milestone:
+  - prj_key: PRJ-900001
+    milestone_no: 1
+    planned_date: null
+    actual_date: null
+args:
+  as_of: '2031-04-01'
+raises:
+  error: FrameError
+  message: projects.milestone has 1 rows without planned_date
+  names:
+  - projects.milestone
+  - planned_date

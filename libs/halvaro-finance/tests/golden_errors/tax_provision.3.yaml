@@ -1,0 +1,13 @@
+# Golden error case of halvaro-finance.tax_provision: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: tax_provision
+why: an entity and fiscal year is listed twice
+args:
+- frame:
+    columns: [le_key, fiscal_year, tax_rate, profit_before_tax, non_deductible_expenses, exempt_income, temporary_difference_movement, taxable_income_before_losses, tax_loss_utilised, tax_loss_added, tax_loss_carried_forward,
+      taxable_income, current_tax, deferred_tax_movement, total_tax_expense]
+    rows:
+    - [LE-01, 2025, 0.22, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+    - [LE-01, 2025, 0.22, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+context: month12
+raises: FrameError
+message: finance-reporting.tax_provision has more than one row for an entity and fiscal year

@@ -1,0 +1,36 @@
+name: A part paid supplier invoice is open for the rest and a credit note is negative
+function: open_items_ap
+cites: [FI.PRC.003]
+by_hand: Invoice S1 of 500 with a payment of 200 before the date is open for 300. Credit note S2 of 100 is minus 100 and open for minus 100.
+context: month3
+input:
+  supplier_invoice:
+    columns: [sinv_key, le_key, sup_key, invoice_type, invoice_date, due_date, payable_amount_le]
+    rows:
+      - [S1, LE-01, SUP-1, invoice, "2025-01-10", "2025-02-10", 500.0]
+      - [S2, LE-01, SUP-1, credit_note, "2025-01-12", "2025-02-12", 100.0]
+  payment_allocation:
+    columns: [le_key, bank_account, payment_no, allocation_kind, document_type, booked_amount, inv_key, sinv_key, opening_item_ref]
+    rows:
+      - [LE-01, BA-1, 1, sinv, invoice, 200.0, null, S1, null]
+  payment:
+    columns: [le_key, bank_account, payment_no, payment_date]
+    rows:
+      - [LE-01, BA-1, 1, "2025-02-15"]
+  gl_account:
+    columns: [gl_key, control_type]
+    rows:
+      - [GL-1100, ar]
+      - [GL-1190, retention]
+      - [GL-2100, ap]
+  opening_balance_item:
+    columns: [le_key, gl_key, item_ref, document_date, due_date, amount, currency, cus_key, sup_key]
+    rows:
+      - [LE-01, GL-1100, O1, "2024-12-01", null, 0.0, DKK, null, null]
+  as_of: "=date(2025, 3, 31)"
+expect:
+  rows_by:
+    key: item_key
+    rows:
+      - {item_key: S1, payable_amount_le: 500.0, paid: 200.0, open_amount: 300.0}
+      - {item_key: S2, payable_amount_le: -100.0, paid: 0.0, open_amount: -100.0}

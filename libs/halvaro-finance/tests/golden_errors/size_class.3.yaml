@@ -1,0 +1,11 @@
+# Golden error case of halvaro-finance.size_class: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: size_class
+why: the revenue of a judged report is text
+args:
+- frame:
+    columns: [rpt_key, le_key, revenue, total_assets, average_employees, size_criteria_met]
+    rows:
+    - [R-X, LE-01, high, 1000.0, 5, 0]
+context: month12
+raises: FrameError
+message: finance-reporting.statutory_report.revenue must hold numbers on a judged report

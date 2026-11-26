@@ -1,0 +1,22 @@
+id: err01-comparable-set-unknown-profile
+rule: The profile name is not one of the known comparable profiles.
+function: comparable_set
+frames:
+  project:
+  - prj_key: PRJ-900001
+    country: 1
+    type: 1
+    soil_class: 1
+    route_length_m: 1
+    legacy: 1
+    data_depth: 1
+    start: '2031-01-05'
+    actual_end: 1
+args:
+  profile: no_such_profile
+raises:
+  error: FrameError
+  message: 'unknown comparable profile ''no_such_profile''; known: de_clay_window, cell_de_dh_clay, dk_dh_recent'
+  names:
+  - profile
+  - no_such_profile

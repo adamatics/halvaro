@@ -1,0 +1,21 @@
+# Golden error case of halvaro-hr.executives_on: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: executives_on
+why: no role is named
+args:
+- frame:
+    columns:
+    - emp_key
+    - as_of
+    - active
+    - role_name
+    - dep_code
+    - team_key
+    rows: []
+- frame:
+    columns:
+    - role_key
+    - name
+    rows: []
+- []
+raises: FrameError
+message: name at least one role; the caller passes them (policy.delivery.executive_roles), hr keeps no list

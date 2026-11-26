@@ -1,0 +1,29 @@
+id: e01-clusters-is-text
+rule: Clusters given as plain text instead of a list, a tuple or a frame are refused, because the answer keeps them as a tuple.
+function: winter_peak_answer
+frames:
+  ranking:
+  - zone_key: ZONE-0001
+    rank: 1
+    peak_percent: 90.0
+    valid: true
+  peak_profile:
+  - zone_key: ZONE-0001
+    ts: 2031-01-06 00:00
+    load_percent: 88.0
+  temperatures:
+  - outdoor_c: -3.0
+    supply_temp_c: 70.0
+  density:
+  - net_key: NET-900001
+    n_faults: 2
+  gaps:
+  - sns_key: SNS-900001
+args:
+  clusters: none
+raises:
+  error: FrameError
+  message: 'clusters must be a list, a tuple or a frame (got str)'
+  names:
+  - clusters
+  - list, a tuple or a frame

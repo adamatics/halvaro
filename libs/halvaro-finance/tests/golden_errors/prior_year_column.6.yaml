@@ -1,0 +1,16 @@
+# Golden error case of halvaro-finance.prior_year_column: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: prior_year_column
+why: two reports of one entity and fiscal year
+args:
+- frame:
+    columns: [rpt_key, statement, line_no, line_code, amount, prior_year_amount, line_type]
+    rows:
+    - [R-X, income_statement, 1, REV, 100.0, null, line]
+- frame:
+    columns: [rpt_key, le_key, scope, fiscal_year]
+    rows:
+    - [R-X, LE-X, entity, 2026]
+    - [R-Y, LE-X, entity, 2026]
+context: month12
+raises: FrameError
+message: two reports of the same entity and fiscal year

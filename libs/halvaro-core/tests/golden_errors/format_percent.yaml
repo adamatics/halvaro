@@ -1,0 +1,7 @@
+# Golden error case of halvaro-core.format_percent: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: format_percent
+why: an infinite number has no percent text
+args:
+- .inf
+raises: FrameError
+message: format_percent got an infinite number

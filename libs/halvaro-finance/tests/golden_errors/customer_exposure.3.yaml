@@ -1,0 +1,15 @@
+# Golden error case of halvaro-finance.customer_exposure: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: customer_exposure
+why: a customer with open items is not in the customer frame
+args:
+- frame:
+    columns: [le_key, cus_key, open_amount, currency]
+    rows:
+    - [LE-X, CUS-X, 100.0, DKK]
+- frame:
+    columns: [cus_key, credit_limit, currency]
+    rows:
+    - [CUS-Y, 500.0, DKK]
+context: month12
+raises: FrameError
+message: 1 customers with open items are not in crm.customer (for example CUS-X)

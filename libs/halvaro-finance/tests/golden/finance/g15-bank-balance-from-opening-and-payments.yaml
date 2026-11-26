@@ -1,0 +1,28 @@
+name: The computed bank balance is the opening balance plus the signed payments up to the date
+function: bank_reconciliation
+cites: [FI.PRC.020, FI.REF.042]
+by_hand: Opening 1000. On 2 January 100 comes in, 1100. On 3 January 100 goes out, 1000. The stored balances are the same, so both differences are zero.
+context: month3
+input:
+  bank_balance:
+    columns: [le_key, bank_account, balance_date, closing_balance, currency]
+    rows:
+      - [LE-01, BA-1, "2025-01-02", 1100.0, DKK]
+      - [LE-01, BA-1, "2025-01-03", 1000.0, DKK]
+  payment:
+    columns: [bank_account, payment_date, direction, amount]
+    rows:
+      - [BA-1, "2025-01-02", incoming, 100.0]
+      - [BA-1, "2025-01-03", outgoing, 100.0]
+  bank_account:
+    columns: [le_key, bank_account, gl_key]
+    rows:
+      - [LE-01, BA-1, GL-1200]
+  opening_balance_item:
+    columns: [le_key, gl_key, amount]
+    rows:
+      - [LE-01, GL-1200, 1000.0]
+expect:
+  rows:
+    - {computed_balance: 1100.0, closing_balance: 1100.0, difference: 0.0}
+    - {computed_balance: 1000.0, closing_balance: 1000.0, difference: 0.0}

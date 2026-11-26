@@ -1,0 +1,17 @@
+id: err19-plan-slip-created-time-zone
+rule: A created value with a time zone is refused.
+function: plan_slip
+frames:
+  plan_version:
+  - prj_key: PRJ-900001
+    plan_version: 1
+    created: '2031-01-05T00:00:00+01:00'
+    reason: x
+    planned_end: '2031-06-01'
+args: {}
+raises:
+  error: FrameError
+  message: projects.plan_version.created has a time zone; dates here are calendar days
+  names:
+  - projects.plan_version.created
+  - time zone

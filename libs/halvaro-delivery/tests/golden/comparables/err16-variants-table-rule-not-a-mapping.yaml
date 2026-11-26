@@ -1,0 +1,24 @@
+id: err16-variants-table-rule-not-a-mapping
+rule: One rule given as text instead of a mapping of filter fields is refused, with the rule named.
+function: variants_table
+frames:
+  project:
+  - prj_key: PRJ-900001
+    country: DE
+    type: dh_network
+    soil_class: clay
+    route_length_m: 5000
+    legacy: false
+    data_depth: full
+    start: '2031-01-05'
+    actual_end: '2031-06-01'
+args:
+  as_of: '2031-12-01'
+  rules:
+    de_all: DE
+raises:
+  error: FrameError
+  message: rule 'de_all' must be a mapping of filter fields, not str
+  names:
+  - de_all
+  - str

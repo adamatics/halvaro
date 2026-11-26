@@ -1,0 +1,12 @@
+# Golden error case of halvaro-finance.labour_absorption_check: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: labour_absorption_check
+why: max_warranty_share is text, not a number from 0 to below 1
+args:
+- frame:
+    columns: [le_key, gl_key, period, amount]
+    rows:
+    - [LE-A, GL-6100, 2026-01, 1.0]
+kwargs: {max_warranty_share: x}
+context: month12
+raises: FrameError
+message: max_warranty_share must be a number from 0 to below 1, not 'x'

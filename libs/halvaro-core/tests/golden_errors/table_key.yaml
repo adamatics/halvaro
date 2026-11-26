@@ -1,0 +1,7 @@
+# Golden error case of halvaro-core.table_key: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: table_key
+why: a placeholder value that the function does not know or accept
+args:
+- x
+raises: FrameError
+message: x is not a table of the release; use source.table

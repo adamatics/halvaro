@@ -1,0 +1,45 @@
+id: err09-timeline-fractional-delay-seq
+rule: The seq of a delay event must be a whole number, here it has a fraction.
+function: timeline
+frames:
+  site_diary:
+  - prj_key: PRJ-900001
+    diary_date: '2031-01-05'
+    delay_seq: 1
+    notes: 1
+  risk:
+  - prj_key: PRJ-900001
+    risk_no: 1
+    raised: 1
+    title: 1
+    status: 1
+  meeting:
+  - mtg_key: MTG-900001
+    prj_key: PRJ-900001
+    date: '2031-01-05'
+    meeting_type: 1
+    title: 1
+  decision:
+  - mtg_key: MTG-900001
+    seq: 1
+    text: 1
+    decision_type: 1
+  delay_event:
+  - prj_key: PRJ-900001
+    seq: 1.5
+    start: '2031-01-05'
+    days: 1
+    cause_code: 1
+  plan_version:
+  - prj_key: PRJ-900001
+    plan_version: 1
+    created: 1
+    reason: 1
+args:
+  prj_key: PRJ-900001
+raises:
+  error: FrameError
+  message: projects.delay_event.seq must hold whole numbers without nulls
+  names:
+  - delay_event
+  - seq

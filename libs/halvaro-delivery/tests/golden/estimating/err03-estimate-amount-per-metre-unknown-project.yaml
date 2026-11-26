@@ -1,0 +1,21 @@
+id: err03-estimate-amount-per-metre-unknown-project
+rule: A project of the lines is not in the project frame.
+function: estimate_amount_per_metre
+frames:
+  lines:
+  - prj_key: PRJ-900001
+    cst_key: CST-900001
+    amount: 1
+    type: 1
+    category: 1
+    currency: 1
+  project:
+  - prj_key: PRJ-900002
+    route_length_m: 1
+args: {}
+raises:
+  error: FrameError
+  message: 1 projects of the lines are not in the project frame (for example PRJ-900001)
+  names:
+  - project
+  - PRJ-900001

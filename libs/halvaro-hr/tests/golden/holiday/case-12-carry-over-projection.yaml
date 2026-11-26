@@ -1,0 +1,24 @@
+name: Projected carry-in is the year-end balance limited at the bottom to zero and at the top to the cap
+function: carry_over_projection
+cites: [dk/ferieloven/p-0021]
+by_hand: A balance above the cap carries in the cap, a balance below it carries in the balance, a negative balance carries in zero. The stored carry-in of the next year is given equal, so every row matches.
+let:
+  cap: "=fact('legal.DK.holiday.carryover.default_max_days')"
+input:
+  ledger:
+    columns: [emp_key, holiday_year, period, balance]
+    rows:
+      - [EMP-1, "2026/27", "2027-08", "=cap + 3"]
+      - [EMP-2, "2026/27", "2027-08", "=cap - 2"]
+      - [EMP-3, "2026/27", "2027-08", -1.5]
+  ent:
+    columns: [emp_key, holiday_year, carried_in_days, carry_over_agreement]
+    rows:
+      - [EMP-1, "2027/28", "=cap", false]
+      - [EMP-2, "2027/28", "=cap - 2", false]
+      - [EMP-3, "2027/28", 0.0, false]
+expect:
+  rows:
+    - {emp_key: EMP-1, next_holiday_year: "2027/28", basis: default, projected_carry_in: "=cap", stored_carry_in: "=cap", difference: 0.0, matches: true}
+    - {emp_key: EMP-2, projected_carry_in: "=cap - 2", stored_carry_in: "=cap - 2", difference: 0.0, matches: true}
+    - {emp_key: EMP-3, projected_carry_in: 0.0, stored_carry_in: 0.0, difference: 0.0, matches: true}

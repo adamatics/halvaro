@@ -1,0 +1,7 @@
+# Golden error case of halvaro-core.apply_theme: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: apply_theme
+why: the figure is neither a plotly nor a matplotlib figure
+args:
+- null
+raises: FrameError
+message: apply_theme does not know a figure of type NoneType; it supports plotly and matplotlib figures

@@ -1,0 +1,11 @@
+# Behaviour changes of this distribution: a changed fact value, cfg parameter, KB rule version or oracle gets an entry in the same change.
+# Fields: id, date, functions, facts, kb, before, after, class (correction | policy change). Proposal: the note on library versioning in the closed repository.
+changes:
+  - id: BC-DEL-0001
+    date: 2026-11-19
+    functions: [halvaro.delivery.estimating.contingency_advice]
+    facts: [policy.delivery.contingency_method]
+    kb: []
+    before: The method text of the result and the first caveat were fixed strings; the proposed fact policy.delivery.contingency_method was never read.
+    after: The method of the result is the value of the fact and the first caveat names its status (its status as the fact has it). The numbers of the advice do not change.
+    class: policy change

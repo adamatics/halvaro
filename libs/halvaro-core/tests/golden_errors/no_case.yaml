@@ -1,0 +1,13 @@
+# Public functions of halvaro-core without a golden error case, each with its reason (tests/test_golden_errors.py checks that every registered function has a case or a line here).
+no_case:
+  asof_stable: Takes a function and two frame dictionaries; a wrong call is a wrong function, which raises its own error, so no library error is pinned here.
+  combine_status: Returns the status text of a list of statuses and never raises on a list; an unknown status is not refused.
+  footer: 'Builds the footer text of an envelope and never raises: any envelope gives a text.'
+  is_valid_key: Returns a bool for any text and never raises; a text that is not a key is False.
+  loader_contract: Takes a loader function and runs it; the errors it raises are the loader's own, and its violations are returned as a list, so no library error is pinned here.
+  map_label: Returns a constant text and never raises (it takes no argument).
+  require_columns: Raises RestrictedColumnRefusal only, a refusal with its own tests (test_access), never a FrameError or ValueError.
+  require_sources: Raises StageRefusal only, a refusal with its own tests (test_access), never a FrameError or ValueError.
+  stage_banner: Formats a refusal that the caller holds into a text; it never raises a FrameError or ValueError for the inputs it is made for.
+  strip_restricted: Drops the restricted columns of a frame for a context and never raises on a frame; a frame without such a column is returned as it is.
+  synthetic_label: Returns a constant text and never raises (it takes no argument).

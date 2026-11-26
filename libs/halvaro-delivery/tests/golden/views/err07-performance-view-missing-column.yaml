@@ -1,0 +1,14 @@
+id: err07-performance-view-missing-column
+rule: The performance frame lacks a column the view needs, here lines_on_time.
+function: performance_view
+frames:
+  performance:
+  - sup_key: SUP-900001
+    lines_due: 1
+args: {}
+raises:
+  error: FrameError
+  message: supplier_performance_window lacks column(s) lines_on_time
+  names:
+  - supplier_performance_window
+  - lines_on_time

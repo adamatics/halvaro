@@ -1,0 +1,9 @@
+id: e04-flag-columns-missing
+rule: "flag_synthetic is refused when the factor frame lacks the synthetic and VERIFY columns."
+function: flag_synthetic
+frames:
+  factors: [{"efac_key": "EF-900001"}]
+raises:
+  error: FrameError
+  message: "energy-esg.emission_factor frame lacks column(s) synthetic, verify_note, factor_set; load the source columns without renaming them"
+  names: ["synthetic", "verify_note"]

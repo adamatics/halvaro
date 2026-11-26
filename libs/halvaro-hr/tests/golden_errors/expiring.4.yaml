@@ -1,0 +1,26 @@
+# Golden error case of halvaro-hr.expiring: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: expiring
+why: the valid frame has one person and qualification twice
+args:
+- frame:
+    columns:
+    - emp_key
+    - qual_key
+    - expires
+    rows:
+    - &id001
+      - EMP-X1
+      - QUAL-X
+      - 2026-04-01
+    - *id001
+- frame:
+    columns:
+    - emp_key
+    - qual_key
+    - course_date
+    - event_no
+    - free_seats
+    rows: []
+- 2026-03-31
+raises: FrameError
+message: the valid frame has more than one row for a person and qualification; pass the output of valid_on

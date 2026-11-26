@@ -1,0 +1,38 @@
+# Golden error case of halvaro-hr.resolve_assignments: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: resolve_assignments
+why: the assignment frame already has a column that the function adds
+args:
+- frame:
+    columns:
+    - assigned_username
+    - valid_from
+    - valid_to
+    - assignment_type
+    - pool_team_key
+    - kind
+    rows:
+    - - ab
+      - 2025-01-01
+      - null
+      - named
+      - null
+      - x
+- frame:
+    columns:
+    - username
+    - kind
+    - holder
+    - emp_key
+    - team_key
+    - valid_from
+    - valid_to
+    rows: []
+- frame:
+    columns:
+    - emp_key
+    - hire_date
+    - leave_date
+    rows: []
+- 2026-03-31
+raises: FrameError
+message: the assignment frame already has column(s) kind; pass the source frame

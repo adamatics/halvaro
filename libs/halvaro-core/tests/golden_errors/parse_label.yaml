@@ -1,0 +1,7 @@
+# Golden error case of halvaro-core.parse_label: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: parse_label
+why: a placeholder value that the function does not know or accept
+args:
+- x
+raises: KeyFormatError
+message: '''x'' is not a natural label; known: BUD, FC, GND, WST and GL'

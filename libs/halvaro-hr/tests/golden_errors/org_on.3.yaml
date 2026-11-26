@@ -1,0 +1,52 @@
+# Golden error case of halvaro-hr.org_on: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: org_on
+why: a term valid on the date names a person that hr.employee does not have
+args:
+- frame:
+    columns:
+    - emp_key
+    - gender
+    - hire_date
+    - leave_date
+    - legal_entity_key
+    rows: []
+- frame:
+    columns:
+    - emp_key
+    - valid_from
+    - valid_to
+    - team_key
+    - role_key
+    - grade_key
+    - fte
+    rows:
+    - - EMP-Y
+      - 2020-01-01
+      - null
+      - TEAM-X
+      - ROLE-X
+      - GRA-X
+      - 1.0
+- frame:
+    columns:
+    - team_key
+    rows: []
+- frame:
+    columns:
+    - role_key
+    - name
+    rows: []
+- frame:
+    columns:
+    - gra_key
+    - level
+    rows: []
+- frame:
+    columns:
+    - dep_key
+    - dep_code
+    rows: []
+- frame: {}
+- 2026-03-31
+raises: FrameError
+message: 1 terms valid on 2026-03-31 have no row in hr.employee (for example EMP-Y)

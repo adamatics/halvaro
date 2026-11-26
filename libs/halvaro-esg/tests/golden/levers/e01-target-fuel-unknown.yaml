@@ -1,0 +1,11 @@
+id: e01-target-fuel-unknown
+rule: lever_fuel_switch is refused when the target fuel is not one it knows, and the message lists the known fuels.
+function: lever_fuel_switch
+frames:
+  L: [{le_key: LE-900001, period: "2030-05", scope: 1, category: fuel, line_no: 1, kgco2e: 10.0, quantity: 5.0, efac_key: EF-900001, method: null, ghg_category: null, restated_from_period: null, supersedes_line_no: null, is_superseded: false}]
+  F: [{efac_key: EF-900001, category: fuel, carrier: diesel, region: DK, method: null, kgco2e_per_unit: 2.5, unit: l, valid_from: "2030-01-01", valid_to: null, factor_set: FS-900001}]
+args: {to: coal}
+raises:
+  error: FrameError
+  message: "unknown target fuel 'coal'; known: ['hvo100']"
+  names: [target fuel, coal]

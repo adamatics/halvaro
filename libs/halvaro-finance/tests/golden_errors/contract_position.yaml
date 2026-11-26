@@ -1,0 +1,11 @@
+# Golden error case of halvaro-finance.contract_position: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: contract_position
+why: every frame is empty, so the columns the function reads are missing
+args:
+- frame: {}
+- {}
+kwargs:
+  cap: 1.0
+context: month12
+raises: FrameError
+message: finance.project_financials frame lacks column(s) billed; load the source columns without renaming them

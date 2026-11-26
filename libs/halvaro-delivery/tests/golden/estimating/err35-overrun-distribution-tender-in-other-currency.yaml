@@ -1,0 +1,24 @@
+id: err35-overrun-distribution-tender-in-other-currency
+rule: 'A tender in another currency than the project is refused: no conversion is made.'
+function: overrun_distribution
+frames:
+  overrun:
+  - prj_key: PRJ-900001
+    overrun: 0.1
+  project:
+  - prj_key: PRJ-900001
+    final_cost: 1
+    legacy: false
+    currency: EUR
+  totals:
+  - prj_key: PRJ-900001
+    type: tender
+    total_cost: 1
+    currency: DKK
+args: {}
+raises:
+  error: FrameError
+  message: 1 projects have a tender in another currency than the project (for example PRJ-900001); no conversion is made
+  names:
+  - another currency
+  - PRJ-900001

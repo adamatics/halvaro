@@ -1,0 +1,21 @@
+# Golden error case of halvaro-core.rows_on: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: rows_on
+why: key is given and two rows with that key are valid on the date
+args:
+- frame:
+    columns:
+    - k
+    - valid_from
+    - valid_to
+    rows:
+    - - A
+      - '2026-01-01'
+      - '2026-12-31'
+    - - A
+      - '2026-02-01'
+      - null
+- 2026-03-01
+kwargs:
+  key: k
+raises: AmbiguousKey
+message: 'Key A matches 2 candidates: valid_from=2026-01-01, valid_from=2026-02-01. Pass a date or a more specific key.'

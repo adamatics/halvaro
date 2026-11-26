@@ -1,0 +1,16 @@
+# Golden error case of halvaro-finance.statutory_line_of: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: statutory_line_of
+why: an account names a map that is not in the map lines
+args:
+- frame:
+    columns: [gl_key, dk_statutory_map, de_statutory_map]
+    rows:
+    - [GL-5100, DK-REV, DE-REV]
+- frame:
+    columns: [map_code, country, statement, line_order, line_code, label, normal_side]
+    rows:
+    - [DK-OTHER, DK, IS, 1, REV, Revenue, credit]
+    - [DE-OTHER, DE, IS, 1, REV, Revenue, credit]
+context: month12
+raises: FrameError
+message: 2 statutory maps are not in finance.statutory_map_line (for example DK-REV)

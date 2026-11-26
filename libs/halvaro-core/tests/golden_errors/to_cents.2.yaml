@@ -1,0 +1,7 @@
+# Golden error case of halvaro-core.to_cents: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: to_cents
+why: an infinite amount has no cents
+args:
+- .inf
+raises: FrameError
+message: to_cents got 1 infinite amount(s); an infinite amount has no cents

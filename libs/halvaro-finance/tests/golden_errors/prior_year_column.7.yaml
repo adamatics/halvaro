@@ -1,0 +1,16 @@
+# Golden error case of halvaro-finance.prior_year_column: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: prior_year_column
+why: a report and line code is listed twice
+args:
+- frame:
+    columns: [rpt_key, statement, line_no, line_code, amount, prior_year_amount, line_type]
+    rows:
+    - [R-X, income_statement, 1, REV, 100.0, null, line]
+    - [R-X, income_statement, 1, REV, 100.0, null, line]
+- frame:
+    columns: [rpt_key, le_key, scope, fiscal_year]
+    rows:
+    - [R-X, LE-X, entity, 2026]
+context: month12
+raises: FrameError
+message: finance-reporting.statement_line has more than one row for a report and line code

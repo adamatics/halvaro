@@ -1,0 +1,24 @@
+# Golden error case of halvaro-finance.cost_per_metre_by_cost_code: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: cost_per_metre_by_cost_code
+why: the route_change frame lists a project twice
+args:
+- frame:
+    columns: [prj_key, legacy]
+    rows:
+    - [PRJ-X, false]
+- frame:
+    columns: [prj_key, period, cst_key, currency, actual_amount, incurred_in_period, estimate_amount]
+    rows:
+    - [PRJ-X, 2026-03, CST-X, DKK, 100.0, 100.0, 200.0]
+- frame:
+    columns: [prj_key, route_length_m]
+    rows:
+    - [PRJ-X, 1000.0]
+- frame:
+    columns: [prj_key, as_built_length_m]
+    rows:
+    - [PRJ-X, 900.0]
+    - [PRJ-X, 900.0]
+context: month12
+raises: FrameError
+message: the route_change frame has more than one row for a prj_key

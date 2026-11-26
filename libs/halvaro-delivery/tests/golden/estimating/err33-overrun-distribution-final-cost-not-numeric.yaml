@@ -1,0 +1,24 @@
+id: err33-overrun-distribution-final-cost-not-numeric
+rule: A text final_cost in the project frame is refused when totals are given.
+function: overrun_distribution
+frames:
+  overrun:
+  - prj_key: PRJ-900001
+    overrun: 0.1
+  project:
+  - prj_key: PRJ-900001
+    final_cost: high
+    legacy: false
+    currency: EUR
+  totals:
+  - prj_key: PRJ-900001
+    type: tender
+    total_cost: 1
+    currency: EUR
+args: {}
+raises:
+  error: FrameError
+  message: projects.project.final_cost must be numeric
+  names:
+  - final_cost
+  - numeric

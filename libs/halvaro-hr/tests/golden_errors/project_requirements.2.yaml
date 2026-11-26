@@ -1,0 +1,21 @@
+# Golden error case of halvaro-hr.project_requirements: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: project_requirements
+why: the project is not in the project frame
+args:
+- frame:
+    columns:
+    - scope_type
+    - scope_key
+    - qual_key
+    - min_headcount
+    - requirement_level
+    rows: []
+- frame:
+    columns:
+    - prj_key
+    - type
+    - contract_key
+    rows: []
+- PRJ-X
+raises: FrameError
+message: project PRJ-X is not in the projects.project frame exactly once (0 rows)

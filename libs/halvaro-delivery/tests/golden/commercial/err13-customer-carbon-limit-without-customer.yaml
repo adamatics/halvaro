@@ -1,0 +1,16 @@
+id: err13-customer-carbon-limit-without-customer
+rule: A carbon limit on an opportunity without a customer is refused.
+function: customer_carbon_limit
+frames:
+  opportunity:
+  - opp_key: OPP-900001
+    cus_key: null
+    carbon_limit_kgco2e_per_m: 1
+    route_length_m: 1
+args: {}
+raises:
+  error: FrameError
+  message: a carbon limit on an opportunity without a customer
+  names:
+  - carbon limit
+  - without a customer

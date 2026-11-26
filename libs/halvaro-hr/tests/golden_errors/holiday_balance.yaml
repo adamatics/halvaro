@@ -1,0 +1,11 @@
+# Golden error case of halvaro-hr.holiday_balance: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: holiday_balance
+why: every frame is empty, so the columns the function reads are missing
+args:
+- frame: {}
+- frame: {}
+- EMP-000001
+- x
+- 2026-03-31
+raises: FrameError
+message: hr.holiday_entitlement frame lacks column(s) emp_key, holiday_year, entitlement_days, carried_in_days, carry_over_agreement

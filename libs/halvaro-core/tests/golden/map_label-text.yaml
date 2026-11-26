@@ -1,0 +1,7 @@
+name: text
+function: map_label
+by_hand: The map label states that the data is synthetic and credits the map source.
+input:
+  args: []
+expect:
+  value: "synthetic data; \xA9 OpenStreetMap contributors"

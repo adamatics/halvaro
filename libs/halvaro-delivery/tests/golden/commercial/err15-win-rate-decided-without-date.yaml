@@ -1,0 +1,20 @@
+id: err15-win-rate-decided-without-date
+rule: A won opportunity without a decision date is refused.
+function: win_rate
+frames:
+  opportunity:
+  - opp_key: OPP-900001
+    cus_key: CUS-900001
+    stage: won
+    decision_date: null
+  customer:
+  - cus_key: CUS-900001
+    name: Customer X
+    tier: key
+args: {}
+raises:
+  error: FrameError
+  message: a won or lost opportunity has no decision date
+  names:
+  - won or lost
+  - decision date

@@ -1,0 +1,38 @@
+# Golden error case of halvaro-hr.intake_pay_difference: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: intake_pay_difference
+why: the pay frame has a missing tenure value
+args:
+- frame:
+    columns:
+    - gender
+    - dep_key
+    - hire_date
+    - level
+    - compa
+    - rate_dkk
+    - tenure_years
+    - legal_entity_key
+    rows:
+    - - F
+      - DEP-X
+      - 2021-06-01
+      - 2
+      - 1.0
+      - 40000.0
+      - null
+      - LE-X
+    - - M
+      - DEP-X
+      - 2019-01-01
+      - 2
+      - 1.0
+      - 42000.0
+      - 2.0
+      - LE-X
+kwargs:
+  dep: DEP-X
+  hired_from: 2021-04-01
+  grades: [2]
+  minimum_group: 1
+raises: FrameError
+message: the pay frame has missing entity, grade or tenure values or a non-positive or non-finite rate

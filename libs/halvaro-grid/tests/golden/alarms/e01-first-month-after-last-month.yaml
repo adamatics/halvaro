@@ -1,0 +1,20 @@
+id: e01-first-month-after-last-month
+rule: A first month after the last month is refused, because the background rate counts the months between them.
+function: alarm_summary
+frames:
+  alarm:
+  - zone_key: ZONE-0001
+    alarm_type: load_high
+    severity: major
+    raised_ts: 2031-03-01 00:00
+    sns_key: SNS-900001
+args:
+  first_month: 2031-07
+  last_month: 2031-02
+raises:
+  error: FrameError
+  message: first_month 2031-07 is after last_month 2031-02
+  names:
+  - first_month
+  - last_month
+  - 2031-07

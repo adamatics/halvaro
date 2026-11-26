@@ -1,0 +1,19 @@
+# Golden error case of halvaro-finance.cost_per_metre_by_cost_code: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: cost_per_metre_by_cost_code
+why: actual_amount holds text instead of a number
+args:
+- frame:
+    columns: [prj_key, legacy]
+    rows:
+    - [PRJ-A, false]
+- frame:
+    columns: [prj_key, period, cst_key, currency, actual_amount, incurred_in_period, estimate_amount]
+    rows:
+    - [PRJ-A, 2026-01, CST-1, DKK, abc, 1.0, 1.0]
+- frame:
+    columns: [prj_key, route_length_m]
+    rows:
+    - [PRJ-A, 100.0]
+context: month12
+raises: FrameError
+message: finance.project_cost_breakdown.actual_amount must hold numbers, not 'abc'

@@ -1,0 +1,29 @@
+# Golden error case of halvaro-hr.project_requirements: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: project_requirements
+why: a requirement has an unknown scope_type
+args:
+- frame:
+    columns:
+    - scope_type
+    - scope_key
+    - qual_key
+    - min_headcount
+    - requirement_level
+    rows:
+    - - planet
+      - X
+      - QUAL-X
+      - 1
+      - must
+- frame:
+    columns:
+    - prj_key
+    - type
+    - contract_key
+    rows:
+    - - PRJ-X
+      - T1
+      - CON-X
+- PRJ-X
+raises: FrameError
+message: 'competence.requirement.scope_type has unknown value(s) planet; known: project, contract, project_type, role'

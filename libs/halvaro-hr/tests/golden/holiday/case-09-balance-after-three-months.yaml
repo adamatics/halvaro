@@ -1,0 +1,27 @@
+name: Balance is carried in plus accrued minus taken, read at the end of the month
+function: holiday_balance
+cites: [dk/ferieloven/p-0005]
+by_hand: Carried in 2.0 days, three months at the monthly rate, 1.5 days taken. The date is the middle of the last month, which is read as its month end.
+let:
+  rate: "=fact('legal.DK.holiday.accrual_days_per_month')"
+input:
+  ent:
+    columns: [emp_key, holiday_year, entitlement_days, carried_in_days, carry_over_agreement]
+    rows:
+      - [EMP-1, "2026/27", "=fact('legal.DK.holiday.annual_days')", 2.0, false]
+  acc:
+    columns: [emp_key, holiday_year, period, accrued_days, taken_days]
+    rows:
+      - [EMP-1, "2026/27", "2026-10", "=rate", 0.0]
+      - [EMP-1, "2026/27", "2026-11", "=rate", 1.5]
+      - [EMP-1, "2026/27", "2026-12", "=rate", 0.0]
+  emp_key: EMP-1
+  holiday_year: "2026/27"
+  as_of: 2026-12-15
+expect:
+  fields:
+    carried_in_days: 2.0
+    accrued_days_ytd: "=round(3 * rate, 2)"
+    taken_days_ytd: 1.5
+    balance_days: "=round(2.0 + 3 * rate - 1.5, 2)"
+    has_entitlement_row: true

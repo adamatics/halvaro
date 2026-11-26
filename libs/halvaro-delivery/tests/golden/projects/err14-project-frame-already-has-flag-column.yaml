@@ -1,0 +1,17 @@
+id: err14-project-frame-already-has-flag-column
+rule: 'A frame that already carries is_full is refused: project_frame adds it.'
+function: project_frame
+frames:
+  project:
+  - prj_key: PRJ-900001
+    data_depth: full
+    legacy: false
+    route_length_m: 1
+    currency: EUR
+    is_full: true
+args: {}
+raises:
+  error: FrameError
+  message: projects.project frame already has column(s) is_full; project_frame adds them, pass the source frame
+  names:
+  - is_full

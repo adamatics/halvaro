@@ -1,0 +1,15 @@
+# Golden error case of halvaro-finance.vat_settlement: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: vat_settlement
+why: a period is not text like 2025-02
+args:
+- frame:
+    columns: [le_key, period, vat_payable, settlement_difference]
+    rows:
+    - [LE-01, 2026-1, 100.0, 0.0]
+- frame:
+    columns: [le_key, payment_date, direction, amount, description]
+    rows:
+    - [LE-01, '2026-02-25', outgoing, 100.0, VAT payment]
+context: month12
+raises: FrameError
+message: finance-reporting.vat_return.period must be text like 2025-02 on every row

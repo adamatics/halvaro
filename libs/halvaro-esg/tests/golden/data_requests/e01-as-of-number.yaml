@@ -1,0 +1,10 @@
+id: e01-as-of-number
+rule: open_requests is refused when as_of is a number, because the day must be a date.
+function: open_requests
+frames:
+  R: [{cus_key: CUS-900001, request_no: 1, received: "2031-03-01", due: "2031-03-31", answered_date: null}]
+args: {as_of: 20310415}
+raises:
+  error: FrameError
+  message: "as_of 20310415 is a number, not a date"
+  names: [as_of, "20310415"]

@@ -1,0 +1,17 @@
+id: e01-authorisation-flag-is-text
+rule: An authorisation flag that holds text instead of true or false is refused, because the shares are counted on real flags.
+function: requires_authorisation
+frames:
+  maintenance_plan:
+  - net_key: NET-900001
+    plan_no: 1
+    plan_type: condition_inspection
+    requires_electrical_authorisation: 'yes'
+    team_key: TEAM-900001
+    status: active
+raises:
+  error: FrameError
+  message: service.maintenance_plan.requires_electrical_authorisation must hold true or false, not text or numbers
+  names:
+  - requires_electrical_authorisation
+  - true or false

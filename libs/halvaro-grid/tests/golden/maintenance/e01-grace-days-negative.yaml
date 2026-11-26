@@ -1,0 +1,27 @@
+id: e01-grace-days-negative
+rule: A negative grace period is refused, because a plan is overdue only after its grace days have passed.
+function: overdue_plans
+frames:
+  maintenance_plan:
+    rows:
+    - net_key: NET-900001
+      plan_no: 1
+      plan_type: condition_inspection
+      next_due: '2031-02-01'
+      last_done: '2030-02-01'
+      team_key: TEAM-900001
+      status: active
+      interval_months: 54
+      valid_from: '2031-01-01'
+    dates:
+    - next_due
+    - last_done
+args:
+  as_of: '2031-06-01'
+  grace_days: -1
+raises:
+  error: FrameError
+  message: 'grace_days must be a whole number of days, zero or more (got -1)'
+  names:
+  - grace_days
+  - zero or more

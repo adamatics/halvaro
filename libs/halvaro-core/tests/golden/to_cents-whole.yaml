@@ -1,0 +1,8 @@
+name: whole amount
+function: to_cents
+by_hand: 1234.56 DKK is 123456 cents.
+input:
+  args:
+  - 1234.56
+expect:
+  value: 123456

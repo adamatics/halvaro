@@ -1,0 +1,24 @@
+# Golden error case of halvaro-hr.skill_latest: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: skill_latest
+why: a rating points at a skill that is not in the skill frame
+args:
+- frame:
+    columns:
+    - emp_key
+    - skl_key
+    - level
+    - assessed_on
+    rows:
+    - - EMP-000001
+      - SKL-9
+      - 1
+      - '2026-01-01'
+- frame:
+    columns:
+    - skl_key
+    - name
+    rows:
+    - - SKL-1
+      - Welding
+raises: FrameError
+message: 1 ratings point at a skl_key that is not in competence.skill (for example SKL-9)

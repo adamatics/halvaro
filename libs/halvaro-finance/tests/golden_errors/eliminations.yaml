@@ -1,0 +1,9 @@
+# Golden error case of halvaro-finance.eliminations: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: eliminations
+why: every frame is empty, so the columns the function reads are missing
+args:
+- frame: {}
+context: month12
+raises: FrameError
+message: finance-reporting.consolidation_entry frame lacks column(s) fiscal_year, period, entry_no, entry_type, basis, debit_le_key, debit_gl_key, credit_le_key, credit_gl_key, amount_dkk, difference_dkk; load the source columns without
+  renaming them

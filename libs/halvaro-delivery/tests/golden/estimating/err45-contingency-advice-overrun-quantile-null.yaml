@@ -1,0 +1,27 @@
+id: err45-contingency-advice-overrun-quantile-null
+rule: A null schedule overrun quantile is refused.
+function: contingency_advice
+frames:
+  overrun_dist:
+  - measure: schedule
+    n: 1
+    n_legacy: 0
+    q75: .nan
+  shares:
+  - view: all_events
+    cause_code: ground_conditions
+    days: 1
+  lines:
+  - prj_key: PRJ-900001
+    type: tender
+    cst_key: CST-900001
+    category: civil
+    amount: 1
+    currency: EUR
+args: {}
+raises:
+  error: FrameError
+  message: the schedule overrun quantile is null
+  names:
+  - overrun quantile
+  - 'null'

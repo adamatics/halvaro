@@ -1,0 +1,23 @@
+# Golden error case of halvaro-finance.statement_from_ledger: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: statement_from_ledger
+why: the year has one period and require_full_year is on
+args:
+- frame:
+    columns: [le_key, period, gl_key, debit, credit, closing_balance]
+    rows:
+    - [LE-X, 2026-01, GL-5100, 0.0, 100.0, 100.0]
+- frame:
+    columns: [gl_key, statement, dk_statutory_map]
+    rows:
+    - [GL-5100, IS, DK-REV]
+- frame:
+    columns: [map_code, line_code, statement, normal_side]
+    rows:
+    - [DK-REV, REV, IS, credit]
+- LE-X
+- DK
+- 2026
+kwargs: {require_full_year: true}
+context: month12
+raises: FrameError
+message: LE-X has 1 periods in 2026, not twelve (require_full_year=False takes a part year)

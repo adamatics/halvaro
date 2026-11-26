@@ -1,0 +1,12 @@
+# Golden error case of halvaro-hr.coverage_gap: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: coverage_gap
+why: every frame is empty, so the columns the function reads are missing
+args:
+- frame: {}
+- frame: {}
+- frame: {}
+- frame: {}
+- frame: {}
+- 2026-03-31
+raises: FrameError
+message: requirements (from project_requirements) frame lacks column(s) scope_type, scope_key, qual_key, min_headcount

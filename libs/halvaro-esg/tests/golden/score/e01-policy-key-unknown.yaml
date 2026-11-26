@@ -1,0 +1,10 @@
+id: e01-policy-key-unknown
+rule: score_indicators is refused when the policy names a key that is not a scoring policy key, and the message lists the known keys.
+function: score_indicators
+frames:
+  v: [{indicator: scope1, kind: glide, value: 0.5}]
+args: {policy: {colour: 3}}
+raises:
+  error: FrameError
+  message: "unknown policy keys ['colour']; known: band_a_min, band_b_min, band_c_min, missing_data_min_weight, basis, external_use"
+  names: [policy, colour]

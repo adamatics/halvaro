@@ -1,0 +1,30 @@
+# Golden error case of halvaro-hr.holiday_balance: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: holiday_balance
+why: a person has accrual rows but no entitlement row
+args:
+- frame:
+    columns:
+    - emp_key
+    - holiday_year
+    - entitlement_days
+    - carried_in_days
+    - carry_over_agreement
+    rows: []
+- frame:
+    columns:
+    - emp_key
+    - holiday_year
+    - period
+    - accrued_days
+    - taken_days
+    rows:
+    - - EMP-X1
+      - 2026/27
+      - 2026-09
+      - 2.0
+      - 0.0
+- EMP-X1
+- 2026/27
+- 2026-10-31
+raises: FrameError
+message: EMP-X1 has accrual rows for 2026/27 but no entitlement row (see the missing_entitlement flag of holiday_ledger)

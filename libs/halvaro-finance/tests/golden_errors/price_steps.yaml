@@ -1,0 +1,9 @@
+# Golden error case of halvaro-finance.price_steps: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: price_steps
+why: every frame is empty, so the columns the function reads are missing
+args:
+- frame: {}
+- frame: {}
+context: month12
+raises: FrameError
+message: price_list_on frame (before) frame lacks column(s) sup_key, itm_key, unit_price, currency, change_reason; load the source columns without renaming them

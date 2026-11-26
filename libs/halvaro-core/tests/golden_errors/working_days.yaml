@@ -1,0 +1,9 @@
+# Golden error case of halvaro-core.working_days: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: working_days
+why: a placeholder value that the function does not know or accept
+args:
+- 2026-03-31
+- 2026-03-31
+- x
+raises: UnknownRegion
+message: region 'x' is unknown; use one of DK, DE-HH, DE-NI

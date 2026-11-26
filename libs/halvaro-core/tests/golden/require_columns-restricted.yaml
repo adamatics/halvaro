@@ -1,0 +1,13 @@
+name: restricted column
+function: require_columns
+by_hand: The pay column is restricted and the role has no restricted access, so it is refused naming the column.
+input:
+  args:
+  - context:
+      stage: day1
+      role: analyst
+  - - hr.employment_term.base_salary
+expect:
+  raises:
+    error: RestrictedColumnRefusal
+    message_contains: hr.employment_term.base_salary is restricted

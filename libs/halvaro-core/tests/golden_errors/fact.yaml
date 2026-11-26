@@ -1,0 +1,7 @@
+# Golden error case of halvaro-core.fact: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: fact
+why: a placeholder value that the function does not know or accept
+args:
+- x
+raises: FactNotFound
+message: unknown fact x

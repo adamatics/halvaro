@@ -1,0 +1,23 @@
+id: err05-comparable-set-exclude-not-a-list
+rule: exclude given as a number instead of a list of prj_key values is refused.
+function: comparable_set
+frames:
+  project:
+  - prj_key: PRJ-900001
+    country: DE
+    type: dh_network
+    soil_class: clay
+    route_length_m: 5000
+    legacy: false
+    data_depth: full
+    start: '2031-01-05'
+    actual_end: '2031-06-01'
+args:
+  as_of: '2031-12-01'
+  exclude: 5
+raises:
+  error: FrameError
+  message: exclude must be a list of prj_key values, not int
+  names:
+  - exclude
+  - int

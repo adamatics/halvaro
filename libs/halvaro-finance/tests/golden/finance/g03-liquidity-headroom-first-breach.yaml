@@ -1,0 +1,13 @@
+name: Headroom to the floor is the p10 closing cash less the floor, and the first week below it is named
+function: liquidity_headroom
+cites: [FI.PRC.005]
+by_hand: Floor 100. Week 1 closing 700, p10 670, headroom 570. Week 2 closing 115, p10 85, headroom of the p10 line 85 - 100 = -15, below the floor, so the first breach week is 2 and there is one breach week. The facility available is 500 - 100 = 400. The stored columns equal these figures.
+input:
+  cash_forecast:
+    columns: [le_key, forecast_date, week_no, closing_cash, closing_cash_p10, closing_cash_p90, minimum_cash_floor, rcf_limit, rcf_drawn, rcf_available, headroom_to_floor, headroom_to_floor_p10, floor_breach_risk, actual_closing_cash_ex_rcf]
+    rows:
+      - [LE-01, "2025-01-31", 1, 700.0, 670.0, 730.0, 100.0, 500.0, 100.0, 400.0, 600.0, 570.0, false, 710.0]
+      - [LE-01, "2025-01-31", 2, 115.0, 85.0, 145.0, 100.0, 500.0, 100.0, 400.0, 15.0, -15.0, true, 125.0]
+expect:
+  rows:
+    - {weeks: 2, first_breach_week: 2, lowest_headroom_p10: -15.0, lowest_headroom_week: 2, rcf_available_at_lowest: 400.0, breach_weeks: 1, agrees: true}

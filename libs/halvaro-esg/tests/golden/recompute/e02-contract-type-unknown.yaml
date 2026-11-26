@@ -1,0 +1,11 @@
+id: e02-contract-type-unknown
+rule: "expected_lines_s123 is refused when an electricity consumption row has a contract_type that is not accepted."
+function: expected_lines_s123
+frames:
+  c: [{"mtr_key": "MTR-900001", "period": "2030-05", "quantity": 100.0, "unit": "kWh", "contract_type": "spot"}]
+  m: [{"mtr_key": "MTR-900001", "carrier": "electricity", "kind": "grid", "country": "DK", "site_key": "SIT-900001", "unit": "kWh", "le_key": "LE-900001"}]
+  f: [{"efac_key": "EF-900001", "category": "electricity", "carrier": "electricity", "region": "DK", "method": "location", "kgco2e_per_unit": 0.1, "unit": "kWh", "valid_from": "2030-01-01", "valid_to": null, "factor_set": "FS-900001"}]
+raises:
+  error: FrameError
+  message: "electricity contract_type 'spot' is not one of grid_mix, renewable_certified (or null)"
+  names: ["contract_type", "spot"]

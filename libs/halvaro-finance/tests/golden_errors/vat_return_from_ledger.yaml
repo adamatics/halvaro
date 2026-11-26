@@ -1,0 +1,8 @@
+# Golden error case of halvaro-finance.vat_return_from_ledger: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: vat_return_from_ledger
+why: every frame is empty, so the columns the function reads are missing
+args:
+- frame: {}
+context: month12
+raises: FrameError
+message: finance.journal_line frame lacks column(s) le_key, gl_key, period, amount, vat_code, vat_base, currency; load the source columns without renaming them

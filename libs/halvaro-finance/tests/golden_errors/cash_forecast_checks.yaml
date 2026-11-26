@@ -1,0 +1,10 @@
+# Golden error case of halvaro-finance.cash_forecast_checks: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: cash_forecast_checks
+why: every frame is empty, so the columns the function reads are missing
+args:
+- frame: {}
+- frame: {}
+context: month12
+raises: FrameError
+message: finance.cash_forecast frame lacks column(s) le_key, forecast_date, week_no, opening_cash, net_cash_flow, closing_cash, closing_cash_p10, closing_cash_p90, receipts_customers, receipts_retention, receipts_new_billing, receipts_intercompany,
+  payments_suppliers_open, payments_suppliers_new, payments_net_wages, payments_payroll_taxes_pensions, payments_vat, payments_intercompany, net_interest; load the source columns without renaming them

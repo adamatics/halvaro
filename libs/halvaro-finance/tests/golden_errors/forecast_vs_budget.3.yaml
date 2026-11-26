@@ -1,0 +1,19 @@
+# Golden error case of halvaro-finance.forecast_vs_budget: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: forecast_vs_budget
+why: a forecast version is not in the version table
+args:
+- frame:
+    columns: [le_key, forecast_version, cc_key, gl_key, period, amount_dkk, basis]
+    rows:
+    - [LE-X, FC-X, CC-1, GL-6000, 2026-01, 100.0, actual]
+- frame:
+    columns: [forecast_version, actuals_through_period, budget_version]
+    rows:
+    - [FC-Y, 2026-01, BUD-X]
+- frame:
+    columns: [le_key, budget_version, cc_key, gl_key, period, amount_dkk]
+    rows:
+    - [LE-X, BUD-X, CC-1, GL-6000, 2026-01, 100.0]
+context: month12
+raises: FrameError
+message: forecast version 'FC-X' is not in finance.forecast_version

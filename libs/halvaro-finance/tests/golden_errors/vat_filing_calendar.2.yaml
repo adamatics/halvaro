@@ -1,0 +1,11 @@
+# Golden error case of halvaro-finance.vat_filing_calendar: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: vat_filing_calendar
+why: an entity has no country
+args:
+- frame:
+    columns: [le_key, period, filing_due_date]
+    rows:
+    - [LE-Z, 2026-01, null]
+context: month12
+raises: FrameError
+message: no country for the entity LE-Z

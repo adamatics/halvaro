@@ -1,0 +1,8 @@
+name: a date
+function: period_of
+by_hand: The period of 31 March 2026 is written 2026-03.
+input:
+  args:
+  - 2026-03-31
+expect:
+  value: 2026-03

@@ -1,0 +1,26 @@
+id: err19-estimate-bridge-line-amount-not-numeric
+rule: A text line amount is refused.
+function: estimate_bridge
+frames:
+  estimate_version:
+  - prj_key: PRJ-900001
+    estimate_version: 1
+    type: tender
+    date: '2031-01-05'
+    currency: EUR
+    total_cost: 1
+  estimate_line:
+  - prj_key: PRJ-900001
+    estimate_version: 1
+    cst_key: CST-900001
+    amount: high
+  cost_code:
+  - cst_key: CST-900001
+    category: civil
+args: {}
+raises:
+  error: FrameError
+  message: projects.estimate_line.amount must be numeric without nulls
+  names:
+  - estimate_line.amount
+  - numeric

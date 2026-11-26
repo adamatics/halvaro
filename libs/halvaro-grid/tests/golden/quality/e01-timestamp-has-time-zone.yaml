@@ -1,0 +1,15 @@
+id: e01-timestamp-has-time-zone
+rule: A timestamp with a time zone is refused, because telemetry timestamps are UTC without zone.
+function: daily_from_raw
+frames:
+  measurement:
+  - sns_key: SNS-900001
+    ts: '2031-03-01T00:00:00+02:00'
+    value: 1.0
+    quality_flag: ok
+raises:
+  error: FrameError
+  message: telemetry.measurement.ts has a time zone; telemetry timestamps are UTC without zone
+  names:
+  - telemetry.measurement.ts
+  - time zone

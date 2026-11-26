@@ -1,0 +1,18 @@
+id: e01-edge-below-core
+rule: An edge temperature below the core temperature is refused, because the edge is the milder of the two limits.
+function: cold_snaps
+frames:
+  weather_daily:
+  - zone_key: ZONE-0001
+    date: '2031-01-10'
+    t_min: -9.0
+args:
+  core_c: -8.0
+  edge_c: -12.0
+  min_core_days: 2
+raises:
+  error: FrameError
+  message: 'edge_c must not be below core_c and min_core_days must be a whole number of at least 1 (got edge_c -12.0, core_c -8.0, min_core_days 2)'
+  names:
+  - edge_c
+  - core_c

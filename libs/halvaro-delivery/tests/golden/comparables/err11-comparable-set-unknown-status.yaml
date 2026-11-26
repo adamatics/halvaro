@@ -1,0 +1,24 @@
+id: err11-comparable-set-unknown-status
+rule: A status the rule does not know is refused, with the allowed statuses listed.
+function: comparable_set
+frames:
+  project:
+  - prj_key: PRJ-900001
+    country: DE
+    type: dh_network
+    soil_class: clay
+    route_length_m: 5000
+    legacy: false
+    data_depth: full
+    start: '2031-01-05'
+    actual_end: '2031-06-01'
+args:
+  as_of: '2031-12-01'
+  overrides:
+    status: paused
+raises:
+  error: FrameError
+  message: 'unknown status ''paused'' in a comparable rule; allowed: planned, active, completed'
+  names:
+  - status
+  - paused

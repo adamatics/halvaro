@@ -1,0 +1,12 @@
+# Golden error case of halvaro-finance.labour_absorption_check: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: labour_absorption_check
+why: the service lines are in two currencies and there is no amount_dkk
+args:
+- frame:
+    columns: [le_key, gl_key, period, amount, currency]
+    rows:
+    - [LE-X, GL-6610, 2026-03, 100.0, DKK]
+    - [LE-X, GL-6610, 2026-03, 100.0, EUR]
+context: month12
+raises: FrameError
+message: 'the service lines are in more than one currency: pass amount_dkk, the window sum would mix DKK and EUR'

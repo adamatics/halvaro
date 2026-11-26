@@ -1,0 +1,7 @@
+# Golden error case of halvaro-core.parse_period: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: parse_period
+why: a placeholder value that the function does not know or accept
+args:
+- x
+raises: PeriodError
+message: '''x'' is not a period; expected YYYY-MM such as 2026-11, with a year from 0001 to 9999'

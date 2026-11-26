@@ -1,0 +1,13 @@
+id: e09-entity-has-no-lines
+rule: "statement_inputs is refused when there are no lines of the legal entity asked for in the year."
+function: statement_inputs
+frames:
+  L: [{"le_key": "LE-900001", "period": "2030-05", "scope": 2, "category": "electricity", "line_no": 1, "kgco2e": 10.0, "quantity": 5.0, "efac_key": "EF-900001", "method": "location", "ghg_category": "2", "restated_from_period": null, "supersedes_line_no": null, "is_superseded": false}]
+  C: [{"mtr_key": "MTR-900001", "period": "2030-05", "quantity": 100.0, "unit": "kWh", "contract_type": "renewable_certified"}]
+  M: [{"mtr_key": "MTR-900001", "carrier": "electricity", "unit": "kWh"}]
+  T: [{"target_no": 1}]
+args: {"year": 2030, "le": "LE-900009"}
+raises:
+  error: FrameError
+  message: "no lines of the entity 'LE-900009' in 2030"
+  names: ["entity", "LE-900009"]

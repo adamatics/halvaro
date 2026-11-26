@@ -1,0 +1,19 @@
+# Golden error case of halvaro-hr.intake_pay_difference: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: intake_pay_difference
+why: the pay frame has pay columns but not the columns the intake is read from
+args:
+- frame:
+    columns:
+    - rate_dkk
+    - compa
+    rows: []
+kwargs:
+  hired_from: 2021-04-01
+  dep: DEP-07
+  grades: [2, 3]
+context:
+  stage: month12
+  role: analyst
+  restricted_ok: true
+raises: FrameError
+message: pay frame (from pay_frame) frame lacks column(s) gender, dep_key, hire_date, level, tenure_years, legal_entity_key

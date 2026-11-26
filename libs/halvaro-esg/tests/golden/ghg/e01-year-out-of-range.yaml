@@ -1,0 +1,10 @@
+id: e01-year-out-of-range
+rule: scope_totals is refused when year is outside the whole years 1900 to 2100 it accepts.
+function: scope_totals
+frames:
+  L: [{le_key: LE-900001, period: "2030-05", scope: 1, category: fuel, line_no: 1, kgco2e: 10.0, quantity: 5.0, efac_key: EF-900001, method: null, ghg_category: null, restated_from_period: null, supersedes_line_no: null, is_superseded: false}]
+args: {year: 1850}
+raises:
+  error: FrameError
+  message: "year must be a whole year like 2025, not 1850"
+  names: [year, "1850"]

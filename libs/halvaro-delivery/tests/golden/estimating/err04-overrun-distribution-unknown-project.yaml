@@ -1,0 +1,19 @@
+id: err04-overrun-distribution-unknown-project
+rule: A project of the overrun frame is not in the project frame.
+function: overrun_distribution
+frames:
+  overrun:
+  - prj_key: PRJ-900001
+    overrun: 1
+  project:
+  - prj_key: PRJ-900002
+    final_cost: 1
+    legacy: 1
+    currency: 1
+args: {}
+raises:
+  error: FrameError
+  message: 1 projects of the overrun frame are not in the project frame (for example PRJ-900001)
+  names:
+  - project
+  - PRJ-900001

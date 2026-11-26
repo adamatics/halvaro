@@ -1,0 +1,28 @@
+id: err20-customer-projects-won-of-unknown-customer
+rule: A won opportunity of a customer that crm.customer does not hold is refused.
+function: customer_projects
+frames:
+  customer:
+  - cus_key: CUS-900001
+    name: Customer X
+    tier: key
+  project:
+  - prj_key: PRJ-900001
+    customer_key: CUS-900001
+    status: active
+  contract:
+  - con_key: CON-900001
+    cus_key: CUS-900001
+    type: customer_project
+  opportunity:
+  - opp_key: OPP-900001
+    cus_key: CUS-900002
+    stage: won
+    expected_value_dkk: 1
+args: {}
+raises:
+  error: FrameError
+  message: won opportunities of customers that crm.customer does not hold
+  names:
+  - won opportunities
+  - crm.customer

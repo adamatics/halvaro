@@ -1,0 +1,17 @@
+# Golden error case of halvaro-hr.allocation_load: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: allocation_load
+why: an allocation ends before it starts
+args:
+- frame:
+    columns:
+    - emp_key
+    - start
+    - end
+    - percent
+    rows:
+    - - EMP-X1
+      - 2026-01-31
+      - 2026-01-01
+      - 50
+raises: FrameError
+message: 1 allocations end before they start

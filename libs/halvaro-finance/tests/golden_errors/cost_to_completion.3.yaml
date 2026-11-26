@@ -1,0 +1,25 @@
+# Golden error case of halvaro-finance.cost_to_completion: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: cost_to_completion
+why: a project key is repeated
+args:
+- frame:
+    columns:
+    - prj_key
+    - period
+    - currency
+    - eac
+    - actual_cost
+    - committed_cost
+    rows:
+    - - PRJ-1
+      - 2026-03
+      - DKK
+      - 800.0
+      - 400.0
+      - 100.0
+- - PRJ-1
+  - PRJ-1
+- 2026-03
+context: month12
+raises: FrameError
+message: prj_keys has repeated keys

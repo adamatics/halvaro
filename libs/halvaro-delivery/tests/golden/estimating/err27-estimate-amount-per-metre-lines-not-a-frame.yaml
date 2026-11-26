@@ -1,0 +1,15 @@
+id: err27-estimate-amount-per-metre-lines-not-a-frame
+rule: The lines argument is not a DataFrame.
+function: estimate_amount_per_metre
+frames:
+  project:
+  - prj_key: PRJ-900001
+    route_length_m: 1000
+args:
+  lines: x
+raises:
+  error: FrameError
+  message: estimate_bridge lines must be a DataFrame, not str
+  names:
+  - estimate_bridge lines
+  - str

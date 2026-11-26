@@ -1,0 +1,11 @@
+# Golden error case of halvaro-finance.dkk_amount: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: dkk_amount
+why: every frame is empty, so the columns the function reads are missing
+args:
+- frame: {}
+- frame: {}
+kwargs:
+  basis: dkk
+context: month12
+raises: BasisError
+message: basis 'dkk' is not available; use 'booking' or 'daily'

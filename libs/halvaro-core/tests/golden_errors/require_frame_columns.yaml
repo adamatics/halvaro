@@ -1,0 +1,9 @@
+# Golden error case of halvaro-core.require_frame_columns: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: require_frame_columns
+why: every frame is empty, so the columns the function reads are missing
+args:
+- frame: {}
+- x
+- []
+raises: FrameError
+message: '''x'' is not a table of the data dictionary; use source.table'

@@ -1,0 +1,1787 @@
+functions:
+- deprecated: null
+  facts: []
+  id: halvaro.delivery.commercial.customer_carbon_limit
+  kb: []
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_crm.py::test_story_tenders
+  parameters:
+  - opportunity
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - crm.opportunity.opp_key
+  - crm.opportunity.cus_key
+  - crm.opportunity.carbon_limit_kgco2e_per_m
+  - crm.opportunity.route_length_m
+  stage: month12
+  summary: Use this when you need the customer carbon limit per route metre of the
+    opportunities that state one.
+- deprecated: null
+  facts: []
+  id: halvaro.delivery.commercial.customer_projects
+  kb: []
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_crm.py::test_customers_and_anchors
+  parameters:
+  - customer
+  - project
+  - contract
+  - opportunity
+  - by
+  - contract_types
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - crm.customer.cus_key
+  - crm.customer.name
+  - crm.customer.tier
+  - projects.project.prj_key
+  - projects.project.customer_key
+  - projects.project.status
+  - projects.project.opp_key
+  - contracts.contract.con_key
+  - contracts.contract.cus_key
+  - contracts.contract.type
+  - crm.opportunity.opp_key
+  - crm.opportunity.expected_value_dkk
+  - crm.opportunity.stage
+  stage: month12
+  summary: Use this when you need the projects and contracts per customer, or the
+    totals and shares per customer tier.
+- deprecated: null
+  facts: []
+  id: halvaro.delivery.commercial.open_tenders
+  kb: []
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_crm.py::test_story_tenders
+  parameters:
+  - opportunity
+  - as_of
+  - stage_history
+  - stages
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - crm.opportunity.opp_key
+  - crm.opportunity.cus_key
+  - crm.opportunity.stage
+  - crm.opportunity.is_open
+  - crm.opportunity.project_type
+  - crm.opportunity.country
+  - crm.opportunity.soil_class
+  - crm.opportunity.route_length_m
+  - crm.opportunity.bid_deadline
+  - crm.opportunity.requirements
+  - crm.opportunity.carbon_limit_kgco2e_per_m
+  - crm.opportunity.created_date
+  - crm.opportunity.name
+  - crm.opportunity.zone_key
+  stage: month12
+  summary: Use this when you need the open opportunities in a tender stage on a day,
+    with their profile, bid deadline and days to the deadline.
+- deprecated: null
+  facts: []
+  id: halvaro.delivery.commercial.tender_profile
+  kb: []
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_crm.py::test_story_tenders
+  parameters:
+  - opportunity
+  - opp_key
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - crm.opportunity.opp_key
+  - crm.opportunity.cus_key
+  - crm.opportunity.stage
+  - crm.opportunity.is_open
+  - crm.opportunity.project_type
+  - crm.opportunity.country
+  - crm.opportunity.soil_class
+  - crm.opportunity.route_length_m
+  - crm.opportunity.bid_deadline
+  stage: month12
+  summary: Use this when you need one opportunity as the profile that is the input
+    of comparable_set.
+- deprecated: null
+  facts: []
+  id: halvaro.delivery.commercial.win_rate
+  kb: []
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_crm.py::test_funnel_is_plausible
+  parameters:
+  - opportunity
+  - customer
+  - stage_history
+  - freq
+  - by_tier
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - crm.opportunity.opp_key
+  - crm.opportunity.cus_key
+  - crm.opportunity.stage
+  - crm.opportunity.decision_date
+  - crm.customer.cus_key
+  - crm.customer.tier
+  - crm.opportunity_stage_history.opp_key
+  - crm.opportunity_stage_history.stage
+  - crm.opportunity_stage_history.entered_date
+  stage: month12
+  summary: Use this when you need the win rate (won over decided) by period of the
+    decision date and, if wanted, by customer tier.
+- deprecated: null
+  facts: []
+  id: halvaro.delivery.comparables.comparable_coverage
+  kb:
+  - DA.REF.212
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_release.py::test_legacy_projects_are_summary_only
+  parameters:
+  - comparable
+  - project
+  - estimate_version
+  - project_role
+  - time_entry_projects
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - projects.project.prj_key
+  - projects.project.final_cost
+  - projects.project.route_length_m
+  - projects.estimate_version.prj_key
+  - projects.estimate_version.type
+  - projects.project_role.prj_key
+  - projects.time_entry.prj_key
+  stage: month12
+  summary: 'Use this when you need to know which data each project of a comparable
+    set has: estimates, final cost, route length, time entries and roster.'
+- deprecated: null
+  facts: []
+  id: halvaro.delivery.comparables.comparable_set
+  kb:
+  - DA.REF.212
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_projects.py::test_six_comparables
+  parameters:
+  - project
+  - profile
+  - exclude
+  - require_route_length
+  - as_of
+  - overrides
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - projects.project.prj_key
+  - projects.project.country
+  - projects.project.type
+  - projects.project.soil_class
+  - projects.project.route_length_m
+  - projects.project.legacy
+  - projects.project.data_depth
+  - projects.project.start
+  - projects.project.actual_end
+  stage: month12
+  summary: Use this when you need the comparable projects of a named profile (or your
+    own rule) on a date, with a count of what each filter removed.
+- deprecated: null
+  facts: []
+  id: halvaro.delivery.comparables.profile_rules
+  kb:
+  - DA.REF.212
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_projects.py::test_six_comparables
+  parameters:
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - projects.project.prj_key
+  stage: month12
+  summary: Use this when you need the named profiles of the comparable rule as a table,
+    to see which filters each profile applies.
+- deprecated: null
+  facts: []
+  id: halvaro.delivery.comparables.variants_table
+  kb:
+  - DA.REF.212
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:halvaro_gen/world/energy_esg/truth.py::esg_truth
+  parameters:
+  - project
+  - rules
+  - metric
+  - as_of
+  - default
+  - exclude
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - projects.project.prj_key
+  - projects.project.country
+  - projects.project.type
+  - projects.project.soil_class
+  - projects.project.route_length_m
+  - projects.project.legacy
+  - projects.project.data_depth
+  - projects.project.start
+  - projects.project.actual_end
+  stage: month12
+  summary: Use this when you need to compare how many projects, how many legacy projects
+    and what metric median each comparable rule gives, the default profile first.
+- deprecated: null
+  facts: []
+  id: halvaro.delivery.contracts.clauses_on
+  kb:
+  - DA.REF.216
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_contracts.py::test_clauses_are_clean
+  parameters:
+  - clause
+  - as_of
+  - con_key
+  - clause_type
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - contracts.clause.con_key
+  - contracts.clause.clause_no
+  - contracts.clause.clause_type
+  - contracts.clause.variant
+  - contracts.clause.param_name
+  - contracts.clause.param_value
+  - contracts.clause.param2_name
+  - contracts.clause.param2_value
+  - contracts.clause.valid_from
+  - contracts.clause.valid_to
+  - contracts.clause.verify
+  - contracts.clause.legal_note
+  stage: month12
+  summary: Use this when you need the contract clauses that are valid on a date, optionally
+    for one contract and one clause type.
+- deprecated: null
+  facts: []
+  id: halvaro.delivery.contracts.contracts_for_project
+  kb:
+  - DA.REF.216
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_contracts.py::test_project_contracts_resolve
+  parameters:
+  - project
+  - contract
+  - purchase_order
+  - prj_key
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - projects.project.prj_key
+  - projects.project.contract_key
+  - contracts.contract.con_key
+  - contracts.contract.parent_con_key
+  - contracts.contract.type
+  - procurement.purchase_order.prj_key
+  - procurement.purchase_order.con_key
+  stage: month12
+  summary: 'Use this when you need every contract that touches one project: its customer
+    contract, the parent frameworks above it and the supplier frameworks of its purchase
+    orders.'
+- deprecated: null
+  facts: []
+  id: halvaro.delivery.contracts.framework_for
+  kb:
+  - DA.REF.216
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_contracts.py::test_supplier_frameworks
+  parameters:
+  - contract
+  - sup_key
+  - as_of
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - contracts.contract.con_key
+  - contracts.contract.type
+  - contracts.contract.sup_key
+  - contracts.contract.status
+  - contracts.contract.start
+  - contracts.contract.end
+  stage: month12
+  summary: Use this when you need the supplier framework contract that is in force
+    for a supplier on a date.
+- deprecated: null
+  facts:
+  - legal.contracts.warranty_years.DK
+  - legal.contracts.warranty_years.DE
+  id: halvaro.delivery.contracts.legal_flags
+  kb:
+  - DA.REF.216
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_contracts.py::test_warranty_follows_legal_parameters
+  parameters:
+  - clause
+  - contract
+  - project
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - contracts.clause.con_key
+  - contracts.clause.clause_no
+  - contracts.clause.clause_type
+  - contracts.clause.variant
+  - contracts.clause.param_name
+  - contracts.clause.param_value
+  - contracts.clause.param2_name
+  - contracts.clause.param2_value
+  - contracts.clause.valid_from
+  - contracts.clause.valid_to
+  - contracts.clause.verify
+  - contracts.clause.legal_note
+  - contracts.contract.prj_key
+  - projects.project.country
+  stage: month12
+  summary: Use this when you need the clauses that carry a verify mark or a legal
+    note, with the works warranty years checked against the legal value of the project's
+    country.
+- deprecated: null
+  facts: []
+  id: halvaro.delivery.contracts.notification_clauses_on
+  kb:
+  - DA.REF.216
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_contracts.py::test_incident_notification_clauses
+  parameters:
+  - clause
+  - contract
+  - as_of
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - contracts.clause.con_key
+  - contracts.clause.clause_no
+  - contracts.clause.clause_type
+  - contracts.clause.variant
+  - contracts.clause.param_name
+  - contracts.clause.param_value
+  - contracts.clause.param2_name
+  - contracts.clause.param2_value
+  - contracts.clause.valid_from
+  - contracts.clause.valid_to
+  - contracts.clause.verify
+  - contracts.clause.legal_note
+  - contracts.contract.cus_key
+  stage: month12
+  summary: Use this when you need the notification clauses valid on a date, one row
+    per contract with its notification hours.
+- deprecated: null
+  facts: []
+  id: halvaro.delivery.contracts.notification_hours_by_customer
+  kb:
+  - DA.REF.216
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_contracts.py::test_incident_notification_clauses
+  parameters:
+  - clause
+  - contract
+  - as_of
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - contracts.clause.con_key
+  - contracts.clause.clause_no
+  - contracts.clause.clause_type
+  - contracts.clause.variant
+  - contracts.clause.param_name
+  - contracts.clause.param_value
+  - contracts.clause.param2_name
+  - contracts.clause.param2_value
+  - contracts.clause.valid_from
+  - contracts.clause.valid_to
+  - contracts.clause.verify
+  - contracts.clause.legal_note
+  - contracts.contract.cus_key
+  stage: month12
+  summary: Use this when you need the notification hours on a date summed up per customer,
+    with the smallest and largest hours and whether its contracts disagree.
+- deprecated: null
+  facts: []
+  id: halvaro.delivery.contracts.obligation_status
+  kb:
+  - DA.REF.216
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_contracts.py::test_obligations_are_consistent
+  parameters:
+  - obligation
+  - as_of
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - contracts.obligation.con_key
+  - contracts.obligation.obligation_no
+  - contracts.obligation.due_date
+  - contracts.obligation.status
+  - contracts.obligation.completed_date
+  - contracts.obligation.triggered_on
+  - contracts.obligation.deadline_value
+  - contracts.obligation.deadline_unit
+  - contracts.obligation.met_deadline
+  stage: month12
+  summary: Use this when you need the status of each contract obligation on a date,
+    worked out from its dates, and whether its deadline was met.
+- deprecated: null
+  facts: []
+  id: halvaro.delivery.contracts.price_adjustment_terms
+  kb:
+  - DA.REF.216
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_contracts.py::test_price_revision_nordvolt
+  parameters:
+  - clause
+  - contract
+  - as_of
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - contracts.clause.con_key
+  - contracts.clause.clause_no
+  - contracts.clause.clause_type
+  - contracts.clause.variant
+  - contracts.clause.param_name
+  - contracts.clause.param_value
+  - contracts.clause.param2_name
+  - contracts.clause.param2_value
+  - contracts.clause.valid_from
+  - contracts.clause.valid_to
+  - contracts.clause.verify
+  - contracts.clause.legal_note
+  - contracts.contract.type
+  - contracts.contract.price_type
+  stage: month12
+  summary: Use this when you need the price adjustment terms of the contracts (pass-through
+    percent and threshold percent) and the customer project contracts that have no
+    price clause.
+- deprecated: null
+  facts: []
+  id: halvaro.delivery.estimating.cause_shares
+  kb:
+  - DA.REF.212
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_project_history.py::test_ground_conditions_dominate_german_dh_on_clay
+  parameters:
+  - delay_event
+  - project
+  - projects
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - projects.delay_event.prj_key
+  - projects.delay_event.cause_code
+  - projects.delay_event.responsible_party
+  - projects.delay_event.days
+  - projects.delay_event.mtg_key
+  - projects.project.prj_key
+  - projects.project.data_depth
+  stage: month12
+  summary: Use this when you need the delay days by cause code and responsible party,
+    with their shares, for all events and for the events linked to a meeting.
+- deprecated: null
+  facts:
+  - policy.delivery.contingency_method
+  id: halvaro.delivery.estimating.contingency_advice
+  kb:
+  - DA.REF.212
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_oracle_estimating.py::test_oracle_contingency_advice_net_of_the_allowance_line
+  parameters:
+  - overrun_dist
+  - shares
+  - lines
+  - quantile
+  - ground_causes
+  - view
+  - contingency_code
+  - schedule_measure
+  - projects
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - projects.delay_event.cause_code
+  - projects.delay_event.days
+  - projects.estimate_line.cst_key
+  - projects.estimate_line.amount
+  - projects.estimate_version.type
+  stage: month12
+  summary: Use this when you need advice on the contingency percentage of a set of
+    projects from the ground share of delay days and the schedule overrun, net of
+    the contingency the tender estimates already carry.
+- deprecated: null
+  facts: []
+  id: halvaro.delivery.estimating.estimate_amount_per_metre
+  kb:
+  - DA.REF.212
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_projects.py::test_estimates
+  parameters:
+  - lines
+  - project
+  - route_length
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - projects.project.prj_key
+  - projects.project.route_length_m
+  - projects.estimate_line.amount
+  - projects.cost_code.category
+  stage: month12
+  summary: Use this when you need the estimate amount per route metre by cost code
+    and category for each project, from the lines of estimate_bridge.
+- deprecated: null
+  facts: []
+  id: halvaro.delivery.estimating.estimate_bridge
+  kb:
+  - DA.REF.212
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_projects.py::test_estimates
+  parameters:
+  - estimate_version
+  - estimate_line
+  - cost_code
+  - full_projects
+  - as_of
+  - status
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - projects.estimate_version.prj_key
+  - projects.estimate_version.estimate_version
+  - projects.estimate_version.type
+  - projects.estimate_version.date
+  - projects.estimate_version.currency
+  - projects.estimate_version.total_cost
+  - projects.estimate_line.prj_key
+  - projects.estimate_line.estimate_version
+  - projects.estimate_line.cst_key
+  - projects.estimate_line.amount
+  - projects.cost_code.cst_key
+  - projects.cost_code.category
+  stage: month12
+  summary: Use this when you need the amounts by cost code of the tender, budget,
+    forecast and final estimate of each project, with the stored totals and the versions
+    that are missing.
+- deprecated: null
+  facts: []
+  id: halvaro.delivery.estimating.overrun_distribution
+  kb:
+  - DA.REF.212
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_projects.py::test_cell_calibration
+  parameters:
+  - overrun
+  - project
+  - totals
+  - projects
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - projects.project.prj_key
+  - projects.project.final_cost
+  - projects.project.legacy
+  - projects.project.currency
+  - projects.estimate_version.total_cost
+  stage: month12
+  summary: Use this when you need the spread of the schedule overrun, and with estimate
+    totals of the cost overrun, over a set of completed projects.
+- deprecated: null
+  facts: []
+  id: halvaro.delivery.estimating.risk_lessons_summary
+  kb:
+  - DA.REF.212
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_project_history.py::test_ground_conditions_dominate_german_dh_on_clay
+  parameters:
+  - risk
+  - lesson_learned
+  - delay_event
+  - projects
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - projects.risk.prj_key
+  - projects.risk.cause_code
+  - projects.risk.status
+  - projects.risk.delay_seq
+  - projects.lesson_learned.prj_key
+  - projects.lesson_learned.category
+  - projects.lesson_learned.delay_seq
+  - projects.delay_event.prj_key
+  - projects.delay_event.seq
+  - projects.delay_event.cause_code
+  stage: month12
+  summary: Use this when you need the most frequent risk causes and lesson categories
+    of a set of projects and whether occurred risks and lessons match the cause of
+    their delay event.
+- deprecated: null
+  facts: []
+  id: halvaro.delivery.history.attendance
+  kb:
+  - DA.REF.103
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_project_history.py::test_attendees_employed_and_not_on_leave
+  parameters:
+  - meeting
+  - meeting_attendance
+  - employee
+  - contact
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - projects.meeting.mtg_key
+  - projects.meeting.prj_key
+  - projects.meeting.date
+  - projects.meeting.meeting_type
+  - projects.meeting_attendance.mtg_key
+  - projects.meeting_attendance.attendee_type
+  - projects.meeting_attendance.emp_key
+  - projects.meeting_attendance.cnt_key
+  - projects.meeting_attendance.status
+  - projects.meeting_attendance.role_in_meeting
+  stage: month12
+  summary: Use this when you need one row per attendee of a meeting with the meeting
+    date and project, the resolved person and whether the person was present.
+- deprecated: null
+  facts: []
+  id: halvaro.delivery.history.decisions
+  kb:
+  - DA.REF.103
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_project_history.py::test_hamburg_timeline
+  parameters:
+  - decision
+  - meeting
+  - delay_event
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - projects.decision.mtg_key
+  - projects.decision.seq
+  - projects.decision.decision_type
+  - projects.decision.impact_cost
+  - projects.decision.impact_days
+  - projects.decision.currency
+  - projects.decision.delay_seq
+  - projects.decision.co_no
+  - projects.meeting.prj_key
+  - projects.meeting.date
+  - projects.delay_event.cause_code
+  stage: month12
+  summary: Use this when you need the decisions of the meetings with their project
+    and date, impact in cost and days, linked delay cause and change order.
+- deprecated: null
+  facts: []
+  id: halvaro.delivery.history.executive_attendance
+  kb:
+  - DA.REF.103
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_project_history.py::test_hamburg_timeline
+  parameters:
+  - attendance_frame
+  - executives
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - projects.meeting_attendance.status
+  - projects.meeting_attendance.emp_key
+  - projects.meeting.date
+  stage: month12
+  summary: Use this when you need the attendees who were present at a meeting while
+    holding one of the named executive roles on the meeting date.
+- deprecated: null
+  facts: []
+  id: halvaro.delivery.history.executive_gap
+  kb:
+  - DA.REF.103
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_project_history.py::test_hamburg_timeline
+  parameters:
+  - first
+  - exec_attendance
+  - prj_key
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - projects.site_diary.diary_date
+  - projects.meeting.date
+  stage: month12
+  summary: Use this when you need the days from the first record of a project to the
+    first meeting with a present executive on or after it.
+- deprecated: null
+  facts:
+  - world.now
+  id: halvaro.delivery.history.experience_network
+  kb:
+  - DA.REF.103
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_release.py::test_rule18_project_role_hours_equal_time_entries
+  parameters:
+  - project_role
+  - project
+  - prj_keys
+  - employee
+  - project_types
+  - soil_classes
+  - countries
+  - as_of
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - projects.project_role.prj_key
+  - projects.project_role.emp_key
+  - projects.project_role.project_role
+  - projects.project_role.start
+  - projects.project_role.end
+  - projects.project_role.hours_total
+  - projects.project_role.basis
+  - projects.project.legacy
+  - projects.project.type
+  - projects.project.soil_class
+  - projects.project.country
+  - hr.employee.leave_date
+  stage: month12
+  summary: 'Use this when you need the person to project network of a list of projects:
+    who worked on which project, for how long, and which people worked together.'
+- deprecated: null
+  facts: []
+  id: halvaro.delivery.history.first_record
+  kb:
+  - DA.REF.103
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_project_history.py::test_hamburg_timeline
+  parameters:
+  - site_diary
+  - prj_key
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - projects.site_diary.prj_key
+  - projects.site_diary.diary_date
+  - projects.site_diary.notes
+  - projects.site_diary.author_emp_key
+  - projects.site_diary.delay_seq
+  stage: month12
+  summary: Use this when you need the first site diary row of a project that records
+    a delay, the first record of the first delay event.
+- deprecated: null
+  facts: []
+  id: halvaro.delivery.history.minutes_refs
+  kb:
+  - DA.REF.103
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_project_history.py::test_hamburg_timeline
+  parameters:
+  - meeting
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - projects.meeting.mtg_key
+  - projects.meeting.prj_key
+  - projects.meeting.date
+  - projects.meeting.minutes_ref
+  stage: month12
+  summary: Use this when you need the minutes path of each meeting and the share of
+    meetings that have no minutes reference.
+- deprecated: null
+  facts: []
+  id: halvaro.delivery.history.roster
+  kb:
+  - DA.REF.103
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_release.py::test_rule18_project_role_hours_equal_time_entries
+  parameters:
+  - project_role
+  - project
+  - prj_keys
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - projects.project_role.prj_key
+  - projects.project_role.emp_key
+  - projects.project_role.project_role
+  - projects.project_role.start
+  - projects.project_role.end
+  - projects.project_role.hours_total
+  - projects.project_role.basis
+  - projects.project.legacy
+  stage: month12
+  summary: Use this when you need the role rows of a list of projects as stored, with
+    the legacy flag of each project.
+- deprecated: null
+  facts: []
+  id: halvaro.delivery.history.timeline
+  kb:
+  - DA.REF.103
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_project_history.py::test_hamburg_timeline
+  parameters:
+  - prj_key
+  - site_diary
+  - risk
+  - meeting
+  - decision
+  - delay_event
+  - plan_version
+  - start
+  - end
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - projects.site_diary.prj_key
+  - projects.risk.prj_key
+  - projects.meeting.prj_key
+  - projects.decision.mtg_key
+  - projects.delay_event.prj_key
+  - projects.plan_version.prj_key
+  stage: month12
+  summary: Use this when you need the dated events of one project in one ordered frame,
+    such as meetings, decisions, delay events, risks and plan versions.
+- deprecated: null
+  facts: []
+  id: halvaro.delivery.pricing.price_gaps
+  kb:
+  - DA.REF.007
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_procurement.py::test_price_list_no_overlap_and_indexation
+  parameters:
+  - price_list
+  - window
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - procurement.price_list.sup_key
+  - procurement.price_list.itm_key
+  - procurement.price_list.valid_from
+  - procurement.price_list.valid_to
+  - procurement.price_list.unit_price
+  - procurement.price_list.currency
+  - procurement.price_list.con_key
+  - procurement.price_list.change_reason
+  stage: month12
+  summary: 'Use this when you need to check the effective dating of the price list:
+    the violations, the periods without a valid price per supplier and item, and the
+    currency changes.'
+- deprecated: null
+  facts: []
+  id: halvaro.delivery.pricing.price_list_on
+  kb:
+  - DA.REF.007
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_procurement.py::test_e2_price_step
+  parameters:
+  - price_list
+  - as_of
+  - sup_key
+  - itm_key
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - procurement.price_list.sup_key
+  - procurement.price_list.itm_key
+  - procurement.price_list.valid_from
+  - procurement.price_list.valid_to
+  - procurement.price_list.unit_price
+  - procurement.price_list.currency
+  - procurement.price_list.con_key
+  - procurement.price_list.change_reason
+  stage: month12
+  summary: Use this when you need the price per supplier and item that is valid on
+    a date, optionally for one supplier and one item.
+- deprecated: null
+  facts: []
+  id: halvaro.delivery.projects.active_on
+  kb:
+  - DA.REF.212
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_projects.py::test_status_counts
+  parameters:
+  - project
+  - as_of
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - projects.project.prj_key
+  - projects.project.start
+  - projects.project.actual_end
+  stage: month12
+  summary: Use this when you need the keys of the projects that are active on a date.
+- deprecated: null
+  facts:
+  - world.projects.full_total
+  - world.projects.legacy_total
+  id: halvaro.delivery.projects.project_frame
+  kb:
+  - DA.REF.212
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_projects.py::test_counts_and_keys
+  parameters:
+  - project
+  - story_prj_keys
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - projects.project.prj_key
+  - projects.project.data_depth
+  - projects.project.legacy
+  - projects.project.route_length_m
+  - projects.project.currency
+  stage: month12
+  summary: 'Use this when you need the project master with its flags: full or summary
+    depth, legacy, route length known and story project.'
+- deprecated: null
+  facts: []
+  id: halvaro.delivery.projects.project_status_on
+  kb:
+  - DA.REF.212
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_projects.py::test_status_counts
+  parameters:
+  - project
+  - as_of
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - projects.project.prj_key
+  - projects.project.start
+  - projects.project.actual_end
+  stage: month12
+  summary: Use this when you need the status of each project on a date (planned, active
+    or completed) worked out from its dates.
+- deprecated: null
+  facts:
+  - world.now
+  id: halvaro.delivery.schedule.activity_plan_vs_actual
+  kb:
+  - DA.REF.212
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_projects.py::test_story_project
+  parameters:
+  - plan_activity
+  - actual_activity
+  - as_of
+  - plan_version
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - projects.plan_activity.prj_key
+  - projects.plan_activity.plan_version
+  - projects.plan_activity.activity_code
+  - projects.plan_activity.name
+  - projects.plan_activity.start
+  - projects.plan_activity.end
+  - projects.plan_activity.predecessor
+  - projects.plan_activity.critical
+  - projects.actual_activity.prj_key
+  - projects.actual_activity.activity_code
+  - projects.actual_activity.actual_start
+  - projects.actual_activity.actual_end
+  - projects.actual_activity.percent_complete
+  - projects.plan_version.prj_key
+  - projects.plan_version.plan_version
+  - projects.plan_version.created
+  stage: month12
+  summary: Use this when you need each activity's baseline plan, latest plan and actual
+    dates side by side, with the start and end slip.
+- deprecated: null
+  facts: []
+  id: halvaro.delivery.schedule.delay_days
+  kb:
+  - DA.REF.212
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_projects.py::test_delay_events
+  parameters:
+  - delay_event
+  - project
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - projects.delay_event.prj_key
+  - projects.delay_event.cause_code
+  - projects.delay_event.responsible_party
+  - projects.delay_event.days
+  - projects.delay_event.seq
+  - projects.project.prj_key
+  - projects.project.planned_end
+  - projects.project.actual_end
+  stage: month12
+  summary: Use this when you need the delay event days of each project by cause and
+    responsible party, and how they tie to the date difference between actual and
+    planned end.
+- deprecated: null
+  facts: []
+  id: halvaro.delivery.schedule.milestone_slippage
+  kb:
+  - DA.REF.212
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_projects.py::test_milestones_and_plans
+  parameters:
+  - milestone
+  - as_of
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - projects.milestone.prj_key
+  - projects.milestone.milestone_no
+  - projects.milestone.planned_date
+  - projects.milestone.actual_date
+  stage: month12
+  summary: 'Use this when you need the state of each milestone on a date: done with
+    its slip, or open with its overdue days.'
+- deprecated: null
+  facts: []
+  id: halvaro.delivery.schedule.plan_slip
+  kb:
+  - DA.REF.212
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_projects.py::test_story_project
+  parameters:
+  - plan_version
+  - as_of
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - projects.plan_version.prj_key
+  - projects.plan_version.plan_version
+  - projects.plan_version.created
+  - projects.plan_version.reason
+  - projects.plan_version.planned_end
+  stage: month12
+  summary: Use this when you need how far each plan version moved planned_end against
+    the baseline (version 1) and against the version before it.
+- deprecated: null
+  facts:
+  - world.now
+  id: halvaro.delivery.schedule.schedule_overrun
+  kb:
+  - DA.REF.212
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_projects.py::test_cell_calibration
+  parameters:
+  - project
+  - as_of
+  - include_forecast
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - projects.project.prj_key
+  - projects.project.start
+  - projects.project.planned_end
+  - projects.project.actual_end
+  - projects.project.forecast_end
+  stage: month12
+  summary: Use this when you need the schedule overrun of each project on a date,
+    in days and as a fraction of the planned days.
+- deprecated: null
+  facts: []
+  id: halvaro.delivery.supply.at_risk_items
+  kb:
+  - DA.REF.215
+  - DA.REF.218
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_inventory.py::test_e3_central_switchgear_runs_out
+  parameters:
+  - items
+  - stock
+  - open_lines
+  - alerts
+  - window_performance
+  - site
+  - sup_key
+  - as_of
+  - min_on_time_percent
+  - min_lines
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - inventory.stock_level.on_hand
+  - procurement.po_line.promised_date
+  - procurement.po_line.requested_date
+  - inventory.lead_time.lead_time_weeks
+  - procurement.supplier_performance.on_time_percent
+  stage: month12
+  summary: Use this when you need to flag which items of one supplier are at risk
+    from stock, slipping order lines, lead time alerts or poor on time delivery.
+- deprecated: null
+  facts: []
+  id: halvaro.delivery.supply.blocked_projects
+  kb:
+  - DA.REF.215
+  - DA.REF.218
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_inventory.py::test_e3_central_switchgear_runs_out
+  parameters:
+  - reservations_open
+  - stock
+  - as_of
+  - items
+  - active
+  - site
+  - horizon_days
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - inventory.reservation.prj_key
+  - inventory.reservation.itm_key
+  - inventory.reservation.site_key
+  - inventory.reservation.qty_open
+  - inventory.reservation.needed_by_date
+  stage: month12
+  summary: Use this when you need the active projects whose open reservations of given
+    items cannot be met because the stock at the site is zero or less on a date.
+- deprecated: null
+  facts: []
+  id: halvaro.delivery.supply.elements_per_spare_unit
+  kb:
+  - DA.REF.215
+  - DA.REF.218
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_inventory.py::test_e3_central_switchgear_runs_out
+  parameters:
+  - stock
+  - grid_element
+  - items
+  - site
+  - element_types
+  - status
+  - zone_keys
+  - as_of
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - inventory.stock_level.on_hand
+  - gis.grid_element.element_type
+  - gis.grid_element.status
+  - gis.grid_element.zone_key
+  - gis.grid_element.commissioned_date
+  stage: month12
+  summary: Use this when you need how many installed grid elements share one spare
+    switchgear unit in stock.
+- deprecated: null
+  facts: []
+  id: halvaro.delivery.supply.exposed_demand
+  kb:
+  - DA.REF.215
+  - DA.REF.218
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_procurement.py::test_e2_exactly_seven_projects
+  parameters:
+  - open_lines
+  - reservations_open
+  - price_list
+  - project
+  - sup_key
+  - effective_from
+  - active
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - procurement.po_line.po_key
+  - procurement.po_line.line_no
+  - procurement.po_line.itm_key
+  - procurement.po_line.qty
+  - procurement.purchase_order.sup_key
+  - procurement.purchase_order.prj_key
+  - procurement.purchase_order.order_date
+  - procurement.goods_receipt.qty_accepted
+  - procurement.price_list.sup_key
+  - procurement.price_list.itm_key
+  - projects.project.prj_key
+  - projects.project.price_type
+  - inventory.reservation.prj_key
+  - inventory.reservation.itm_key
+  - inventory.reservation.reservation_no
+  - inventory.reservation.qty
+  - inventory.reservation.po_key
+  stage: month12
+  summary: 'Use this when you need the quantity exposed to one supplier''s price step:
+    its open order lines and the free reservations on active projects, and the projects
+    they define.'
+- deprecated: null
+  facts: []
+  id: halvaro.delivery.supply.lead_time_alerts
+  kb:
+  - DA.REF.215
+  - DA.REF.218
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_inventory.py::test_e3_lead_time_table_and_open_orders
+  parameters:
+  - lead_on
+  - min_rise_weeks
+  - min_rise_percent
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - inventory.lead_time.lead_time_weeks
+  stage: month12
+  summary: Use this when you need the supplier and item pairs whose lead time rose
+    sharply against the previous valid row.
+- deprecated: null
+  facts: []
+  id: halvaro.delivery.supply.lead_time_on
+  kb:
+  - DA.REF.215
+  - DA.REF.218
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_procurement.py::test_e3_lead_time_series
+  parameters:
+  - lead_time
+  - as_of
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - inventory.lead_time.sup_key
+  - inventory.lead_time.itm_key
+  - inventory.lead_time.valid_from
+  - inventory.lead_time.valid_to
+  - inventory.lead_time.lead_time_weeks
+  stage: month12
+  summary: Use this when you need the lead time in weeks per supplier and item on
+    a date, with the change from the previous lead time.
+- deprecated: null
+  facts: []
+  id: halvaro.delivery.supply.minimum_stock
+  kb:
+  - DA.REF.215
+  - DA.REF.218
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_network_contingency_stock_views.py::test_minimum_stock_rule_window_and_stocked_items
+  parameters:
+  - stock_movement
+  - lead_time
+  - item
+  - as_of
+  - window_weeks
+  - usage_types
+  - min_floor
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - inventory.stock_movement.site_key
+  - inventory.stock_movement.itm_key
+  - inventory.stock_movement.movement_date
+  - inventory.stock_movement.movement_type
+  - inventory.stock_movement.qty
+  - inventory.lead_time.sup_key
+  - inventory.lead_time.itm_key
+  - inventory.lead_time.valid_from
+  - inventory.lead_time.valid_to
+  - inventory.lead_time.lead_time_weeks
+  - inventory.item.itm_key
+  - inventory.item.stocked
+  - inventory.item.preferred_sup_key
+  stage: month12
+  summary: Use this when you need a suggested minimum and order up to level of stock
+    per stocked site and item from recent usage and lead time.
+- deprecated: null
+  facts: []
+  id: halvaro.delivery.supply.open_po_lines
+  kb:
+  - DA.REF.215
+  - DA.REF.218
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_procurement.py::test_receipts_and_statuses
+  parameters:
+  - po_line
+  - purchase_order
+  - goods_receipt
+  - as_of
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - procurement.po_line.po_key
+  - procurement.po_line.line_no
+  - procurement.po_line.itm_key
+  - procurement.po_line.qty
+  - procurement.po_line.promised_date
+  - procurement.po_line.requested_date
+  - procurement.po_line.promise_revised_on
+  - procurement.purchase_order.po_key
+  - procurement.purchase_order.sup_key
+  - procurement.purchase_order.prj_key
+  - procurement.purchase_order.order_date
+  - procurement.purchase_order.status
+  - procurement.goods_receipt.po_key
+  - procurement.goods_receipt.line_no
+  - procurement.goods_receipt.receipt_date
+  - procurement.goods_receipt.qty_accepted
+  stage: month12
+  summary: Use this when you need the order lines still open on a date, with the quantity
+    remaining, the slip of the promise and the days overdue.
+- deprecated: null
+  facts: []
+  id: halvaro.delivery.supply.reserved_demand
+  kb:
+  - DA.REF.215
+  - DA.REF.218
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_inventory.py::test_reservations_do_not_exceed_demand
+  parameters:
+  - reservation
+  - stock_movement
+  - as_of
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - inventory.reservation.prj_key
+  - inventory.reservation.itm_key
+  - inventory.reservation.reservation_no
+  - inventory.reservation.site_key
+  - inventory.reservation.qty
+  - inventory.reservation.created_date
+  - inventory.reservation.needed_by_date
+  - inventory.reservation.po_key
+  - inventory.stock_movement.reservation_no
+  - inventory.stock_movement.movement_type
+  - inventory.stock_movement.movement_date
+  - inventory.stock_movement.qty
+  - inventory.stock_movement.prj_key
+  - inventory.stock_movement.itm_key
+  - inventory.reservation.po_line_no
+  stage: month12
+  summary: Use this when you need the reservations created by a date that still have
+    quantity open, with what was issued against them.
+- deprecated: null
+  facts: []
+  id: halvaro.delivery.supply.spot_orders
+  kb:
+  - DA.REF.215
+  - DA.REF.218
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_procurement.py::test_e3_spot_orders_and_expedite_freight
+  parameters:
+  - po_line
+  - purchase_order
+  - price_list
+  - framework_sup_key
+  - item_type
+  - rates
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - procurement.po_line.po_key
+  - procurement.po_line.line_no
+  - procurement.po_line.itm_key
+  - procurement.po_line.unit_price
+  - procurement.po_line.currency
+  - procurement.po_line.price_source
+  - procurement.po_line.expedite
+  - procurement.purchase_order.po_key
+  - procurement.purchase_order.order_type
+  - procurement.purchase_order.sup_key
+  - procurement.purchase_order.prj_key
+  - procurement.purchase_order.order_date
+  - procurement.price_list.sup_key
+  - procurement.price_list.itm_key
+  - procurement.price_list.valid_from
+  - procurement.price_list.valid_to
+  - procurement.price_list.unit_price
+  - procurement.price_list.currency
+  - procurement.price_list.change_reason
+  stage: month12
+  summary: Use this when you need the lines of spot orders with their price, whether
+    an expedite line is freight and the premium over the framework list price.
+- deprecated: null
+  facts: []
+  id: halvaro.delivery.supply.stock_on
+  kb:
+  - DA.REF.215
+  - DA.REF.218
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_inventory.py::test_stock_never_negative_and_matches_levels
+  parameters:
+  - stock_movement
+  - as_of
+  - stock_level
+  - reservation_open
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - inventory.stock_movement.site_key
+  - inventory.stock_movement.itm_key
+  - inventory.stock_movement.movement_date
+  - inventory.stock_movement.qty
+  - inventory.stock_level.site_key
+  - inventory.stock_level.itm_key
+  - inventory.stock_level.as_of_date
+  - inventory.stock_level.on_hand
+  - inventory.stock_level.reserved
+  - inventory.stock_level.available
+  stage: month12
+  summary: Use this when you need on hand, reserved and available stock per site and
+    item on a date.
+- deprecated: null
+  facts: []
+  id: halvaro.delivery.supply.supplier_performance_recompute
+  kb:
+  - DA.REF.215
+  - DA.REF.218
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_procurement.py::test_supplier_performance
+  parameters:
+  - po_line
+  - purchase_order
+  - goods_receipt
+  - as_of
+  - grace_days
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - procurement.po_line.po_key
+  - procurement.po_line.line_no
+  - procurement.po_line.qty
+  - procurement.po_line.requested_date
+  - procurement.purchase_order.sup_key
+  - procurement.purchase_order.status
+  - procurement.goods_receipt.receipt_no
+  - procurement.goods_receipt.receipt_date
+  - procurement.goods_receipt.qty_accepted
+  stage: month12
+  summary: Use this when you need the lines due and on time per supplier and month
+    rebuilt from the order lines and goods receipts up to a date.
+- deprecated: null
+  facts: []
+  id: halvaro.delivery.supply.supplier_performance_window
+  kb:
+  - DA.REF.215
+  - DA.REF.218
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_procurement.py::test_e3_supplier_performance_collapses
+  parameters:
+  - performance
+  - first_period
+  - last_period
+  - sup_key
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - procurement.supplier_performance.sup_key
+  - procurement.supplier_performance.period
+  - procurement.supplier_performance.lines_due
+  - procurement.supplier_performance.lines_on_time
+  stage: month12
+  summary: Use this when you need the on time share of suppliers over a window of
+    months, weighted by lines.
+- deprecated: null
+  facts: []
+  id: halvaro.delivery.supply.supply_strain_answer
+  kb:
+  - DA.REF.215
+  - DA.REF.218
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_inventory.py::test_e3_central_switchgear_runs_out
+  parameters:
+  - items
+  - zones
+  - stock
+  - open_lines
+  - blocked
+  - lead_on
+  - alerts
+  - performance
+  - spot
+  - thin_cover
+  - supply_zone
+  - customer
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - inventory.stock_level.on_hand
+  - procurement.po_line.itm_key
+  - inventory.lead_time.lead_time_weeks
+  - procurement.supplier_performance.sup_key
+  - gis.supply_zone.zone_key
+  - gis.supply_zone.cus_key
+  - crm.customer.cus_key
+  - crm.customer.name
+  stage: month12
+  summary: Use this when you need the supply side of the supply strain question assembled
+    for the items and zones that the grid side of the answer in halvaro-grid hands
+    over.
+- deprecated: null
+  facts: []
+  id: halvaro.delivery.views.attendance_view
+  kb: []
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_oracle_views.py::test_oracle_attendance_view_cells_sum_to_present
+  parameters:
+  - attendance
+  - by
+  - as_of
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - projects.meeting_attendance.mtg_key
+  - projects.meeting.date
+  stage: month12
+  summary: 'Use this when you need meeting attendance as heatmap data: the absence
+    rate by month or year and meeting type.'
+- deprecated: null
+  facts: []
+  id: halvaro.delivery.views.cause_bars_view
+  kb: []
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_oracle_views.py::test_oracle_cause_bars_view_days_per_cause
+  parameters:
+  - cause_shares
+  - view
+  - as_of
+  - legacy
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - projects.delay_event.cause_code
+  - projects.delay_event.days
+  stage: month12
+  summary: Use this when you need delay days by cause code for one view of the cause
+    shares, ready for a bar chart.
+- deprecated: null
+  facts: []
+  id: halvaro.delivery.views.experience_network_view
+  kb: []
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_oracle_views.py::test_oracle_experience_network_view_counts_and_pass_through
+  parameters:
+  - network
+  - as_of
+  - n_no_route
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - projects.project_role.prj_key
+  - projects.project_role.emp_key
+  stage: month12
+  summary: Use this when you need the experience network as nodes and edges for a
+    force or bipartite drawing.
+- deprecated: null
+  facts: []
+  id: halvaro.delivery.views.gantt_view
+  kb: []
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_oracle_views.py::test_oracle_gantt_view_bars_per_activity
+  parameters:
+  - plan_vs_actual
+  - as_of
+  - legacy
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - projects.plan_activity.prj_key
+  - projects.actual_activity.prj_key
+  stage: month12
+  summary: Use this when you need baseline, latest plan and actual bars of project
+    activities for a Gantt chart.
+- deprecated: null
+  facts: []
+  id: halvaro.delivery.views.performance_view
+  kb: []
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_oracle_views.py::test_oracle_performance_view_summed_lines
+  parameters:
+  - performance
+  - lead_on
+  - as_of
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - procurement.supplier_performance.sup_key
+  - inventory.lead_time.lead_time_weeks
+  stage: month12
+  summary: Use this when you need the on time share of suppliers as bars, with the
+    lead time steps on the side.
+- deprecated: null
+  facts: []
+  id: halvaro.delivery.views.stock_view
+  kb: []
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_oracle_views.py::test_oracle_stock_view_long_frame_per_key
+  parameters:
+  - stock
+  - open_lines
+  - as_of
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - inventory.stock_level.on_hand
+  - procurement.po_line.itm_key
+  stage: month12
+  summary: Use this when you need on hand, reserved and available stock over dates
+    as chart lines, with the open purchase order lines on the side.
+- deprecated: null
+  facts: []
+  id: halvaro.delivery.views.timeline_view
+  kb: []
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_oracle_views.py::test_oracle_timeline_view_order_and_attendance
+  parameters:
+  - timeline
+  - attendance
+  - write_down
+  - as_of
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - projects.meeting.mtg_key
+  - projects.decision.mtg_key
+  - projects.delay_event.prj_key
+  - projects.risk.prj_key
+  stage: month12
+  summary: 'Use this when you need the project timeline as chart lanes: meetings,
+    decisions, delays, risks and plan versions in date order, with optional attendance
+    and a write-down marker.'
+- deprecated: null
+  facts: []
+  id: halvaro.delivery.views.waterfall_view
+  kb: []
+  kb_versions: []
+  library: halvaro-delivery
+  oracle: py:tests/test_oracle_views.py::test_oracle_waterfall_view_steps
+  parameters:
+  - lines
+  - from_type
+  - to_type
+  - as_of
+  - legacy
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - projects.estimate_line.prj_key
+  - projects.estimate_line.amount
+  - projects.cost_code.category
+  stage: month12
+  summary: Use this when you need the step from one estimate type to another by cost
+    category, per currency, for a waterfall chart.
+snapshot: 17703967a6ef6ceed2d045ad2f0871b60e0ad55e39445d26c00f11be10bbee40

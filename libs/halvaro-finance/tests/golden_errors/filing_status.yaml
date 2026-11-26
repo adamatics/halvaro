@@ -1,0 +1,8 @@
+# Golden error case of halvaro-finance.filing_status: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: filing_status
+why: every frame is empty, so the columns the function reads are missing
+args:
+- frame: {}
+context: month12
+raises: FrameError
+message: finance-reporting.statutory_report frame lacks column(s) rpt_key, le_key, period_end, filing_deadline, filed_date, filed_on_time; load the source columns without renaming them

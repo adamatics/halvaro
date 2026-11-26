@@ -1,0 +1,22 @@
+id: err05-obligation-status-as-of-number
+rule: The day argument as_of is a number, not a date or ISO text, so the function refuses it.
+function: obligation_status
+frames:
+  obligation:
+  - con_key: CON-900001
+    obligation_no: 1
+    due_date: '2031-01-05'
+    status: 1
+    completed_date: '2031-01-05'
+    triggered_on: '2031-01-05'
+    deadline_value: 1
+    deadline_unit: 1
+    met_deadline: '2031-01-05'
+args:
+  as_of: 7
+raises:
+  error: FrameError
+  message: as_of 7 is a number, not a date
+  names:
+  - as_of
+  - '7'

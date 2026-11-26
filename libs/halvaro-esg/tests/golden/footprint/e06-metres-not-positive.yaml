@@ -1,0 +1,13 @@
+id: e06-metres-not-positive
+rule: "tender_estimate is refused when metres is not a positive number of route metres."
+function: tender_estimate
+frames:
+  EB: [{"prj_key": "PRJ-900001", "type": "tender", "cst_key": "CST-900001", "amount": 100.0, "currency": "DKK"}]
+  CC: [{"cst_key": "CST-900001", "category": "labour"}]
+  PF: [{"prj_key": "PRJ-900001", "period": "2030-05", "materials_kgco2e": 1.0, "transport_kgco2e": 1.0, "site_kgco2e": 1.0, "subcontractor_kgco2e": 1.0, "total_kgco2e": 4.0}]
+  P: [{"prj_key": "PRJ-900001", "route_length_m": 50.0}]
+args: {"TC": null, "metres": -3.0}
+raises:
+  error: FrameError
+  message: "metres must be a positive number of route metres"
+  names: ["metres", "positive"]

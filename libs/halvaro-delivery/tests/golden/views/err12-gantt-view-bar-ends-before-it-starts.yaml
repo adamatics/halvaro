@@ -1,0 +1,19 @@
+id: err12-gantt-view-bar-ends-before-it-starts
+rule: A bar that ends before it starts is refused, with the series named.
+function: gantt_view
+frames:
+  plan_vs_actual:
+  - prj_key: PRJ-900001
+    baseline_start: '2031-01-05'
+    baseline_end: '2031-01-01'
+    latest_start: '2031-01-05'
+    latest_end: '2031-02-01'
+    actual_start: null
+    actual_end: null
+args: {}
+raises:
+  error: FrameError
+  message: a baseline bar ends before it starts
+  names:
+  - baseline
+  - ends before it starts

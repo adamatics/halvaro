@@ -1,0 +1,27 @@
+id: err01-open-tenders-as-of-number
+rule: The day argument as_of is a number, not a date or ISO text, so the function refuses it.
+function: open_tenders
+frames:
+  opportunity:
+  - opp_key: OPP-900001
+    name: 1
+    cus_key: CUS-900001
+    stage: 1
+    is_open: 1
+    project_type: 1
+    country: 1
+    soil_class: 1
+    route_length_m: 1
+    zone_key: ZON-900001
+    bid_deadline: '2031-01-05'
+    requirements: 1
+    carbon_limit_kgco2e_per_m: 1
+    created_date: '2031-01-05'
+args:
+  as_of: 7
+raises:
+  error: PeriodError
+  message: as_of 7 is a number, not a date; pass a date, a Timestamp or an ISO text such as 2026-11-30
+  names:
+  - as_of
+  - '7'

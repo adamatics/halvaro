@@ -1,0 +1,19 @@
+id: err01-timeline-view-write-down-incomplete
+rule: The write_down mapping lacks amount and currency.
+function: timeline_view
+frames:
+  timeline:
+  - date: '2031-01-05'
+    kind: 1
+    source: 1
+    source_key: SOURCE-900001
+    text: 1
+args:
+  write_down:
+    date: '2031-01-05'
+raises:
+  error: FrameError
+  message: write_down needs date, amount and currency
+  names:
+  - write_down
+  - amount

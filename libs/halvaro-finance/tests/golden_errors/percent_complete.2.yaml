@@ -1,0 +1,21 @@
+# Golden error case of halvaro-finance.percent_complete: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: percent_complete
+why: the cap is above 1
+args:
+- frame:
+    columns:
+    - prj_key
+    - period
+    - actual_cost
+    - eac
+    rows:
+    - - PRJ-1
+      - 2026-03
+      - 400.0
+      - 800.0
+- {}
+kwargs:
+  cap: 1.5
+context: month12
+raises: FrameError
+message: cap must be a number in (0, 1], for example the config value projects.poc_cap_before_completion; got 1.5

@@ -1,0 +1,26 @@
+id: err20-clauses-on-con-key-not-text
+rule: con_key must be one value as text, not a number.
+function: clauses_on
+frames:
+  clause:
+  - con_key: CON-900001
+    clause_no: 1
+    clause_type: notification
+    variant: standard
+    param_name: notification_hours
+    param_value: 24
+    param2_name: null
+    param2_value: null
+    valid_from: '2031-01-05'
+    valid_to: null
+    verify: false
+    legal_note: null
+args:
+  as_of: '2031-02-01'
+  con_key: 5
+raises:
+  error: FrameError
+  message: con_key is one value as text, not int
+  names:
+  - con_key
+  - int

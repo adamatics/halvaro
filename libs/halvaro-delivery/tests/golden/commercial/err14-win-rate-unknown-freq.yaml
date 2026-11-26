@@ -1,0 +1,21 @@
+id: err14-win-rate-unknown-freq
+rule: freq other than year, quarter, month or None is refused.
+function: win_rate
+frames:
+  opportunity:
+  - opp_key: OPP-900001
+    cus_key: CUS-900001
+    stage: won
+    decision_date: '2031-02-01'
+  customer:
+  - cus_key: CUS-900001
+    name: Customer X
+    tier: key
+args:
+  freq: week
+raises:
+  error: FrameError
+  message: freq is year, quarter, month or None
+  names:
+  - freq
+  - month

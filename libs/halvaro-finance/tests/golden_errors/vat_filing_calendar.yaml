@@ -1,0 +1,8 @@
+# Golden error case of halvaro-finance.vat_filing_calendar: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: vat_filing_calendar
+why: every frame is empty, so the columns the function reads are missing
+args:
+- frame: {}
+context: month12
+raises: FrameError
+message: finance-reporting.vat_return frame lacks column(s) le_key, period, filing_due_date; load the source columns without renaming them

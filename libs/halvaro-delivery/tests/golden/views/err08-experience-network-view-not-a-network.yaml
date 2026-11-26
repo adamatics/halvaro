@@ -1,0 +1,11 @@
+id: err08-experience-network-view-not-a-network
+rule: The network argument is not the result of experience_network.
+function: experience_network_view
+args:
+  network: not a network
+raises:
+  error: FrameError
+  message: experience_network_view takes the result of experience_network
+  names:
+  - experience_network
+  - takes the result

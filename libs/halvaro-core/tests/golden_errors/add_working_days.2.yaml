@@ -1,0 +1,9 @@
+# Golden error case of halvaro-core.add_working_days: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: add_working_days
+why: n is less than 1
+args:
+- 2026-03-13
+- 0
+- DK
+raises: FrameError
+message: n must be 1 or more

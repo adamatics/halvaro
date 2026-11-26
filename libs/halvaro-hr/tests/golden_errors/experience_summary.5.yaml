@@ -1,0 +1,21 @@
+# Golden error case of halvaro-hr.experience_summary: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: experience_summary
+why: a roster legacy flag is not True or False
+args:
+- frame:
+    columns:
+    - prj_key
+    - emp_key
+    - project_role
+    - hours_total
+    - basis
+    - legacy
+    rows:
+    - - PRJ-X
+      - EMP-X1
+      - electrician
+      - 10.0
+      - roster
+      - maybe
+raises: FrameError
+message: roster legacy must be True or False on every row

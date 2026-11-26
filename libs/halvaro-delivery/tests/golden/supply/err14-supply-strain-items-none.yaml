@@ -1,0 +1,35 @@
+id: err14-supply-strain-items-none
+rule: The items argument is empty (None); it must be a project key or a list of keys.
+function: supply_strain_answer
+frames:
+  stock:
+  - itm_key: ITM-900001
+  open_lines:
+  - itm_key: ITM-900001
+  lead_on:
+  - itm_key: ITM-900001
+  alerts:
+  - itm_key: ITM-900001
+  performance:
+  - sup_key: SUP-900001
+  spot:
+  - itm_key: ITM-900001
+  thin_cover:
+  - zone_key: ZON-900001
+  supply_zone:
+  - zone_key: ZON-900001
+    cus_key: CUS-900001
+  customer:
+  - cus_key: CUS-900001
+    name: 1
+args:
+  items: null
+  zones:
+  - ZON-900001
+  blocked: unused
+raises:
+  error: FrameError
+  message: items is a project key or a list of keys
+  names:
+  - items
+  - list of keys

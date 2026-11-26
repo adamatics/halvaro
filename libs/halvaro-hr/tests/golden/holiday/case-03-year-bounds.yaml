@@ -1,0 +1,11 @@
+name: DK holiday year bounds run from the start day to the day before the next start
+function: holiday_year_bounds
+cites: [dk/ferieloven/p-0004]
+by_hand: First day is the start month and day in 2026. Last day is the day before the same month and day in 2027.
+let:
+  start_month: "=fact('legal.DK.holiday.holiday_year_start.month')"
+  start_day: "=fact('legal.DK.holiday.holiday_year_start.day')"
+input:
+  label: "2026/27"
+expect:
+  value: ["=date(2026, start_month, start_day)", "=date(2027, start_month, start_day) - days(1)"]

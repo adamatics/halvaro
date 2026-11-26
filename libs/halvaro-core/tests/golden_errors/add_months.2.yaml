@@ -1,0 +1,8 @@
+# Golden error case of halvaro-core.add_months: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: add_months
+why: the result is after year 9999
+args:
+- 9999-12
+- 1
+raises: PeriodError
+message: 1 months after 9999-12 is outside the years 0001 to 9999

@@ -1,0 +1,20 @@
+id: err16-stock-on-movement-null-key
+rule: 'A movement without a site_key is refused: a key must be set on every row.'
+function: stock_on
+frames:
+  stock_movement:
+  - site_key: null
+    itm_key: ITM-900001
+    movement_date: '2031-01-05'
+    movement_type: receipt
+    qty: 5
+    prj_key: null
+    reservation_no: null
+args:
+  as_of: '2031-02-01'
+raises:
+  error: FrameError
+  message: inventory.stock_movement.site_key has null values; it is a key and must be set on every row
+  names:
+  - stock_movement.site_key
+  - 'null'

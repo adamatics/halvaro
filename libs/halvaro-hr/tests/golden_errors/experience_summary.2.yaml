@@ -1,0 +1,19 @@
+# Golden error case of halvaro-hr.experience_summary: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: experience_summary
+why: basis is neither time_entries nor roster
+args:
+- frame:
+    columns:
+    - prj_key
+    - emp_key
+    - project_role
+    - hours_total
+    - basis
+    rows:
+    - - PRJ-1
+      - EMP-000001
+      - foreman
+      - 1.0
+      - x
+raises: FrameError
+message: roster basis must be time_entries or roster, not ['x']

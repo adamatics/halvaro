@@ -1,0 +1,26 @@
+id: err22-estimate-bridge-line-of-unknown-version
+rule: An estimate line that belongs to a version that is not in estimate_version is refused.
+function: estimate_bridge
+frames:
+  estimate_version:
+  - prj_key: PRJ-900001
+    estimate_version: 1
+    type: tender
+    date: '2031-01-05'
+    currency: EUR
+    total_cost: 1
+  estimate_line:
+  - prj_key: PRJ-900001
+    estimate_version: 2
+    cst_key: CST-900001
+    amount: 1
+  cost_code:
+  - cst_key: CST-900001
+    category: civil
+args: {}
+raises:
+  error: FrameError
+  message: 1 estimate lines belong to a version that is not in projects.estimate_version (for example PRJ-900001 version 2)
+  names:
+  - PRJ-900001
+  - version 2

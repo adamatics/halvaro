@@ -1,0 +1,22 @@
+id: err16-plan-slip-duplicate-version
+rule: A plan version held twice for one project is refused.
+function: plan_slip
+frames:
+  plan_version:
+  - prj_key: PRJ-900001
+    plan_version: 1
+    created: '2031-01-05'
+    reason: x
+    planned_end: '2031-06-01'
+  - prj_key: PRJ-900001
+    plan_version: 1
+    created: '2031-01-05'
+    reason: x
+    planned_end: '2031-06-01'
+args: {}
+raises:
+  error: FrameError
+  message: projects.plan_version has 2 rows sharing prj_key, plan_version (for example PRJ-900001); one row per key is required
+  names:
+  - projects.plan_version
+  - PRJ-900001

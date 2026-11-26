@@ -1,0 +1,39 @@
+# Golden error case of halvaro-hr.payroll_aggregate: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: payroll_aggregate
+why: minimum_group is zero
+args:
+- frame:
+    columns:
+    - emp_key
+    - valid_from
+    - valid_to
+    - team_key
+    - grade_key
+    - fte
+    - currency
+    - base_salary
+    rows: []
+- frame:
+    columns:
+    - team_key
+    - cost_centre_key
+    - legal_entity_key
+    rows: []
+- frame:
+    columns:
+    - gra_key
+    - band_min_dkk
+    - band_max_dkk
+    - band_min_eur
+    - band_max_eur
+    rows: []
+- 2025-01
+- 2025-03
+kwargs:
+  minimum_group: 0
+context:
+  stage: month12
+  role: analyst
+  restricted_ok: true
+raises: FrameError
+message: minimum_group must be a whole number of people, one or more, not 0

@@ -1,0 +1,7 @@
+# Golden error case of halvaro-hr.carry_over_position: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: carry_over_position
+why: every frame is empty, so the columns the function reads are missing
+args:
+- frame: {}
+raises: FrameError
+message: hr.holiday_entitlement frame lacks column(s) emp_key, holiday_year, carried_in_days, carry_over_agreement, opening_balance

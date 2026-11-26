@@ -1,0 +1,9 @@
+name: other prefix
+function: is_valid_key
+by_hand: A valid EMP key is not a valid key of the prefix GL.
+input:
+  args:
+  - EMP-000001
+  - GL
+expect:
+  value: false

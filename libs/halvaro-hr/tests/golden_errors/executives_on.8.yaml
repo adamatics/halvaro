@@ -1,0 +1,27 @@
+# Golden error case of halvaro-hr.executives_on: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: executives_on
+why: the active column holds text, not True or False
+args:
+- frame:
+    columns:
+    - emp_key
+    - as_of
+    - active
+    - role_name
+    - dep_code
+    - team_key
+    rows:
+    - - EMP-X1
+      - 2026-03-31
+      - 'yes'
+      - Chief Financial Officer
+      - FIN
+      - TEAM-X
+- frame:
+    columns:
+    - name
+    rows:
+    - - Chief Financial Officer
+- - Chief Financial Officer
+raises: FrameError
+message: org.active must be True or False on every row; 1 are not (for example 'yes')

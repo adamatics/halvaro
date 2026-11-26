@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=77", "setuptools-scm==10.3.4"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "halvaro-esg"
+dynamic = ["version"]
+description = "ESG and carbon library of the Halvaro Infra estate: emission factors, activity, recomputation, restated lines, GHG and footprint (0.1: factors, activity, recompute, lines, ghg, footprint)"
+requires-python = ">=3.10"
+license = "Apache-2.0"
+dependencies = ["halvaro-core>=0.1,<0.2", "pandas>=2.0,<3", "numpy>=1.26"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "jsonschema>=4", "pyarrow>=15", "PyYAML>=6", "setuptools-scm==10.3.4"]
+
+# Version from the Git tag halvaro-esg/v<major>.<minor>.<patch>, as halvaro-hr (lane P3, #483; default taken, proposed). setuptools-scm reads the local repository, no network.
+# The build writes src/halvaro/esg/_version_scm.py (git-ignored, into the wheel). The tracked _version.py imports it and keeps the committed fallback for a checkout that is not built.
+[tool.setuptools_scm]
+root = "../.."
+tag_regex = "^halvaro-esg/v(?P<version>[0-9]+\\.[0-9]+\\.[0-9]+)$"
+git_describe_command = ["git", "describe", "--dirty", "--tags", "--long", "--match", "halvaro-esg/v*"]
+version_file = "src/halvaro/esg/_version_scm.py"
+fallback_version = "0.1.0"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+namespaces = true
+
+[tool.setuptools.package-data]
+"halvaro.esg" = ["py.typed", ".agents/skills/*/SKILL.md", ".agents/skills/*/references/*.md"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests", "repo_tests"]
+pythonpath = ["src", "../halvaro-core/src"]
+addopts = "-q --strict-markers"
+markers = [
+    "release: needs an exported release (set HALVARO_RELEASE_DIR)",
+    "slow: more than a few seconds",
+]

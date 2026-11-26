@@ -1,0 +1,19 @@
+id: err07-project-status-on-duplicate-prj-key
+rule: A prj_key held twice is refused, with the repeated key named.
+function: project_status_on
+frames:
+  project:
+  - prj_key: PRJ-900001
+    start: '2031-01-05'
+    actual_end: null
+  - prj_key: PRJ-900001
+    start: '2031-01-05'
+    actual_end: null
+args:
+  as_of: '2031-02-01'
+raises:
+  error: FrameError
+  message: projects.project has 1 duplicate prj_key values (for example PRJ-900001); one row per project is required
+  names:
+  - prj_key
+  - PRJ-900001

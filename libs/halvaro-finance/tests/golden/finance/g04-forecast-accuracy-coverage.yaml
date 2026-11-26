@@ -1,0 +1,17 @@
+name: Coverage is the share of actuals inside the band and the mean error is actual less forecast
+function: forecast_accuracy
+cites: [FI.PRC.005]
+by_hand: Week 1 actual 712 is inside 670 to 730 (error +12). Week 2 actual 720 is outside 600 to 700 (error +70). Coverage is 1 of 2 = 0.5, mean error (12 + 70) / 2 = 41, mean absolute error 41. The first row of the entity is the all-horizons row (week 0).
+input:
+  cash_forecast:
+    columns: [le_key, forecast_date, week_no, closing_cash, closing_cash_p10, closing_cash_p90, minimum_cash_floor, rcf_limit, rcf_drawn, rcf_available, headroom_to_floor, headroom_to_floor_p10, floor_breach_risk, actual_closing_cash_ex_rcf]
+    rows:
+      - [LE-01, "2025-01-31", 1, 700.0, 670.0, 730.0, 100.0, 500.0, 100.0, 400.0, 600.0, 570.0, false, 712.0]
+      - [LE-01, "2025-01-31", 2, 650.0, 600.0, 700.0, 100.0, 500.0, 100.0, 400.0, 550.0, 500.0, false, 720.0]
+expect:
+  rows_by:
+    key: week_no
+    rows:
+      - {week_no: 0, n: 2, coverage: 0.5, mean_abs_error: 41.0, mean_error: 41.0}
+      - {week_no: 1, n: 1, coverage: 1.0, mean_error: 12.0}
+      - {week_no: 2, n: 1, coverage: 0.0, mean_error: 70.0}

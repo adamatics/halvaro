@@ -1,0 +1,21 @@
+# Golden error case of halvaro-finance.rebuild_trial_balance: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: rebuild_trial_balance
+why: a journal line has no entity
+args:
+- frame:
+    columns: [le_key, gl_key, amount, amount_dkk, currency, period, source]
+    rows:
+    - [null, GL-1000, 100.0, 100.0, DKK, 2026-01, manual]
+- frame:
+    columns: [le_key, gl_key, amount, amount_dkk]
+    rows:
+    - [LE-X, GL-1000, 50.0, 50.0]
+- frame:
+    columns: [gl_key, statement]
+    rows:
+    - [GL-1000, BS]
+    - [GL-3300, BS]
+    - [GL-5100, IS]
+context: month12
+raises: FrameError
+message: finance.journal_line and finance.opening_balance_item need an le_key and a gl_key in every row, and the lines a period (a line without them would be dropped)

@@ -1,0 +1,15 @@
+# Golden error case of halvaro-finance.exposure_bridge: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: exposure_bridge
+why: the exposure of a project differs from the sum of its two parts
+args:
+- frame:
+    columns: [prj_key, exposure_po_dkk, exposure_reserved_dkk, exposure_dkk]
+    rows:
+    - [PRJ-X, 10.0, 5.0, 99.0]
+- frame:
+    columns: [prj_key, price_exposure_dkk]
+    rows:
+    - [PRJ-X, 20.0]
+context: month12
+raises: FrameError
+message: 'the open_exposure result is inconsistent: exposure_dkk differs from exposure_po_dkk + exposure_reserved_dkk in 1 project(s), for example PRJ-X; the bridge identity needs them to agree'

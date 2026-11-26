@@ -1,0 +1,16 @@
+# Golden error case of halvaro-hr.adjusted_gap: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: adjusted_gap
+why: an extra control is a column of the model
+args:
+- frame:
+    columns:
+    - gender
+    - rate_dkk
+    - tenure_years
+    - legal_entity_key
+    - level
+    rows: []
+kwargs:
+  extra_controls: rate_dkk
+raises: FrameError
+message: extra_controls ['rate_dkk'] is already a column of the model or the pay or is given twice

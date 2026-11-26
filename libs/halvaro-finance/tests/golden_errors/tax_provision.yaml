@@ -1,0 +1,9 @@
+# Golden error case of halvaro-finance.tax_provision: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: tax_provision
+why: every frame is empty, so the columns the function reads are missing
+args:
+- frame: {}
+context: month12
+raises: FrameError
+message: finance-reporting.tax_provision frame lacks column(s) le_key, fiscal_year, tax_rate, profit_before_tax, non_deductible_expenses, exempt_income, temporary_difference_movement, taxable_income_before_losses, tax_loss_utilised,
+  tax_loss_added, tax_loss_carried_forward, taxable_income, current_tax, deferred_tax_movement, total_tax_expense; load the source columns without renaming them

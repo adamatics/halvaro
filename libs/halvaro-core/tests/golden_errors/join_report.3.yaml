@@ -1,0 +1,19 @@
+# Golden error case of halvaro-core.join_report: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: join_report
+why: strict is not one of True, False, 'left' or 'right'
+args:
+- frame:
+    columns:
+    - k
+    rows:
+    - - A
+- frame:
+    columns:
+    - k
+    rows:
+    - - A
+kwargs:
+  'on': k
+  strict: both
+raises: FrameError
+message: strict is True, 'left' or 'right'

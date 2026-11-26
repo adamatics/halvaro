@@ -1,0 +1,10 @@
+id: e03-no-factor-valid-on-day
+rule: "factor_on is refused when no factor of the family is valid on the day."
+function: factor_on
+frames:
+  factors: [{"efac_key": "EF-900001", "category": "gas", "carrier": "natural_gas", "region": "DE", "method": null, "kgco2e_per_unit": 0.2, "valid_from": "2030-01-01", "valid_to": "2030-12-31", "factor_set": "FS-900001", "synthetic": true, "verify_note": "VERIFY"}]
+args: {"category": "gas", "region": "DE", "on": "2032-01-01", "carrier": "natural_gas"}
+raises:
+  error: FrameError
+  message: "no factor of gas/natural_gas/DE/None is valid on 2032-01-01"
+  names: ["gas", "DE", "2032-01-01"]

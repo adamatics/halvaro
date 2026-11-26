@@ -1,0 +1,12 @@
+# Golden error case of halvaro-finance.intercompany_match: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: intercompany_match
+why: an ic_ref is listed twice
+args:
+- frame:
+    columns: [ic_ref, kind, period, amount_le01_dkk, amount_le02_dkk, amount_le02_eur, difference_dkk, status]
+    rows:
+    - [IC-1, loan, 2026-03, 1000.0, 1000.0, 100.0, 0.0, matched]
+    - [IC-1, loan, 2026-03, 1000.0, 1000.0, 100.0, 0.0, matched]
+context: month12
+raises: FrameError
+message: finance-reporting.intercompany_match needs one row per ic_ref

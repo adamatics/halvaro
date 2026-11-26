@@ -1,0 +1,1418 @@
+functions:
+- deprecated: null
+  facts: []
+  id: halvaro.hr.availability.allocation_hours
+  kb: []
+  kb_versions: []
+  library: halvaro-hr
+  oracle: py:tests/test_staffing.py::test_allocation_capacity
+  parameters:
+  - allocation
+  - employee
+  - employment_term
+  - leave_record
+  - team
+  - as_of
+  restricted: []
+  since: 0.1.0
+  sources:
+  - hr.allocation.emp_key
+  - hr.allocation.prj_key
+  - hr.allocation.start
+  - hr.allocation.end
+  - hr.allocation.percent
+  - hr.employee.hire_date
+  - hr.employee.leave_date
+  - hr.employment_term.fte
+  - hr.leave_record.start
+  - hr.leave_record.end
+  stage: day1
+  summary: Use this when you need the hours that each allocation stint stands for,
+    split into the hours up to a date and the hours after it.
+- deprecated: null
+  facts: []
+  id: halvaro.hr.availability.availability_hours
+  kb: []
+  kb_versions: []
+  library: halvaro-hr
+  oracle: py:tests/test_staffing.py::test_utilisation
+  parameters:
+  - employee
+  - employment_term
+  - leave_record
+  - team
+  - periods
+  restricted: []
+  since: 0.1.0
+  sources:
+  - hr.employee.hire_date
+  - hr.employee.leave_date
+  - hr.employment_term.fte
+  - hr.employment_term.team_key
+  - hr.employment_term.valid_from
+  - hr.employment_term.valid_to
+  - hr.leave_record.start
+  - hr.leave_record.end
+  - hr.leave_record.leave_type
+  - hr.team.site_key
+  stage: day1
+  summary: 'Use this when you need the hours each person can work in each period:
+    employed working days of the region, less leave, times the fte, times the hours
+    of a day.'
+- deprecated: null
+  facts: []
+  id: halvaro.hr.availability.utilisation
+  kb: []
+  kb_versions: []
+  library: halvaro-hr
+  oracle: py:tests/test_staffing.py::test_utilisation
+  parameters:
+  - time_entry
+  - availability
+  - employment_term
+  - team
+  - department
+  restricted: []
+  since: 0.1.0
+  sources:
+  - projects.time_entry.emp_key
+  - projects.time_entry.work_date
+  - projects.time_entry.hours
+  - hr.employment_term.team_key
+  - hr.employment_term.role_key
+  - hr.team.dep_key
+  - hr.department.dep_code
+  stage: month12
+  summary: Use this when you need project hours over availability by team and by department,
+    for the people who hold a project role.
+- deprecated: null
+  facts: []
+  id: halvaro.hr.certs.booked_renewals
+  kb: []
+  kb_versions: []
+  library: halvaro-hr
+  oracle: py:halvaro_gen/world/competence/truthcalc.py::valid_with_booked
+  parameters:
+  - attendance
+  - event
+  - as_of
+  - data_releases
+  restricted: []
+  since: 0.1.0
+  sources:
+  - competence.training_attendance.status
+  - competence.training_attendance.event_no
+  - competence.training_attendance.emp_key
+  - competence.training_event.date
+  - competence.training_event.end_date
+  - competence.training_event.qual_key
+  - competence.training_event.capacity
+  - competence.training_event.seats_taken
+  - competence.training_event.country
+  - competence.training_event.location_site_key
+  - competence.data_release.now
+  stage: month12
+  summary: Use this when you need the seats booked on training courses that start
+    after the release date, to see who will renew a certificate in time.
+- deprecated: null
+  facts: []
+  id: halvaro.hr.certs.cert_status_on
+  kb: []
+  kb_versions: []
+  library: halvaro-hr
+  oracle: py:tests/test_competence.py::test_status_logic
+  parameters:
+  - cert
+  - as_of
+  - stored_at
+  restricted: []
+  since: 0.1.0
+  sources:
+  - competence.certification_held.emp_key
+  - competence.certification_held.qual_key
+  - competence.certification_held.issued
+  - competence.certification_held.expires
+  - competence.certification_held.status
+  stage: month12
+  summary: Use this when you need the status of every certificate on a date, worked
+    out from the dates and not read from the stored status.
+- deprecated: null
+  facts: []
+  id: halvaro.hr.certs.education_level
+  kb: []
+  kb_versions: []
+  library: halvaro-hr
+  oracle: py:halvaro_gen/world/competence/truthcalc.py::_e14
+  parameters:
+  - education
+  restricted: []
+  since: 0.1.0
+  sources:
+  - competence.education_record.emp_key
+  - competence.education_record.level_rank
+  stage: month12
+  summary: Use this when you need the highest education level of each person from
+    the education records.
+- deprecated: null
+  facts:
+  - policy.certificates.expiry_warning_days
+  id: halvaro.hr.certs.expiring
+  kb: []
+  kb_versions: []
+  library: halvaro-hr
+  oracle: py:halvaro_gen/world/competence/truthcalc.py::_h10
+  parameters:
+  - valid
+  - booked
+  - as_of
+  - window_days
+  restricted: []
+  since: 0.1.0
+  sources:
+  - competence.certification_held.emp_key
+  - competence.certification_held.qual_key
+  - competence.certification_held.expires
+  stage: month12
+  summary: Use this when you need the valid certificates that expire soon, with the
+    first booked renewal course after the date and the days a person would be without
+    a valid certificate.
+- deprecated: null
+  facts:
+  - policy.staffing.unavailable_leave_types
+  id: halvaro.hr.certs.expiry_report
+  kb: []
+  kb_versions: []
+  library: halvaro-hr
+  oracle: py:halvaro_gen/world/competence/truthcalc.py::_e11
+  parameters:
+  - cert
+  - booked
+  - event
+  - employee
+  - leave_record
+  - as_of
+  - expiry_date
+  - qual_key
+  - holder_qual_key
+  - unavailable_leave_types
+  restricted: []
+  since: 0.1.0
+  sources:
+  - competence.certification_held.emp_key
+  - competence.certification_held.qual_key
+  - competence.certification_held.issued
+  - competence.certification_held.expires
+  - competence.training_event.date
+  - competence.training_event.qual_key
+  - competence.training_event.capacity
+  - competence.training_event.seats_taken
+  - hr.employee.leave_date
+  - hr.leave_record.leave_type
+  - hr.leave_record.start
+  - hr.leave_record.end
+  stage: month12
+  summary: 'Use this when you need the people whose certificate for a qualification
+    runs out on a given date: whether each has a renewal course booked, the free seats,
+    and who is on leave during the course.'
+- deprecated: null
+  facts: []
+  id: halvaro.hr.certs.renewal_chains
+  kb: []
+  kb_versions: []
+  library: halvaro-hr
+  oracle: py:halvaro_gen/world/competence/certs.py::ChainBuilder
+  parameters:
+  - cert
+  restricted: []
+  since: 0.1.0
+  sources:
+  - competence.certification_held.emp_key
+  - competence.certification_held.qual_key
+  - competence.certification_held.issued
+  - competence.certification_held.expires
+  - competence.certification_held.origin
+  - competence.certification_held.event_no
+  - competence.certification_held.renews_issued
+  stage: month12
+  summary: 'Use this when you need to see how certificates follow each other for a
+    person and qualification: the chains of renewals, with lapses and overlaps.'
+- deprecated: null
+  facts: []
+  id: halvaro.hr.certs.skill_latest
+  kb: []
+  kb_versions: []
+  library: halvaro-hr
+  oracle: py:tests/test_competence.py::test_candidates_by_skill_are_findable
+  parameters:
+  - skill_rating
+  - skill
+  - as_of
+  restricted: []
+  since: 0.1.0
+  sources:
+  - competence.skill_rating.emp_key
+  - competence.skill_rating.skl_key
+  - competence.skill_rating.level
+  - competence.skill_rating.assessed_on
+  - competence.skill.name
+  stage: month12
+  summary: Use this when you need the latest rating of each person and skill, with
+    the name of the skill.
+- deprecated: null
+  facts: []
+  id: halvaro.hr.certs.valid_on
+  kb: []
+  kb_versions: []
+  library: halvaro-hr
+  oracle: py:halvaro_gen/world/competence/truthcalc.py::valid_on_record
+  parameters:
+  - cert
+  - as_of
+  restricted: []
+  since: 0.1.0
+  sources:
+  - competence.certification_held.emp_key
+  - competence.certification_held.qual_key
+  - competence.certification_held.issued
+  - competence.certification_held.expires
+  stage: month12
+  summary: Use this when you need the certificates that are valid on a date, one row
+    per person and qualification.
+- deprecated: null
+  facts: []
+  id: halvaro.hr.controlled.controlled_work_audit
+  kb: []
+  kb_versions: []
+  library: halvaro-hr
+  oracle: py:halvaro_gen/world/competence/truthcalc.py::_rule15
+  parameters:
+  - time_entry
+  - allocation
+  - project
+  - employment_term
+  - role
+  - employee
+  - cert
+  - rules
+  - as_of
+  restricted: []
+  since: 0.1.0
+  sources:
+  - projects.time_entry.emp_key
+  - projects.time_entry.work_date
+  - projects.time_entry.prj_key
+  - projects.time_entry.cst_key
+  - hr.allocation.emp_key
+  - hr.allocation.prj_key
+  - hr.allocation.start
+  - hr.allocation.end
+  - hr.employment_term.role_key
+  - hr.role.name
+  - hr.employee.legal_entity_key
+  - hr.employee.hire_date
+  - projects.project.type
+  - competence.certification_held.emp_key
+  - competence.certification_held.qual_key
+  - competence.certification_held.issued
+  - competence.certification_held.expires
+  stage: month12
+  summary: Use this when you need the time entries and allocation days of controlled
+    work that have no valid certificate on the day.
+- deprecated: null
+  facts: []
+  id: halvaro.hr.coverage.cert_intervals
+  kb: []
+  kb_versions: []
+  library: halvaro-hr
+  oracle: py:halvaro_gen/world/competence/truthcalc.py::_projects
+  parameters:
+  - cert
+  restricted: []
+  since: 0.1.0
+  sources:
+  - competence.certification_held.emp_key
+  - competence.certification_held.qual_key
+  - competence.certification_held.issued
+  - competence.certification_held.expires
+  stage: month12
+  summary: Use this when you check coverage for many projects and want to build the
+    validity intervals of the certificates once.
+- deprecated: null
+  facts:
+  - policy.certificates.candidate_leave_days
+  - policy.certificates.candidate_list_level
+  - policy.certificates.candidate_plausible_level
+  - policy.certificates.candidate_seat_days
+  - policy.staffing.unavailable_leave_types
+  id: halvaro.hr.coverage.cover_candidates
+  kb: []
+  kb_versions: []
+  library: halvaro-hr
+  oracle: py:halvaro_gen/world/competence/truthcalc.py::_candidates
+  parameters:
+  - skill_latest
+  - org
+  - cert
+  - qualification
+  - event
+  - crew_plan
+  - leave_record
+  restricted: []
+  since: 0.1.0
+  sources:
+  - competence.skill_rating.level
+  - competence.qualification.prerequisite_qual_key
+  - competence.qualification.country_scope
+  - competence.training_event.date
+  - competence.training_event.capacity
+  - competence.training_event.seats_taken
+  - competence.crew_plan.percent
+  - hr.leave_record.start
+  - hr.leave_record.end
+  stage: month12
+  summary: Use this when you need the people who could cover a qualification on a
+    project that starts on a given day, with the reasons that make a candidate less
+    plausible.
+- deprecated: null
+  facts: []
+  id: halvaro.hr.coverage.coverage_gap
+  kb: []
+  kb_versions: []
+  library: halvaro-hr
+  oracle: py:halvaro_gen/world/competence/truthcalc.py::_projects
+  parameters:
+  - requirements
+  - crew
+  - cert
+  - booked
+  - leave_record
+  - as_of
+  restricted: []
+  since: 0.1.0
+  sources:
+  - competence.certification_held.emp_key
+  - competence.certification_held.qual_key
+  - competence.certification_held.issued
+  - competence.certification_held.expires
+  - competence.requirement.qual_key
+  - competence.requirement.min_headcount
+  - hr.leave_record.emp_key
+  - hr.leave_record.start
+  - hr.leave_record.end
+  stage: month12
+  summary: Use this when you need, for each requirement of a minimum head count, how
+    many people of a crew hold a valid certificate and are not on leave on a date,
+    and when the gap closes.
+- deprecated: null
+  facts: []
+  id: halvaro.hr.coverage.project_crew
+  kb: []
+  kb_versions: []
+  library: halvaro-hr
+  oracle: py:halvaro_gen/world/competence/requirements.py::build_crew_plan
+  parameters:
+  - allocation
+  - crew_plan
+  - prj_key
+  - as_of
+  restricted: []
+  since: 0.1.0
+  sources:
+  - hr.allocation.emp_key
+  - hr.allocation.prj_key
+  - hr.allocation.start
+  - hr.allocation.end
+  - hr.allocation.percent
+  - competence.crew_plan.prj_key
+  - competence.crew_plan.emp_key
+  - competence.crew_plan.planned_start
+  - competence.crew_plan.planned_end
+  - competence.crew_plan.percent
+  stage: month12
+  summary: 'Use this when you need the people on a project on a date: the allocations
+    that cover the date, or the crew plan when the project has no allocation yet.'
+- deprecated: null
+  facts: []
+  id: halvaro.hr.coverage.project_requirements
+  kb: []
+  kb_versions: []
+  library: halvaro-hr
+  oracle: py:halvaro_gen/world/competence/requirements.py::build_requirements
+  parameters:
+  - requirement
+  - project
+  - prj_key
+  restricted: []
+  since: 0.1.0
+  sources:
+  - competence.requirement.scope_type
+  - competence.requirement.scope_key
+  - competence.requirement.qual_key
+  - competence.requirement.min_headcount
+  - competence.requirement.requirement_level
+  - projects.project.prj_key
+  - projects.project.type
+  - projects.project.contract_key
+  stage: month12
+  summary: Use this when you need the qualifications that a project must cover, from
+    the requirements of its project, contract, project type and roles.
+- deprecated: null
+  facts: []
+  id: halvaro.hr.crosswalk.build_username_index
+  kb: []
+  kb_versions: []
+  library: halvaro-hr
+  oracle: py:halvaro_gen/world/it_assets/xw1.py::Resolver
+  parameters:
+  - username_history
+  - shared_account
+  restricted: []
+  since: 0.1.0
+  sources:
+  - hr.username_history.username
+  - hr.username_history.emp_key
+  - hr.username_history.valid_from
+  - hr.username_history.valid_to
+  - hr.shared_account.account_name
+  - hr.shared_account.team_key
+  - hr.shared_account.valid_from
+  - hr.shared_account.valid_to
+  stage: day1
+  summary: Use this when you need one effective dated list of usernames and pool accounts
+    with their holders.
+- deprecated: null
+  facts: []
+  id: halvaro.hr.crosswalk.overlapping_usernames
+  kb: []
+  kb_versions: []
+  library: halvaro-hr
+  oracle: py:halvaro_gen/world/it_assets/xw1.py::Resolver
+  parameters:
+  - index
+  restricted: []
+  since: 0.1.0
+  sources:
+  - hr.username_history.emp_key
+  - hr.username_history.username
+  - hr.username_history.valid_from
+  - hr.username_history.valid_to
+  stage: day1
+  summary: Use this when you want to check that no username was held by two holders
+    on overlapping dates.
+- deprecated: null
+  facts:
+  - policy.offboarding.asset_return_days
+  id: halvaro.hr.crosswalk.resolve_assignments
+  kb: []
+  kb_versions: []
+  library: halvaro-hr
+  oracle: py:halvaro_gen/world/it_assets/xw1.py::xw1_truth
+  parameters:
+  - assignment
+  - index
+  - employee
+  - as_of
+  - asset_return_days
+  restricted: []
+  since: 0.1.0
+  sources:
+  - it-assets.assignment.assigned_username
+  - it-assets.assignment.valid_from
+  - it-assets.assignment.valid_to
+  - it-assets.assignment.assignment_type
+  - hr.employee.emp_key
+  - hr.employee.hire_date
+  - hr.employee.leave_date
+  stage: month12
+  summary: 'Use this when you check who holds each asset assignment: the person or
+    team behind each username at the start of the assignment, and whether they still
+    hold it until the end.'
+- deprecated: null
+  facts: []
+  id: halvaro.hr.crosswalk.resolve_username
+  kb: []
+  kb_versions: []
+  library: halvaro-hr
+  oracle: py:halvaro_gen/world/it_assets/xw1.py::resolve_username
+  parameters:
+  - index
+  - username
+  - 'on'
+  restricted: []
+  since: 0.1.0
+  sources:
+  - hr.username_history.username
+  - hr.shared_account.account_name
+  stage: day1
+  summary: Use this when you have a username or a pool account name and a date and
+    need to know who held it.
+- deprecated: null
+  facts:
+  - legal.DK.holiday.accrual_days_per_month
+  - legal.DE.holiday.accrual_days_per_month
+  - world.window_start
+  - legal.DK.holiday.label_format
+  - legal.DE.holiday.label_format
+  - legal.DK.holiday.holiday_year_start.month
+  - legal.DE.holiday.holiday_year_start.month
+  - legal.DK.holiday.holiday_year_start.day
+  - legal.DE.holiday.holiday_year_start.day
+  id: halvaro.hr.holiday.accrual_expected
+  kb: []
+  kb_versions: []
+  library: halvaro-hr
+  oracle: py:halvaro_gen/world/leave.py::Builder._month_accrual
+  parameters:
+  - employee
+  - leave_record
+  - acc
+  - now
+  restricted: []
+  since: 0.1.0
+  sources:
+  - hr.employee.emp_key
+  - hr.employee.hire_date
+  - hr.employee.leave_date
+  - hr.leave_record.emp_key
+  - hr.leave_record.leave_type
+  - hr.leave_record.start
+  - hr.leave_record.end
+  - hr.holiday_accrual.emp_key
+  - hr.holiday_accrual.holiday_year
+  - hr.holiday_accrual.period
+  - hr.holiday_accrual.accrued_days
+  - hr.holiday_accrual.taken_days
+  stage: day1
+  summary: Use this when you need the holiday accrual a person should have per month,
+    to compare with the ledger and find months that are missing or differ.
+- deprecated: null
+  facts:
+  - legal.DK.holiday.carryover.default_max_days
+  - legal.DE.holiday.carryover.default_max_days
+  - legal.DK.holiday.carryover.agreement_max_days
+  - legal.DK.holiday.label_format
+  - legal.DE.holiday.label_format
+  - legal.DE.holiday.carryover.deadline_month_day.month
+  - legal.DE.holiday.carryover.deadline_month_day.day
+  id: halvaro.hr.holiday.carry_over_position
+  kb: []
+  kb_versions: []
+  library: halvaro-hr
+  oracle: py:tests/test_leave.py::test_carry_in_caps
+  parameters:
+  - ent
+  restricted: []
+  since: 0.1.0
+  sources:
+  - hr.holiday_entitlement.emp_key
+  - hr.holiday_entitlement.holiday_year
+  - hr.holiday_entitlement.carried_in_days
+  - hr.holiday_entitlement.carry_over_agreement
+  - hr.holiday_entitlement.opening_balance
+  stage: day1
+  summary: Use this when you need to compare the days carried into each holiday year
+    with the cap that applies to the person, and see the headroom that is left.
+- deprecated: null
+  facts:
+  - legal.DK.holiday.carryover.default_max_days
+  - legal.DE.holiday.carryover.default_max_days
+  - legal.DK.holiday.carryover.agreement_max_days
+  - legal.DK.holiday.label_format
+  - legal.DE.holiday.label_format
+  id: halvaro.hr.holiday.carry_over_projection
+  kb: []
+  kb_versions: []
+  library: halvaro-hr
+  oracle: py:halvaro_gen/world/leave.py::Builder
+  parameters:
+  - ledger
+  - ent
+  restricted: []
+  since: 0.1.0
+  sources:
+  - hr.holiday_entitlement.emp_key
+  - hr.holiday_entitlement.holiday_year
+  - hr.holiday_entitlement.carried_in_days
+  - hr.holiday_entitlement.carry_over_agreement
+  - hr.holiday_entitlement.opening_balance
+  - hr.holiday_accrual.emp_key
+  - hr.holiday_accrual.holiday_year
+  - hr.holiday_accrual.period
+  - hr.holiday_accrual.accrued_days
+  - hr.holiday_accrual.taken_days
+  stage: day1
+  summary: Use this when you need the carry-in that the next holiday year should start
+    with, and whether the carry-in stored for it agrees.
+- deprecated: null
+  facts:
+  - legal.DK.holiday.label_format
+  - legal.DE.holiday.label_format
+  - policy.holiday.high_carry_over_days
+  id: halvaro.hr.holiday.high_carry_over
+  kb: []
+  kb_versions: []
+  library: halvaro-hr
+  oracle: py:tests/test_leave.py::test_e9_people_have_high_carry_in
+  parameters:
+  - ent
+  - holiday_year
+  - country
+  - threshold
+  restricted: []
+  since: 0.1.0
+  sources:
+  - hr.holiday_entitlement.emp_key
+  - hr.holiday_entitlement.holiday_year
+  - hr.holiday_entitlement.carried_in_days
+  - hr.holiday_entitlement.carry_over_agreement
+  - hr.holiday_entitlement.opening_balance
+  stage: day1
+  summary: Use this when you need the people who carry more holiday days into a holiday
+    year than a threshold, so that a person can look at each of them.
+- deprecated: null
+  facts:
+  - legal.DK.holiday.annual_days
+  - legal.DE.holiday.annual_days
+  - legal.DK.holiday.accrual_days_per_month
+  - legal.DE.holiday.accrual_days_per_month
+  - legal.DK.holiday.label_format
+  - legal.DE.holiday.label_format
+  id: halvaro.hr.holiday.holiday_balance
+  kb: []
+  kb_versions: []
+  library: halvaro-hr
+  oracle: py:halvaro_gen/world/holiday.py::holiday_balance
+  parameters:
+  - ent
+  - acc
+  - emp_key
+  - holiday_year
+  - as_of
+  restricted: []
+  since: 0.1.0
+  sources:
+  - hr.holiday_entitlement.emp_key
+  - hr.holiday_entitlement.holiday_year
+  - hr.holiday_entitlement.carried_in_days
+  - hr.holiday_entitlement.carry_over_agreement
+  - hr.holiday_entitlement.opening_balance
+  - hr.holiday_accrual.emp_key
+  - hr.holiday_accrual.holiday_year
+  - hr.holiday_accrual.period
+  - hr.holiday_accrual.accrued_days
+  - hr.holiday_accrual.taken_days
+  - hr.holiday_entitlement.entitlement_days
+  stage: day1
+  summary: Use this when you need the holiday balance of one person in one holiday
+    year at the end of a month.
+- deprecated: null
+  facts:
+  - legal.DK.holiday.label_format
+  - legal.DE.holiday.label_format
+  id: halvaro.hr.holiday.holiday_ledger
+  kb: []
+  kb_versions: []
+  library: halvaro-hr
+  oracle: py:tests/test_leave.py::test_ledger_never_negative_and_matches_leave_records
+  parameters:
+  - ent
+  - acc
+  restricted: []
+  since: 0.1.0
+  sources:
+  - hr.holiday_entitlement.emp_key
+  - hr.holiday_entitlement.holiday_year
+  - hr.holiday_entitlement.carried_in_days
+  - hr.holiday_entitlement.carry_over_agreement
+  - hr.holiday_entitlement.opening_balance
+  - hr.holiday_accrual.emp_key
+  - hr.holiday_accrual.holiday_year
+  - hr.holiday_accrual.period
+  - hr.holiday_accrual.accrued_days
+  - hr.holiday_accrual.taken_days
+  stage: day1
+  summary: Use this when you need the month by month holiday balance of every person
+    and holiday year, with flags for a negative balance, a missing entitlement row
+    and an opening balance.
+- deprecated: null
+  facts:
+  - legal.DK.holiday.holiday_year_start.month
+  - legal.DE.holiday.holiday_year_start.month
+  - legal.DK.holiday.holiday_year_start.day
+  - legal.DE.holiday.holiday_year_start.day
+  - legal.DK.holiday.label_format
+  - legal.DE.holiday.label_format
+  id: halvaro.hr.holiday.holiday_year_bounds
+  kb: []
+  kb_versions: []
+  library: halvaro-hr
+  oracle: py:halvaro_gen/world/leave.py::hy_bounds
+  parameters:
+  - label
+  restricted: []
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: Use this when you have the label of a holiday year and need its first and
+    last day.
+- deprecated: null
+  facts:
+  - legal.DK.holiday.holiday_year_start.month
+  - legal.DE.holiday.holiday_year_start.month
+  - legal.DK.holiday.label_format
+  - legal.DE.holiday.label_format
+  id: halvaro.hr.holiday.holiday_year_label
+  kb: []
+  kb_versions: []
+  library: halvaro-hr
+  oracle: py:halvaro_gen/world/holiday.py::label_for
+  parameters:
+  - country
+  - as_of
+  restricted: []
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: Use this when you need the label of the holiday year that contains a date,
+    for DK or DE.
+- deprecated: null
+  facts:
+  - legal.DK.holiday.holiday_year_start.month
+  - legal.DE.holiday.holiday_year_start.month
+  - legal.DK.holiday.holiday_year_start.day
+  - legal.DE.holiday.holiday_year_start.day
+  - legal.DK.holiday.label_format
+  - legal.DE.holiday.label_format
+  id: halvaro.hr.holiday.leave_vs_ledger
+  kb: []
+  kb_versions: []
+  library: halvaro-hr
+  oracle: py:tests/test_leave.py::test_ledger_never_negative_and_matches_leave_records
+  parameters:
+  - leave_record
+  - acc
+  - now
+  restricted: []
+  since: 0.1.0
+  sources:
+  - hr.leave_record.emp_key
+  - hr.leave_record.leave_type
+  - hr.leave_record.days
+  - hr.leave_record.end
+  - hr.holiday_accrual.emp_key
+  - hr.holiday_accrual.holiday_year
+  - hr.holiday_accrual.period
+  - hr.holiday_accrual.accrued_days
+  - hr.holiday_accrual.taken_days
+  stage: day1
+  summary: Use this when you need to check that the holiday leave records agree with
+    the days taken in the ledger, per person and holiday year.
+- deprecated: null
+  facts:
+  - world.window_start
+  id: halvaro.hr.org.check_term_contiguity
+  kb: []
+  kb_versions: []
+  library: halvaro-hr
+  oracle: py:tests/test_people.py::test_terms_are_continuous_and_within_employment
+  parameters:
+  - term
+  - employee
+  restricted: []
+  since: 0.1.0
+  sources:
+  - hr.employment_term.emp_key
+  - hr.employment_term.valid_from
+  - hr.employment_term.valid_to
+  - hr.employee.hire_date
+  - hr.employee.leave_date
+  stage: day1
+  summary: Use this when you check the employment term history of every person for
+    gaps, overlaps and other breaks in the dating.
+- deprecated: null
+  facts: []
+  id: halvaro.hr.org.data_now
+  kb: []
+  kb_versions: []
+  library: halvaro-hr
+  oracle: py:tests/test_release.py::test_every_source_has_one_row_data_release
+  parameters:
+  - data_releases
+  - as_of
+  restricted: []
+  since: 0.1.0
+  sources:
+  - hr.data_release.release
+  - hr.data_release.now
+  stage: day1
+  summary: Use this when you need the date of the data release (the "now" of the data)
+    and want to refuse a date after it.
+- deprecated: null
+  facts: []
+  id: halvaro.hr.org.executives_on
+  kb: []
+  kb_versions: []
+  library: halvaro-hr
+  oracle: py:halvaro_gen/world/people.py::Builder
+  parameters:
+  - org
+  - role
+  - roles
+  restricted: []
+  since: 0.1.0
+  sources:
+  - hr.role.name
+  - hr.department.dep_code
+  - hr.employment_term.team_key
+  stage: day1
+  summary: Use this when you need the holders of named executive roles on the date
+    of an org_on frame, and the roles that nobody holds.
+- deprecated: null
+  facts: []
+  id: halvaro.hr.org.headcount_on
+  kb: []
+  kb_versions: []
+  library: halvaro-hr
+  oracle: py:tests/test_people.py::test_headcounts
+  parameters:
+  - employee
+  - term
+  - team
+  - as_of
+  - level
+  restricted: []
+  since: 0.1.0
+  sources:
+  - hr.employee.hire_date
+  - hr.employee.leave_date
+  - hr.employment_term.fte
+  - hr.team.dep_key
+  stage: day1
+  summary: Use this when you need the number of active people and their full time
+    equivalents on a date, by department, team or legal entity.
+- deprecated: null
+  facts: []
+  id: halvaro.hr.org.org_on
+  kb: []
+  kb_versions: []
+  library: halvaro-hr
+  oracle: py:tests/test_people.py::test_headcounts
+  parameters:
+  - employee
+  - term
+  - team
+  - role
+  - grade
+  - department
+  - site
+  - as_of
+  restricted: []
+  since: 0.1.0
+  sources:
+  - hr.employee.emp_key
+  - hr.employee.gender
+  - hr.employee.hire_date
+  - hr.employee.leave_date
+  - hr.employee.legal_entity_key
+  - hr.employment_term.team_key
+  - hr.employment_term.role_key
+  - hr.employment_term.grade_key
+  - hr.employment_term.fte
+  - hr.team.dep_key
+  - hr.team.site_key
+  - hr.role.name
+  - hr.grade.level
+  - hr.department.dep_code
+  stage: day1
+  summary: 'Use this when you need one frame with each person on a date: term, employee,
+    team, role, grade, department, country and calendar region.'
+- deprecated: null
+  facts:
+  - policy.staffing.unavailable_leave_types
+  id: halvaro.hr.org.status_on
+  kb: []
+  kb_versions: []
+  library: halvaro-hr
+  oracle: py:halvaro_gen/truth/staffing.py::status_on
+  parameters:
+  - employee
+  - leave_record
+  - as_of
+  - unavailable_leave_types
+  restricted: []
+  since: 0.1.0
+  sources:
+  - hr.employee.emp_key
+  - hr.employee.hire_date
+  - hr.employee.leave_date
+  - hr.leave_record.emp_key
+  - hr.leave_record.leave_type
+  - hr.leave_record.start
+  - hr.leave_record.end
+  stage: day1
+  summary: Use this when you need to know, for each person, whether they have left,
+    are on leave, are not yet hired or are available on a date.
+- deprecated: null
+  facts: []
+  id: halvaro.hr.org.tenure_years
+  kb: []
+  kb_versions: []
+  library: halvaro-hr
+  oracle: py:halvaro_gen/truth/hr.py::pay_frame
+  parameters:
+  - employee
+  - as_of
+  - days_per_year
+  restricted: []
+  since: 0.1.0
+  sources:
+  - hr.employee.emp_key
+  - hr.employee.hire_date
+  - hr.employee.leave_date
+  stage: day1
+  summary: Use this when you need the years of service of each person on a date.
+- deprecated: null
+  facts: []
+  id: halvaro.hr.org.term_changes
+  kb: []
+  kb_versions: []
+  library: halvaro-hr
+  oracle: py:halvaro_gen/world/people.py::Builder
+  parameters:
+  - term
+  restricted: []
+  since: 0.1.0
+  sources:
+  - hr.employment_term.emp_key
+  - hr.employment_term.change_reason
+  - hr.employment_term.valid_from
+  stage: day1
+  summary: 'Use this when you need the events behind the employment terms: one row
+    per name in the change reason of each term.'
+- deprecated: null
+  facts: []
+  id: halvaro.hr.org.terms_on
+  kb: []
+  kb_versions: []
+  library: halvaro-hr
+  oracle: py:halvaro_gen/truth/hr.py::terms_on
+  parameters:
+  - term
+  - as_of
+  restricted: []
+  since: 0.1.0
+  sources:
+  - hr.employment_term.emp_key
+  - hr.employment_term.valid_from
+  - hr.employment_term.valid_to
+  stage: day1
+  summary: Use this when you need the one employment term that is valid on a date
+    for each person, without the restricted pay column.
+- deprecated: null
+  facts: []
+  id: halvaro.hr.pay.adjusted_gap
+  kb: []
+  kb_versions: []
+  library: halvaro-hr
+  oracle: py:halvaro_gen/truth/hr.py::gap_stats
+  parameters:
+  - frame
+  - minimum_group
+  restricted:
+  - hr.employment_term.base_salary
+  since: 0.1.0
+  sources:
+  - hr.employment_term.base_salary
+  - hr.employment_term.fte
+  - hr.employment_term.currency
+  - hr.employee.gender
+  - hr.employee.hire_date
+  - hr.employee.legal_entity_key
+  - hr.team.dep_key
+  - hr.grade.level
+  stage: day1
+  summary: Use this when you need the pay difference between women and men after taking
+    tenure, legal entity and grade into account, with its standard error.
+- deprecated: null
+  facts:
+  - world.fx_eur_dkk_fixed
+  id: halvaro.hr.pay.band_position
+  kb: []
+  kb_versions: []
+  library: halvaro-hr
+  oracle: py:halvaro_gen/truth/hr.py::h4
+  parameters:
+  - frame
+  - grade
+  restricted:
+  - hr.employment_term.base_salary
+  since: 0.1.0
+  sources:
+  - hr.employment_term.base_salary
+  - hr.employment_term.fte
+  - hr.employment_term.currency
+  - hr.employee.gender
+  - hr.employee.hire_date
+  - hr.employee.legal_entity_key
+  - hr.team.dep_key
+  - hr.grade.level
+  - hr.grade.band_min_dkk
+  - hr.grade.band_max_dkk
+  - hr.grade.band_min_eur
+  - hr.grade.band_max_eur
+  stage: day1
+  summary: Use this when you want to see where each person's pay lies in the band
+    of the grade, in the currency of the person's term.
+- deprecated: null
+  facts: []
+  id: halvaro.hr.pay.education_explained_share
+  kb: []
+  kb_versions: []
+  library: halvaro-hr
+  oracle: py:halvaro_gen/world/competence/truthcalc.py::_e14
+  parameters:
+  - frame
+  - minimum_group
+  restricted:
+  - hr.employment_term.base_salary
+  since: 0.1.0
+  sources:
+  - hr.employment_term.base_salary
+  - hr.employment_term.fte
+  - hr.employment_term.currency
+  - hr.employee.gender
+  - hr.employee.hire_date
+  - hr.employee.legal_entity_key
+  - hr.team.dep_key
+  - hr.grade.level
+  - competence.education_record.level_rank
+  stage: month12
+  summary: Use this when you want to know how much of the adjusted pay difference
+    goes away once education is taken into account.
+- deprecated: null
+  facts:
+  - legal.pay_transparency.joint_assessment_gap_threshold
+  id: halvaro.hr.pay.gap_table
+  kb: []
+  kb_versions: []
+  library: halvaro-hr
+  oracle: py:halvaro_gen/truth/hr.py::h4
+  parameters:
+  - frame
+  - by
+  restricted:
+  - hr.employment_term.base_salary
+  since: 0.1.0
+  sources:
+  - hr.employment_term.base_salary
+  - hr.employment_term.fte
+  - hr.employment_term.currency
+  - hr.employee.gender
+  - hr.employee.hire_date
+  - hr.employee.legal_entity_key
+  - hr.team.dep_key
+  - hr.grade.level
+  stage: day1
+  summary: Use this when you want the pay difference between women and men per department
+    or per grade in one table, with a flag for each group and a ranking.
+- deprecated: null
+  facts: []
+  id: halvaro.hr.pay.intake_compa_by_grade
+  kb: []
+  kb_versions: []
+  library: halvaro-hr
+  oracle: py:halvaro_gen/truth/hr.py::h4
+  parameters:
+  - frame
+  restricted:
+  - hr.employment_term.base_salary
+  since: 0.1.0
+  sources:
+  - hr.employment_term.base_salary
+  - hr.employment_term.fte
+  - hr.employment_term.currency
+  - hr.employee.gender
+  - hr.employee.hire_date
+  - hr.employee.legal_entity_key
+  - hr.team.dep_key
+  - hr.grade.level
+  - hr.department.dep_code
+  stage: day1
+  summary: Use this when you want to compare women and men hired from a given date
+    in one department, grade by grade, on their position in the pay band.
+- deprecated: null
+  facts: []
+  id: halvaro.hr.pay.intake_pay_difference
+  kb: []
+  kb_versions: []
+  library: halvaro-hr
+  oracle: py:halvaro_gen/truth/hr.py::h4
+  parameters:
+  - frame
+  restricted:
+  - hr.employment_term.base_salary
+  since: 0.1.0
+  sources:
+  - hr.employment_term.base_salary
+  - hr.employment_term.fte
+  - hr.employment_term.currency
+  - hr.employee.gender
+  - hr.employee.hire_date
+  - hr.employee.legal_entity_key
+  - hr.team.dep_key
+  - hr.grade.level
+  - hr.department.dep_code
+  stage: day1
+  summary: Use this when you want to know whether the women hired from an intake date
+    are paid differently from the men and from the other women of the same department.
+- deprecated: null
+  facts:
+  - world.fx_eur_dkk_fixed
+  id: halvaro.hr.pay.pay_frame
+  kb: []
+  kb_versions: []
+  library: halvaro-hr
+  oracle: py:halvaro_gen/truth/hr.py::pay_frame
+  parameters:
+  - employee
+  - term
+  - team
+  - grade
+  - as_of
+  restricted:
+  - hr.employment_term.base_salary
+  since: 0.1.0
+  sources:
+  - hr.employment_term.base_salary
+  - hr.employment_term.fte
+  - hr.employment_term.currency
+  - hr.employee.gender
+  - hr.employee.hire_date
+  - hr.employee.legal_entity_key
+  - hr.team.dep_key
+  - hr.grade.level
+  - hr.grade.band_min_dkk
+  - hr.grade.band_max_dkk
+  - hr.grade.band_min_eur
+  - hr.grade.band_max_eur
+  stage: day1
+  summary: Use this when you need the person frame on a date with the monthly full-time
+    rate, tenure and position in the pay band; it is the input of every pay difference
+    function.
+- deprecated: null
+  facts: []
+  id: halvaro.hr.pay.raw_gap
+  kb: []
+  kb_versions: []
+  library: halvaro-hr
+  oracle: py:halvaro_gen/truth/hr.py::gap_stats
+  parameters:
+  - frame
+  - minimum_group
+  restricted:
+  - hr.employment_term.base_salary
+  since: 0.1.0
+  sources:
+  - hr.employment_term.base_salary
+  - hr.employment_term.fte
+  - hr.employment_term.currency
+  - hr.employee.gender
+  - hr.employee.hire_date
+  - hr.employee.legal_entity_key
+  - hr.team.dep_key
+  - hr.grade.level
+  stage: day1
+  summary: 'Use this when you need the raw pay difference between women and men: how
+    much less the women are paid on average, before any adjustment.'
+- deprecated: null
+  facts: []
+  id: halvaro.hr.pay.suppress_small_cells
+  kb: []
+  kb_versions: []
+  library: halvaro-hr
+  oracle: py:halvaro_gen/truth/hr.py::gap_stats
+  parameters:
+  - table
+  - value_columns
+  restricted: []
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: Use this when you publish a gap table and must hide the values of groups
+    that are too small.
+- deprecated: null
+  facts: []
+  id: halvaro.hr.pay.with_education
+  kb: []
+  kb_versions: []
+  library: halvaro-hr
+  oracle: py:halvaro_gen/world/competence/truthcalc.py::_e14
+  parameters:
+  - frame
+  - education
+  restricted:
+  - hr.employment_term.base_salary
+  since: 0.1.0
+  sources:
+  - hr.employment_term.base_salary
+  - hr.employment_term.fte
+  - hr.employment_term.currency
+  - hr.employee.gender
+  - hr.employee.hire_date
+  - hr.employee.legal_entity_key
+  - hr.team.dep_key
+  - hr.grade.level
+  - competence.education_record.emp_key
+  - competence.education_record.level_rank
+  stage: month12
+  summary: Use this when you want the education level of each person next to the pay
+    frame, so that it can be used as a control in the adjusted gap.
+- deprecated: null
+  facts:
+  - policy.pay_gap.minimum_cohort_size
+  id: halvaro.hr.payroll.payroll_aggregate
+  kb: []
+  kb_versions: []
+  library: halvaro-hr
+  oracle: py:halvaro_gen/world/finance/registers.py::payroll_hr_reconciliation
+  parameters:
+  - term
+  - team
+  - grade
+  - first_month
+  - last_month
+  restricted:
+  - hr.employment_term.base_salary
+  since: 0.1.0
+  sources:
+  - hr.employment_term.base_salary
+  - hr.employment_term.fte
+  - hr.employment_term.currency
+  - hr.employment_term.team_key
+  - hr.employment_term.grade_key
+  - hr.employment_term.valid_from
+  - hr.employment_term.valid_to
+  - hr.team.cost_centre_key
+  - hr.team.legal_entity_key
+  - hr.grade.band_min_dkk
+  - hr.grade.band_max_dkk
+  - hr.grade.band_min_eur
+  - hr.grade.band_max_eur
+  stage: day1
+  summary: Use this when you need the gross pay of the employment terms per legal
+    entity, cost centre, month and currency, without employee keys and without base
+    salary, for the tie-out with finance.
+- deprecated: null
+  facts:
+  - policy.staffing.max_allocation_percent
+  id: halvaro.hr.staffing.allocation_load
+  kb: []
+  kb_versions: []
+  library: halvaro-hr
+  oracle: py:tests/test_staffing.py::test_allocation_capacity
+  parameters:
+  - allocation
+  - limit
+  restricted: []
+  since: 0.1.0
+  sources:
+  - hr.allocation.emp_key
+  - hr.allocation.start
+  - hr.allocation.end
+  - hr.allocation.percent
+  stage: day1
+  summary: 'Use this when you need to see how loaded each person is over time: the
+    allocation percents of all projects added up per day, as segments of constant
+    load.'
+- deprecated: null
+  facts: []
+  id: halvaro.hr.staffing.experience_summary
+  kb: []
+  kb_versions: []
+  library: halvaro-hr
+  oracle: py:halvaro_gen/truth/staffing.py::staffing_truth
+  parameters:
+  - roster
+  - employee
+  restricted: []
+  since: 0.1.0
+  sources:
+  - projects.project_role.emp_key
+  - projects.project_role.prj_key
+  - projects.project_role.project_role
+  - projects.project_role.hours_total
+  - projects.project_role.basis
+  - hr.employee.leave_date
+  stage: month12
+  summary: Use this when you need the hours, projects, roles and lead flag of each
+    person over a roster, ranked by hours.
+- deprecated: null
+  facts:
+  - policy.staffing.unavailable_leave_types
+  id: halvaro.hr.staffing.handover_report
+  kb: []
+  kb_versions: []
+  library: halvaro-hr
+  oracle: py:tests/test_staffing.py::test_e6_allocations_and_leave
+  parameters:
+  - allocation
+  - leave_record
+  restricted: []
+  since: 0.1.0
+  sources:
+  - hr.allocation.emp_key
+  - hr.allocation.prj_key
+  - hr.allocation.start
+  - hr.allocation.end
+  - hr.allocation.percent
+  - hr.leave_record.emp_key
+  - hr.leave_record.leave_type
+  - hr.leave_record.start
+  - hr.leave_record.end
+  stage: day1
+  summary: Use this when you need, around each long leave, the allocations that ended
+    or still run at its start, the people who replace the absent person on the project,
+    and where the person returns.
+- deprecated: null
+  facts: []
+  id: halvaro.hr.staffing.planned_vs_actual_hours
+  kb: []
+  kb_versions: []
+  library: halvaro-hr
+  oracle: py:tests/test_staffing.py::test_story_hours_over_plan
+  parameters:
+  - estimate_version
+  - estimate_line
+  - time_entry
+  restricted: []
+  since: 0.1.0
+  sources:
+  - projects.estimate_version.prj_key
+  - projects.estimate_version.estimate_version
+  - projects.estimate_version.type
+  - projects.estimate_line.cst_key
+  - projects.estimate_line.quantity
+  - projects.time_entry.prj_key
+  - projects.time_entry.hours
+  stage: month12
+  summary: Use this when you need the plan hours of each project against the hours
+    booked in time entries.
+- deprecated: null
+  facts: []
+  id: halvaro.hr.staffing.staffing_candidates
+  kb: []
+  kb_versions: []
+  library: halvaro-hr
+  oracle: py:tests/test_staffing.py::test_available_experienced_leads
+  parameters:
+  - experience
+  - status
+  restricted: []
+  since: 0.1.0
+  sources:
+  - hr.employee.leave_date
+  - hr.leave_record.leave_type
+  stage: day1
+  summary: Use this when you want the experience ranking with the staffing status
+    of each person on one or more dates.
+snapshot: 17703967a6ef6ceed2d045ad2f0871b60e0ad55e39445d26c00f11be10bbee40

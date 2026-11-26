@@ -1,0 +1,12 @@
+# Golden error case of halvaro-finance.margin_trail: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: margin_trail
+why: the frame has no prj_key column, so the project cannot be selected
+args:
+- frame:
+    columns: [period, currency, contract_value, eac, actual_cost, revenue_recognised, loss_provision]
+    rows:
+    - [2026-01, DKK, 1.0, 1.0, 1.0, 1.0, 0.0]
+- PRJ-1
+context: month12
+raises: FrameError
+message: finance.project_financials frame lacks column(s) prj_key; load the source columns without renaming them

@@ -1,0 +1,11 @@
+id: err09-timeline-view-not-a-frame
+rule: The timeline argument is not a DataFrame.
+function: timeline_view
+args:
+  timeline: x
+raises:
+  error: FrameError
+  message: timeline must be a DataFrame, not str
+  names:
+  - timeline
+  - str

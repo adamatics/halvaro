@@ -1,0 +1,20 @@
+name: Open items fall in the bucket of their days past due, net of retention
+function: ageing
+cites: [FI.PRC.003]
+by_hand: "On 2025-03-31 an item due 2025-04-15 is not due, an item due 2025-02-10 is 49 days past due (bucket 31-60) and an item due 2024-10-01 is 181 days past due (over 90). The amounts are the open amount less the retention held: 100, 200 - 20 = 180 and 300."
+context: month3
+input:
+  open_items:
+    columns: [item_key, source, le_key, cus_key, inv_key, document_date, due_date, currency, invoice_amount, paid, written_off, open_amount, retention_held, release_date]
+    rows:
+      - [I1, invoice, LE-01, CUS-1, I1, "2025-03-01", "2025-04-15", DKK, 100.0, 0.0, 0.0, 100.0, 0.0, null]
+      - [I2, invoice, LE-01, CUS-1, I2, "2025-01-10", "2025-02-10", DKK, 200.0, 0.0, 0.0, 200.0, 20.0, null]
+      - [I3, invoice, LE-01, CUS-1, I3, "2024-09-01", "2024-10-01", DKK, 300.0, 0.0, 0.0, 300.0, 0.0, null]
+  as_of: "=date(2025, 3, 31)"
+expect:
+  rows_by:
+    key: bucket
+    rows:
+      - {bucket: not_due, n_items: 1, amount: 100.0}
+      - {bucket: 31-60, n_items: 1, amount: 180.0}
+      - {bucket: over_90, n_items: 1, amount: 300.0}

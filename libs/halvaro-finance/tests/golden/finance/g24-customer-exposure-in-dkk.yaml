@@ -1,0 +1,23 @@
+name: Open euro receivables are converted at the fixed booking rate and set against the limit in DKK
+function: customer_exposure
+cites: [FI.STD.021]
+by_hand: "CUS-1 owes 100 euro, which is the booking rate of the fact times 100 in DKK, against a limit of 1000000 DKK, so it is far below the limit. CUS-2 has no open items and no limit: it is listed with zero, no limit in DKK and is not over the limit."
+let:
+  rate: "=fact('world.fx_eur_dkk_fixed')"
+context: month12
+input:
+  open_items:
+    columns: [le_key, cus_key, open_amount, currency]
+    rows:
+      - [LE-02, CUS-1, 100.0, EUR]
+  customer:
+    columns: [cus_key, credit_limit, currency]
+    rows:
+      - [CUS-1, 1000000.0, DKK]
+      - [CUS-2, null, DKK]
+expect:
+  rows_by:
+    key: cus_key
+    rows:
+      - {cus_key: CUS-1, open_dkk: "=round(100 * rate, 2)", limit_dkk: 1000000.0, over_limit: false}
+      - {cus_key: CUS-2, open_dkk: 0.0, limit_dkk: null, over_limit: false}

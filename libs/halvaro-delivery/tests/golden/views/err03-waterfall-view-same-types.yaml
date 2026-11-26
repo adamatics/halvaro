@@ -1,0 +1,19 @@
+id: err03-waterfall-view-same-types
+rule: from_type and to_type name the same estimate type, so there is nothing to compare.
+function: waterfall_view
+frames:
+  lines:
+  - prj_key: PRJ-900001
+    type: tender
+    category: 1
+    amount: 1
+    currency: 1
+args:
+  from_type: tender
+  to_type: tender
+raises:
+  error: FrameError
+  message: from_type and to_type must differ
+  names:
+  - from_type
+  - to_type

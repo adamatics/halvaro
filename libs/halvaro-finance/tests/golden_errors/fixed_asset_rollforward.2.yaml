@@ -1,0 +1,26 @@
+# Golden error case of halvaro-finance.fixed_asset_rollforward: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: fixed_asset_rollforward
+why: an asset uses a depreciation method other than the one of the fact
+args:
+- frame:
+    columns:
+    - le_key
+    - asset_class
+    - acquisition_date
+    - cost
+    - useful_life_months
+    - disposal_date
+    - depreciation_method
+    - currency
+    rows:
+    - - LE-01
+      - IT
+      - 2023-02-10
+      - 900.0
+      - 3
+      - null
+      - declining
+      - DKK
+context: month12
+raises: FrameError
+message: 1 assets use the method 'declining'; only 'straight_line_monthly' (fact fin.fixed_assets.DK.method) is rebuilt

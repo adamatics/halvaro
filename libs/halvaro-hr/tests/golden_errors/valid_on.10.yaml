@@ -1,0 +1,16 @@
+# Golden error case of halvaro-hr.valid_on: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: valid_on
+why: context is not a halvaro.core.Context
+args:
+- frame:
+    columns:
+    - emp_key
+    - qual_key
+    - issued
+    - expires
+    rows: []
+- 2026-03-31
+kwargs:
+  context: analyst
+raises: FrameError
+message: halvaro.hr.certs.valid_on needs context= a halvaro.core.Context (stage and role of the session), not str

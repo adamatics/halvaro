@@ -1,0 +1,187 @@
+# Behaviour changes of this distribution: a changed fact value, cfg parameter, KB rule version or oracle gets an entry in the same change.
+# Fields: id, date, functions, facts, kb, before, after, class (correction | policy change). The proposal is a note of the closed repository (library versioning).
+changes:
+  - id: BC-001
+    date: 2026-11-17
+    functions: [halvaro.core.access.assert_aggregate]
+    facts: []
+    kb: []
+    before: The guard refused only when every non null value of a column was an EMP key. A person key column with one blank or other text value passed, and EMP keys in the index were not looked at.
+    after: The guard refuses when any value of a column or of an index level is an EMP key. Frames without EMP keys in a column or in the index are not affected.
+    class: correction
+  - id: BC-002
+    date: 2026-11-17
+    functions: [halvaro.core.money.from_cents]
+    facts: []
+    kb: []
+    before: A null in the cents was cast to the smallest 64 bit integer and came out as -92233720368547760 (with a numpy RuntimeWarning, or a TypeError for None in an object column).
+    after: A null stays NaN; every other value is the whole number of cents divided by 100 as before.
+    class: correction
+  - id: BC-003
+    date: 2026-11-19
+    functions: [halvaro.core.money.to_cents]
+    facts: []
+    kb: []
+    before: A null amount went through rint and the cast to 64 bit integers and came out as the smallest integer (-9223372036854775808) with a numpy RuntimeWarning; an infinite amount and an amount of 9.2e16 or more the same.
+    after: A null (None, NaN, pd.NA), an infinite amount or an amount whose cents do not fit in 64 bits raises FrameError naming how many there are. Every other amount gives the same cents as before.
+    class: correction
+  - id: BC-004
+    date: 2026-11-19
+    functions: [halvaro.core.format.format_number, halvaro.core.format.format_percent, halvaro.core.format.format_money]
+    facts: []
+    kb: []
+    before: A Decimal or a Fraction was cut to a whole number before it was formatted (Decimal("1.5") gave 1.0, Fraction(3, 2) gave 1).
+    after: A Decimal is used as it is and a Fraction goes through Decimal(numerator) / Decimal(denominator). Int, float and numpy numbers give the same text as before.
+    class: correction
+  - id: BC-005
+    date: 2026-11-19
+    functions: [halvaro.core.format.format_number, halvaro.core.format.format_percent, halvaro.core.format.format_money]
+    facts: []
+    kb: []
+    before: pd.NA, pd.NaT, a dict, a Timestamp, a complex number, a numpy time delta and other objects raised TypeError (a nullable integer column failed on its first null); bytes such as b'12' were read as a number.
+    after: None, NaN, pd.NA, pd.NaT and a NaN Decimal give n/a (money keeps the currency); an infinite number, bytes and every other type that is not one int, float, Decimal or Fraction raises FrameError.
+    class: correction
+  - id: BC-006
+    date: 2026-11-19
+    functions: [halvaro.core.format.format_number, halvaro.core.format.format_percent, halvaro.core.format.format_money]
+    facts: []
+    kb: []
+    before: A number with more than 28 digits after rounding (1e30 with 3 decimals, 1e22 with 6) raised decimal.InvalidOperation, and an integer of more than 28 digits was rounded when it was scaled.
+    after: The arithmetic and the rounding run in a decimal context with room for every digit of the number (as many as it has, with 20 to spare); the text has every digit of the printed form of the number. A Fraction that is a whole number keeps every digit; a quotient that does not end is taken at 80 digits or more. Numbers that worked before give the same text.
+    class: correction
+  - id: BC-007
+    date: 2026-11-19
+    functions: [halvaro.core.periods.parse_period, halvaro.core.periods.asof_join, halvaro.core.keys.parse_key, halvaro.core.keys.is_valid_key, halvaro.core.keys.parse_label, halvaro.core.keys.check_key_column]
+    facts: []
+    kb: []
+    before: The patterns of periods, typed keys, natural labels and GL accounts ended in `$` and were applied with `match`, so a text with a final newline (2026-11, WST-01, GL-1000, EMP-000001 followed by a newline) was accepted.
+    after: The patterns are applied with `fullmatch`; a text with a final newline or blank is refused (PeriodError, KeyFormatError, False, bad_format). Texts without it behave as before. The left date column of asof_join still reads a period with a final newline as pandas reads a date (2026-11-01) instead of raising.
+    class: correction
+  - id: BC-008
+    date: 2026-11-19
+    functions: [halvaro.core.periods.parse_period, halvaro.core.periods.add_months, halvaro.core.periods.asof_join]
+    facts: []
+    kb: []
+    before: The year 0000 was accepted as a period and failed later with ValueError in month_start and month_end; add_months returned 10000-01 or -001-12 for a shift out of the years 0001 to 9999.
+    after: A period needs a year from 0001 to 9999 (PeriodError otherwise; asof_join raises PeriodError for 0000-05 instead of ValueError) and add_months raises PeriodError when the result is outside those years.
+    class: correction
+  - id: BC-009
+    date: 2026-11-19
+    functions: [halvaro.core.theme.caption]
+    facts: []
+    kb: []
+    before: A text that is not an ISO date raised ValueError from date.fromisoformat.
+    after: It raises FrameError saying that the text is not an ISO date; valid texts, dates and timestamps give the same line.
+    class: correction
+  - id: BC-010
+    date: 2026-11-19
+    functions: [halvaro.core.access.strip_restricted]
+    facts: []
+    kb: []
+    before: Only a column named by the bare name of a restricted column (base_salary) was dropped; a qualified header (employment_term.base_salary or the full id hr.employment_term.base_salary) stayed.
+    after: A column whose last dotted part is the bare name of a restricted column (bare, table.column or the full id) is dropped for a role without restricted access; other columns behave as before.
+    class: correction
+  - id: BC-011
+    date: 2026-11-19
+    functions: [halvaro.core.testing.asof_stable]
+    facts: []
+    kb: []
+    before: Only the columns that both results have were compared; a column in one release only passed silently.
+    after: A column that exists in one result only raises AssertionError naming the column.
+    class: correction
+  - id: BC-012
+    date: 2026-11-19
+    functions: [halvaro.core.access.assert_aggregate]
+    facts: []
+    kb: []
+    before: With min_group a group whose count was missing never counted as too small and passed.
+    after: A group without a count counts as too small and the refusal says "fewer than N people or no count".
+    class: correction
+  - id: BC-013
+    date: 2026-11-20
+    functions: [halvaro.core.periods.parse_period]
+    facts: []
+    kb: []
+    before: The period pattern used \d, so digits of other scripts (fullwidth 2026) were read as a period.
+    after: Only the ASCII digits 0 to 9 make a period; any other text raises PeriodError. Periods written with ASCII digits behave as before.
+    class: correction
+  - id: BC-014
+    date: 2026-11-20
+    functions: [halvaro.core.frames.join_report]
+    facts: []
+    kb: []
+    before: An unmatched key with a final newline (PRJ-000001 followed by a newline) was classed master_not_visible_at_stage when the master of its prefix was above the stage of the context.
+    after: The key shape is read with fullmatch, so such a key is classed orphan like any other damaged key.
+    class: correction
+  - id: BC-015
+    date: 2026-11-20
+    functions: [halvaro.core.money.rdiv]
+    facts: []
+    kb: []
+    before: A divisor of zero or less was not refused (zero gave a numpy warning and a wrong integer, a negative one a wrong rounding).
+    after: A divisor of zero or less raises FrameError; a positive divisor gives the same result as before.
+    class: correction
+  - id: BC-016
+    date: 2026-11-21
+    functions: [halvaro.core.periods.period_of]
+    facts: []
+    kb: []
+    before: A value that is not a date (a text) raised the AttributeError of Python, which names no function and no value.
+    after: It raises PeriodError that names the function and the value. A date or a timestamp gives the same period as before.
+    class: correction
+  - id: BC-017
+    date: 2026-11-21
+    functions: [halvaro.core.calendar.net_working_days]
+    facts: []
+    kb: []
+    before: A period whose end was before its start gave a numpy TypeError from the day arithmetic.
+    after: It raises FrameError that names the two dates. A period with start on or before end gives the same rows as before.
+    class: correction
+  - id: BC-018
+    date: 2026-11-21
+    functions: [halvaro.core.calendar.net_working_days]
+    facts: []
+    kb: []
+    before: A leave record with a null start or end gave a numpy or pandas TypeError from the day arithmetic.
+    after: It raises FrameError that names the person key, the person and the missing date. Leave records with a start and an end give the same rows as before.
+    class: correction
+  - id: BC-019
+    date: 2026-11-21
+    functions: [halvaro.core.access.assert_aggregate]
+    facts: []
+    kb: []
+    before: With min_group, a count_column that holds text gave a TypeError from the comparison.
+    after: It raises FrameError that names the column, min_group and the type found. A numeric count column behaves as before.
+    class: correction
+  - id: BC-020
+    date: 2026-11-21
+    functions: [halvaro.core.periods.release_now]
+    facts: []
+    kb: []
+    before: An increment that is not a whole number gave a bare ValueError or TypeError, and a now or generated_at that is not a date a pandas DateParseError.
+    after: Each raises FrameError that names the column and the value. A release with a whole number increment and dates gives the same ReleaseInfo as before.
+    class: correction
+  - id: BC-021
+    date: 2026-11-21
+    functions: [halvaro.core.periods.asof_join]
+    facts: []
+    kb: []
+    before: A null in the left date column gave the pandas ValueError "Merge keys contain null values on left side".
+    after: It raises FrameError that names the column and the number of nulls. A left frame with a date in every row gives the same result as before.
+    class: correction
+  - id: BC-022
+    date: 2026-11-21
+    functions: [halvaro.core.frames.reduce_chunks]
+    facts: []
+    kb: []
+    before: One frame passed as chunks gave an AttributeError, and an aggregation that is not a (column, function) pair a ValueError from the unpacking.
+    after: Both raise FrameError that names the argument and the value. An iterable of frames and pairs behave as before.
+    class: correction
+  - id: BC-023
+    date: 2026-11-21
+    functions: [halvaro.core.theme.line_with_gaps]
+    facts: []
+    kb: []
+    before: An interval of the wrong type (a timedelta with numeric x, a number with datetime x), x holding text and a scalar x or y gave a TypeError from numpy or pandas.
+    after: Each raises FrameError that names the argument and the value found. Series of numbers or dates with an interval of the right type give the same rows as before.
+    class: correction

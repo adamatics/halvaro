@@ -1,0 +1,41 @@
+# Golden error case of halvaro-finance.group_trial_balance: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: group_trial_balance
+why: an amount_dkk is null
+args:
+- frame:
+    columns:
+    - le_key
+    - period
+    - gl_key
+    - amount_dkk
+    - source
+    rows:
+    - - LE-01
+      - 2026-03
+      - GL-8000
+      - null
+      - manual
+- frame:
+    columns:
+    - period
+    - gl_key
+    - debit_dkk
+    - credit_dkk
+    rows: []
+- frame:
+    columns:
+    - fiscal_year
+    - period
+    - entry_no
+    - entry_type
+    - basis
+    - debit_le_key
+    - debit_gl_key
+    - credit_le_key
+    - credit_gl_key
+    - amount_dkk
+    - difference_dkk
+    rows: []
+context: month12
+raises: FrameError
+message: finance.journal_line has a null amount_dkk

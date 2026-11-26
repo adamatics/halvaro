@@ -1,0 +1,12 @@
+# Golden error case of halvaro-core.line_with_gaps: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: line_with_gaps
+why: x holds text and not numbers or dates
+args:
+- - a
+  - b
+  - c
+- - 1
+  - 2
+  - 3
+raises: FrameError
+message: x must hold numbers or dates, not string values

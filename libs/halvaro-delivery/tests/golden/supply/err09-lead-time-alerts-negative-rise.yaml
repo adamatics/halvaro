@@ -1,0 +1,19 @@
+id: err09-lead-time-alerts-negative-rise
+rule: A minimum rise below zero is refused.
+function: lead_time_alerts
+frames:
+  lead_on:
+  - sup_key: SUP-900001
+    itm_key: ITM-900001
+    lead_time_weeks: 1
+    previous_weeks: 1
+    change_weeks: 1
+    change_percent: 1
+args:
+  min_rise_weeks: -1
+raises:
+  error: FrameError
+  message: min_rise_weeks must be a number, zero or more, not -1
+  names:
+  - min_rise_weeks
+  - '-1'

@@ -1,0 +1,8 @@
+# Golden error case of halvaro-core.public_holidays: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: public_holidays
+why: a placeholder value that the function does not know or accept
+args:
+- 1
+- x
+raises: UnknownRegion
+message: region 'x' is unknown; use one of DK, DE-HH, DE-NI

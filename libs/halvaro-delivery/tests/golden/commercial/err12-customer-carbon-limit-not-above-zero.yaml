@@ -1,0 +1,16 @@
+id: err12-customer-carbon-limit-not-above-zero
+rule: A carbon limit of zero is refused.
+function: customer_carbon_limit
+frames:
+  opportunity:
+  - opp_key: OPP-900001
+    cus_key: CUS-900001
+    carbon_limit_kgco2e_per_m: 0
+    route_length_m: 1
+args: {}
+raises:
+  error: FrameError
+  message: a carbon limit must be above zero
+  names:
+  - carbon limit
+  - above zero

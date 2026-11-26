@@ -1,0 +1,36 @@
+# Golden error case of halvaro-hr.resolve_assignments: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: resolve_assignments
+why: hr.employee has one emp_key twice
+args:
+- frame:
+    columns:
+    - assigned_username
+    - valid_from
+    - valid_to
+    - assignment_type
+    - pool_team_key
+    rows: []
+- frame:
+    columns:
+    - username
+    - kind
+    - holder
+    - emp_key
+    - team_key
+    - valid_from
+    - valid_to
+    rows: []
+- frame:
+    columns:
+    - emp_key
+    - hire_date
+    - leave_date
+    rows:
+    - &id001
+      - EMP-X1
+      - 2020-01-01
+      - null
+    - *id001
+- 2026-03-31
+raises: FrameError
+message: hr.employee has duplicate emp_key values; one row per person is required

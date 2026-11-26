@@ -1,0 +1,23 @@
+id: err02-price-gaps-window-number
+rule: A window bound is a number, not a date.
+function: price_gaps
+frames:
+  price_list:
+  - sup_key: SUP-900001
+    itm_key: ITM-900001
+    valid_from: '2031-01-05'
+    valid_to: '2031-01-05'
+    unit_price: 1
+    currency: 1
+    con_key: CON-900001
+    change_reason: 1
+args:
+  window:
+  - 7
+  - 8
+raises:
+  error: FrameError
+  message: window 7 is a number, not a date
+  names:
+  - window
+  - '7'

@@ -1,0 +1,18 @@
+id: e01-days-below-one
+rule: A rota row length of less than one day is refused, because a row has to cover at least the day it starts.
+function: on_call
+frames:
+  on_call_rota:
+  - team_key: TEAM-900001
+    week_start: '2031-03-03'
+    primary_emp_key: EMP-900001
+    secondary_emp_key: EMP-900002
+args:
+  on_date: '2031-03-04'
+  days: 0
+raises:
+  error: FrameError
+  message: 'days must be a whole number of days, one or more (got 0)'
+  names:
+  - days
+  - one or more

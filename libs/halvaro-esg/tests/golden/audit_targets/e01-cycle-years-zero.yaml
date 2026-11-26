@@ -1,0 +1,10 @@
+id: e01-cycle-years-zero
+rule: audit_schedule is refused when cycle_years is 0, because a cycle is a whole number of years from 1 to 100.
+function: audit_schedule
+frames:
+  A: [{site_key: SIT-900001, status: completed, audit_date: "2030-03-01", due_date: "2034-03-01"}]
+args: {as_of: "2031-06-01", cycle_years: 0}
+raises:
+  error: FrameError
+  message: "cycle_years must be a whole number of years, from 1 to 100"
+  names: [cycle_years, "1 to 100"]

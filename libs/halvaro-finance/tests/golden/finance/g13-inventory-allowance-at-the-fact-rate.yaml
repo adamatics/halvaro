@@ -1,0 +1,19 @@
+name: An allowance of the fact rate on the slow moving value that equals the ledger has no violation
+function: inventory_valuation_check
+cites: [FI.REF.024]
+by_hand: Slow moving value 200, so the allowance is the rate of the fact times 200, net stock is 1000 less the allowance, and the ledger holds stock 1000 and the allowance as a credit of the same size. Nothing is broken.
+let:
+  allowance: "=round(0.0 + fact('fin.finance_planning_and_registers.inventory_valuation.slow_moving_allowance_rate') * 200, 2)"
+context: month3
+input:
+  inventory_valuation:
+    columns: [le_key, site_key, item_category, period, gl_key, stock_value, slow_moving_value, allowance, net_stock_value]
+    rows:
+      - [LE-01, SITE-01, cable, "2023-01", GL-2010, 1000.0, 200.0, "=allowance", "=1000 - allowance"]
+  trial_balance:
+    columns: [le_key, period, gl_key, closing_balance]
+    rows:
+      - [LE-01, "2023-01", GL-2010, 1000.0]
+      - [LE-01, "2023-01", GL-2015, "=-allowance"]
+expect:
+  empty: true

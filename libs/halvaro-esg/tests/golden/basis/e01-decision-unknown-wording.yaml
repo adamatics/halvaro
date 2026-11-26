@@ -1,0 +1,8 @@
+id: e01-decision-unknown-wording
+rule: reporting_basis is refused when the decision text is not one of the two accepted wordings.
+function: reporting_basis
+args: {decision: mandatory}
+raises:
+  error: FrameError
+  message: "the decision text is not one of the two accepted wordings ('voluntary' or 'voluntary and national statutory statement', each optionally followed by ', no mandatory EU standard assumed (VERIFY)'); other texts are not echoed and no other basis is produced"
+  names: [decision, voluntary]

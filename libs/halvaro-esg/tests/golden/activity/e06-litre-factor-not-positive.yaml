@@ -1,0 +1,11 @@
+id: e06-litre-factor-not-positive
+rule: "energy_use_mwh is refused when the kWh per litre of a carrier is not a positive number."
+function: energy_use_mwh
+frames:
+  c: [{"mtr_key": "MTR-900002", "period": "2030-05", "quantity": 100.0, "unit": "l"}]
+  m: [{"mtr_key": "MTR-900002", "carrier": "diesel", "unit": "l"}]
+args: {"kwh_per_litre": {"diesel": -9.5}}
+raises:
+  error: FrameError
+  message: "kwh_per_litre for diesel must be a positive number, not -9.5"
+  names: ["kwh_per_litre", "diesel", "-9.5"]

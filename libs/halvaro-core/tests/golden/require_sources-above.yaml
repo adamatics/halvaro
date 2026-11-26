@@ -1,0 +1,13 @@
+name: above the stage
+function: require_sources
+by_hand: A day 1 session asks for a finance table; finance appears at month 3, so it is refused naming the source and the stage.
+input:
+  args:
+  - context:
+      stage: day1
+      role: analyst
+  - - finance.journal_line
+expect:
+  raises:
+    error: StageRefusal
+    message_contains: finance appear at stage month3

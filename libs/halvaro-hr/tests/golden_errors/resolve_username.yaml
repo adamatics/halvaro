@@ -1,0 +1,9 @@
+# Golden error case of halvaro-hr.resolve_username: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: resolve_username
+why: every frame is empty, so the columns the function reads are missing
+args:
+- frame: {}
+- x
+- 2026-03-31
+raises: FrameError
+message: username index frame lacks column(s) username, kind, holder, emp_key, team_key, valid_from, valid_to

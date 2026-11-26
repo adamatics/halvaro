@@ -1,0 +1,26 @@
+id: e01-bad-classes-is-text
+rule: A list of condition classes given as one text is refused, because it would be split into single letters.
+function: strained_elements
+frames:
+  element_peaks:
+  - net_key: NET-900001
+    peak_percent: 95.0
+    valid: true
+  grid_element:
+  - net_key: NET-900001
+    condition_score: 3.0
+    element_type: cable
+    status: in_service
+    install_year: 2005
+    condition_class: C
+    cus_key: CUS-900001
+    zone_key: ZONE-0001
+    commissioned_date: '2005-06-01'
+args:
+  bad_classes: DE
+raises:
+  error: FrameError
+  message: bad_classes must be a tuple or list of values, not 'DE'
+  names:
+  - bad_classes
+  - '''DE'''

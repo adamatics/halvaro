@@ -1,0 +1,23 @@
+id: err13-price-gaps-window-time-zone
+rule: A window bound with a time zone is refused.
+function: price_gaps
+frames:
+  price_list:
+  - sup_key: SUP-900001
+    itm_key: ITM-900001
+    valid_from: '2031-01-05'
+    valid_to: null
+    unit_price: 1
+    currency: EUR
+    con_key: CON-900001
+    change_reason: 1
+args:
+  window:
+  - '2031-01-01T00:00:00+01:00'
+  - '2031-02-01'
+raises:
+  error: FrameError
+  message: window '2031-01-01T00:00:00+01:00' is not a date without a time zone
+  names:
+  - window
+  - time zone

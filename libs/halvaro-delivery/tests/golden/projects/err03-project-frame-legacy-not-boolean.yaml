@@ -1,0 +1,17 @@
+id: err03-project-frame-legacy-not-boolean
+rule: The legacy column must be True or False on every row; another value is refused.
+function: project_frame
+frames:
+  project:
+  - prj_key: PRJ-900001
+    data_depth: full
+    legacy: maybe
+    route_length_m: 1
+    currency: EUR
+args: {}
+raises:
+  error: FrameError
+  message: projects.project.legacy must be True or False on every row; 1 are not (for example 'maybe' on 0)
+  names:
+  - legacy
+  - maybe

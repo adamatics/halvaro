@@ -1,0 +1,7 @@
+# Golden error case of halvaro-core.region_of: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: region_of
+why: the site key is not a known site
+args:
+- SITE-99
+raises: UnknownRegion
+message: 'site ''SITE-99'' has no region; known sites: SITE-01, SITE-02, SITE-03, SITE-04, SITE-05, SITE-06'

@@ -1,0 +1,10 @@
+id: err04-profile-rules-above-the-stage
+rule: profile_rules reads the project master, which a session of the first stage may not read, so it is refused with the source and the stage where it appears.
+function: profile_rules
+stage: day1
+raises:
+  error: StageRefusal
+  message: 'Sources projects appear at stage month12; the session holds stage day1 (halvaro.delivery.comparables.profile_rules). Ask for a session at stage month12 or use only the sources of stage day1.'
+  names:
+  - projects
+  - day1

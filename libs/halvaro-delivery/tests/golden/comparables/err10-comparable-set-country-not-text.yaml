@@ -1,0 +1,24 @@
+id: err10-comparable-set-country-not-text
+rule: A country given as a number is refused, with the value named.
+function: comparable_set
+frames:
+  project:
+  - prj_key: PRJ-900001
+    country: DE
+    type: dh_network
+    soil_class: clay
+    route_length_m: 5000
+    legacy: false
+    data_depth: full
+    start: '2031-01-05'
+    actual_end: '2031-06-01'
+args:
+  as_of: '2031-12-01'
+  overrides:
+    country: 5
+raises:
+  error: FrameError
+  message: country must be one text value, not 5
+  names:
+  - country
+  - '5'

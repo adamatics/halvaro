@@ -1,0 +1,11 @@
+# Golden error case of halvaro-finance.vat_return_from_ledger: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: vat_return_from_ledger
+why: a period is not text like 2025-02
+args:
+- frame:
+    columns: [le_key, gl_key, period, amount, vat_code, vat_base, currency]
+    rows:
+    - [LE-01, GL-4710, 2026-1, -250.0, DK25, 1000.0, DKK]
+context: month12
+raises: FrameError
+message: finance.journal_line needs an le_key and a period like 2025-02 on every row

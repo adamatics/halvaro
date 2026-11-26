@@ -1,0 +1,8 @@
+# Golden error case of halvaro-hr.with_education: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: with_education
+why: every frame is empty, so the columns the function reads are missing
+args:
+- frame: {}
+- frame: {}
+raises: FrameError
+message: pay frame (from pay_frame) frame lacks column(s) emp_key

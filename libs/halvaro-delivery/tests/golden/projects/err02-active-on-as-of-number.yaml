@@ -1,0 +1,16 @@
+id: err02-active-on-as-of-number
+rule: The day argument as_of is a number, not a date or ISO text, so the function refuses it.
+function: active_on
+frames:
+  project:
+  - prj_key: PRJ-900001
+    start: '2031-01-05'
+    actual_end: 1
+args:
+  as_of: 7
+raises:
+  error: PeriodError
+  message: as_of 7 is a number, not a date; pass a date, a Timestamp or an ISO text such as 2026-11-30
+  names:
+  - as_of
+  - '7'

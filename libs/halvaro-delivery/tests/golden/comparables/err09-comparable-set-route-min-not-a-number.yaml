@@ -1,0 +1,24 @@
+id: err09-comparable-set-route-min-not-a-number
+rule: A route window given as text is refused, with the value named.
+function: comparable_set
+frames:
+  project:
+  - prj_key: PRJ-900001
+    country: DE
+    type: dh_network
+    soil_class: clay
+    route_length_m: 5000
+    legacy: false
+    data_depth: full
+    start: '2031-01-05'
+    actual_end: '2031-06-01'
+args:
+  as_of: '2031-12-01'
+  overrides:
+    route_min_m: long
+raises:
+  error: FrameError
+  message: route_min_m must be a number of metres, not 'long'
+  names:
+  - route_min_m
+  - long

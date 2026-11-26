@@ -1,0 +1,26 @@
+id: err18-estimate-bridge-unknown-type
+rule: A version type the library does not know is refused, with the value named.
+function: estimate_bridge
+frames:
+  estimate_version:
+  - prj_key: PRJ-900001
+    estimate_version: 1
+    type: draft
+    date: '2031-01-05'
+    currency: EUR
+    total_cost: 1
+  estimate_line:
+  - prj_key: PRJ-900001
+    estimate_version: 1
+    cst_key: CST-900001
+    amount: 1
+  cost_code:
+  - cst_key: CST-900001
+    category: civil
+args: {}
+raises:
+  error: FrameError
+  message: 'projects.estimate_version.type has unknown value(s) draft; known: tender, budget, forecast, final'
+  names:
+  - estimate_version.type
+  - draft

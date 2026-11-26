@@ -1,0 +1,28 @@
+id: err10-estimate-bridge-duplicate-key
+rule: A cost_code held twice is refused, with the repeated key named.
+function: estimate_bridge
+frames:
+  estimate_version:
+  - prj_key: PRJ-900001
+    estimate_version: 1
+    type: tender
+    date: '2031-01-05'
+    currency: EUR
+    total_cost: 1
+  estimate_line:
+  - prj_key: PRJ-900001
+    estimate_version: 1
+    cst_key: CST-900001
+    amount: 1
+  cost_code:
+  - cst_key: CST-900001
+    category: civil
+  - cst_key: CST-900001
+    category: civil
+args: {}
+raises:
+  error: FrameError
+  message: projects.cost_code has 2 rows sharing cst_key (for example CST-900001); one row per key is required
+  names:
+  - projects.cost_code
+  - CST-900001

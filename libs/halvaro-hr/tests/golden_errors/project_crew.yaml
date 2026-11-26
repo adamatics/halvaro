@@ -1,0 +1,10 @@
+# Golden error case of halvaro-hr.project_crew: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: project_crew
+why: every frame is empty, so the columns the function reads are missing
+args:
+- frame: {}
+- frame: {}
+- PRJ-1
+- 2026-03-31
+raises: FrameError
+message: hr.allocation frame lacks column(s) emp_key, prj_key, start, end, percent

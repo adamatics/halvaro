@@ -1,0 +1,13 @@
+# Golden error case of halvaro-finance.employer_oncosts: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: employer_oncosts
+why: gross_salary holds text instead of a number
+args:
+- frame:
+    columns: [le_key, cc_key, period, gross_salary]
+    rows:
+    - [LE-A, CC-1, 2026-01, abc]
+kwargs:
+  country_of: {LE-A: DK}
+context: month12
+raises: FrameError
+message: gross pay frame.gross_salary must hold numbers, not 'abc'

@@ -1,0 +1,49 @@
+# Golden error case of halvaro-hr.expiry_report: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: expiry_report
+why: expiry_date is not a date; the message names expiry_date, not as_of
+args:
+- frame:
+    columns:
+    - emp_key
+    - qual_key
+    - issued
+    - expires
+    rows: []
+- frame:
+    columns:
+    - emp_key
+    - qual_key
+    - course_date
+    - course_end
+    - event_no
+    - free_seats
+    rows: []
+- frame:
+    columns:
+    - event_no
+    - qual_key
+    - date
+    - capacity
+    - seats_taken
+    - country
+    - location_site_key
+    rows: []
+- frame:
+    columns:
+    - emp_key
+    - leave_date
+    - legal_entity_key
+    rows: []
+- frame:
+    columns:
+    - emp_key
+    - leave_type
+    - start
+    - end
+    rows: []
+- 2026-03-31
+kwargs:
+  expiry_date: null
+  qual_key: QUAL-01
+raises: PeriodError
+message: expiry_date None is not a date without a time zone

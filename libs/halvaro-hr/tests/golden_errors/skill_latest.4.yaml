@@ -1,0 +1,24 @@
+# Golden error case of halvaro-hr.skill_latest: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: skill_latest
+why: a rating has no level
+args:
+- frame:
+    columns:
+    - emp_key
+    - skl_key
+    - level
+    - assessed_on
+    rows:
+    - - EMP-X1
+      - SKL-X
+      - null
+      - 2025-01-01
+- frame:
+    columns:
+    - skl_key
+    - name
+    rows:
+    - - SKL-X
+      - a
+raises: FrameError
+message: competence.skill_rating has rows with a null emp_key, skl_key, level or assessed_on

@@ -1,0 +1,29 @@
+id: err44-contingency-advice-delay-days-zero
+rule: A view whose delay days add up to zero is refused.
+function: contingency_advice
+frames:
+  overrun_dist:
+  - measure: schedule
+    n: 1
+    n_legacy: 0
+    q25: 0.1
+    median: 0.1
+    q75: 0.2
+  shares:
+  - view: all_events
+    cause_code: ground_conditions
+    days: 0
+  lines:
+  - prj_key: PRJ-900001
+    type: tender
+    cst_key: CST-900001
+    category: civil
+    amount: 1
+    currency: EUR
+args: {}
+raises:
+  error: FrameError
+  message: the delay days of the view are zero
+  names:
+  - delay days
+  - zero

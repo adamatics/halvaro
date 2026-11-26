@@ -1,0 +1,11 @@
+# Golden error case of halvaro-core.convert: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: convert
+why: the basis is not one that exists
+args:
+- 1
+- DKK
+- EUR
+kwargs:
+  basis: x
+raises: BasisError
+message: basis 'x' is not available; use 'booking' or 'group_pay' (the daily basis needs a rate frame and comes with core 0.2)

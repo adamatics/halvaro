@@ -1,0 +1,10 @@
+id: e02-basis-unknown
+rule: "project_footprint_from_lines is refused when basis is neither current nor first_booked."
+function: project_footprint_from_lines
+frames:
+  L: [{"le_key": "LE-900001", "prj_key": "PRJ-900001", "period": "2030-05", "scope": 1, "ghg_category": "1", "category": "fuel", "line_no": 1, "kgco2e": 10.0, "is_superseded": false, "restated_from_period": null}]
+args: {"basis": "latest"}
+raises:
+  error: FrameError
+  message: "basis must be 'current' or 'first_booked', not 'latest'"
+  names: ["basis", "'latest'"]

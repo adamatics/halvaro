@@ -1,0 +1,25 @@
+name: Balance at the month of departure is the holiday days still due
+function: holiday_balance
+cites: [dk/ferieloven/p-0026]
+by_hand: Carried in 1.0 day, one full month with 1.0 day taken, then the month of leaving, which accrues the employed share of the rate (see part in the formulas). The balance is carried in plus the accrual of both months minus the day taken.
+let:
+  rate: "=fact('legal.DK.holiday.accrual_days_per_month')"
+  part: "=round(20 / 30 * rate, 2)"
+input:
+  ent:
+    columns: [emp_key, holiday_year, entitlement_days, carried_in_days, carry_over_agreement]
+    rows:
+      - [EMP-1, "2026/27", "=fact('legal.DK.holiday.annual_days')", 1.0, false]
+  acc:
+    columns: [emp_key, holiday_year, period, accrued_days, taken_days]
+    rows:
+      - [EMP-1, "2026/27", "2026-10", "=rate", 1.0]
+      - [EMP-1, "2026/27", "2026-11", "=part", 0.0]
+  emp_key: EMP-1
+  holiday_year: "2026/27"
+  as_of: 2026-11-20
+expect:
+  fields:
+    accrued_days_ytd: "=round(rate + part, 2)"
+    taken_days_ytd: 1.0
+    balance_days: "=round(1.0 + rate + part - 1.0, 2)"

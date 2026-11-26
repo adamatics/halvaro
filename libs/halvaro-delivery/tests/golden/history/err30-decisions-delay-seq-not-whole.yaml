@@ -1,0 +1,25 @@
+id: err30-decisions-delay-seq-not-whole
+rule: A fractional delay_seq is refused.
+function: decisions
+frames:
+  decision:
+  - mtg_key: MTG-900001
+    seq: 1
+    decision_type: scope
+    impact_cost: 1
+    impact_days: 1
+    currency: EUR
+    delay_seq: 1.5
+    co_no: null
+  meeting:
+  - mtg_key: MTG-900001
+    prj_key: PRJ-900001
+    date: '2031-01-05'
+    meeting_type: 1
+args: {}
+raises:
+  error: FrameError
+  message: projects.decision.delay_seq must hold whole numbers
+  names:
+  - delay_seq
+  - whole numbers

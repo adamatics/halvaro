@@ -1,0 +1,15 @@
+# Golden error case of halvaro-hr.payroll_aggregate: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: payroll_aggregate
+why: context is None; payroll_aggregate has a required context, like the staged functions
+args:
+- frame:
+    columns:
+    - base_salary
+    rows: []
+- frame: {}
+- frame: {}
+- 2026-01
+- 2026-03
+context: null
+raises: FrameError
+message: halvaro.hr.payroll.payroll_aggregate needs context= a halvaro.core.Context (stage and role of the session), not NoneType

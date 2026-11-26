@@ -1,0 +1,29 @@
+# Golden error case of halvaro-finance.write_down_journal: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: write_down_journal
+why: a posting date is not a date
+args:
+- frame:
+    columns:
+    - le_key
+    - journal_no
+    - posting_date
+    - description
+    - gl_key
+    - prj_key
+    - currency
+    - amount
+    - amount_dkk
+    rows:
+    - - LE-01
+      - J-1
+      - notadate
+      - x
+      - GL-5190
+      - PRJ-1
+      - DKK
+      - 1.0
+      - 1.0
+- PRJ-1
+context: month12
+raises: FrameError
+message: 'manual_journals output.posting_date holds a value that is not a date: Unknown datetime string format, unable to parse: notadate, at position 0'

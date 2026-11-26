@@ -1,0 +1,1424 @@
+functions:
+- deprecated: null
+  facts: []
+  id: halvaro.grid.alarms.alarm_rules_table
+  kb: []
+  kb_versions: []
+  library: halvaro-grid
+  oracle: py:halvaro_gen/world/telemetry/build.py::_rule_frame
+  parameters:
+  - sensor
+  - alarm_names
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - telemetry.sensor.sns_key
+  - telemetry.sensor.net_key
+  - telemetry.sensor.zone_key
+  - telemetry.sensor.sensor_type
+  - telemetry.sensor.interval_s
+  - telemetry.sensor.limit_high
+  - telemetry.sensor.limit_low
+  - telemetry.sensor.limit_high_crit
+  - telemetry.sensor.limit_low_crit
+  - telemetry.sensor.alarm_min_duration_s
+  - telemetry.sensor.alarm_merge_gap_s
+  stage: month12
+  summary: Use this when you need one row per alarm type derived from the limit columns
+    of the sensors, in the shape of telemetry.alarm_rule.
+- deprecated: null
+  facts: []
+  id: halvaro.grid.alarms.alarm_summary
+  kb: []
+  kb_versions: []
+  library: halvaro-grid
+  oracle: py:halvaro_gen/world/telemetry/truth.py::compute
+  parameters:
+  - alarm
+  - first_month
+  - last_month
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - telemetry.alarm.zone_key
+  - telemetry.alarm.alarm_type
+  - telemetry.alarm.severity
+  - telemetry.alarm.raised_ts
+  - telemetry.alarm.sns_key
+  stage: month12
+  summary: Use this when you need counts of alarms by zone, type, severity and month,
+    and the background alarm rate per zone and year.
+- deprecated: null
+  facts: []
+  id: halvaro.grid.alarms.alarm_ticket_link
+  kb: []
+  kb_versions: []
+  library: halvaro-grid
+  oracle: py:tests/test_service.py::test_alarm_tickets_are_deduplicated
+  parameters:
+  - alarm
+  - ticket_alarm
+  - service_ticket
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - telemetry.alarm.sns_key
+  - telemetry.alarm.raised_ts
+  - service.ticket_alarm.sns_key
+  - service.ticket_alarm.raised_ts
+  - service.ticket_alarm.link_type
+  - service.ticket_alarm.tkt_key
+  - service.service_ticket.tkt_key
+  stage: month12
+  summary: Use this when you need to know which alarms have a service ticket, and
+    how many tickets each incident has.
+- deprecated: null
+  facts: []
+  id: halvaro.grid.alarms.incident_groups
+  kb: []
+  kb_versions: []
+  library: halvaro-grid
+  oracle: py:halvaro_gen/world/service/demand.py::alarm_incidents
+  parameters:
+  - alarm
+  - merge_gap_hours
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - telemetry.alarm.raised_ts
+  - telemetry.alarm.cleared_ts
+  - telemetry.alarm.net_key
+  - telemetry.alarm.alarm_type
+  stage: month12
+  summary: Use this when you need the incident number of each alarm, grouping alarms
+    of one element and type that follow each other closely.
+- deprecated: null
+  facts: []
+  id: halvaro.grid.alarms.recompute_alarms
+  kb: []
+  kb_versions: []
+  library: halvaro-grid
+  oracle: py:tests/test_telemetry.py::test_alarms_recomputed_from_raw
+  parameters:
+  - measurement
+  - sensor
+  - alarm_names
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - telemetry.measurement.sns_key
+  - telemetry.measurement.ts
+  - telemetry.measurement.value
+  - telemetry.measurement.quality_flag
+  - telemetry.sensor.sns_key
+  - telemetry.sensor.net_key
+  - telemetry.sensor.zone_key
+  - telemetry.sensor.sensor_type
+  - telemetry.sensor.interval_s
+  - telemetry.sensor.limit_high
+  - telemetry.sensor.limit_low
+  - telemetry.sensor.limit_high_crit
+  - telemetry.sensor.limit_low_crit
+  - telemetry.sensor.alarm_min_duration_s
+  - telemetry.sensor.alarm_merge_gap_s
+  stage: month12
+  summary: Use this when you need the alarms recomputed from the ok samples and the
+    limit columns of each sensor, in the shape of telemetry.alarm.
+- deprecated: null
+  facts: []
+  id: halvaro.grid.assets.condition_trend
+  kb: []
+  kb_versions: []
+  library: halvaro-grid
+  oracle: py:tests/test_service.py::test_condition_assessments
+  parameters:
+  - condition_assessment
+  - grid_element
+  - group
+  - before
+  - after
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - service.condition_assessment.net_key
+  - service.condition_assessment.assessed_on
+  - service.condition_assessment.score
+  - gis.grid_element.net_key
+  - gis.grid_element.condition_score
+  stage: month12
+  summary: Use this when you need the change of the condition score of a group of
+    elements between two dates, checked against the gis score.
+- deprecated: null
+  facts: []
+  id: halvaro.grid.assets.element_peak_load
+  kb: []
+  kb_versions: []
+  library: halvaro-grid
+  oracle: py:repo_tests/test_oracle_assets_release.py::test_oracle_element_peak_load_baseline_per_element
+  parameters:
+  - sensor
+  - measurement_daily
+  - window
+  - min_completeness
+  - sensor_type
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - telemetry.sensor.sns_key
+  - telemetry.sensor.net_key
+  - telemetry.sensor.sensor_type
+  - telemetry.sensor.install_date
+  - telemetry.measurement_daily.sns_key
+  - telemetry.measurement_daily.date
+  - telemetry.measurement_daily.max
+  - telemetry.measurement_daily.availability_pct
+  stage: month12
+  summary: Use this when you need the peak load in percent of each element that has
+    its own load sensor, with the completeness that says whether the peak can be trusted.
+- deprecated: null
+  facts:
+  - world.now
+  id: halvaro.grid.assets.strained_elements
+  kb: []
+  kb_versions: []
+  library: halvaro-grid
+  oracle: py:repo_tests/test_oracle_assets_release.py::test_oracle_strained_elements_baseline_per_element
+  parameters:
+  - element_peaks
+  - grid_element
+  - customer
+  - as_of
+  - load_percent
+  - bad_classes
+  - age_years
+  - types
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - gis.grid_element.net_key
+  - gis.grid_element.element_type
+  - gis.grid_element.status
+  - gis.grid_element.install_year
+  - gis.grid_element.condition_class
+  - gis.grid_element.cus_key
+  - gis.grid_element.zone_key
+  - gis.grid_element.commissioned_date
+  - crm.customer.cus_key
+  - crm.customer.name
+  stage: month12
+  summary: Use this when you need to know which in service elements are strained by
+    load or by age or condition class, with the reasons.
+- deprecated: null
+  facts: []
+  id: halvaro.grid.assets.zone_strain_summary
+  kb: []
+  kb_versions: []
+  library: halvaro-grid
+  oracle: py:repo_tests/test_oracle_assets_release.py::test_oracle_zone_strain_summary_baseline_per_zone_and_customer
+  parameters:
+  - strained
+  - supply_zone
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - gis.supply_zone.zone_key
+  - gis.supply_zone.area_km2
+  stage: month12
+  summary: Use this when you need the counts of in service and strained elements by
+    zone and customer, with the zone area.
+- deprecated: null
+  facts: []
+  id: halvaro.grid.callouts.callout_summary
+  kb: []
+  kb_versions: []
+  library: halvaro-grid
+  oracle: py:tests/test_service.py::test_labour_overtime_and_collisions
+  parameters:
+  - service_ticket
+  - ticket_labour
+  - freq
+  - window
+  - tolerance
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - service.service_ticket.tkt_key
+  - service.service_ticket.team_key
+  - service.service_ticket.opened
+  - service.service_ticket.callout_kind
+  - service.ticket_labour.tkt_key
+  - service.ticket_labour.work_date
+  - service.ticket_labour.hours
+  - service.ticket_labour.overtime_hours
+  - service.ticket_labour.travel_hours
+  stage: month12
+  summary: Use this when you need tickets, labour hours, overtime hours and travel
+    hours by team, period and call-out kind.
+- deprecated: null
+  facts: []
+  id: halvaro.grid.callouts.on_call
+  kb: []
+  kb_versions: []
+  library: halvaro-grid
+  oracle: py:repo_tests/test_oracle_callouts_release.py::test_oracle_on_call_baseline_every_day_every_team
+  parameters:
+  - on_call_rota
+  - on_date
+  - team_key
+  - days
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - service.on_call_rota.team_key
+  - service.on_call_rota.week_start
+  - service.on_call_rota.primary_emp_key
+  - service.on_call_rota.secondary_emp_key
+  stage: month12
+  summary: Use this when you need who is primary and secondary on call on a given
+    date, per team.
+- deprecated: null
+  facts: []
+  id: halvaro.grid.callouts.requires_authorisation
+  kb: []
+  kb_versions: []
+  library: halvaro-grid
+  oracle: py:repo_tests/test_oracle_callouts_release.py::test_oracle_requires_authorisation_baseline_per_team_and_plan_type
+  parameters:
+  - maintenance_plan
+  - active_status
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - service.maintenance_plan.net_key
+  - service.maintenance_plan.plan_no
+  - service.maintenance_plan.plan_type
+  - service.maintenance_plan.requires_electrical_authorisation
+  - service.maintenance_plan.team_key
+  - service.maintenance_plan.status
+  stage: month12
+  summary: Use this when you need how many active maintenance plans need electrical
+    authorisation, per team and plan type.
+- deprecated: null
+  facts: []
+  id: halvaro.grid.callouts.sla_attainment
+  kb: []
+  kb_versions: []
+  library: halvaro-grid
+  oracle: py:tests/test_service.py::test_sla_and_credits
+  parameters:
+  - service_ticket
+  - team_region
+  - by
+  - service_start
+  - service_end
+  - grace_days
+  - tolerance_h
+  - country_of_region
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - service.service_ticket.tkt_key
+  - service.service_ticket.team_key
+  - service.service_ticket.opened
+  - service.service_ticket.first_response_ts
+  - service.service_ticket.on_site_ts
+  - service.service_ticket.resolved_ts
+  - service.service_ticket.due_date
+  - service.service_ticket.ticket_type
+  - service.service_ticket.sla_met
+  - service.service_ticket.sla_response_target_h
+  - service.service_ticket.sla_attendance_target_h
+  - service.service_ticket.priority
+  - service.service_ticket.status
+  stage: month12
+  summary: Use this when you need the share of tickets that met their service level,
+    per group such as team and priority, optionally recomputed on the service-hours
+    clock.
+- deprecated: null
+  facts:
+  - policy.grid.cold_snap_min_core_days
+  id: halvaro.grid.capacity.cold_snaps
+  kb: []
+  kb_versions: []
+  library: halvaro-grid
+  oracle: py:tests/test_telemetry.py::test_weather
+  parameters:
+  - weather_daily
+  - core_c
+  - edge_c
+  - min_core_days
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - telemetry.weather_daily.zone_key
+  - telemetry.weather_daily.date
+  - telemetry.weather_daily.t_min
+  stage: month12
+  summary: Use this when you need the cold snaps of each zone found from the daily
+    minimum temperatures.
+- deprecated: null
+  facts: []
+  id: halvaro.grid.capacity.hours_above
+  kb: []
+  kb_versions: []
+  library: halvaro-grid
+  oracle: py:tests/test_telemetry.py::test_zone_load_summary_story_e10
+  parameters:
+  - zone_series
+  - sensor
+  - bands
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - telemetry.measurement.sns_key
+  - telemetry.measurement.ts
+  - telemetry.measurement.value
+  - telemetry.measurement.quality_flag
+  - telemetry.sensor.sns_key
+  - telemetry.sensor.interval_s
+  stage: month12
+  summary: Use this when you need the hours each zone or station spends above load
+    bands such as 90, 100 and 105 percent, with the coverage of the series.
+- deprecated: null
+  facts: []
+  id: halvaro.grid.capacity.load_duration_curve
+  kb: []
+  kb_versions: []
+  library: halvaro-grid
+  oracle: py:tests/test_telemetry.py::test_zone_load_summary_story_e10
+  parameters:
+  - zone_series
+  - sensor
+  - winter_only
+  - by_winter
+  - months
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - telemetry.measurement.sns_key
+  - telemetry.measurement.ts
+  - telemetry.measurement.value
+  - telemetry.measurement.quality_flag
+  - telemetry.sensor.sns_key
+  - telemetry.sensor.interval_s
+  stage: month12
+  summary: 'Use this when you need the load duration curve of each zone or station:
+    the ok load, highest first, against the hours it is reached or exceeded.'
+- deprecated: null
+  facts: []
+  id: halvaro.grid.capacity.peak_load
+  kb: []
+  kb_versions: []
+  library: halvaro-grid
+  oracle: py:tests/test_telemetry.py::test_zone_load_summary_story_e10
+  parameters:
+  - zone_series
+  - sensor
+  - weather_observation
+  - supply
+  - min_completeness
+  - timezone
+  - max_age_hours
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - telemetry.measurement.sns_key
+  - telemetry.measurement.ts
+  - telemetry.measurement.value
+  - telemetry.measurement.quality_flag
+  - telemetry.sensor.sns_key
+  - telemetry.sensor.zone_key
+  - telemetry.sensor.sensor_type
+  - telemetry.sensor.interval_s
+  - telemetry.sensor.critical_role
+  - telemetry.sensor.rated_value
+  - telemetry.sensor.station_key
+  - telemetry.weather_observation.station_key
+  - telemetry.weather_observation.ts
+  - telemetry.weather_observation.temp_c
+  stage: month12
+  summary: Use this when you need the peak load of each heat zone (its root) and each
+    electric station, with its time, validity and the outdoor and supply temperature
+    at the peak.
+- deprecated: null
+  facts: []
+  id: halvaro.grid.capacity.rank_zones
+  kb: []
+  kb_versions: []
+  library: halvaro-grid
+  oracle: py:tests/test_telemetry.py::test_zone_load_summary_story_e10
+  parameters:
+  - summary
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - telemetry.sensor.zone_key
+  - telemetry.sensor.critical_role
+  stage: month12
+  summary: Use this when you need the heat zones ranked on the peak load of their
+    root, with the electric stations listed below without a rank.
+- deprecated: null
+  facts: []
+  id: halvaro.grid.capacity.recompute_design_capacity
+  kb: []
+  kb_versions: []
+  library: halvaro-grid
+  oracle: py:halvaro_gen/world/gis/facts.py::story_facts
+  parameters:
+  - grid_element
+  - heat_diversity
+  - electric_diversity
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - gis.grid_element.zone_key
+  - gis.grid_element.element_type
+  - gis.grid_element.status
+  - gis.grid_element.rated_capacity
+  - gis.grid_element.capacity_unit
+  stage: month12
+  summary: Use this when you need to recompute the design capacity of each zone from
+    the grid elements in service, with the heat and electric diversity applied.
+- deprecated: null
+  facts: []
+  id: halvaro.grid.capacity.winter_label
+  kb: []
+  kb_versions: []
+  library: halvaro-grid
+  oracle: py:halvaro_gen/world/telemetry/truth.py::winter_label
+  parameters:
+  - ts
+  - months
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - telemetry.measurement.ts
+  stage: month12
+  summary: Use this when you need the winter season of a timestamp or a series of
+    timestamps as a label such as 2025/26.
+- deprecated: null
+  facts: []
+  id: halvaro.grid.capacity.zone_design_capacity
+  kb: []
+  kb_versions: []
+  library: halvaro-grid
+  oracle: py:halvaro_gen/world/gis/facts.py::story_facts
+  parameters:
+  - supply_zone
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - gis.supply_zone.zone_key
+  - gis.supply_zone.design_capacity
+  - gis.supply_zone.design_capacity_unit
+  stage: month12
+  summary: Use this when you need the design capacity of each zone with its unit,
+    as stored in the supply zone table.
+- deprecated: null
+  facts: []
+  id: halvaro.grid.capacity.zone_load_percent
+  kb: []
+  kb_versions: []
+  library: halvaro-grid
+  oracle: py:tests/test_telemetry.py::test_zone_load_summary_story_e10
+  parameters:
+  - measurement
+  - sensor
+  - basis
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - telemetry.measurement.sns_key
+  - telemetry.measurement.ts
+  - telemetry.measurement.value
+  - telemetry.measurement.quality_flag
+  - telemetry.sensor.sns_key
+  - telemetry.sensor.zone_key
+  - telemetry.sensor.sensor_type
+  - telemetry.sensor.interval_s
+  - telemetry.sensor.critical_role
+  - telemetry.sensor.rated_value
+  stage: month12
+  summary: Use this when you need the load in percent of the design per heat zone
+    (its root pump) and per electric station, with the quality flag of every sample.
+- deprecated: null
+  facts: []
+  id: halvaro.grid.faults.fault_causes
+  kb: []
+  kb_versions: []
+  library: halvaro-grid
+  oracle: py:tests/test_service.py::test_e4_winter_spike_is_explained_by_wear_and_load
+  parameters:
+  - fault_event
+  - group
+  - window
+  - allowed_causes
+  - refuse_words
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - service.fault_event.net_key
+  - service.fault_event.fault_ts
+  - service.fault_event.cause
+  - service.fault_event.fault_type
+  - service.fault_event.detected_by
+  stage: month12
+  summary: Use this when you need the share of each recorded cause among the faults
+    of a group in a window of days.
+- deprecated: null
+  facts: []
+  id: halvaro.grid.faults.fault_rate
+  kb: []
+  kb_versions: []
+  library: halvaro-grid
+  oracle: py:halvaro_gen/world/service/truth.py::compute
+  parameters:
+  - fault_event
+  - group
+  - baseline
+  - window
+  - grid_element
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - service.fault_event.net_key
+  - service.fault_event.fault_ts
+  - gis.grid_element.net_key
+  stage: month12
+  summary: Use this when you need the faults per month of a group of elements against
+    the rest, in the baseline months and in a window, and the spike ratio.
+- deprecated: null
+  facts: []
+  id: halvaro.grid.faults.repeat_faults
+  kb: []
+  kb_versions: []
+  library: halvaro-grid
+  oracle: py:tests/test_service.py::test_fault_events_consistent
+  parameters:
+  - fault_event
+  - gap_days
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - service.fault_event.net_key
+  - service.fault_event.fault_ts
+  - service.fault_event.tkt_key
+  - service.fault_event.repeat_of_tkt_key
+  stage: month12
+  summary: Use this when you need to find the repeat faults, the faults on an element
+    that follow an earlier fault of the same element within a number of days.
+- deprecated: null
+  facts: []
+  id: halvaro.grid.geometry.condition_class_from_score
+  kb: []
+  kb_versions: []
+  library: halvaro-grid
+  oracle: py:halvaro_gen/world/gis/network.py::condition_class
+  parameters:
+  - score
+  - bands
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - gis.grid_element.condition_score
+  stage: month12
+  summary: Use this when you need the condition class A to E of condition scores.
+- deprecated: null
+  facts:
+  - world.now
+  id: halvaro.grid.geometry.element_age
+  kb: []
+  kb_versions: []
+  library: halvaro-grid
+  oracle: py:repo_tests/test_oracle_geometry_release.py::test_oracle_element_age_baseline_per_element
+  parameters:
+  - grid_element
+  - 'on'
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - gis.grid_element.install_year
+  - gis.grid_element.status
+  - gis.grid_element.commissioned_date
+  stage: month12
+  summary: Use this when you need the age in years of each grid element on a date.
+- deprecated: null
+  facts:
+  - world.now
+  id: halvaro.grid.geometry.geometry_as_of
+  kb: []
+  kb_versions: []
+  library: halvaro-grid
+  oracle: py:tests/test_gis.py::test_geometry_versions
+  parameters:
+  - geometry_version
+  - 'on'
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - gis.geometry_version.net_key
+  - gis.geometry_version.valid_from
+  - gis.geometry_version.valid_to
+  - gis.geometry_version.geom
+  - gis.geometry_version.source
+  - gis.geometry_version.is_current
+  stage: month12
+  summary: Use this when you need the geometry version of each element that was valid
+    on a date.
+- deprecated: null
+  facts: []
+  id: halvaro.grid.geometry.parse_geom
+  kb: []
+  kb_versions: []
+  library: halvaro-grid
+  oracle: py:tests/test_gis.py::test_project_areas
+  parameters:
+  - geom
+  - to_4326
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - gis.geometry_version.geom
+  - gis.project_area.geom
+  stage: month12
+  summary: Use this when you need the kind, size and bounding box of WKT geometries
+    as a table.
+- deprecated: null
+  facts: []
+  id: halvaro.grid.geometry.route_change
+  kb: []
+  kb_versions: []
+  library: halvaro-grid
+  oracle: py:tests/test_gis.py::test_story_e13
+  parameters:
+  - project_area
+  - tolerance_m
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - gis.project_area.prj_key
+  - gis.project_area.kind
+  - gis.project_area.version
+  - gis.project_area.valid_from
+  - gis.project_area.valid_to
+  - gis.project_area.length_m
+  - gis.project_area.geom
+  stage: month12
+  summary: Use this when you need the planned and as-built route length of each project
+    with the version dates and the change, as the frame the app passes to halvaro-delivery.
+- deprecated: null
+  facts: []
+  id: halvaro.grid.geometry.validate_versions
+  kb: []
+  kb_versions: []
+  library: halvaro-grid
+  oracle: py:tests/test_gis.py::test_geometry_versions
+  parameters:
+  - geometry_version
+  - grid_element
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - gis.geometry_version.net_key
+  - gis.geometry_version.valid_from
+  - gis.geometry_version.valid_to
+  - gis.geometry_version.geom
+  - gis.geometry_version.source
+  - gis.geometry_version.is_current
+  - gis.grid_element.net_key
+  - gis.grid_element.current_geometry_valid_from
+  stage: month12
+  summary: Use this when you need to check the geometry versions of the elements for
+    overlaps, gaps and a wrong current version.
+- deprecated: null
+  facts: []
+  id: halvaro.grid.maintenance.due_within
+  kb: []
+  kb_versions: []
+  library: halvaro-grid
+  oracle: py:repo_tests/test_oracle_maintenance_release.py::test_oracle_due_within_baseline_per_team_and_plan_type
+  parameters:
+  - maintenance_plan
+  - as_of
+  - horizon_days
+  - active_status
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - service.maintenance_plan.net_key
+  - service.maintenance_plan.plan_no
+  - service.maintenance_plan.plan_type
+  - service.maintenance_plan.next_due
+  - service.maintenance_plan.last_done
+  - service.maintenance_plan.team_key
+  - service.maintenance_plan.status
+  stage: month12
+  summary: Use this when you need how many active maintenance plans fall due within
+    a number of days from a date, per team and plan type.
+- deprecated: null
+  facts:
+  - policy.grid.inspection_cycle_months.A
+  - policy.grid.inspection_cycle_months.B
+  - policy.grid.inspection_cycle_months.C
+  - policy.grid.inspection_cycle_months.D
+  - policy.grid.inspection_cycle_months.E
+  - policy.grid.inspection_type_multiplier.pipe_segment
+  - policy.grid.inspection_type_multiplier.valve
+  - policy.grid.inspection_type_multiplier.heat_exchanger_station
+  - policy.grid.inspection_type_multiplier.cable_section
+  - policy.grid.inspection_type_multiplier.transformer_station
+  - policy.grid.inspection_type_multiplier.substation
+  - policy.grid.inspection_type_multiplier.pump_station
+  id: halvaro.grid.maintenance.inspection_interval_check
+  kb: []
+  kb_versions: []
+  library: halvaro-grid
+  oracle: py:repo_tests/test_oracle_maintenance_release.py::test_oracle_inspection_interval_check_baseline_per_plan
+  parameters:
+  - maintenance_plan
+  - grid_element
+  - plan_type
+  - cycle_months
+  - type_multiplier
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - service.maintenance_plan.net_key
+  - service.maintenance_plan.plan_no
+  - service.maintenance_plan.plan_type
+  - service.maintenance_plan.interval_months
+  - service.maintenance_plan.valid_from
+  - gis.grid_element.net_key
+  - gis.grid_element.condition_class
+  - gis.grid_element.element_type
+  stage: month12
+  summary: Use this when you need the inspection plans whose interval in months deviates
+    from the rule for the condition class and element type.
+- deprecated: null
+  facts: []
+  id: halvaro.grid.maintenance.overdue_plans
+  kb: []
+  kb_versions: []
+  library: halvaro-grid
+  oracle: py:tests/test_maintenance.py::test_overdue_plans_grace_status_and_missing_dates
+  parameters:
+  - maintenance_plan
+  - as_of
+  - grace_days
+  - active_status
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - service.maintenance_plan.net_key
+  - service.maintenance_plan.plan_no
+  - service.maintenance_plan.plan_type
+  - service.maintenance_plan.next_due
+  - service.maintenance_plan.last_done
+  - service.maintenance_plan.team_key
+  - service.maintenance_plan.status
+  stage: month12
+  summary: Use this when you need the active maintenance plans that are overdue beyond
+    the grace period, with the days overdue.
+- deprecated: null
+  facts: []
+  id: halvaro.grid.maintenance.planned_backlog
+  kb: []
+  kb_versions: []
+  library: halvaro-grid
+  oracle: py:tests/test_service.py::test_winter_deferral_of_planned_work_in_dk_teams
+  parameters:
+  - service_ticket
+  - sources
+  - grace_days
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - service.service_ticket.tkt_key
+  - service.service_ticket.source
+  - service.service_ticket.due_date
+  - service.service_ticket.resolved_ts
+  - service.service_ticket.team_key
+  stage: month12
+  summary: Use this when you need how late planned tickets were resolved against their
+    due date, by team and month of the due date.
+- deprecated: null
+  facts: []
+  id: halvaro.grid.parts.critical_spares_issued
+  kb: []
+  kb_versions: []
+  library: halvaro-grid
+  oracle: py:tests/test_service.py::test_parts_and_interface
+  parameters:
+  - ticket_item_use
+  - item
+  - window
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - service.ticket_item_use.itm_key
+  - service.ticket_item_use.qty
+  - service.ticket_item_use.uom
+  - service.ticket_item_use.used_on
+  - service.ticket_item_use.tkt_key
+  - inventory.item.itm_key
+  - inventory.item.critical
+  stage: month12
+  summary: Use this when you need the issues of the critical spare items on tickets,
+    with the units used and the first and last day of use.
+- deprecated: null
+  facts: []
+  id: halvaro.grid.parts.part_usage
+  kb: []
+  kb_versions: []
+  library: halvaro-grid
+  oracle: py:tests/test_service.py::test_parts_and_interface
+  parameters:
+  - ticket_item_use
+  - service_ticket
+  - grid_element
+  - no_element
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - service.ticket_item_use.itm_key
+  - service.ticket_item_use.qty
+  - service.ticket_item_use.uom
+  - service.ticket_item_use.used_on
+  - service.ticket_item_use.tkt_key
+  - service.service_ticket.tkt_key
+  - service.service_ticket.net_key
+  - gis.grid_element.net_key
+  - gis.grid_element.element_type
+  stage: month12
+  summary: Use this when you need the units of parts used on tickets by item, unit
+    of measure, element type and month.
+- deprecated: null
+  facts: []
+  id: halvaro.grid.quality.classify_flags
+  kb: []
+  kb_versions: []
+  library: halvaro-grid
+  oracle: py:tests/test_telemetry.py::test_data_quality_layer
+  parameters:
+  - measurement
+  - events
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - telemetry.measurement.sns_key
+  - telemetry.measurement.ts
+  - telemetry.measurement.value
+  - telemetry.measurement.quality_flag
+  - telemetry.data_quality_event.sns_key
+  - telemetry.data_quality_event.from_ts
+  - telemetry.data_quality_event.to_ts
+  - telemetry.data_quality_event.type
+  stage: month12
+  summary: Use this when you need to know which data quality event explains each sample
+    that is not ok.
+- deprecated: null
+  facts: []
+  id: halvaro.grid.quality.completeness
+  kb: []
+  kb_versions: []
+  library: halvaro-grid
+  oracle: py:tests/test_telemetry.py::test_data_quality_layer
+  parameters:
+  - measurement
+  - sensor
+  - window_start
+  - window_end
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - telemetry.measurement.sns_key
+  - telemetry.measurement.ts
+  - telemetry.measurement.value
+  - telemetry.measurement.quality_flag
+  - telemetry.sensor.sns_key
+  - telemetry.sensor.install_date
+  - telemetry.sensor.interval_s
+  stage: month12
+  summary: Use this when you need the share of expected slots that hold an ok sample
+    per sensor over a window of days.
+- deprecated: null
+  facts: []
+  id: halvaro.grid.quality.daily_from_raw
+  kb: []
+  kb_versions: []
+  library: halvaro-grid
+  oracle: py:tests/test_telemetry.py::test_daily_aggregates_equal_raw
+  parameters:
+  - measurement
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - telemetry.measurement.sns_key
+  - telemetry.measurement.ts
+  - telemetry.measurement.value
+  - telemetry.measurement.quality_flag
+  stage: month12
+  summary: Use this when you need the daily min, max, avg, count and availability
+    per sensor recomputed from the raw samples.
+- deprecated: null
+  facts: []
+  id: halvaro.grid.quality.gap_report
+  kb: []
+  kb_versions: []
+  library: halvaro-grid
+  oracle: py:tests/test_telemetry.py::test_telemetry_gap
+  parameters:
+  - measurement
+  - sensor
+  - events
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - telemetry.measurement.sns_key
+  - telemetry.measurement.ts
+  - telemetry.measurement.value
+  - telemetry.measurement.quality_flag
+  - telemetry.sensor.sns_key
+  - telemetry.sensor.interval_s
+  - telemetry.data_quality_event.sns_key
+  - telemetry.data_quality_event.from_ts
+  - telemetry.data_quality_event.to_ts
+  - telemetry.data_quality_event.type
+  - telemetry.data_quality_event.samples
+  stage: month12
+  summary: Use this when you need the runs of missing or estimated samples per sensor,
+    never filled, with the data quality event that covers each run.
+- deprecated: null
+  facts: []
+  id: halvaro.grid.quality.sensor_quality_board
+  kb: []
+  kb_versions: []
+  library: halvaro-grid
+  oracle: py:tests/test_telemetry.py::test_daily_aggregates_equal_raw
+  parameters:
+  - daily
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - telemetry.measurement_daily.sns_key
+  - telemetry.measurement_daily.date
+  - telemetry.measurement_daily.availability_pct
+  stage: month12
+  summary: Use this when you need the availability of each sensor by ISO week as a
+    board.
+- deprecated: null
+  facts: []
+  id: halvaro.grid.quality.valid_samples
+  kb: []
+  kb_versions: []
+  library: halvaro-grid
+  oracle: py:tests/test_telemetry.py::test_daily_aggregates_equal_raw
+  parameters:
+  - measurement
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - telemetry.measurement.sns_key
+  - telemetry.measurement.ts
+  - telemetry.measurement.value
+  - telemetry.measurement.quality_flag
+  stage: month12
+  summary: Use this when you need only the samples that count, those flagged ok with
+    a value, sorted by sensor and time.
+- deprecated: null
+  facts: []
+  id: halvaro.grid.recipes.grid_strain_answer
+  kb: []
+  kb_versions: []
+  library: halvaro-grid
+  oracle: py:tests/test_oracle_recipes.py::test_oracle_grid_strain_answer_hand_worked_pieces_and_key_lists
+  parameters:
+  - strained
+  - zone_summary
+  - part_use
+  - critical_issued
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - gis.grid_element.net_key
+  - gis.supply_zone.zone_key
+  - service.ticket_item_use.itm_key
+  - inventory.item.critical
+  stage: month12
+  summary: Use this when you need the grid side of the supply strain answer (strained
+    elements, zone summary, part use) with the two key lists for the delivery answer.
+- deprecated: null
+  facts: []
+  id: halvaro.grid.recipes.route_facts
+  kb: []
+  kb_versions: []
+  library: halvaro-grid
+  oracle: py:tests/test_gis.py::test_ground_conditions
+  parameters:
+  - route_change
+  - soil
+  - conditions
+  - projects
+  - planned_version
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - gis.project_area.prj_key
+  - gis.project_area.length_m
+  - gis.ground_condition.soil_class
+  - projects.project.prj_key
+  stage: month12
+  summary: Use this when you need the route length, versions, soil and crossing flags
+    of each project, with the projects that have no route version listed as summary.
+- deprecated: null
+  facts: []
+  id: halvaro.grid.recipes.winter_peak_answer
+  kb: []
+  kb_versions: []
+  library: halvaro-grid
+  oracle: py:tests/test_telemetry.py::test_zone_load_summary_story_e10
+  parameters:
+  - ranking
+  - peak_profile
+  - temperatures
+  - density
+  - clusters
+  - gaps
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - telemetry.sensor.sns_key
+  - gis.supply_zone.zone_key
+  - service.fault_event.net_key
+  - telemetry.data_quality_event.sns_key
+  stage: month12
+  summary: Use this when you need the pieces of the winter peak answer (zone ranking,
+    peak week profile, temperatures, fault density, clusters and data gaps) checked
+    and assembled in one result.
+- deprecated: null
+  facts: []
+  id: halvaro.grid.series.bucket_peak
+  kb: []
+  kb_versions: []
+  library: halvaro-grid
+  oracle: py:tests/test_telemetry.py::test_truth_keys
+  parameters:
+  - measurement
+  - sensor
+  - freq
+  - tz
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - telemetry.measurement.sns_key
+  - telemetry.measurement.ts
+  - telemetry.measurement.value
+  - telemetry.measurement.quality_flag
+  - telemetry.sensor.sns_key
+  - telemetry.sensor.interval_s
+  stage: month12
+  summary: Use this when you need the maximum of the ok samples of each sensor per
+    hour, day or week, with the number of ok samples and their hours.
+- deprecated: null
+  facts: []
+  id: halvaro.grid.series.interval_hours
+  kb: []
+  kb_versions: []
+  library: halvaro-grid
+  oracle: py:tests/test_telemetry.py::test_values_look_physical
+  parameters:
+  - sensor
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - telemetry.sensor.sns_key
+  - telemetry.sensor.interval_s
+  stage: month12
+  summary: Use this when you need the sampling interval of each sensor in hours, to
+    turn a count of samples into hours.
+- deprecated: null
+  facts: []
+  id: halvaro.grid.series.outdoor_at
+  kb: []
+  kb_versions: []
+  library: halvaro-grid
+  oracle: py:repo_tests/test_oracle_series_release.py::test_oracle_outdoor_at_baseline_with_gaps_per_timestamp
+  parameters:
+  - weather_observation
+  - ts
+  - station_key
+  - max_age_hours
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - telemetry.weather_observation.station_key
+  - telemetry.weather_observation.ts
+  - telemetry.weather_observation.temp_c
+  - telemetry.sensor.station_key
+  stage: month12
+  summary: Use this when you need the outdoor temperature at given times from the
+    last observation of a weather station.
+- deprecated: null
+  facts: []
+  id: halvaro.grid.series.to_local
+  kb: []
+  kb_versions: []
+  library: halvaro-grid
+  oracle: py:tests/test_oracle_series.py::test_oracle_to_local_two_years_hour_by_hour_against_zoneinfo
+  parameters:
+  - ts
+  - country
+  - timezones
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - telemetry.measurement.ts
+  - gis.supply_zone.country
+  stage: month12
+  summary: Use this when you need stored UTC timestamps as local time of the country
+    of a zone.
+- deprecated: null
+  facts: []
+  id: halvaro.grid.spatial.age_group_clusters
+  kb: []
+  kb_versions: []
+  library: halvaro-grid
+  oracle: py:tests/test_gis.py::test_e4_cluster
+  parameters:
+  - grid_element
+  - decade
+  - element_type
+  - link_m
+  - min_size
+  - buffer_m
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - gis.grid_element.net_key
+  - gis.grid_element.install_year
+  - gis.grid_element.element_type
+  - gis.grid_element.zone_key
+  - gis.grid_element.lon
+  - gis.grid_element.lat
+  stage: month12
+  summary: Use this when you need the spatial concentrations of one install decade
+    and element type found without fault data.
+- deprecated: null
+  facts: []
+  id: halvaro.grid.spatial.fault_clusters
+  kb: []
+  kb_versions: []
+  library: halvaro-grid
+  oracle: py:tests/test_service.py::test_e4_winter_spike_is_explained_by_wear_and_load
+  parameters:
+  - density
+  - grid_element
+  - link_m
+  - min_faults
+  - buffer_m
+  - min_element_faults
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - service.fault_event.net_key
+  - gis.grid_element.net_key
+  - gis.grid_element.element_type
+  - gis.grid_element.status
+  - gis.grid_element.lon
+  - gis.grid_element.lat
+  stage: month12
+  summary: Use this when you need the spatial clusters of faulted elements found from
+    the output of fault_density.
+- deprecated: null
+  facts: []
+  id: halvaro.grid.spatial.fault_density
+  kb: []
+  kb_versions: []
+  library: halvaro-grid
+  oracle: py:tests/test_service.py::test_e4_winter_spike_is_explained_by_wear_and_load
+  parameters:
+  - fault_event
+  - grid_element
+  - window_start
+  - window_end
+  - cell_m
+  - in_service
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - service.fault_event.net_key
+  - service.fault_event.fault_ts
+  - gis.grid_element.net_key
+  - gis.grid_element.element_type
+  - gis.grid_element.zone_key
+  - gis.grid_element.lon
+  - gis.grid_element.lat
+  - gis.grid_element.commissioned_date
+  - gis.grid_element.status
+  stage: month12
+  summary: Use this when you need the faults per element and month of each element
+    in a window, with the planar grid cell of each element.
+- deprecated: null
+  facts: []
+  id: halvaro.grid.spatial.majority_soil
+  kb: []
+  kb_versions: []
+  library: halvaro-grid
+  oracle: py:tests/test_gis.py::test_ground_conditions
+  parameters:
+  - route_shares
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - gis.project_area.prj_key
+  - gis.ground_condition.soil_class
+  stage: month12
+  summary: Use this when you need the soil class with the most metres on each route
+    version, from the output of route_ground_intersection.
+- deprecated: null
+  facts: []
+  id: halvaro.grid.spatial.route_conditions_summary
+  kb: []
+  kb_versions: []
+  library: halvaro-grid
+  oracle: py:tests/test_gis.py::test_story_e13
+  parameters:
+  - route_shares
+  - poor_bearing
+  - high_groundwater
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - gis.ground_condition.bearing_capacity
+  - gis.ground_condition.groundwater
+  - gis.ground_condition.survey_kind
+  stage: month12
+  summary: Use this when you need to know how much of each route lies on poor bearing
+    capacity or high groundwater and whether it crosses a polygon recorded on site.
+- deprecated: null
+  facts: []
+  id: halvaro.grid.spatial.route_ground_intersection
+  kb: []
+  kb_versions: []
+  library: halvaro-grid
+  oracle: py:tests/test_gis.py::test_ground_conditions
+  parameters:
+  - project_area
+  - ground_condition
+  - kind
+  - min_metres
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - gis.project_area.prj_key
+  - gis.project_area.version
+  - gis.project_area.kind
+  - gis.project_area.geom
+  - gis.ground_condition.area_id
+  - gis.ground_condition.geom
+  - gis.ground_condition.soil_class
+  - gis.ground_condition.groundwater
+  - gis.ground_condition.bearing_capacity
+  - gis.ground_condition.survey_kind
+  stage: month12
+  summary: Use this when you need the metres of each route that lie inside each ground
+    polygon, with the soil class and the shares of the route.
+- deprecated: null
+  facts: []
+  id: halvaro.grid.topology.build_tree
+  kb: []
+  kb_versions: []
+  library: halvaro-grid
+  oracle: py:tests/test_gis.py::test_topology
+  parameters:
+  - network_connection
+  - grid_element
+  - root_types
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - gis.network_connection.net_from
+  - gis.network_connection.net_to
+  - gis.network_connection.role
+  - gis.network_connection.zone_key
+  stage: month12
+  summary: Use this when you need the directed tree of each zone (parent, children,
+    root and depth of every element) built from the network connections.
+- deprecated: null
+  facts: []
+  id: halvaro.grid.topology.trace
+  kb: []
+  kb_versions: []
+  library: halvaro-grid
+  oracle: py:tests/test_gis.py::test_topology
+  parameters:
+  - tree
+  - net_key
+  - direction
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - gis.network_connection.net_from
+  - gis.network_connection.net_to
+  stage: month12
+  summary: Use this when you need the elements downstream or upstream of one element
+    of a tree built by build_tree.
+snapshot: 17703967a6ef6ceed2d045ad2f0871b60e0ad55e39445d26c00f11be10bbee40

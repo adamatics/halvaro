@@ -1,0 +1,16 @@
+id: err12-project-status-on-start-time-zone
+rule: 'A start with a time zone is refused: dates are calendar days.'
+function: project_status_on
+frames:
+  project:
+  - prj_key: PRJ-900001
+    start: '2031-01-05T00:00:00+01:00'
+    actual_end: null
+args:
+  as_of: '2031-02-01'
+raises:
+  error: FrameError
+  message: projects.project.start has a time zone; dates here are calendar days
+  names:
+  - start
+  - time zone

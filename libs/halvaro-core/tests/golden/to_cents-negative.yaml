@@ -1,0 +1,8 @@
+name: tie to the even cent
+function: to_cents
+by_hand: 'The mirror: minus 12.5 cents, a tie goes to the even cent, which is minus 12.'
+input:
+  args:
+  - -0.125
+expect:
+  value: -12

@@ -1,0 +1,49 @@
+# Golden error case of halvaro-hr.handover_report: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: handover_report
+why: the crew plan holds one row twice
+args:
+- frame:
+    columns:
+    - emp_key
+    - prj_key
+    - start
+    - end
+    - percent
+    rows:
+    - - EMP-X1
+      - PRJ-X
+      - 2026-01-01
+      - 2026-01-31
+      - 50
+- frame:
+    columns:
+    - emp_key
+    - leave_type
+    - start
+    - end
+    rows:
+    - - EMP-X1
+      - parental
+      - 2026-02-01
+      - 2026-03-01
+kwargs:
+  leave_types:
+  - parental
+  crew_plan:
+    frame:
+      columns:
+      - emp_key
+      - prj_key
+      - planned_start
+      - planned_end
+      - percent
+      rows:
+      - &id001
+        - EMP-X1
+        - PRJ-X
+        - 2026-01-01
+        - 2026-01-31
+        - 50
+      - *id001
+raises: FrameError
+message: competence.crew_plan has 1 duplicate rows; a repeated row would be reported twice

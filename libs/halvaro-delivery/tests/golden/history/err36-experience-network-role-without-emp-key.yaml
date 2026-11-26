@@ -1,0 +1,28 @@
+id: err36-experience-network-role-without-emp-key
+rule: A project role row without emp_key is refused.
+function: experience_network
+frames:
+  project_role:
+  - prj_key: PRJ-900001
+    emp_key: null
+    project_role: engineer
+    start: '2031-01-05'
+    end: '2031-03-01'
+    hours_total: 10
+    basis: time_entry
+  project:
+  - prj_key: PRJ-900001
+    type: dh_network
+    soil_class: clay
+    country: DE
+    legacy: false
+args:
+  prj_keys:
+  - PRJ-900001
+  as_of: '2031-02-01'
+raises:
+  error: FrameError
+  message: projects.project_role has a row without emp_key or start
+  names:
+  - project_role
+  - emp_key

@@ -1,0 +1,26 @@
+id: err08-legal-flags-null-verify
+rule: A clause has no verify value, so it cannot be told whether it needs checking.
+function: legal_flags
+frames:
+  clause:
+  - con_key: CON-900001
+    clause_no: 1
+    clause_type: 1
+    variant: 1
+    param_name: 1
+    param_value: 1
+    verify: null
+    legal_note: 1
+  contract:
+  - con_key: CON-900001
+    prj_key: PRJ-900001
+  project:
+  - prj_key: PRJ-900001
+    country: 1
+args: {}
+raises:
+  error: FrameError
+  message: contracts.clause.verify has nulls
+  names:
+  - verify
+  - clause

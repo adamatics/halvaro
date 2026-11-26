@@ -1,0 +1,24 @@
+id: err18-contracts-for-project-parent-not-in-contracts
+rule: A parent contract that contracts.contract does not hold is refused.
+function: contracts_for_project
+frames:
+  project:
+  - prj_key: PRJ-900001
+    contract_key: CON-900001
+  contract:
+  - con_key: CON-900001
+    type: customer_project
+    sup_key: null
+    cus_key: CUS-900001
+    parent_con_key: CON-900002
+  purchase_order:
+  - prj_key: PRJ-900001
+    con_key: null
+args:
+  prj_key: PRJ-900001
+raises:
+  error: FrameError
+  message: the parent contract CON-900002 of CON-900001 is not in contracts.contract
+  names:
+  - CON-900002
+  - contracts.contract

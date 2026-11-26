@@ -1,0 +1,24 @@
+id: err07-at-risk-items-as-of-number
+rule: The day argument as_of is a number, not a date or ISO text, so the function refuses it.
+function: at_risk_items
+frames:
+  stock:
+  - a: 1
+  open_lines:
+  - a: 1
+  alerts:
+  - a: 1
+  window_performance:
+  - a: 1
+args:
+  items:
+  - ITM-900001
+  site: SIT-900001
+  sup_key: SUP-900001
+  as_of: 7
+raises:
+  error: FrameError
+  message: as_of 7 is a number, not a date
+  names:
+  - as_of
+  - '7'

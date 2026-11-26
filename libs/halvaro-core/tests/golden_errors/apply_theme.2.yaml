@@ -1,0 +1,8 @@
+# Golden error case of halvaro-core.apply_theme: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: apply_theme
+why: the mode is neither light nor dark
+args:
+- null
+- blue
+raises: FrameError
+message: mode must be 'light' or 'dark', not 'blue'

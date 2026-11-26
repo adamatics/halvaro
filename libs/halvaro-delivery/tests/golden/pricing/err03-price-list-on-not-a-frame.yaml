@@ -1,0 +1,12 @@
+id: err03-price-list-on-not-a-frame
+rule: The price_list argument is not a DataFrame.
+function: price_list_on
+args:
+  price_list: x
+  as_of: '2031-02-01'
+raises:
+  error: FrameError
+  message: procurement.price_list must be a DataFrame, not str
+  names:
+  - procurement.price_list
+  - str

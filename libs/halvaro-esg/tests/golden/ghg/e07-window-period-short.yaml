@@ -1,0 +1,12 @@
+id: e07-window-period-short
+rule: "winter_decomposition is refused when a window holds a month written without its leading zero."
+function: winter_decomposition
+frames:
+  C: [{"mtr_key": "MTR-900001", "period": "2030-05", "quantity": 100.0, "unit": "kWh", "contract_type": "renewable_certified"}]
+  M: [{"mtr_key": "MTR-900001", "carrier": "diesel", "kind": "fleet", "unit": "l"}]
+  MA: [{"mtr_key": "MTR-900001", "asset_type": "van"}]
+args: {"now": ["2031-1", "2032-02"], "prev": ["2030-12", "2031-02"]}
+raises:
+  error: FrameError
+  message: "now must be a period text like 2025-12, not '2031-1'"
+  names: ["now", "'2031-1'"]

@@ -1,0 +1,26 @@
+# Golden error case of halvaro-core.team_context: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: team_context
+why: a team has a site that has no region
+args:
+- frame:
+    columns:
+    - team_key
+    - dep_key
+    - cost_centre_key
+    - legal_entity_key
+    - site_key
+    rows:
+    - - T1
+      - D1
+      - CC-1
+      - LE-01
+      - SITE-99
+- frame:
+    columns:
+    - site_key
+    - country
+    rows:
+    - - SITE-99
+      - DK
+raises: UnknownRegion
+message: 'site ''SITE-99'' has no region; known sites: SITE-01, SITE-02, SITE-03, SITE-04, SITE-05, SITE-06'

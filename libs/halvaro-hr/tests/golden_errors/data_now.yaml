@@ -1,0 +1,7 @@
+# Golden error case of halvaro-hr.data_now: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: data_now
+why: every frame is empty, so the columns the function reads are missing
+args:
+- frame: {}
+raises: ValueError
+message: The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().

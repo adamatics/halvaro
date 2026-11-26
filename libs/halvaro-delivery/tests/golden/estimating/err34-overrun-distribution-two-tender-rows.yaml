@@ -1,0 +1,26 @@
+id: err34-overrun-distribution-two-tender-rows
+rule: Two tender rows in the totals for one project are refused.
+function: overrun_distribution
+frames:
+  overrun:
+  - prj_key: PRJ-900001
+    overrun: 0.1
+  project:
+  - prj_key: PRJ-900001
+    final_cost: 1
+    legacy: false
+    currency: EUR
+  totals:
+  - &id001
+    prj_key: PRJ-900001
+    type: tender
+    total_cost: 1
+    currency: EUR
+  - *id001
+args: {}
+raises:
+  error: FrameError
+  message: the totals have more than one tender row for PRJ-900001
+  names:
+  - PRJ-900001
+  - tender row

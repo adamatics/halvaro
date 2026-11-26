@@ -1,0 +1,13 @@
+# Golden error case of halvaro-finance.open_items_ap: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: open_items_ap
+why: every frame is empty, so the columns the function reads are missing
+args:
+- frame: {}
+- frame: {}
+- frame: {}
+- frame: {}
+- frame: {}
+- 2026-03-31
+context: month12
+raises: FrameError
+message: finance.supplier_invoice frame lacks column(s) sinv_key, le_key, sup_key, invoice_type, invoice_date, due_date, payable_amount_le; load the source columns without renaming them

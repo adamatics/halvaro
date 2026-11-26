@@ -1,0 +1,15 @@
+id: err08-delay-days-missing-column
+rule: The delay_event frame lacks a column the function needs, here responsible_party.
+function: delay_days
+frames:
+  delay_event:
+  - prj_key: PRJ-900001
+    cause_code: weather
+    days: 1
+args: {}
+raises:
+  error: FrameError
+  message: projects.delay_event lacks column(s) responsible_party; load the source columns without renaming them
+  names:
+  - projects.delay_event
+  - responsible_party

@@ -1,0 +1,12 @@
+id: err10-first-record-not-a-frame
+rule: The site_diary argument is not a DataFrame.
+function: first_record
+args:
+  site_diary: x
+  prj_key: PRJ-900001
+raises:
+  error: FrameError
+  message: projects.site_diary must be a DataFrame, not str
+  names:
+  - projects.site_diary
+  - str

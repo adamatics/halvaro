@@ -1,0 +1,79 @@
+# Behaviour changes of this distribution: a changed fact value, cfg parameter, KB rule version or oracle gets an entry in the same change.
+# Fields: id, date, functions, facts, kb, before, after, class (correction | policy change). The versioning proposal is a note of the closed repository.
+changes:
+  - id: BC-GRID-0001
+    date: 2026-11-19
+    functions: [halvaro.grid.alarms.alarm_summary, halvaro.grid.alarms.alarm_ticket_link, halvaro.grid.alarms.incident_groups, halvaro.grid.assets.condition_trend, halvaro.grid.assets.element_peak_load, halvaro.grid.callouts.callout_summary, halvaro.grid.callouts.sla_attainment, halvaro.grid.capacity.cold_snaps, halvaro.grid.capacity.peak_load, halvaro.grid.capacity.winter_label, halvaro.grid.faults.fault_causes, halvaro.grid.faults.fault_rate, halvaro.grid.faults.repeat_faults, halvaro.grid.geometry.element_age, halvaro.grid.geometry.geometry_as_of, halvaro.grid.geometry.route_change, halvaro.grid.geometry.validate_versions, halvaro.grid.maintenance.planned_backlog, halvaro.grid.quality.completeness, halvaro.grid.series.outdoor_at, halvaro.grid.series.to_local, halvaro.grid.spatial.fault_density]
+    facts: []
+    kb: []
+    before: A list or Series of timestamp texts in mixed ISO forms (with and without seconds, with a T separator) raised FrameError because pandas fixed the format from the first text. The same held for every reader that goes through the UTC helper (the functions listed call it directly; others reach it through helpers).
+    after: Text that pandas read before is read as before, with the same instants. Text that failed is read value by value as ISO 8601, so mixed ISO forms work; text in other forms that failed still raises FrameError, and a time zone or a mix of zones raises FrameError.
+    class: correction
+  - id: BC-GRID-0002
+    date: 2026-11-19
+    functions: [halvaro.grid.maintenance.inspection_interval_check]
+    facts:
+      - policy.grid.inspection_cycle_months.A
+      - policy.grid.inspection_cycle_months.B
+      - policy.grid.inspection_cycle_months.C
+      - policy.grid.inspection_cycle_months.D
+      - policy.grid.inspection_cycle_months.E
+      - policy.grid.inspection_type_multiplier.pipe_segment
+      - policy.grid.inspection_type_multiplier.valve
+      - policy.grid.inspection_type_multiplier.heat_exchanger_station
+      - policy.grid.inspection_type_multiplier.cable_section
+      - policy.grid.inspection_type_multiplier.transformer_station
+      - policy.grid.inspection_type_multiplier.substation
+      - policy.grid.inspection_type_multiplier.pump_station
+    kb: []
+    before: The cycle per condition class and the multipliers per element type were constants in the module and the oracle.
+    after: They are the twelve proposed facts above and the function reads them; the keywords cycle_months and type_multiplier still override them. The values are the ones that were typed, and the result on the baseline is identical (the same frame before and after, compared frame by frame).
+    class: policy change
+  - id: BC-GRID-0003
+    date: 2026-11-20
+    functions:
+      - halvaro.grid.alarms.incident_groups
+      - halvaro.grid.assets.condition_trend
+      - halvaro.grid.assets.element_peak_load
+      - halvaro.grid.callouts.callout_summary
+      - halvaro.grid.callouts.on_call
+      - halvaro.grid.callouts.requires_authorisation
+      - halvaro.grid.callouts.sla_attainment
+      - halvaro.grid.capacity.cold_snaps
+      - halvaro.grid.capacity.hours_above
+      - halvaro.grid.capacity.peak_load
+      - halvaro.grid.capacity.winter_label
+      - halvaro.grid.faults.fault_causes
+      - halvaro.grid.faults.fault_rate
+      - halvaro.grid.faults.repeat_faults
+      - halvaro.grid.geometry.condition_class_from_score
+      - halvaro.grid.geometry.element_age
+      - halvaro.grid.geometry.geometry_as_of
+      - halvaro.grid.geometry.route_change
+      - halvaro.grid.maintenance.due_within
+      - halvaro.grid.maintenance.overdue_plans
+      - halvaro.grid.maintenance.planned_backlog
+      - halvaro.grid.parts.critical_spares_issued
+      - halvaro.grid.quality.completeness
+      - halvaro.grid.recipes.winter_peak_answer
+      - halvaro.grid.series.outdoor_at
+      - halvaro.grid.spatial.age_group_clusters
+      - halvaro.grid.spatial.fault_clusters
+      - halvaro.grid.spatial.fault_density
+      - halvaro.grid.spatial.route_ground_intersection
+      - halvaro.grid.topology.build_tree
+      - halvaro.grid.topology.trace
+    facts: []
+    kb: []
+    before: Fifty-four input checks in 31 functions named the argument and what is allowed but not the value received (standard 3.7.5), and the decade check of age_group_clusters gave another decade as its example.
+    after: The same checks raise the same FrameError with the same text and a tail that names the value received, for example "days must be a whole number of days, one or more (got 0)"; the decade example is 1960. Only the message text changes; which inputs are refused does not change (lane W2, items 9 and 6 of #440). The value is kept short: a frame, Series, array or mapping gives its type name, a long text or number is cut or gives its type, so the error stays a FrameError for any input.
+    class: correction
+  - id: BC-GRID-0004
+    date: 2026-11-26
+    functions:
+      - halvaro.grid.faults.fault_causes
+    facts: []
+    kb: []
+    before: Without allowed_causes, a recorded cause that contained one of four default refuse words (intent, deliberate, blame and a fourth word of deliberate damage) raised FrameError.
+    after: The default refuse words are intent, deliberate and blame. A cause that names deliberate damage with none of these three words is counted like any other cause; pass refuse_words to refuse more words (Sune, 2026-11-26, #647).
+    class: policy change

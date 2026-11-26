@@ -1,0 +1,10 @@
+# Golden error case of halvaro-finance.mgmt_pl_check: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: mgmt_pl_check
+why: every frame is empty, so the columns the function reads are missing
+args:
+- frame: {}
+- frame: {}
+context: month12
+raises: FrameError
+message: finance.mgmt_pl_department frame lacks column(s) le_key, dep_key, period, total_revenue, total_cost, operating_result, project_labour_cost, project_other_direct_cost, service_direct_cost, stock_and_inventory_cost, staff_cost,
+  labour_absorbed, overhead_cost, overhead_allocated, depreciation_and_amortisation, other_operating_cost; load the source columns without renaming them

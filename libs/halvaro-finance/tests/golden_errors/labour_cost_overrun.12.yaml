@@ -1,0 +1,21 @@
+# Golden error case of halvaro-finance.labour_cost_overrun: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: labour_cost_overrun
+why: the breakdown has a cost code that is not in the cost code frame
+args:
+- frame:
+    columns: [prj_key, period, cst_key, currency, actual_amount, incurred_in_period, estimate_amount]
+    rows:
+    - [PRJ-X, 2026-03, CST-Y, DKK, 100.0, 100.0, 200.0]
+- frame:
+    columns: [prj_key, cst_key, budget_version, budget_amount, currency]
+    rows:
+    - [PRJ-X, CST-X, 1, 150.0, DKK]
+- frame:
+    columns: [cst_key, category, is_group]
+    rows:
+    - [CST-X, labour, false]
+- 2026-01
+- 2026-03
+context: month12
+raises: FrameError
+message: 1 cost codes of the breakdown are not in projects.cost_code (for example CST-Y)

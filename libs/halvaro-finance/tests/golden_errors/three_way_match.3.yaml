@@ -1,0 +1,16 @@
+# Golden error case of halvaro-finance.three_way_match: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: three_way_match
+why: an invoice line is listed twice
+args:
+- frame:
+    columns: [sinv_key, line_no, po_key, po_line_no, receipt_no, quantity, unit_price, po_unit_price, invoice_type, match_status, price_variance]
+    rows:
+    - [S-1, 1, PO-X, 1, 1, 10, 10.0, 10.0, invoice, matched, 0.0]
+    - [S-1, 1, PO-X, 1, 1, 10, 10.0, 10.0, invoice, matched, 0.0]
+- frame:
+    columns: [po_key, line_no, receipt_no, qty_accepted]
+    rows:
+    - [PO-X, 1, 1, 10]
+context: month12
+raises: FrameError
+message: finance.supplier_invoice_line has more than one row for the same sinv_key and line_no

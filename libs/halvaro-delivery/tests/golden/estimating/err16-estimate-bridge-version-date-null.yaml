@@ -1,0 +1,27 @@
+id: err16-estimate-bridge-version-date-null
+rule: A version date that is null is refused when as_of is given.
+function: estimate_bridge
+frames:
+  estimate_version:
+  - prj_key: PRJ-900001
+    estimate_version: 1
+    type: tender
+    date: null
+    currency: EUR
+    total_cost: 1
+  estimate_line:
+  - prj_key: PRJ-900001
+    estimate_version: 1
+    cst_key: CST-900001
+    amount: 1
+  cost_code:
+  - cst_key: CST-900001
+    category: civil
+args:
+  as_of: '2031-02-01'
+raises:
+  error: FrameError
+  message: projects.estimate_version.date has nulls; the versions valid on as_of cannot be told
+  names:
+  - estimate_version.date
+  - nulls

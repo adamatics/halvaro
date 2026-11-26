@@ -1,0 +1,28 @@
+id: err25-estimate-bridge-status-not-a-series
+rule: status given as a list instead of a Series is refused.
+function: estimate_bridge
+frames:
+  estimate_version:
+  - prj_key: PRJ-900001
+    estimate_version: 1
+    type: tender
+    date: '2031-01-05'
+    currency: EUR
+    total_cost: 1
+  estimate_line:
+  - prj_key: PRJ-900001
+    estimate_version: 1
+    cst_key: CST-900001
+    amount: 1
+  cost_code:
+  - cst_key: CST-900001
+    category: civil
+args:
+  status:
+  - active
+raises:
+  error: FrameError
+  message: status must be a Series of prj_key -> status, not list
+  names:
+  - status
+  - list

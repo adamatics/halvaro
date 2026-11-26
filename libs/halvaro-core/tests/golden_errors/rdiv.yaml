@@ -1,0 +1,8 @@
+# Golden error case of halvaro-core.rdiv: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: rdiv
+why: the text is not a number; the end of the message is the one of int() and is not pinned
+args:
+- a
+- 1
+raises: ValueError
+message_starts: 'invalid literal for int() with base 10:'

@@ -1,0 +1,27 @@
+# Golden error case of halvaro-hr.holiday_ledger: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: holiday_ledger
+why: the entitlement frame has two rows for a person and holiday year
+args:
+- frame:
+    columns:
+    - emp_key
+    - holiday_year
+    - carried_in_days
+    - opening_balance
+    rows:
+    - &id001
+      - EMP-X1
+      - 2026/27
+      - 3.0
+      - false
+    - *id001
+- frame:
+    columns:
+    - emp_key
+    - holiday_year
+    - period
+    - accrued_days
+    - taken_days
+    rows: []
+raises: FrameError
+message: hr.holiday_entitlement has several rows for one person and holiday year; expected 1

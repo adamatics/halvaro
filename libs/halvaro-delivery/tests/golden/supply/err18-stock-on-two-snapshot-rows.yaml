@@ -1,0 +1,33 @@
+id: err18-stock-on-two-snapshot-rows
+rule: Two snapshot rows for one site and item on the date are refused.
+function: stock_on
+frames:
+  stock_movement:
+  - site_key: SITE-900001
+    itm_key: ITM-900001
+    movement_date: '2031-01-05'
+    movement_type: receipt
+    qty: 5
+    prj_key: null
+    reservation_no: null
+  stock_level:
+  - site_key: SITE-900001
+    itm_key: ITM-900001
+    as_of_date: '2031-02-01'
+    on_hand: 5
+    reserved: 0
+    available: 5
+  - site_key: SITE-900001
+    itm_key: ITM-900001
+    as_of_date: '2031-02-01'
+    on_hand: 5
+    reserved: 0
+    available: 5
+args:
+  as_of: '2031-02-01'
+raises:
+  error: FrameError
+  message: inventory.stock_level has more than one snapshot row for a site and item on the date
+  names:
+  - stock_level
+  - snapshot row

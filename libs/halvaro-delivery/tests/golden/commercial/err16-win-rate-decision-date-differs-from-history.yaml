@@ -1,0 +1,24 @@
+id: err16-win-rate-decision-date-differs-from-history
+rule: A decision date that differs from the date the won stage was entered is refused.
+function: win_rate
+frames:
+  opportunity:
+  - opp_key: OPP-900001
+    cus_key: CUS-900001
+    stage: won
+    decision_date: '2031-02-01'
+  customer:
+  - cus_key: CUS-900001
+    name: Customer X
+    tier: key
+  stage_history:
+  - opp_key: OPP-900001
+    stage: won
+    entered_date: '2031-02-02'
+args: {}
+raises:
+  error: FrameError
+  message: the decision date differs from the date the decision stage was entered in the stage history
+  names:
+  - decision date
+  - stage history

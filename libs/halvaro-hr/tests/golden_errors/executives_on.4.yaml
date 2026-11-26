@@ -1,0 +1,29 @@
+# Golden error case of halvaro-hr.executives_on: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: executives_on
+why: a role is not in hr.role
+args:
+- frame:
+    columns:
+    - emp_key
+    - as_of
+    - active
+    - role_name
+    - dep_code
+    - team_key
+    rows:
+    - - EMP-000001
+      - '2026-03-31'
+      - true
+      - CEO
+      - X
+      - T
+- frame:
+    columns:
+    - role_key
+    - name
+    rows:
+    - - R1
+      - CEO
+- - Nobody
+raises: FrameError
+message_starts: role(s) 'Nobody' are not in hr.role.name

@@ -1,0 +1,28 @@
+id: err02-estimate-bridge-as-of-number
+rule: The as_of day is a number, not a date.
+function: estimate_bridge
+frames:
+  estimate_version:
+  - prj_key: PRJ-900001
+    estimate_version: 1
+    type: tender
+    date: '2031-01-05'
+    currency: EUR
+    total_cost: 1
+  estimate_line:
+  - prj_key: PRJ-900001
+    estimate_version: 1
+    cst_key: CST-900001
+    amount: 1
+    currency: EUR
+  cost_code:
+  - cst_key: CST-900001
+    category: c
+args:
+  as_of: 7
+raises:
+  error: FrameError
+  message: as_of 7 is a number, not a date; pass a date, a Timestamp or an ISO text such as 2026-11-30
+  names:
+  - as_of
+  - '7'

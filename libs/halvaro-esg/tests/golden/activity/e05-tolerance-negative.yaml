@@ -1,0 +1,11 @@
+id: e05-tolerance-negative
+rule: "invoice_tie_out is refused when tolerance is negative, because it must be a finite number of zero or more."
+function: invoice_tie_out
+frames:
+  c: [{"source_sinv_key": "SINV-900001", "cost_amount": 10.0}]
+  si: [{"sinv_key": "SINV-900001", "net_amount": 10.0, "document_kind": "energy"}]
+args: {"tolerance": -0.5}
+raises:
+  error: FrameError
+  message: "tolerance must be a finite number, zero or more, not -0.5"
+  names: ["tolerance", "-0.5"]

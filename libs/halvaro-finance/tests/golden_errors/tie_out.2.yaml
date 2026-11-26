@@ -1,0 +1,15 @@
+# Golden error case of halvaro-finance.tie_out: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: tie_out
+why: the aggregate has a column that names a person
+args:
+- frame:
+    columns: [le_key, cc_key, period, ledger_gross_pay]
+    rows:
+    - [LE-X, CC-1, 2026-03, 1000.0]
+- frame:
+    columns: [le_key, cc_key, period, currency, hr_gross_pay, band_minimum_total, band_maximum_total, cost_centres, suppressed, emp_key]
+    rows:
+    - [LE-X, CC-1, 2026-03, DKK, 1000.0, 900.0, 1100.0, CC-1, false, EMP-X]
+context: month12
+raises: FrameError
+message: the hr frame has individual columns (emp_key); pass the aggregate from halvaro.hr.payroll_aggregate, never pay per person

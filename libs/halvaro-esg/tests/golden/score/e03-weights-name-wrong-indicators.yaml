@@ -1,0 +1,10 @@
+id: e03-weights-name-wrong-indicators
+rule: "scorecard is refused when weights do not name exactly the indicators of the scored frame."
+function: scorecard
+frames:
+  s: [{"indicator": "scope1", "score": 90.0}, {"indicator": "epd_coverage", "score": 50.0}]
+args: {"as_of": "2032-02-01", "weights": {"scope1": 0.5, "audit_currency": 0.5}}
+raises:
+  error: FrameError
+  message: "weights must name exactly the indicators ['epd_coverage', 'scope1']"
+  names: ["weights", "scope1", "epd_coverage"]

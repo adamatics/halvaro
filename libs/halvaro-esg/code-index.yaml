@@ -1,0 +1,1556 @@
+functions:
+- deprecated: null
+  facts: []
+  id: halvaro.esg.activity.check_meters
+  kb: []
+  kb_versions: []
+  library: halvaro-esg
+  oracle: py:tests/test_oracle_activity.py::test_oracle_check_meters_every_route
+  parameters:
+  - m
+  - unit_by_carrier
+  - scope_by_carrier
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - energy-esg.energy_meter.mtr_key
+  - energy-esg.energy_meter.carrier
+  - energy-esg.energy_meter.scope
+  - energy-esg.energy_meter.unit
+  stage: month12
+  summary: Use this when you need to check the meter list against the unit and scope
+    that each carrier must have.
+- deprecated: null
+  facts: []
+  id: halvaro.esg.activity.consumption_by
+  kb: []
+  kb_versions: []
+  library: halvaro-esg
+  oracle: py:tests/test_energy_esg.py::test_lines_follow_consumption
+  parameters:
+  - c
+  - m
+  - by
+  - p0
+  - p1
+  - exclude_kinds
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - energy-esg.energy_consumption.mtr_key
+  - energy-esg.energy_consumption.period
+  - energy-esg.energy_consumption.quantity
+  - energy-esg.energy_consumption.unit
+  - energy-esg.energy_meter.mtr_key
+  - energy-esg.energy_meter.carrier
+  - energy-esg.energy_meter.unit
+  - energy-esg.energy_meter.site_key
+  - energy-esg.energy_meter.kind
+  stage: month12
+  summary: Use this when you need the consumption per period and carrier, site or
+    kind in the native unit of the meters for a window of periods.
+- deprecated: null
+  facts: []
+  id: halvaro.esg.activity.electricity_contract_share
+  kb: []
+  kb_versions: []
+  library: halvaro-esg
+  oracle: py:tests/test_energy_esg.py::test_e12_renewable_contract_scope2
+  parameters:
+  - c
+  - m
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - energy-esg.energy_consumption.mtr_key
+  - energy-esg.energy_consumption.period
+  - energy-esg.energy_consumption.quantity
+  - energy-esg.energy_consumption.unit
+  - energy-esg.energy_meter.mtr_key
+  - energy-esg.energy_meter.carrier
+  - energy-esg.energy_meter.unit
+  - energy-esg.energy_meter.site_key
+  - energy-esg.energy_consumption.contract_type
+  stage: month12
+  summary: Use this when you need the share of electricity kWh on a renewable_certified
+    contract per period and site.
+- deprecated: null
+  facts:
+  - world.fx_eur_dkk_fixed
+  - world.fx_sek_dkk_fixed
+  id: halvaro.esg.activity.energy_cost
+  kb: []
+  kb_versions: []
+  library: halvaro-esg
+  oracle: py:tests/test_oracle_activity.py::test_oracle_energy_cost_every_route
+  parameters:
+  - c
+  - m
+  - to_dkk
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - energy-esg.energy_consumption.mtr_key
+  - energy-esg.energy_consumption.period
+  - energy-esg.energy_consumption.quantity
+  - energy-esg.energy_consumption.unit
+  - energy-esg.energy_meter.mtr_key
+  - energy-esg.energy_meter.carrier
+  - energy-esg.energy_meter.unit
+  - energy-esg.energy_consumption.cost_amount
+  - energy-esg.energy_consumption.currency
+  stage: month12
+  summary: Use this when you need the cost, quantity and unit price of energy per
+    carrier, unit and currency.
+- deprecated: null
+  facts: []
+  id: halvaro.esg.activity.energy_use_mwh
+  kb: []
+  kb_versions: []
+  library: halvaro-esg
+  oracle: py:tests/test_oracle_activity.py::test_oracle_energy_use_mwh_every_route
+  parameters:
+  - c
+  - m
+  - kwh_per_litre
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - energy-esg.energy_consumption.mtr_key
+  - energy-esg.energy_consumption.period
+  - energy-esg.energy_consumption.quantity
+  - energy-esg.energy_consumption.unit
+  - energy-esg.energy_meter.mtr_key
+  - energy-esg.energy_meter.carrier
+  - energy-esg.energy_meter.unit
+  stage: month12
+  summary: Use this when you need the energy use per carrier in MWh.
+- deprecated: null
+  facts: []
+  id: halvaro.esg.activity.invoice_tie_out
+  kb: []
+  kb_versions: []
+  library: halvaro-esg
+  oracle: py:tests/test_finance.py::test_energy_invoice_keys_link_energy_esg_to_supplier_invoices
+  parameters:
+  - c
+  - si
+  - tolerance
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - energy-esg.energy_consumption.source_sinv_key
+  - energy-esg.energy_consumption.cost_amount
+  - finance.supplier_invoice.sinv_key
+  - finance.supplier_invoice.net_amount
+  - finance.supplier_invoice.document_kind
+  stage: month12
+  summary: Use this when you need to tie the cost of the consumption rows to the net
+    amount of the energy invoice they come from.
+- deprecated: null
+  facts: []
+  id: halvaro.esg.audit_targets.audit_schedule
+  kb: []
+  kb_versions: []
+  library: halvaro-esg
+  oracle: py:tests/test_energy_esg.py::test_energy_audit_hannover_due
+  parameters:
+  - A
+  - as_of
+  - cycle_years
+  - completed
+  - ignored
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - energy-esg.energy_audit.site_key
+  - energy-esg.energy_audit.year
+  - energy-esg.energy_audit.audit_date
+  - energy-esg.energy_audit.due_date
+  - energy-esg.energy_audit.status
+  stage: month12
+  summary: Use this when you need, per site, the last completed energy audit, the
+    next due date and whether the site is overdue on a given day.
+- deprecated: null
+  facts: []
+  id: halvaro.esg.audit_targets.target_progress
+  kb: []
+  kb_versions: []
+  library: halvaro-esg
+  oracle: py:tests/test_oracle_audit_targets.py::test_oracle_target_progress_every_route
+  parameters:
+  - T
+  - L
+  - as_of
+  - year
+  - tolerance
+  - basis
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - energy-esg.target.target_no
+  - energy-esg.target.scope
+  - energy-esg.target.baseline_year
+  - energy-esg.target.target_year
+  - energy-esg.target.baseline_value
+  - energy-esg.target.target_value
+  - energy-esg.emission_line.le_key
+  - energy-esg.emission_line.period
+  - energy-esg.emission_line.scope
+  - energy-esg.emission_line.category
+  - energy-esg.emission_line.line_no
+  - energy-esg.emission_line.method
+  - energy-esg.emission_line.ghg_category
+  - energy-esg.emission_line.kgco2e
+  - energy-esg.emission_line.is_superseded
+  - energy-esg.emission_line.restated_from_period
+  stage: month12
+  summary: Use this when you need each absolute emission target compared with its
+    glide path and with the actual scope total of a year.
+- deprecated: null
+  facts: []
+  id: halvaro.esg.basis.provenance
+  kb: []
+  kb_versions: []
+  library: halvaro-esg
+  oracle: py:tests/test_oracle_basis.py::test_oracle_provenance_every_route
+  parameters: []
+  restricted: []
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: 'Use this when you need the provenance of a result computed from other
+    results: their factor sets, VERIFY notes, facts and status joined.'
+- deprecated: null
+  facts: []
+  id: halvaro.esg.basis.reporting_basis
+  kb: []
+  kb_versions: []
+  library: halvaro-esg
+  oracle: py:tests/test_energy_esg.py::test_safety_and_wording
+  parameters:
+  - decision
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - energy-esg.esg_data_request.standard
+  stage: month12
+  summary: Use this when you need the statement of the reporting basis, with its VERIFY
+    flags, from the policy decision text.
+- deprecated: null
+  facts:
+  - frep.annual_reports.DK.size_thresholds.net_revenue
+  - frep.annual_reports.DE.size_thresholds.net_revenue
+  - frep.annual_reports.DK.size_thresholds.average_full_time_employees
+  - frep.annual_reports.DE.size_thresholds.average_employees
+  id: halvaro.esg.basis.size_evidence
+  kb: []
+  kb_versions: []
+  library: halvaro-esg
+  oracle: py:tests/test_oracle_basis.py::test_oracle_size_evidence_every_route
+  parameters:
+  - SR
+  - country_of
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance-reporting.statutory_report.le_key
+  - finance-reporting.statutory_report.fiscal_year
+  - finance-reporting.statutory_report.average_employees
+  - finance-reporting.statutory_report.revenue
+  - finance-reporting.statutory_report.reporting_class
+  - finance-reporting.statutory_report.scope
+  stage: month12
+  summary: Use this when you need the employees and revenue of each legal entity and
+    year set against the provisional size thresholds of its country, as evidence only.
+- deprecated: null
+  facts: []
+  id: halvaro.esg.data_requests.answer_pack
+  kb: []
+  kb_versions: []
+  library: halvaro-esg
+  oracle: py:tests/test_oracle_data_requests.py::test_oracle_answer_pack_every_route
+  parameters:
+  - req
+  - totals
+  - targets
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - energy-esg.emission_line.kgco2e
+  - energy-esg.target.target_no
+  stage: month12
+  summary: 'Use this when you need the numbers to answer a customer questionnaire:
+    the scope totals, the months covered, the targets and the notes.'
+- deprecated: null
+  facts: []
+  id: halvaro.esg.data_requests.open_requests
+  kb: []
+  kb_versions: []
+  library: halvaro-esg
+  oracle: py:tests/test_energy_esg.py::test_customer_data_requests
+  parameters:
+  - R
+  - as_of
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - energy-esg.esg_data_request.cus_key
+  - energy-esg.esg_data_request.request_no
+  - energy-esg.esg_data_request.received
+  - energy-esg.esg_data_request.due
+  - energy-esg.esg_data_request.answered_date
+  - energy-esg.esg_data_request.status
+  - energy-esg.esg_data_request.request_type
+  - energy-esg.esg_data_request.opp_key
+  - energy-esg.esg_data_request.limit_kgco2e_per_m
+  stage: month12
+  summary: Use this when you need the status of every customer sustainability request
+    on a given day, worked out from its dates.
+- deprecated: null
+  facts: []
+  id: halvaro.esg.data_requests.request_timeliness
+  kb: []
+  kb_versions: []
+  library: halvaro-esg
+  oracle: py:tests/test_oracle_data_requests.py::test_oracle_request_timeliness_every_route
+  parameters:
+  - R
+  - as_of
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - energy-esg.esg_data_request.cus_key
+  - energy-esg.esg_data_request.request_no
+  - energy-esg.esg_data_request.received
+  - energy-esg.esg_data_request.due
+  - energy-esg.esg_data_request.answered_date
+  - energy-esg.esg_data_request.status
+  - energy-esg.esg_data_request.request_type
+  - energy-esg.esg_data_request.opp_key
+  - energy-esg.esg_data_request.limit_kgco2e_per_m
+  stage: month12
+  summary: Use this when you need how many days customer requests take to be answered
+    and how many are answered by the due date, per request type.
+- deprecated: null
+  facts: []
+  id: halvaro.esg.data_requests.tender_limit
+  kb: []
+  kb_versions: []
+  library: halvaro-esg
+  oracle: py:tests/test_energy_esg.py::test_customer_data_requests
+  parameters:
+  - R
+  - CL
+  - OT
+  - request_type
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - energy-esg.esg_data_request.cus_key
+  - energy-esg.esg_data_request.request_no
+  - energy-esg.esg_data_request.received
+  - energy-esg.esg_data_request.due
+  - energy-esg.esg_data_request.answered_date
+  - energy-esg.esg_data_request.status
+  - energy-esg.esg_data_request.request_type
+  - energy-esg.esg_data_request.opp_key
+  - energy-esg.esg_data_request.limit_kgco2e_per_m
+  - crm.opportunity.carbon_limit_kgco2e_per_m
+  - crm.opportunity.bid_deadline
+  stage: month12
+  summary: Use this when you need the carbon limit and due date of each tender requirement,
+    checked against the crm side.
+- deprecated: null
+  facts: []
+  id: halvaro.esg.factors.factor_on
+  kb: []
+  kb_versions: []
+  library: halvaro-esg
+  oracle: py:tests/test_energy_esg.py::test_every_line_uses_a_valid_factor_or_is_restated
+  parameters:
+  - factors
+  - category
+  - region
+  - 'on'
+  - carrier
+  - method
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - energy-esg.emission_factor.efac_key
+  - energy-esg.emission_factor.category
+  - energy-esg.emission_factor.carrier
+  - energy-esg.emission_factor.region
+  - energy-esg.emission_factor.method
+  - energy-esg.emission_factor.kgco2e_per_unit
+  - energy-esg.emission_factor.valid_from
+  - energy-esg.emission_factor.valid_to
+  - energy-esg.emission_factor.factor_set
+  - energy-esg.emission_factor.synthetic
+  - energy-esg.emission_factor.verify_note
+  stage: month12
+  summary: Use this when you need the one emission factor row of a family that is
+    valid on a date.
+- deprecated: null
+  facts: []
+  id: halvaro.esg.factors.factor_set_diff
+  kb: []
+  kb_versions: []
+  library: halvaro-esg
+  oracle: py:tests/test_energy_esg.py::test_e12_factor_set_update_and_restatement
+  parameters:
+  - factors
+  - old_set
+  - new_set
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - energy-esg.emission_factor.efac_key
+  - energy-esg.emission_factor.category
+  - energy-esg.emission_factor.carrier
+  - energy-esg.emission_factor.region
+  - energy-esg.emission_factor.method
+  - energy-esg.emission_factor.kgco2e_per_unit
+  - energy-esg.emission_factor.valid_from
+  - energy-esg.emission_factor.valid_to
+  - energy-esg.emission_factor.factor_set
+  - energy-esg.emission_factor.synthetic
+  - energy-esg.emission_factor.verify_note
+  stage: month12
+  summary: Use this when you need to compare the emission factors of two factor sets
+    family by family.
+- deprecated: null
+  facts: []
+  id: halvaro.esg.factors.family_key
+  kb: []
+  kb_versions: []
+  library: halvaro-esg
+  oracle: py:tests/test_energy_esg.py::test_factors_are_synthetic_and_dated
+  parameters:
+  - factors
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - energy-esg.emission_factor.efac_key
+  - energy-esg.emission_factor.category
+  - energy-esg.emission_factor.carrier
+  - energy-esg.emission_factor.region
+  - energy-esg.emission_factor.method
+  stage: month12
+  summary: Use this when you need the family of each emission factor row as one text
+    key.
+- deprecated: null
+  facts: []
+  id: halvaro.esg.factors.flag_synthetic
+  kb: []
+  kb_versions: []
+  library: halvaro-esg
+  oracle: py:halvaro_gen/world/energy_esg/truth.py::esg_truth
+  parameters:
+  - factors
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - energy-esg.emission_factor.efac_key
+  - energy-esg.emission_factor.synthetic
+  - energy-esg.emission_factor.verify_note
+  - energy-esg.emission_factor.factor_set
+  stage: month12
+  summary: Use this when you need to know whether the emission factor rows are synthetic
+    and carry a VERIFY note.
+- deprecated: null
+  facts: []
+  id: halvaro.esg.factors.product_basis_share
+  kb: []
+  kb_versions: []
+  library: halvaro-esg
+  oracle: py:tests/test_energy_esg.py::test_h6_per_metre_footprint
+  parameters:
+  - factors
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - energy-esg.emission_factor.efac_key
+  - energy-esg.emission_factor.category
+  - energy-esg.emission_factor.kgco2e_per_unit
+  stage: month12
+  summary: Use this when you need the counted share of the product footprints for
+    purchased goods.
+- deprecated: null
+  facts: []
+  id: halvaro.esg.footprint.component_split
+  kb: []
+  kb_versions: []
+  library: halvaro-esg
+  oracle: py:tests/test_energy_esg.py::test_h6_per_metre_footprint
+  parameters:
+  - PF
+  - P
+  - cs
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - energy-esg.project_footprint.prj_key
+  - energy-esg.project_footprint.period
+  - energy-esg.project_footprint.materials_kgco2e
+  - energy-esg.project_footprint.transport_kgco2e
+  - energy-esg.project_footprint.site_kgco2e
+  - energy-esg.project_footprint.subcontractor_kgco2e
+  - energy-esg.project_footprint.total_kgco2e
+  - projects.project.prj_key
+  - projects.project.route_length_m
+  - projects.project.start
+  - projects.project.status
+  stage: month12
+  summary: Use this when you need the median kg CO2e per route metre of each footprint
+    component over a comparable set of projects.
+- deprecated: null
+  facts: []
+  id: halvaro.esg.footprint.limit_check
+  kb: []
+  kb_versions: []
+  library: halvaro-esg
+  oracle: py:tests/test_energy_esg.py::test_h6_per_metre_footprint
+  parameters:
+  - pm
+  - cs
+  - limit
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - energy-esg.project_footprint.prj_key
+  - energy-esg.project_footprint.period
+  - energy-esg.project_footprint.materials_kgco2e
+  - energy-esg.project_footprint.transport_kgco2e
+  - energy-esg.project_footprint.site_kgco2e
+  - energy-esg.project_footprint.subcontractor_kgco2e
+  - energy-esg.project_footprint.total_kgco2e
+  - projects.project.prj_key
+  - projects.project.route_length_m
+  - projects.project.start
+  - projects.project.status
+  stage: month12
+  summary: Use this when you need to compare the kg CO2e per metre of a comparable
+    set of projects with a customer limit.
+- deprecated: null
+  facts:
+  - world.window_start
+  id: halvaro.esg.footprint.per_metre
+  kb: []
+  kb_versions: []
+  library: halvaro-esg
+  oracle: py:tests/test_energy_esg.py::test_h6_per_metre_footprint
+  parameters:
+  - PF
+  - P
+  - RC
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - energy-esg.project_footprint.prj_key
+  - energy-esg.project_footprint.period
+  - energy-esg.project_footprint.materials_kgco2e
+  - energy-esg.project_footprint.transport_kgco2e
+  - energy-esg.project_footprint.site_kgco2e
+  - energy-esg.project_footprint.subcontractor_kgco2e
+  - energy-esg.project_footprint.total_kgco2e
+  - projects.project.prj_key
+  - projects.project.route_length_m
+  - projects.project.start
+  - projects.project.status
+  stage: month12
+  summary: Use this when you need the kilograms CO2e per planned route metre of each
+    project.
+- deprecated: null
+  facts: []
+  id: halvaro.esg.footprint.project_footprint_from_lines
+  kb: []
+  kb_versions: []
+  library: halvaro-esg
+  oracle: py:tests/test_energy_esg.py::test_project_footprints_equal_project_lines
+  parameters:
+  - L
+  - basis
+  - component_map
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - energy-esg.emission_line.prj_key
+  - energy-esg.emission_line.le_key
+  - energy-esg.emission_line.period
+  - energy-esg.emission_line.scope
+  - energy-esg.emission_line.category
+  - energy-esg.emission_line.line_no
+  - energy-esg.emission_line.ghg_category
+  - energy-esg.emission_line.kgco2e
+  - energy-esg.emission_line.is_superseded
+  - energy-esg.emission_line.restated_from_period
+  stage: month12
+  summary: Use this when you need the four footprint components of each project and
+    period from the emission lines that carry a project.
+- deprecated: null
+  facts: []
+  id: halvaro.esg.footprint.project_scope_split
+  kb: []
+  kb_versions: []
+  library: halvaro-esg
+  oracle: py:tests/test_energy_esg.py::test_project_footprints_equal_project_lines
+  parameters:
+  - L
+  - year
+  - basis
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - energy-esg.emission_line.prj_key
+  - energy-esg.emission_line.le_key
+  - energy-esg.emission_line.period
+  - energy-esg.emission_line.scope
+  - energy-esg.emission_line.category
+  - energy-esg.emission_line.line_no
+  - energy-esg.emission_line.ghg_category
+  - energy-esg.emission_line.kgco2e
+  - energy-esg.emission_line.is_superseded
+  - energy-esg.emission_line.restated_from_period
+  stage: month12
+  summary: Use this when you need the kgco2e of each project in one year split by
+    scope 1, 3.1, 3.3 and 3.4.
+- deprecated: null
+  facts: []
+  id: halvaro.esg.footprint.tender_estimate
+  kb: []
+  kb_versions: []
+  library: halvaro-esg
+  oracle: py:tests/test_oracle_footprint.py::test_oracle_tender_estimate_every_route
+  parameters:
+  - EB
+  - CC
+  - PF
+  - P
+  - TC
+  - metres
+  - estimate_type
+  - component_of_category
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - projects.estimate_line.cst_key
+  - projects.estimate_line.amount
+  - projects.cost_code.category
+  - energy-esg.project_footprint.prj_key
+  - energy-esg.project_footprint.period
+  - energy-esg.project_footprint.materials_kgco2e
+  - energy-esg.project_footprint.transport_kgco2e
+  - energy-esg.project_footprint.site_kgco2e
+  - energy-esg.project_footprint.subcontractor_kgco2e
+  - energy-esg.project_footprint.total_kgco2e
+  - projects.project.route_length_m
+  stage: month12
+  summary: Use this when you need a labelled footprint estimate of an open tender
+    from the intensity of its comparable projects.
+- deprecated: null
+  facts:
+  - world.now
+  - world.fx_eur_dkk_fixed
+  id: halvaro.esg.ghg.intensity
+  kb: []
+  kb_versions: []
+  library: halvaro-esg
+  oracle: py:tests/test_oracle_ghg.py::test_oracle_intensity_every_route
+  parameters:
+  - L
+  - SR
+  - year
+  - basis
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - energy-esg.emission_line.le_key
+  - energy-esg.emission_line.period
+  - energy-esg.emission_line.scope
+  - energy-esg.emission_line.category
+  - energy-esg.emission_line.line_no
+  - energy-esg.emission_line.method
+  - energy-esg.emission_line.ghg_category
+  - energy-esg.emission_line.kgco2e
+  - energy-esg.emission_line.is_superseded
+  - energy-esg.emission_line.restated_from_period
+  - finance-reporting.statutory_report.le_key
+  - finance-reporting.statutory_report.fiscal_year
+  - finance-reporting.statutory_report.revenue
+  - finance-reporting.statutory_report.average_employees
+  - finance-reporting.statutory_report.currency
+  - finance-reporting.statutory_report.scope
+  stage: month12
+  summary: Use this when you need the emissions in tonnes CO2e per employee and per
+    DKK million of revenue, per legal entity and for the company.
+- deprecated: null
+  facts: []
+  id: halvaro.esg.ghg.renewable_effect
+  kb: []
+  kb_versions: []
+  library: halvaro-esg
+  oracle: py:tests/test_energy_esg.py::test_e12_renewable_contract_scope2
+  parameters:
+  - L
+  - C
+  - before
+  - after
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - energy-esg.emission_line.le_key
+  - energy-esg.emission_line.period
+  - energy-esg.emission_line.scope
+  - energy-esg.emission_line.category
+  - energy-esg.emission_line.line_no
+  - energy-esg.emission_line.method
+  - energy-esg.emission_line.ghg_category
+  - energy-esg.emission_line.kgco2e
+  - energy-esg.emission_line.is_superseded
+  - energy-esg.emission_line.restated_from_period
+  - energy-esg.energy_consumption.period
+  - energy-esg.energy_consumption.contract_type
+  stage: month12
+  summary: Use this when you need the monthly average of scope 2 before and after
+    the renewable contract, market against location, with the percent change.
+- deprecated: null
+  facts: []
+  id: halvaro.esg.ghg.scope2_dual
+  kb: []
+  kb_versions: []
+  library: halvaro-esg
+  oracle: py:tests/test_energy_esg.py::test_e12_renewable_contract_scope2
+  parameters:
+  - L
+  - year
+  - basis
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - energy-esg.emission_line.le_key
+  - energy-esg.emission_line.period
+  - energy-esg.emission_line.scope
+  - energy-esg.emission_line.category
+  - energy-esg.emission_line.line_no
+  - energy-esg.emission_line.method
+  - energy-esg.emission_line.ghg_category
+  - energy-esg.emission_line.kgco2e
+  - energy-esg.emission_line.is_superseded
+  - energy-esg.emission_line.restated_from_period
+  stage: month12
+  summary: Use this when you need scope 2 by carrier category with the location based
+    and the market based result side by side.
+- deprecated: null
+  facts: []
+  id: halvaro.esg.ghg.scope3_by_category
+  kb: []
+  kb_versions: []
+  library: halvaro-esg
+  oracle: py:halvaro_gen/world/energy_esg/truth.py::esg_truth
+  parameters:
+  - L
+  - year
+  - basis
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - energy-esg.emission_line.le_key
+  - energy-esg.emission_line.period
+  - energy-esg.emission_line.scope
+  - energy-esg.emission_line.category
+  - energy-esg.emission_line.line_no
+  - energy-esg.emission_line.method
+  - energy-esg.emission_line.ghg_category
+  - energy-esg.emission_line.kgco2e
+  - energy-esg.emission_line.is_superseded
+  - energy-esg.emission_line.restated_from_period
+  stage: month12
+  summary: Use this when you need scope 3 by ghg_category and line category for one
+    year and basis.
+- deprecated: null
+  facts: []
+  id: halvaro.esg.ghg.scope3_coverage
+  kb: []
+  kb_versions: []
+  library: halvaro-esg
+  oracle: py:tests/test_oracle_ghg.py::test_oracle_scope3_coverage_every_route
+  parameters:
+  - L
+  - screening
+  - year
+  - basis
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - energy-esg.emission_line.le_key
+  - energy-esg.emission_line.period
+  - energy-esg.emission_line.scope
+  - energy-esg.emission_line.category
+  - energy-esg.emission_line.line_no
+  - energy-esg.emission_line.method
+  - energy-esg.emission_line.ghg_category
+  - energy-esg.emission_line.kgco2e
+  - energy-esg.emission_line.is_superseded
+  - energy-esg.emission_line.restated_from_period
+  stage: month12
+  summary: Use this when you need to see which of the 15 scope 3 categories have lines
+    and the reason for each absent one.
+- deprecated: null
+  facts:
+  - world.now
+  id: halvaro.esg.ghg.scope_totals
+  kb: []
+  kb_versions: []
+  library: halvaro-esg
+  oracle: py:halvaro_gen/world/energy_esg/truth.py::esg_truth
+  parameters:
+  - L
+  - year
+  - basis
+  - le
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - energy-esg.emission_line.le_key
+  - energy-esg.emission_line.period
+  - energy-esg.emission_line.scope
+  - energy-esg.emission_line.category
+  - energy-esg.emission_line.line_no
+  - energy-esg.emission_line.method
+  - energy-esg.emission_line.ghg_category
+  - energy-esg.emission_line.kgco2e
+  - energy-esg.emission_line.is_superseded
+  - energy-esg.emission_line.restated_from_period
+  stage: month12
+  summary: Use this when you need the scope 1, scope 2 and scope 3 totals of one year
+    on one basis, per entity, for one entity or for all.
+- deprecated: null
+  facts:
+  - world.now
+  id: halvaro.esg.ghg.statement_inputs
+  kb: []
+  kb_versions: []
+  library: halvaro-esg
+  oracle: py:tests/test_energy_esg.py::test_emission_totals_for_finance
+  parameters:
+  - L
+  - C
+  - M
+  - T
+  - year
+  - le
+  - basis
+  - kwh_per_litre
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - energy-esg.emission_line.le_key
+  - energy-esg.emission_line.period
+  - energy-esg.emission_line.scope
+  - energy-esg.emission_line.category
+  - energy-esg.emission_line.line_no
+  - energy-esg.emission_line.method
+  - energy-esg.emission_line.ghg_category
+  - energy-esg.emission_line.kgco2e
+  - energy-esg.emission_line.is_superseded
+  - energy-esg.emission_line.restated_from_period
+  - energy-esg.energy_consumption.mtr_key
+  - energy-esg.energy_consumption.period
+  - energy-esg.energy_consumption.quantity
+  - energy-esg.energy_consumption.unit
+  - energy-esg.energy_meter.mtr_key
+  - energy-esg.energy_meter.carrier
+  - energy-esg.energy_meter.le_key
+  - energy-esg.target.target_no
+  stage: month12
+  summary: 'Use this when you need the numbers for a statutory statement or a questionnaire
+    of one entity or of the company: totals, comparatives, energy use and targets.'
+- deprecated: null
+  facts: []
+  id: halvaro.esg.ghg.winter_decomposition
+  kb: []
+  kb_versions: []
+  library: halvaro-esg
+  oracle: py:tests/test_oracle_ghg.py::test_oracle_winter_decomposition_every_route
+  parameters:
+  - C
+  - M
+  - MA
+  - now
+  - prev
+  - carrier
+  - by
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - energy-esg.energy_consumption.mtr_key
+  - energy-esg.energy_consumption.period
+  - energy-esg.energy_consumption.quantity
+  - energy-esg.energy_consumption.unit
+  - energy-esg.energy_meter.mtr_key
+  - energy-esg.energy_meter.kind
+  - energy-esg.energy_meter.carrier
+  - energy-esg.energy_meter_asset.mtr_key
+  - energy-esg.energy_meter_asset.asset_type
+  stage: month12
+  summary: Use this when you need the litres of a fuel in a winter window against
+    the same months a year earlier, per meter, meter kind or asset type.
+- deprecated: null
+  facts: []
+  id: halvaro.esg.ghg.winter_ratio
+  kb: []
+  kb_versions: []
+  library: halvaro-esg
+  oracle: py:halvaro_gen/world/energy_esg/truth.py::esg_truth
+  parameters:
+  - L
+  - prev
+  - now
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - energy-esg.emission_line.le_key
+  - energy-esg.emission_line.period
+  - energy-esg.emission_line.scope
+  - energy-esg.emission_line.category
+  - energy-esg.emission_line.line_no
+  - energy-esg.emission_line.method
+  - energy-esg.emission_line.ghg_category
+  - energy-esg.emission_line.kgco2e
+  - energy-esg.emission_line.is_superseded
+  - energy-esg.emission_line.restated_from_period
+  stage: month12
+  summary: Use this when you need Scope 1 of a winter window against the same window
+    a year earlier, on the current and the first booked basis.
+- deprecated: null
+  facts: []
+  id: halvaro.esg.levers.lever_fuel_switch
+  kb: []
+  kb_versions: []
+  library: halvaro-esg
+  oracle: py:repo_tests/test_oracle_levers_release.py::test_oracle_lever_fuel_switch_equals_a_line_by_line_repricing_of_the_baseline_diesel_lines
+  parameters:
+  - L
+  - F
+  - P
+  - to
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - energy-esg.emission_line.prj_key
+  - energy-esg.emission_line.le_key
+  - energy-esg.emission_line.period
+  - energy-esg.emission_line.scope
+  - energy-esg.emission_line.category
+  - energy-esg.emission_line.line_no
+  - energy-esg.emission_line.quantity
+  - energy-esg.emission_line.efac_key
+  - energy-esg.emission_line.kgco2e
+  - energy-esg.emission_line.is_superseded
+  - energy-esg.emission_line.restated_from_period
+  - energy-esg.emission_line.supersedes_line_no
+  - energy-esg.emission_line.unit
+  - energy-esg.emission_factor.efac_key
+  - energy-esg.emission_factor.category
+  - energy-esg.emission_factor.region
+  - energy-esg.emission_factor.factor_set
+  - energy-esg.emission_factor.kgco2e_per_unit
+  - energy-esg.emission_factor.unit
+  - projects.project.prj_key
+  - projects.project.route_length_m
+  stage: month12
+  summary: Use this when you need the kilograms CO2e that moving the site diesel of
+    each project to HVO100 would save, per project and optionally per route metre.
+- deprecated: null
+  facts: []
+  id: halvaro.esg.levers.lever_material_substitution
+  kb: []
+  kb_versions: []
+  library: halvaro-esg
+  oracle: py:repo_tests/test_oracle_levers_release.py::test_oracle_lever_material_substitution_equals_the_direct_formula_on_baseline_item_pairs
+  parameters:
+  - G
+  - item
+  - epd
+  - cand
+  - factors
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - inventory.item.itm_key
+  - inventory.item.category
+  - inventory.item.unit
+  - inventory.item.footprint_kgco2e_per_unit
+  - energy-esg.item_epd.itm_key
+  - energy-esg.item_epd.source
+  - energy-esg.item_epd.verification
+  - energy-esg.emission_factor.category
+  - energy-esg.emission_factor.kgco2e_per_unit
+  stage: month12
+  summary: Use this when you need the kilograms CO2e saved by replacing bought items
+    with candidate items of a lower footprint.
+- deprecated: null
+  facts: []
+  id: halvaro.esg.levers.lever_report
+  kb: []
+  kb_versions: []
+  library: halvaro-esg
+  oracle: py:tests/test_oracle_levers.py::test_oracle_lever_report_hand_worked_numbers_and_ordering
+  parameters:
+  - pm
+  - levers
+  - limit
+  - top
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - energy-esg.project_footprint.prj_key
+  - projects.project.route_length_m
+  stage: month12
+  summary: Use this when you need the best levers of one project, ranked by saving
+    per route metre, against a customer limit per metre.
+- deprecated: null
+  facts: []
+  id: halvaro.esg.lines.as_first_booked
+  kb: []
+  kb_versions: []
+  library: halvaro-esg
+  oracle: py:halvaro_gen/world/energy_esg/truth.py::esg_truth
+  parameters:
+  - L
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - energy-esg.emission_line.le_key
+  - energy-esg.emission_line.period
+  - energy-esg.emission_line.scope
+  - energy-esg.emission_line.category
+  - energy-esg.emission_line.line_no
+  - energy-esg.emission_line.kgco2e
+  - energy-esg.emission_line.is_superseded
+  - energy-esg.emission_line.restated_from_period
+  - energy-esg.emission_line.supersedes_line_no
+  stage: month12
+  summary: Use this when you need the emission lines as they were first booked, before
+    any restatement.
+- deprecated: null
+  facts: []
+  id: halvaro.esg.lines.as_of_view
+  kb: []
+  kb_versions: []
+  library: halvaro-esg
+  oracle: py:repo_tests/test_oracle_lines_release.py::test_oracle_as_of_view_equals_a_plain_loop_over_the_baseline_lines
+  parameters:
+  - L
+  - as_of
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - energy-esg.emission_line.le_key
+  - energy-esg.emission_line.period
+  - energy-esg.emission_line.scope
+  - energy-esg.emission_line.category
+  - energy-esg.emission_line.line_no
+  - energy-esg.emission_line.kgco2e
+  - energy-esg.emission_line.is_superseded
+  - energy-esg.emission_line.restated_from_period
+  - energy-esg.emission_line.supersedes_line_no
+  stage: month12
+  summary: Use this when you need the emission lines that were visible at a booking
+    period, whatever is_superseded says today.
+- deprecated: null
+  facts: []
+  id: halvaro.esg.lines.assert_no_double_count
+  kb: []
+  kb_versions: []
+  library: halvaro-esg
+  oracle: py:halvaro_gen/world/energy_esg/truth.py::esg_truth
+  parameters:
+  - L
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - energy-esg.emission_line.le_key
+  - energy-esg.emission_line.period
+  - energy-esg.emission_line.scope
+  - energy-esg.emission_line.category
+  - energy-esg.emission_line.line_no
+  - energy-esg.emission_line.kgco2e
+  - energy-esg.emission_line.is_superseded
+  - energy-esg.emission_line.restated_from_period
+  - energy-esg.emission_line.supersedes_line_no
+  stage: month12
+  summary: Use this when you need to confirm that a frame of emission lines holds
+    no original together with the restated line that replaces it, before you total
+    it.
+- deprecated: null
+  facts: []
+  id: halvaro.esg.lines.current_basis
+  kb: []
+  kb_versions: []
+  library: halvaro-esg
+  oracle: py:halvaro_gen/world/energy_esg/truth.py::esg_truth
+  parameters:
+  - L
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - energy-esg.emission_line.le_key
+  - energy-esg.emission_line.period
+  - energy-esg.emission_line.scope
+  - energy-esg.emission_line.category
+  - energy-esg.emission_line.line_no
+  - energy-esg.emission_line.kgco2e
+  - energy-esg.emission_line.is_superseded
+  - energy-esg.emission_line.restated_from_period
+  - energy-esg.emission_line.supersedes_line_no
+  stage: month12
+  summary: Use this when you need the emission lines without the superseded originals,
+    so that a total counts every restatement once.
+- deprecated: null
+  facts: []
+  id: halvaro.esg.lines.restatement_bridge
+  kb: []
+  kb_versions: []
+  library: halvaro-esg
+  oracle: py:halvaro_gen/world/energy_esg/truth.py::esg_truth
+  parameters:
+  - L
+  - F
+  - year
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - energy-esg.emission_line.le_key
+  - energy-esg.emission_line.period
+  - energy-esg.emission_line.scope
+  - energy-esg.emission_line.category
+  - energy-esg.emission_line.line_no
+  - energy-esg.emission_line.kgco2e
+  - energy-esg.emission_line.is_superseded
+  - energy-esg.emission_line.restated_from_period
+  - energy-esg.emission_line.supersedes_line_no
+  - energy-esg.emission_line.quantity
+  - energy-esg.emission_line.efac_key
+  - energy-esg.emission_line.method
+  - energy-esg.emission_factor.efac_key
+  - energy-esg.emission_factor.category
+  - energy-esg.emission_factor.carrier
+  - energy-esg.emission_factor.region
+  - energy-esg.emission_factor.method
+  stage: month12
+  summary: Use this when you need the change from first booked to restated emissions
+    of one year, by scope, category and factor family.
+- deprecated: null
+  facts: []
+  id: halvaro.esg.lines.restatement_pairs
+  kb: []
+  kb_versions: []
+  library: halvaro-esg
+  oracle: py:tests/test_energy_esg.py::test_restatement_keeps_old_lines
+  parameters:
+  - L
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - energy-esg.emission_line.le_key
+  - energy-esg.emission_line.period
+  - energy-esg.emission_line.scope
+  - energy-esg.emission_line.category
+  - energy-esg.emission_line.line_no
+  - energy-esg.emission_line.kgco2e
+  - energy-esg.emission_line.is_superseded
+  - energy-esg.emission_line.restated_from_period
+  - energy-esg.emission_line.supersedes_line_no
+  - energy-esg.emission_line.quantity
+  - energy-esg.emission_line.efac_key
+  - energy-esg.emission_line.method
+  stage: month12
+  summary: Use this when you need each restated emission line next to the original
+    it replaces, with the change in kg.
+- deprecated: null
+  facts: []
+  id: halvaro.esg.lines.validate_lines
+  kb: []
+  kb_versions: []
+  library: halvaro-esg
+  oracle: py:tests/test_energy_esg.py::test_keys_valid_and_foreign_keys
+  parameters:
+  - L
+  - F
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - energy-esg.emission_line.le_key
+  - energy-esg.emission_line.period
+  - energy-esg.emission_line.scope
+  - energy-esg.emission_line.category
+  - energy-esg.emission_line.line_no
+  - energy-esg.emission_line.kgco2e
+  - energy-esg.emission_line.is_superseded
+  - energy-esg.emission_line.restated_from_period
+  - energy-esg.emission_line.supersedes_line_no
+  - energy-esg.emission_line.quantity
+  - energy-esg.emission_line.efac_key
+  - energy-esg.emission_line.method
+  - energy-esg.emission_line.ref_type
+  - energy-esg.emission_line.ref_key
+  - energy-esg.emission_factor.efac_key
+  - energy-esg.emission_factor.kgco2e_per_unit
+  - energy-esg.emission_factor.valid_from
+  - energy-esg.emission_factor.valid_to
+  stage: month12
+  summary: Use this when you need the rule violations of the emission lines, such
+    as a wrong kg value, an unknown or invalid factor or a wrong method.
+- deprecated: null
+  facts: []
+  id: halvaro.esg.recompute.expected_goods_lines
+  kb: []
+  kb_versions: []
+  library: halvaro-esg
+  oracle: py:tests/test_energy_esg.py::test_project_footprints_equal_project_lines
+  parameters:
+  - goods_receipt
+  - po_line
+  - purchase_order
+  - item
+  - f
+  - exclude_categories
+  - periods
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - procurement.goods_receipt.po_key
+  - procurement.goods_receipt.line_no
+  - procurement.goods_receipt.receipt_type
+  - procurement.goods_receipt.qty_accepted
+  - procurement.goods_receipt.receipt_date
+  - procurement.purchase_order.po_key
+  - procurement.purchase_order.prj_key
+  - procurement.purchase_order.sup_key
+  - procurement.purchase_order.legal_entity_key
+  - inventory.item.itm_key
+  - inventory.item.category
+  - inventory.item.footprint_kgco2e_per_unit
+  - inventory.item.item_type
+  - procurement.po_line.po_key
+  - procurement.po_line.line_no
+  - procurement.po_line.itm_key
+  - energy-esg.emission_factor.efac_key
+  - energy-esg.emission_factor.category
+  - energy-esg.emission_factor.carrier
+  - energy-esg.emission_factor.region
+  - energy-esg.emission_factor.method
+  - energy-esg.emission_factor.kgco2e_per_unit
+  - energy-esg.emission_factor.valid_from
+  - energy-esg.emission_factor.valid_to
+  - energy-esg.emission_factor.factor_set
+  stage: month12
+  summary: Use this when you need the scope 3.1 goods emission lines that the goods
+    accepted at receipt per supplier, month and item category should produce.
+- deprecated: null
+  facts: []
+  id: halvaro.esg.recompute.expected_lines_s123
+  kb: []
+  kb_versions: []
+  library: halvaro-esg
+  oracle: py:tests/test_energy_esg.py::test_lines_follow_consumption
+  parameters:
+  - c
+  - m
+  - f
+  - heat_region_by_site
+  - restate
+  - include_tanks
+  - contract_types
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - energy-esg.energy_consumption.mtr_key
+  - energy-esg.energy_consumption.period
+  - energy-esg.energy_consumption.quantity
+  - energy-esg.energy_consumption.unit
+  - energy-esg.energy_consumption.contract_type
+  - energy-esg.energy_meter.mtr_key
+  - energy-esg.energy_meter.carrier
+  - energy-esg.energy_meter.kind
+  - energy-esg.energy_meter.country
+  - energy-esg.energy_meter.site_key
+  - energy-esg.energy_meter.le_key
+  - energy-esg.emission_factor.efac_key
+  - energy-esg.emission_factor.category
+  - energy-esg.emission_factor.carrier
+  - energy-esg.emission_factor.region
+  - energy-esg.emission_factor.method
+  - energy-esg.emission_factor.kgco2e_per_unit
+  - energy-esg.emission_factor.valid_from
+  - energy-esg.emission_factor.valid_to
+  - energy-esg.emission_factor.factor_set
+  - energy-esg.energy_meter.valid_from
+  stage: month12
+  summary: Use this when you need the scope 1, scope 2 and scope 3.3 emission lines
+    that the consumption of each meter and month should produce.
+- deprecated: null
+  facts: []
+  id: halvaro.esg.recompute.expected_service_lines
+  kb: []
+  kb_versions: []
+  library: halvaro-esg
+  oracle: py:tests/test_energy_esg.py::test_project_footprints_equal_project_lines
+  parameters:
+  - po_line
+  - item
+  - purchase_order
+  - f
+  - category_factor
+  - country_of_le
+  - received_status
+  - periods
+  - restate
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - procurement.po_line.po_key
+  - procurement.po_line.itm_key
+  - procurement.po_line.qty
+  - procurement.po_line.line_value_dkk
+  - procurement.po_line.received_qty
+  - procurement.po_line.last_receipt_date
+  - procurement.po_line.line_status
+  - procurement.purchase_order.po_key
+  - procurement.purchase_order.prj_key
+  - procurement.purchase_order.sup_key
+  - procurement.purchase_order.legal_entity_key
+  - inventory.item.itm_key
+  - inventory.item.category
+  - inventory.item.footprint_kgco2e_per_unit
+  - inventory.item.item_type
+  - energy-esg.emission_factor.efac_key
+  - energy-esg.emission_factor.category
+  - energy-esg.emission_factor.carrier
+  - energy-esg.emission_factor.region
+  - energy-esg.emission_factor.method
+  - energy-esg.emission_factor.kgco2e_per_unit
+  - energy-esg.emission_factor.valid_from
+  - energy-esg.emission_factor.valid_to
+  - energy-esg.emission_factor.factor_set
+  stage: month12
+  summary: Use this when you need the scope 3.1 spend based emission lines that the
+    received share of service orders should produce per project and month.
+- deprecated: null
+  facts: []
+  id: halvaro.esg.recompute.expected_waste_lines
+  kb: []
+  kb_versions: []
+  library: halvaro-esg
+  oracle: py:tests/test_energy_esg.py::test_waste_and_travel
+  parameters:
+  - w
+  - f
+  - restate
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - energy-esg.waste_record.site_key
+  - energy-esg.waste_record.period
+  - energy-esg.waste_record.fraction
+  - energy-esg.waste_record.tonnes
+  - energy-esg.emission_factor.efac_key
+  - energy-esg.emission_factor.category
+  - energy-esg.emission_factor.carrier
+  - energy-esg.emission_factor.region
+  - energy-esg.emission_factor.method
+  - energy-esg.emission_factor.kgco2e_per_unit
+  - energy-esg.emission_factor.valid_from
+  - energy-esg.emission_factor.valid_to
+  - energy-esg.emission_factor.factor_set
+  stage: month12
+  summary: Use this when you need the scope 3.5 waste emission lines that the waste
+    records of each site, month and fraction should produce.
+- deprecated: null
+  facts: []
+  id: halvaro.esg.recompute.recompute_diff
+  kb: []
+  kb_versions: []
+  library: halvaro-esg
+  oracle: py:tests/test_energy_esg.py::test_scope_totals_equal_sum_of_lines
+  parameters:
+  - lines
+  - expected
+  - quantity_tolerance
+  - kg_tolerance_per_line
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - energy-esg.emission_line.ref_key
+  - energy-esg.emission_line.period
+  - energy-esg.emission_line.scope
+  - energy-esg.emission_line.ghg_category
+  - energy-esg.emission_line.method
+  - energy-esg.emission_line.category
+  - energy-esg.emission_line.subcategory
+  - energy-esg.emission_line.quantity
+  - energy-esg.emission_line.kgco2e
+  stage: month12
+  summary: Use this when you need to compare stored emission lines with the expected
+    lines and list every key that does not tie.
+- deprecated: null
+  facts: []
+  id: halvaro.esg.score.indicator_values
+  kb: []
+  kb_versions: []
+  library: halvaro-esg
+  oracle: py:repo_tests/test_oracle_score_release.py::test_oracle_indicator_values_equal_direct_pandas_readings_of_the_baseline
+  parameters:
+  - T
+  - L
+  - C
+  - M
+  - E
+  - A
+  - as_of
+  - year
+  - cycle_years
+  - intensity_actual
+  - epd_marker
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - energy-esg.target.target_no
+  - energy-esg.target.scope
+  - energy-esg.target.baseline_year
+  - energy-esg.target.target_year
+  - energy-esg.target.baseline_value
+  - energy-esg.target.target_value
+  - energy-esg.emission_line.le_key
+  - energy-esg.emission_line.period
+  - energy-esg.emission_line.scope
+  - energy-esg.emission_line.category
+  - energy-esg.emission_line.line_no
+  - energy-esg.emission_line.method
+  - energy-esg.emission_line.ghg_category
+  - energy-esg.emission_line.kgco2e
+  - energy-esg.emission_line.is_superseded
+  - energy-esg.emission_line.restated_from_period
+  - energy-esg.energy_consumption.mtr_key
+  - energy-esg.energy_consumption.period
+  - energy-esg.energy_consumption.quantity
+  - energy-esg.energy_consumption.unit
+  - energy-esg.energy_consumption.contract_type
+  - energy-esg.item_epd.itm_key
+  - energy-esg.item_epd.valid_from
+  - energy-esg.item_epd.valid_to
+  - energy-esg.item_epd.source
+  - energy-esg.energy_audit.site_key
+  - energy-esg.energy_audit.audit_date
+  - energy-esg.energy_audit.due_date
+  - energy-esg.energy_audit.status
+  stage: month12
+  summary: Use this when you need the seven environment indicator values (glide path
+    and share indicators) before they are scored.
+- deprecated: null
+  facts:
+  - policy.esg.scoring_band_a_min
+  - policy.esg.scoring_band_b_min
+  - policy.esg.scoring_band_c_min
+  - policy.esg.scoring_missing_data_min_weight
+  - policy.esg.scoring_basis
+  - policy.esg.scoring_external_use
+  id: halvaro.esg.score.score_indicators
+  kb: []
+  kb_versions: []
+  library: halvaro-esg
+  oracle: py:tests/test_oracle_score.py::test_oracle_score_indicators_scores_and_bands_follow_the_proposed_limits
+  parameters:
+  - v
+  - policy
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - energy-esg.target.baseline_value
+  - energy-esg.target.target_value
+  stage: month12
+  summary: Use this when you need each indicator value turned into a score from 0
+    to 100 and a band from A to D.
+- deprecated: null
+  facts:
+  - policy.esg.scoring_band_a_min
+  - policy.esg.scoring_band_b_min
+  - policy.esg.scoring_band_c_min
+  - policy.esg.scoring_missing_data_min_weight
+  - policy.esg.scoring_basis
+  - policy.esg.scoring_external_use
+  id: halvaro.esg.score.scorecard
+  kb: []
+  kb_versions: []
+  library: halvaro-esg
+  oracle: py:tests/test_oracle_score.py::test_oracle_scorecard_is_the_weighted_mean_over_the_weight_present
+  parameters:
+  - s
+  - policy
+  - as_of
+  - weights
+  - version
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - energy-esg.target.baseline_value
+  - energy-esg.target.target_value
+  stage: month12
+  summary: Use this when you need the weighted overall score and band of the scored
+    indicators, with the missing data list and the demo label.
+snapshot: 17703967a6ef6ceed2d045ad2f0871b60e0ad55e39445d26c00f11be10bbee40

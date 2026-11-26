@@ -1,0 +1,22 @@
+# Golden error case of halvaro-hr.carry_over_projection: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: carry_over_projection
+why: tolerance is negative
+args:
+- frame:
+    columns:
+    - emp_key
+    - holiday_year
+    - period
+    - balance
+    rows: []
+- frame:
+    columns:
+    - emp_key
+    - holiday_year
+    - carried_in_days
+    - carry_over_agreement
+    rows: []
+kwargs:
+  tolerance: -1
+raises: FrameError
+message: tolerance must be a number of days, zero or more

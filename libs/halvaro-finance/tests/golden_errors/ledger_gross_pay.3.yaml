@@ -1,0 +1,11 @@
+# Golden error case of halvaro-finance.ledger_gross_pay: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: ledger_gross_pay
+why: a gross salary line has no cost centre
+args:
+- frame:
+    columns: [le_key, cc_key, gl_key, period, amount]
+    rows:
+    - [LE-X, null, GL-7000, 2026-03, 100.0]
+context: month12
+raises: FrameError
+message: gross salary lines without a cost centre, entity or period; the tie-out is per cost centre

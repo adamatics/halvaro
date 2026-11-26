@@ -1,0 +1,19 @@
+id: err11-tender-profile-key-not-text
+rule: opp_key must be one text key, not a number.
+function: tender_profile
+frames:
+  opportunity:
+  - opp_key: OPP-900001
+    cus_key: CUS-900001
+    project_type: x
+    country: DK
+    soil_class: clay
+    route_length_m: 1
+    bid_deadline: '2031-03-01'
+args:
+  opp_key: 5
+raises:
+  error: FrameError
+  message: opp_key must be one text key
+  names:
+  - opp_key

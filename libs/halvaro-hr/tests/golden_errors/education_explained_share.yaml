@@ -1,0 +1,7 @@
+# Golden error case of halvaro-hr.education_explained_share: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: education_explained_share
+why: every frame is empty, so the columns the function reads are missing
+args:
+- frame: {}
+raises: FrameError
+message: pay frame with education (from with_education) frame lacks column(s) education_rank, has_education_record

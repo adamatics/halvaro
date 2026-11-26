@@ -1,0 +1,26 @@
+id: e01-basis-not-known
+rule: A basis other than load_percent or heat_power is refused, because the zone load is built from one of those two sensor types.
+function: zone_load_percent
+frames:
+  measurement:
+  - sns_key: SNS-900001
+    ts: 2031-01-10 00:00
+    value: 85.0
+    quality_flag: ok
+  sensor:
+  - sns_key: SNS-900001
+    zone_key: ZONE-0001
+    sensor_type: load_percent
+    interval_s: 3600
+    critical_role: none
+    rated_value: 100.0
+    station_key: STN-900001
+args:
+  basis: power
+raises:
+  error: FrameError
+  message: basis must be load_percent or heat_power, not 'power'
+  names:
+  - basis
+  - heat_power
+  - '''power'''

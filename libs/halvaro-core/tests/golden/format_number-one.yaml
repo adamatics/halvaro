@@ -1,0 +1,9 @@
+name: one decimal
+function: format_number
+by_hand: Thousands are separated by a comma and one decimal is kept.
+input:
+  args:
+  - 1234.5
+  - 1
+expect:
+  value: 1,234.5

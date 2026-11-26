@@ -1,0 +1,19 @@
+# Golden error case of halvaro-core.join_report: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: join_report
+why: on is given together with left_on
+args:
+- frame:
+    columns:
+    - k
+    rows:
+    - - A
+- frame:
+    columns:
+    - k
+    rows:
+    - - A
+kwargs:
+  'on': k
+  left_on: k
+raises: FrameError
+message: name the key columns with on, or with left_on and right_on, not both

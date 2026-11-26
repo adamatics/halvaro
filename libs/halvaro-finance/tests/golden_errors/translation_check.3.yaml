@@ -1,0 +1,11 @@
+# Golden error case of halvaro-finance.translation_check: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: translation_check
+why: an EUR line is translated at a rate other than the fixed booking rate
+args:
+- frame:
+    columns: [le_key, period, gl_key, closing_balance, currency, closing_balance_dkk]
+    rows:
+    - [LE-Y, 2026-12, GL-1000, 100.0, EUR, 500.0]
+context: month12
+raises: FrameError
+message: the EUR lines of 2026-12 are translated at 5.0000, not the fixed rate 7.46; a translation difference would arise

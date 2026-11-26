@@ -1,0 +1,10 @@
+id: e06-window-period-malformed
+rule: "winter_ratio is refused when a window holds a period that is not text like 2030-12."
+function: winter_ratio
+frames:
+  L: [{"le_key": "LE-900001", "period": "2030-05", "scope": 2, "category": "electricity", "line_no": 1, "kgco2e": 10.0, "quantity": 5.0, "efac_key": "EF-900001", "method": "location", "ghg_category": "2", "restated_from_period": null, "supersedes_line_no": null, "is_superseded": false}]
+args: {"prev": ["2030-00", "2031-02"], "now": ["2031-12", "2032-02"]}
+raises:
+  error: FrameError
+  message: "prev must be a period text like 2025-12, not '2030-00'"
+  names: ["prev", "'2030-00'"]

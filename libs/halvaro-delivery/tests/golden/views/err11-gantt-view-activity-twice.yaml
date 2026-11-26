@@ -1,0 +1,26 @@
+id: err11-gantt-view-activity-twice
+rule: An activity held twice in the plan against actual frame is refused.
+function: gantt_view
+frames:
+  plan_vs_actual:
+  - prj_key: PRJ-900001
+    baseline_start: '2031-01-05'
+    baseline_end: '2031-02-01'
+    latest_start: '2031-01-05'
+    latest_end: '2031-02-01'
+    actual_start: null
+    actual_end: null
+  - prj_key: PRJ-900001
+    baseline_start: '2031-01-05'
+    baseline_end: '2031-02-01'
+    latest_start: '2031-01-05'
+    latest_end: '2031-02-01'
+    actual_start: null
+    actual_end: null
+args: {}
+raises:
+  error: FrameError
+  message: activity_plan_vs_actual has more than one row for an activity key
+  names:
+  - activity_plan_vs_actual
+  - more than one row

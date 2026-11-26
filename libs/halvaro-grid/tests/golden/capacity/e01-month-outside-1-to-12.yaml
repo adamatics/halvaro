@@ -1,0 +1,13 @@
+id: e01-month-outside-1-to-12
+rule: A month number outside 1 to 12 is refused, because winter is a list of calendar months.
+function: winter_label
+args:
+  ts: 2031-01-10 00:00
+  months:
+  - 13
+raises:
+  error: FrameError
+  message: 'months must be a list of month numbers 1 to 12 (got [13])'
+  names:
+  - months
+  - 1 to 12

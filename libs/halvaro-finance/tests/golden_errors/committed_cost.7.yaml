@@ -1,0 +1,19 @@
+# Golden error case of halvaro-finance.committed_cost: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: committed_cost
+why: an order has no delivery type
+args:
+- frame:
+    columns: [po_key, line_no, prj_key, qty_open]
+    rows:
+    - [PO-X, 1, PRJ-X, 5.0]
+- frame:
+    columns: [po_key, line_no, unit_price, currency, cst_key]
+    rows:
+    - [PO-X, 1, 10.0, DKK, CST-X]
+- frame:
+    columns: [po_key, delivery_type]
+    rows:
+    - [PO-X, null]
+context: month12
+raises: FrameError
+message: an open line belongs to an order without a delivery_type or not in procurement.purchase_order

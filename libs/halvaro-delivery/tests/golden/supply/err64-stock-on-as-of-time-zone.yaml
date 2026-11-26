@@ -1,0 +1,20 @@
+id: err64-stock-on-as-of-time-zone
+rule: 'An as_of with a time zone is refused: dates are calendar days.'
+function: stock_on
+frames:
+  stock_movement:
+  - site_key: SITE-900001
+    itm_key: ITM-900001
+    movement_date: '2031-01-05'
+    movement_type: receipt
+    qty: 5
+    prj_key: null
+    reservation_no: null
+args:
+  as_of: '2031-02-01T00:00:00+01:00'
+raises:
+  error: FrameError
+  message: as_of '2031-02-01T00:00:00+01:00' is not a date without a time zone
+  names:
+  - as_of
+  - time zone

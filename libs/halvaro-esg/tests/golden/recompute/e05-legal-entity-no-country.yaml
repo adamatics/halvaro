@@ -1,0 +1,13 @@
+id: e05-legal-entity-no-country
+rule: "expected_service_lines is refused when the legal entity of a service order has no country in country_of_le."
+function: expected_service_lines
+frames:
+  po_line: [{"po_key": "PO-900001", "line_no": 1, "itm_key": "ITM-900001", "qty": 2.0, "line_value_dkk": 1000.0, "received_qty": 2.0, "last_receipt_date": "2030-05-02", "line_status": "received"}]
+  item: [{"itm_key": "ITM-900001", "category": "consulting", "item_type": "service"}]
+  purchase_order: [{"po_key": "PO-900001", "prj_key": "PRJ-900001", "legal_entity_key": "LE-900001"}]
+  f: [{"efac_key": "EF-900001", "category": "electricity", "carrier": "electricity", "region": "DK", "method": "location", "kgco2e_per_unit": 0.1, "unit": "kWh", "valid_from": "2030-01-01", "valid_to": null, "factor_set": "FS-900001"}]
+args: {"category_factor": {"consulting": "services"}}
+raises:
+  error: FrameError
+  message: "no country for the legal entity LE-900001; pass country_of_le"
+  names: ["country", "LE-900001", "country_of_le"]

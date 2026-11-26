@@ -1,0 +1,23 @@
+# Golden error case of halvaro-finance.statement_from_ledger: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: statement_from_ledger
+why: debit holds text instead of a number
+args:
+- frame:
+    columns: [le_key, period, gl_key, debit, credit, closing_balance]
+    rows:
+    - [LE-A, 2026-01, GL-4000, abc, 0.0, 0.0]
+- frame:
+    columns: [gl_key, statement, dk_statutory_map]
+    rows:
+    - [GL-4000, IS, M-REV]
+- frame:
+    columns: [map_code, line_code, statement, normal_side]
+    rows:
+    - [M-REV, REV, IS, credit]
+- LE-A
+- DK
+- 2026
+kwargs: {require_full_year: false}
+context: month12
+raises: FrameError
+message: finance.trial_balance.debit must hold numbers, not 'abc'

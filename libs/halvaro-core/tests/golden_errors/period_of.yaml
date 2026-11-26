@@ -1,0 +1,7 @@
+# Golden error case of halvaro-core.period_of: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: period_of
+why: a text is not a date
+args:
+- '2026-03'
+raises: PeriodError
+message: "period_of takes a date or a timestamp, not '2026-03'"

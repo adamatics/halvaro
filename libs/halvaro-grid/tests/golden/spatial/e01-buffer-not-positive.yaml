@@ -1,0 +1,21 @@
+id: e01-buffer-not-positive
+rule: A buffer of zero metres or less is refused, because the area of a group is the buffer around its elements.
+function: age_group_clusters
+frames:
+  grid_element:
+  - net_key: NET-900001
+    install_year: 1961
+    element_type: cable
+    zone_key: ZONE-0001
+    lon: 9.5
+    lat: 53.5
+args:
+  decade: 1960
+  element_type: cable
+  buffer_m: 0.0
+raises:
+  error: FrameError
+  message: 'buffer_m must be a positive number of metres (got 0.0)'
+  names:
+  - buffer_m
+  - positive

@@ -1,0 +1,28 @@
+id: err08-experience-network-as-of-number
+rule: The as_of day is a number, not a date.
+function: experience_network
+frames:
+  project_role:
+  - prj_key: PRJ-900001
+    emp_key: EMP-900001
+    project_role: 1
+    start: '2031-01-05'
+    end: '2031-01-05'
+    hours_total: 1
+    basis: 1
+  project:
+  - prj_key: PRJ-900001
+    type: 1
+    soil_class: 1
+    country: 1
+    legacy: 1
+args:
+  prj_keys:
+  - PRJ-900001
+  as_of: 7
+raises:
+  error: PeriodError
+  message: as_of 7 is a number, not a date; pass a date, a Timestamp or an ISO text such as 2026-11-30
+  names:
+  - as_of
+  - '7'

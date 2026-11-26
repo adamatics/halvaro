@@ -1,0 +1,28 @@
+id: err37-experience-network-role-ends-before-it-starts
+rule: A project role that ends before it starts is refused.
+function: experience_network
+frames:
+  project_role:
+  - prj_key: PRJ-900001
+    emp_key: EMP-900001
+    project_role: engineer
+    start: '2031-01-05'
+    end: '2031-01-01'
+    hours_total: 10
+    basis: time_entry
+  project:
+  - prj_key: PRJ-900001
+    type: dh_network
+    soil_class: clay
+    country: DE
+    legacy: false
+args:
+  prj_keys:
+  - PRJ-900001
+  as_of: '2031-02-01'
+raises:
+  error: FrameError
+  message: projects.project_role has a period that ends before it starts
+  names:
+  - project_role
+  - ends before it starts

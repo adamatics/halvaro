@@ -1,0 +1,25 @@
+id: err24-estimate-bridge-line-of-unknown-cost-code
+rule: An estimate line that points at a cst_key that projects.cost_code does not hold is refused.
+function: estimate_bridge
+frames:
+  estimate_version:
+  - prj_key: PRJ-900001
+    estimate_version: 1
+    type: tender
+    date: '2031-01-05'
+    currency: EUR
+    total_cost: 1
+  estimate_line:
+  - prj_key: PRJ-900001
+    estimate_version: 1
+    cst_key: CST-900002
+    amount: 1
+  cost_code:
+  - cst_key: CST-900001
+    category: civil
+args: {}
+raises:
+  error: FrameError
+  message: 1 estimate lines point at a cst_key that is not in projects.cost_code (for example CST-900002)
+  names:
+  - CST-900002

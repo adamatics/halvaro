@@ -1,0 +1,26 @@
+# Golden error case of halvaro-hr.carry_over_projection: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: carry_over_projection
+why: the entitlement frame has two rows for a person and holiday year
+args:
+- frame:
+    columns:
+    - emp_key
+    - holiday_year
+    - period
+    - balance
+    rows: []
+- frame:
+    columns:
+    - emp_key
+    - holiday_year
+    - carried_in_days
+    - carry_over_agreement
+    rows:
+    - &id001
+      - EMP-X1
+      - 2026/27
+      - 3.0
+      - false
+    - *id001
+raises: FrameError
+message: hr.holiday_entitlement has several rows for one person and holiday year; expected 1

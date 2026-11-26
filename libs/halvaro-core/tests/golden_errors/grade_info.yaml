@@ -1,0 +1,7 @@
+# Golden error case of halvaro-core.grade_info: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: grade_info
+why: every frame is empty, so the columns the function reads are missing
+args:
+- frame: {}
+raises: FrameError
+message: hr.grade frame lacks column(s) gra_key, level, name, band_min_dkk, band_max_dkk, band_min_eur, band_max_eur

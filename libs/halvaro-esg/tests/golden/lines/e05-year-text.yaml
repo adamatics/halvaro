@@ -1,0 +1,11 @@
+id: e05-year-text
+rule: "restatement_bridge is refused when year is text and not a whole number."
+function: restatement_bridge
+frames:
+  L: [{"le_key": "LE-900001", "period": "2030-05", "scope": 1, "category": "fuel", "line_no": 1, "kgco2e": 10.0, "quantity": 5.0, "efac_key": "EF-900001", "method": null, "ghg_category": "1", "restated_from_period": null, "supersedes_line_no": null, "is_superseded": false}]
+  F: [{"efac_key": "EF-900001", "category": "fuel", "carrier": "diesel", "region": "DK", "method": null}]
+args: {"year": "2030"}
+raises:
+  error: FrameError
+  message: "year must be a whole number, not '2030'"
+  names: ["year", "'2030'"]

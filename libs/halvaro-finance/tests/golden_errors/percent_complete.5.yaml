@@ -1,0 +1,17 @@
+# Golden error case of halvaro-finance.percent_complete: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: percent_complete
+why: actual_end lists a project twice
+args:
+- frame:
+    columns: [prj_key, period, actual_cost, eac]
+    rows:
+    - [PRJ-X, 2026-03, 400.0, 800.0]
+- frame:
+    columns: [prj_key, actual_end]
+    rows:
+    - [PRJ-X, '2026-02-28']
+    - [PRJ-X, '2026-02-28']
+kwargs: {cap: 0.9}
+context: month12
+raises: FrameError
+message: actual_end names PRJ-X more than once

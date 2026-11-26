@@ -1,0 +1,22 @@
+# Golden error case of halvaro-hr.headcount_on: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: headcount_on
+why: level is none of department, team and entity
+args:
+- frame:
+    columns:
+    - emp_key
+    - hire_date
+    - leave_date
+    - legal_entity_key
+    rows:
+    - - EMP-000001
+      - '2020-01-01'
+      - null
+      - LE-01
+- frame: {}
+- frame: {}
+- 2026-03-31
+kwargs:
+  level: x
+raises: FrameError
+message: level 'x' is not one of department, team, entity

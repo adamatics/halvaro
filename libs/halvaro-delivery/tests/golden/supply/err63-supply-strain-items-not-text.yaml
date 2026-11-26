@@ -1,0 +1,34 @@
+id: err63-supply-strain-items-not-text
+rule: items and zones must be lists of text keys.
+function: supply_strain_answer
+frames:
+  stock: &id001
+  - itm_key: ITM-900001
+  open_lines: *id001
+  lead_on:
+  - sup_key: SUP-900001
+    itm_key: ITM-900001
+  alerts: *id001
+  performance:
+  - sup_key: SUP-900001
+  spot: *id001
+  thin_cover:
+  - zone_key: null
+  supply_zone:
+  - zone_key: ZONE-0001
+    cus_key: CUS-900001
+  customer:
+  - cus_key: CUS-900001
+    name: Customer X
+args:
+  items:
+  - 5
+  zones:
+  - ZONE-0001
+  blocked: {}
+raises:
+  error: FrameError
+  message: items and zones are lists of text keys
+  names:
+  - items
+  - zones

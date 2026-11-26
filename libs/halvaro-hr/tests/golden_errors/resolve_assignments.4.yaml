@@ -1,0 +1,36 @@
+# Golden error case of halvaro-hr.resolve_assignments: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: resolve_assignments
+why: an assignment has a type that is not known
+args:
+- frame:
+    columns:
+    - assigned_username
+    - valid_from
+    - valid_to
+    - assignment_type
+    - pool_team_key
+    rows:
+    - - ab
+      - 2025-01-01
+      - null
+      - loan
+      - null
+- frame:
+    columns:
+    - username
+    - kind
+    - holder
+    - emp_key
+    - team_key
+    - valid_from
+    - valid_to
+    rows: []
+- frame:
+    columns:
+    - emp_key
+    - hire_date
+    - leave_date
+    rows: []
+- 2026-03-31
+raises: FrameError
+message: 'unknown assignment_type [''loan'']; known: named, pool_account, team'

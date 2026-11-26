@@ -1,0 +1,25 @@
+id: e01-faulted-element-not-in-grid
+rule: A fault on an element that the grid element table does not hold is refused, because the density cannot be placed on a cell.
+function: fault_density
+frames:
+  fault_event:
+  - net_key: NET-900002
+    fault_ts: 2031-02-03 10:00
+  grid_element:
+  - net_key: NET-900001
+    element_type: cable
+    zone_key: ZONE-0001
+    lon: 10.0
+    lat: 55.0
+    commissioned_date: '2031-01-05'
+    status: in_service
+    install_year: 2005
+args:
+  window_start: '2031-01-01'
+  window_end: '2031-03-01'
+raises:
+  error: FrameError
+  message: 1 faulted elements are not in gis.grid_element (for example NET-900002)
+  names:
+  - gis.grid_element
+  - NET-900002

@@ -1,0 +1,26 @@
+id: err04-supplier-performance-recompute-as-of-number
+rule: The day argument as_of is a number, not a date or ISO text, so the function refuses it.
+function: supplier_performance_recompute
+frames:
+  po_line:
+  - po_key: PO-900001
+    line_no: 1
+    qty: 1
+    requested_date: '2031-01-05'
+  purchase_order:
+  - po_key: PO-900001
+    sup_key: SUP-900001
+    status: 1
+  goods_receipt:
+  - po_key: PO-900001
+    line_no: 1
+    receipt_date: '2031-01-05'
+    qty_accepted: 1
+args:
+  as_of: 7
+raises:
+  error: FrameError
+  message: as_of 7 is a number, not a date
+  names:
+  - as_of
+  - '7'

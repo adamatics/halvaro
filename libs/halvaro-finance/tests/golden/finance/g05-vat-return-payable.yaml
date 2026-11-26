@@ -1,0 +1,15 @@
+name: The VAT payable of a month is the output VAT less the input VAT
+function: vat_return_from_ledger
+cites: [FI.STD.011]
+by_hand: Domestic sales of 1000 carry the standard rate (credit side of the output account) and domestic purchases of 400 carry it on the debit side of the input account. Output = rate x 1000, input = rate x 400, payable = rate x (1000 - 400).
+let:
+  rate: "=fact('fin.vat.DK.standard_rate')"
+input:
+  journal_line:
+    columns: [le_key, gl_key, period, amount, vat_code, vat_base, currency, source]
+    rows:
+      - [LE-01, GL-4710, "2025-01", "=-(rate * 1000)", DK25, 1000.0, DKK, ar]
+      - [LE-01, GL-2510, "2025-01", "=rate * 400", DK25, 400.0, DKK, ap]
+expect:
+  rows:
+    - {le_key: LE-01, period: "2025-01", currency: DKK, output_vat_domestic: "=round(rate * 1000, 2)", input_vat_domestic: "=round(rate * 400, 2)", vat_payable: "=round(rate * 600, 2)", taxable_base_domestic_sales: 1000.0, taxable_base_domestic_purchases: 400.0}

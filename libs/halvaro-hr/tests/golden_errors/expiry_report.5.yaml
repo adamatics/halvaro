@@ -1,0 +1,54 @@
+# Golden error case of halvaro-hr.expiry_report: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: expiry_report
+why: hr.employee has one emp_key twice
+args:
+- frame:
+    columns:
+    - emp_key
+    - qual_key
+    - issued
+    - expires
+    rows: []
+- frame:
+    columns:
+    - emp_key
+    - qual_key
+    - course_date
+    - course_end
+    - event_no
+    - free_seats
+    rows: []
+- frame:
+    columns:
+    - event_no
+    - qual_key
+    - date
+    - capacity
+    - seats_taken
+    - country
+    - location_site_key
+    rows: []
+- frame:
+    columns:
+    - emp_key
+    - leave_date
+    - legal_entity_key
+    rows:
+    - &id001
+      - EMP-X1
+      - null
+      - LE-X
+    - *id001
+- frame:
+    columns:
+    - emp_key
+    - leave_type
+    - start
+    - end
+    rows: []
+- 2026-03-31
+kwargs:
+  expiry_date: 2026-06-30
+  qual_key: QUAL-X
+raises: FrameError
+message: hr.employee has duplicate emp_key values; one row per person is required

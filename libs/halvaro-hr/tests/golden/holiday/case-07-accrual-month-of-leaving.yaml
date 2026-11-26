@@ -1,0 +1,23 @@
+name: DK accrual in the month of leaving covers the days up to the leave date
+function: accrual_expected
+cites: [dk/ferieloven/p-0005]
+by_hand: Employed from the first day of the month to the leave date, the share is the employed days over the days of the month (see part in the formulas).
+let:
+  rate: "=fact('legal.DK.holiday.accrual_days_per_month')"
+  part: "=round(15 / 31 * rate, 2)"
+input:
+  employee:
+    columns: [emp_key, hire_date, leave_date]
+    rows:
+      - [EMP-1, 2026-10-01, 2026-10-15]
+  leave_record:
+    columns: [emp_key, leave_type, start, end]
+    rows: []
+  acc:
+    columns: [emp_key, holiday_year, period, accrued_days]
+    rows:
+      - [EMP-1, "2026/27", "2026-10", "=part"]
+  now: 2026-11-30
+expect:
+  rows:
+    - {period: "2026-10", expected_days: "=part", difference: 0.0, within_tolerance: true}

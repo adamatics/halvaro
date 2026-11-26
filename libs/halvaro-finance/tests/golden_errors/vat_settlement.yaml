@@ -1,0 +1,9 @@
+# Golden error case of halvaro-finance.vat_settlement: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: vat_settlement
+why: every frame is empty, so the columns the function reads are missing
+args:
+- frame: {}
+- frame: {}
+context: month12
+raises: FrameError
+message: finance-reporting.vat_return frame lacks column(s) le_key, period, vat_payable, settlement_difference; load the source columns without renaming them

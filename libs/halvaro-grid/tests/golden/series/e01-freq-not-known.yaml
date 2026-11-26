@@ -1,0 +1,20 @@
+id: e01-freq-not-known
+rule: A bucket size that is not one of the known sizes is refused, because the peaks are grouped by those buckets only.
+function: bucket_peak
+frames:
+  measurement:
+  - sns_key: SNS-900001
+    ts: 2031-03-01 00:00
+    value: 1.0
+    quality_flag: ok
+  sensor:
+  - sns_key: SNS-900001
+    interval_s: 900
+args:
+  freq: fortnight
+raises:
+  error: FrameError
+  message: freq must be one of ['day', 'hour', 'week'], not 'fortnight'
+  names:
+  - freq
+  - fortnight

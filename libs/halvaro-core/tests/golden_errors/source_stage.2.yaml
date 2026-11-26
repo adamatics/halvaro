@@ -1,0 +1,7 @@
+# Golden error case of halvaro-core.source_stage: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: source_stage
+why: the source is not known
+args:
+- x
+raises: FrameError
+message: 'source ''x'' is unknown; sources: competence, contracts, crm, energy-esg, finance, finance-reporting, gis, hr, inventory, it-assets, procurement, projects, service, telemetry'

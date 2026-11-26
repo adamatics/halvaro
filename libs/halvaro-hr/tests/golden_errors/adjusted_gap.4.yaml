@@ -1,0 +1,26 @@
+# Golden error case of halvaro-hr.adjusted_gap: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: adjusted_gap
+why: the pay frame has a missing tenure value
+args:
+- frame:
+    columns:
+    - gender
+    - rate_dkk
+    - tenure_years
+    - legal_entity_key
+    - level
+    rows:
+    - - F
+      - 40000.0
+      - null
+      - LE-X
+      - 4
+    - - M
+      - 42000.0
+      - 2.0
+      - LE-X
+      - 4
+kwargs:
+  minimum_group: 1
+raises: FrameError
+message: the pay frame has missing entity, grade or tenure values or a non-positive or non-finite rate

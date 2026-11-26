@@ -1,0 +1,13 @@
+name: needs a later stage
+function: stage_banner
+by_hand: The banner names the source, the stage where it appears and the stage the session holds.
+input:
+  args:
+  - refusal:
+      sources:
+      - finance
+      stage: month3
+      held: day1
+      function: f
+expect:
+  value: Needs finance (appears at stage month3). This session holds stage day1.

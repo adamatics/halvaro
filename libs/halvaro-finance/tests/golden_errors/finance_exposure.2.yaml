@@ -1,0 +1,13 @@
+# Golden error case of halvaro-finance.finance_exposure: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: finance_exposure
+why: a project has two rows in the period
+args:
+- frame:
+    columns: [prj_key, period, currency, price_exposure, price_recoverable]
+    rows:
+    - [PRJ-X, 2026-03, EUR, 100.0, 40.0]
+    - [PRJ-X, 2026-03, EUR, 100.0, 40.0]
+- 2026-03
+context: month12
+raises: FrameError
+message: finance.project_financials has more than one row for a project in 2026-03

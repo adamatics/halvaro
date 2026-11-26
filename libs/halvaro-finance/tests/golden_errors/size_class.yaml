@@ -1,0 +1,8 @@
+# Golden error case of halvaro-finance.size_class: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: size_class
+why: every frame is empty, so the columns the function reads are missing
+args:
+- frame: {}
+context: month12
+raises: FrameError
+message: finance-reporting.statutory_report frame lacks column(s) rpt_key, le_key, revenue, total_assets, average_employees, size_criteria_met; load the source columns without renaming them

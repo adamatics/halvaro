@@ -1,0 +1,21 @@
+# Golden error case of halvaro-finance.labour_cost_overrun: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: labour_cost_overrun
+why: the labour budget is in another currency than the cost rows
+args:
+- frame:
+    columns: [prj_key, period, cst_key, currency, actual_amount, incurred_in_period, estimate_amount]
+    rows:
+    - [PRJ-X, 2026-03, CST-X, DKK, 100.0, 100.0, 200.0]
+- frame:
+    columns: [prj_key, cst_key, budget_version, budget_amount, currency]
+    rows:
+    - [PRJ-X, CST-X, 1, 150.0, EUR]
+- frame:
+    columns: [cst_key, category, is_group]
+    rows:
+    - [CST-X, labour, false]
+- 2026-01
+- 2026-03
+context: month12
+raises: FrameError
+message: 1 projects have a labour budget in another currency than their cost rows; amounts are never summed across currencies

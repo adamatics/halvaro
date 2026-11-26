@@ -1,0 +1,15 @@
+name: The filing due date is the day of the fact in the month after the period
+function: vat_filing_calendar
+cites: [FI.STD.011]
+by_hand: For the period 2025-01 the due date is the day of the fact in February 2025. That day is a working day in Denmark, so it is not moved. A stored date of the same day agrees.
+let:
+  day: "=fact('frep.vat.DK.filing_due_day_of_next_month')"
+context: month12
+input:
+  vat_return:
+    columns: [le_key, period, filing_due_date]
+    rows:
+      - [LE-01, "2025-01", "=date(2025, 2, day)"]
+expect:
+  rows:
+    - {le_key: LE-01, period: "2025-01", due_date: "=date(2025, 2, day)", agrees: true}

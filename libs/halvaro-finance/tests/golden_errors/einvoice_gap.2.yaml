@@ -1,0 +1,13 @@
+# Golden error case of halvaro-finance.einvoice_gap: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: einvoice_gap
+why: the window length in months is zero, not one or more
+args:
+- frame:
+    columns: [le_key, cus_key, invoice_date, invoice_format, counterpart_le_key]
+    rows:
+    - [LE-02, CUS-X, '2026-03-03', pdf, null]
+- 2026-03-31
+kwargs: {months: 0}
+context: month12
+raises: FrameError
+message: months must be a whole number, one or more

@@ -1,0 +1,24 @@
+# Golden error case of halvaro-core.net_working_days: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: net_working_days
+why: a leave record has no end date (a null)
+args:
+- frame:
+    columns:
+    - emp_key
+    - region
+    rows:
+    - - P1
+      - DK
+- frame:
+    columns:
+    - emp_key
+    - start
+    - end
+    rows:
+    - - P1
+      - 2026-03-10
+      - null
+- 2026-03-09
+- 2026-03-15
+raises: FrameError
+message: leave records need a start and an end date; a record of emp_key P1 has no end (null); drop the record or fill the date

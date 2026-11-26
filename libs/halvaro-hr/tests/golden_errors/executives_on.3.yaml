@@ -1,0 +1,30 @@
+# Golden error case of halvaro-hr.executives_on: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: executives_on
+why: the roles are not distinct text
+args:
+- frame:
+    columns:
+    - emp_key
+    - as_of
+    - active
+    - role_name
+    - dep_code
+    - team_key
+    rows:
+    - - EMP-000001
+      - '2026-03-31'
+      - true
+      - CEO
+      - X
+      - T
+- frame:
+    columns:
+    - role_key
+    - name
+    rows:
+    - - R1
+      - CEO
+- - CEO
+  - CEO
+raises: FrameError
+message: roles must be distinct role names (text)

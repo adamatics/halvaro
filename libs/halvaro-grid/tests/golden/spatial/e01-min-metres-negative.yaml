@@ -1,0 +1,24 @@
+id: e01-min-metres-negative
+rule: A negative minimum length is refused, because a route section shorter than the minimum is dropped and a length is never below zero.
+function: route_ground_intersection
+frames:
+  project_area:
+  - prj_key: PRJ-900001
+    version: 1
+    kind: planned_route
+    geom: LINESTRING(0 5, 100 5)
+  ground_condition:
+  - area_id: AREA-900001
+    geom: POLYGON((0 0, 40 0, 40 10, 0 10, 0 0))
+    soil_class: clay
+    groundwater: low
+    bearing_capacity: good
+    survey_kind: desk
+args:
+  min_metres: -1.0
+raises:
+  error: FrameError
+  message: 'min_metres must be a number of metres, zero or more (got -1.0)'
+  names:
+  - min_metres
+  - zero or more

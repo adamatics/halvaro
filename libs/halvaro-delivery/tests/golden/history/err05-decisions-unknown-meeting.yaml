@@ -1,0 +1,25 @@
+id: err05-decisions-unknown-meeting
+rule: A decision names a meeting that is not in the meeting frame.
+function: decisions
+frames:
+  decision:
+  - mtg_key: MTG-900001
+    seq: 1
+    decision_type: 1
+    impact_cost: 1
+    impact_days: 1
+    currency: 1
+    delay_seq: 1
+    co_no: 1
+  meeting:
+  - mtg_key: MTG-900002
+    prj_key: PRJ-900001
+    date: '2031-01-05'
+    meeting_type: 1
+args: {}
+raises:
+  error: FrameError
+  message: 1 decisions name a meeting that is not in projects.meeting (for example MTG-900001)
+  names:
+  - projects.meeting
+  - MTG-900001

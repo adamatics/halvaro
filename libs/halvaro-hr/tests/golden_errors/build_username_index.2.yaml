@@ -1,0 +1,24 @@
+# Golden error case of halvaro-hr.build_username_index: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: build_username_index
+why: a username date is text that is not a date (the text after the colon is the wording of pandas, so only the start is pinned)
+args:
+- frame:
+    columns:
+    - username
+    - emp_key
+    - valid_from
+    - valid_to
+    rows:
+    - - ab
+      - EMP-X1
+      - never
+      - null
+- frame:
+    columns:
+    - account_name
+    - team_key
+    - valid_from
+    - valid_to
+    rows: []
+raises: FrameError
+message_starts: 'the username sources.valid_from holds a value that is not a date: '

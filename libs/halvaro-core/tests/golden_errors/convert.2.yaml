@@ -1,0 +1,11 @@
+# Golden error case of halvaro-core.convert: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: convert
+why: the currency has no rate on the group_pay basis (it knows DKK and EUR only)
+args:
+- 100
+- SEK
+- DKK
+kwargs:
+  basis: group_pay
+raises: BasisError
+message: 'currency ''SEK'' has no rate on basis ''group_pay''; known: DKK, EUR'

@@ -1,0 +1,11 @@
+# Golden error case of halvaro-hr.availability_hours: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: availability_hours
+why: a period is given as text, not as a (start, end) pair
+args:
+- frame: {}
+- frame: {}
+- frame: {}
+- frame: {}
+- - 2026-01
+raises: FrameError
+message: a period is a (start, end) pair, not '2026-01'

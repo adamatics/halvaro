@@ -1,0 +1,50 @@
+# Golden error case of halvaro-hr.expiry_report: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: expiry_report
+why: unavailable_leave_types is None, which is neither a leave type nor a list of them
+args:
+- frame:
+    columns:
+    - emp_key
+    - qual_key
+    - issued
+    - expires
+    rows: []
+- frame:
+    columns:
+    - emp_key
+    - qual_key
+    - course_date
+    - course_end
+    - event_no
+    - free_seats
+    rows: []
+- frame:
+    columns:
+    - event_no
+    - qual_key
+    - date
+    - capacity
+    - seats_taken
+    - country
+    - location_site_key
+    rows: []
+- frame:
+    columns:
+    - emp_key
+    - leave_date
+    - legal_entity_key
+    rows: []
+- frame:
+    columns:
+    - emp_key
+    - leave_type
+    - start
+    - end
+    rows: []
+- &id001 2026-03-31
+kwargs:
+  expiry_date: *id001
+  qual_key: QUAL-01
+  unavailable_leave_types: null
+raises: FrameError
+message: unavailable_leave_types must be a leave type name or a list of leave type names, not None

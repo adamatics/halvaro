@@ -1,0 +1,33 @@
+id: err25-spot-orders-expedite-not-boolean
+rule: An expedite that is not True or False is refused.
+function: spot_orders
+frames:
+  po_line:
+  - po_key: PO-900001
+    line_no: 1
+    itm_key: ITM-900001
+    unit_price: 1
+    currency: EUR
+    price_source: spot
+    expedite: 'yes'
+  purchase_order:
+  - po_key: PO-900001
+    order_type: spot
+    sup_key: SUP-900001
+    prj_key: PRJ-900001
+    order_date: '2031-01-05'
+  price_list:
+  - sup_key: SUP-900002
+    itm_key: ITM-900001
+    valid_from: '2031-01-01'
+    valid_to: null
+    unit_price: 1
+    currency: EUR
+    change_reason: 1
+args: {}
+raises:
+  error: FrameError
+  message: procurement.po_line.expedite must be True or False on every row
+  names:
+  - expedite
+  - True or False

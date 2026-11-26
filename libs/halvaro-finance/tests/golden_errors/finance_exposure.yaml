@@ -1,0 +1,9 @@
+# Golden error case of halvaro-finance.finance_exposure: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: finance_exposure
+why: every frame is empty, so the columns the function reads are missing
+args:
+- frame: {}
+- 2026-03
+context: month12
+raises: FrameError
+message: finance.project_financials frame lacks column(s) prj_key, period, currency, price_exposure, price_recoverable; load the source columns without renaming them

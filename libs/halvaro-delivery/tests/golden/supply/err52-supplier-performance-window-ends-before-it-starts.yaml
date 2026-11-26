@@ -1,0 +1,18 @@
+id: err52-supplier-performance-window-ends-before-it-starts
+rule: A window that ends before it starts is refused.
+function: supplier_performance_window
+frames:
+  performance:
+  - sup_key: SUP-900001
+    period: 2031-01
+    lines_due: 2
+    lines_on_time: 1
+args:
+  first_period: 2031-03
+  last_period: 2031-01
+raises:
+  error: FrameError
+  message: the window ends before it starts
+  names:
+  - window
+  - ends before it starts

@@ -1,0 +1,16 @@
+# Golden error case of halvaro-finance.manual_journals: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: manual_journals
+why: a manual journal is listed twice in the header frame
+args:
+- frame:
+    columns: [le_key, journal_no, source, posting_date, description]
+    rows:
+    - [LE-X, 1, manual, '2026-01-05', x]
+    - [LE-X, 1, manual, '2026-01-05', x]
+- frame:
+    columns: [le_key, journal_no, line_no, gl_key, prj_key, amount, amount_dkk, currency]
+    rows:
+    - [LE-X, 1, 1, GL-1000, null, 1.0, 1.0, DKK]
+context: month12
+raises: FrameError
+message: finance.journal_header has a manual journal listed twice

@@ -1,0 +1,20 @@
+# Golden error case of halvaro-hr.valid_on: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: valid_on
+why: the certificate frame has a column twice
+args:
+- frame:
+    columns:
+    - emp_key
+    - qual_key
+    - issued
+    - expires
+    - issued
+    rows:
+    - - EMP-X1
+      - QUAL-X
+      - 2024-01-01
+      - 2027-01-01
+      - 2024-01-01
+- 2026-03-31
+raises: FrameError
+message: competence.certification_held has duplicate column names

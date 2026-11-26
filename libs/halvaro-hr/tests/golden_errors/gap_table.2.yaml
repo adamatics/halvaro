@@ -1,0 +1,16 @@
+# Golden error case of halvaro-hr.gap_table: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: gap_table
+why: by is neither department nor grade
+args:
+- frame:
+    columns:
+    - gender
+    - rate_dkk
+    - tenure_years
+    - legal_entity_key
+    - level
+    rows: []
+kwargs:
+  by: team
+raises: FrameError
+message: by 'team' is not department or grade

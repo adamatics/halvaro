@@ -1,0 +1,26 @@
+name: DK accrual of a part month is the monthly rate times the employed share
+function: accrual_expected
+cites: [dk/ferieloven/p-0005]
+by_hand: Hired in the middle of a month, the employed share is the employed days over the days of the month (see part in the formulas). A stored full month for the same person differs by the rate minus the part.
+let:
+  rate: "=fact('legal.DK.holiday.accrual_days_per_month')"
+  part: "=round(16 / 31 * rate, 2)"
+input:
+  employee:
+    columns: [emp_key, hire_date, leave_date]
+    rows:
+      - [EMP-1, 2026-10-16, null]
+      - [EMP-2, 2026-10-16, null]
+  leave_record:
+    columns: [emp_key, leave_type, start, end]
+    rows: []
+  acc:
+    columns: [emp_key, holiday_year, period, accrued_days]
+    rows:
+      - [EMP-1, "2026/27", "2026-10", "=part"]
+      - [EMP-2, "2026/27", "2026-10", "=rate"]
+  now: 2026-10-31
+expect:
+  rows:
+    - {emp_key: EMP-1, expected_days: "=part", difference: 0.0, within_tolerance: true}
+    - {emp_key: EMP-2, expected_days: "=part", difference: "=round(rate - part, 4)", within_tolerance: false}

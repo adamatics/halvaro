@@ -1,0 +1,2 @@
+# Public functions of halvaro-hr without a golden error case, each with its reason (tests/test_golden_errors.py checks that every registered function has a case or a line here).
+no_case: {}

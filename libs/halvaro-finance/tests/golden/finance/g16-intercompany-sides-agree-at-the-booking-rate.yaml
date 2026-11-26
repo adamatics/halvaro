@@ -1,0 +1,18 @@
+name: A creditor amount in euro and a debtor amount of the same value in kroner agree at the fixed booking rate
+function: intercompany_agreement
+cites: [FI.REF.014]
+by_hand: The creditor books 100 euro. The debtor books the fixed booking rate times 100 in DKK. Both sides are the same value in DKK, so the difference is 0, the records are matched and nothing is listed.
+let:
+  rate: "=fact('world.fx_eur_dkk_fixed')"
+context: month3
+input:
+  intercompany:
+    columns: [ic_type, document_date, creditor_amount, creditor_currency, debtor_amount, currency, difference_dkk, matched]
+    rows:
+      - [recharge, "2025-01-31", 100.0, EUR, "=round(100 * rate, 2)", DKK, 0.0, true]
+  intercompany_balance:
+    columns: [period, creditor_le_key, debtor_le_key, balance_type, creditor_balance, creditor_currency, debtor_balance, debtor_currency, difference_dkk, agrees]
+    rows:
+      - ["2025-01", LE-02, LE-01, trade, 100.0, EUR, "=round(100 * rate, 2)", DKK, 0.0, true]
+expect:
+  empty: true

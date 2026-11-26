@@ -1,0 +1,9 @@
+id: e02-meter-scope-column-missing
+rule: "check_meters is refused when the meter frame lacks the scope column the rule is checked against."
+function: check_meters
+frames:
+  m: [{"mtr_key": "MTR-900001", "carrier": "electricity", "unit": "kWh"}]
+raises:
+  error: FrameError
+  message: "energy-esg.energy_meter frame lacks column(s) scope; load the source columns without renaming them"
+  names: ["scope", "energy-esg.energy_meter"]

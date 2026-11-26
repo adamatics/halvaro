@@ -1,0 +1,8 @@
+# Golden error case of halvaro-core.rdiv: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: rdiv
+why: the divisor is zero
+args:
+- 10
+- 0
+raises: FrameError
+message: rdiv divides by a positive whole number, not 0

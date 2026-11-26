@@ -1,0 +1,8 @@
+# Golden error case of halvaro-core.guarded_sum: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: guarded_sum
+why: every frame is empty, so the columns the function reads are missing
+args:
+- frame: {}
+- x
+raises: FrameError
+message: guarded_sum needs the columns 'x', [] and a currency or unit column; the frame lacks ['x']. Pass guard= to name the column that must not mix.

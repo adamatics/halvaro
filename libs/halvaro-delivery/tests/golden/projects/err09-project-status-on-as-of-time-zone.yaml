@@ -1,0 +1,16 @@
+id: err09-project-status-on-as-of-time-zone
+rule: 'An as_of with a time zone is refused: dates are calendar days.'
+function: project_status_on
+frames:
+  project:
+  - prj_key: PRJ-900001
+    start: '2031-01-05'
+    actual_end: null
+args:
+  as_of: '2031-02-01T00:00:00+01:00'
+raises:
+  error: PeriodError
+  message: as_of '2031-02-01T00:00:00+01:00' has a time zone; dates here are calendar days, pass it without one
+  names:
+  - as_of
+  - time zone

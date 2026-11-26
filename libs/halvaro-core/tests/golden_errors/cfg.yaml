@@ -1,0 +1,8 @@
+# Golden error case of halvaro-core.cfg: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: cfg
+why: the file is not a fact file; the message ends in the list of known files, which grows with the fact files
+args:
+- x
+- x
+raises: FactNotFound
+message_starts: 'x is not a fact file; known:'

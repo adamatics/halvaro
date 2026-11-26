@@ -1,0 +1,17 @@
+id: err11-first-record-missing-column
+rule: The site_diary frame lacks a column the function needs, here notes.
+function: first_record
+frames:
+  site_diary:
+  - prj_key: PRJ-900001
+    diary_date: '2031-01-05'
+    author_emp_key: EMP-900001
+    delay_seq: 1
+args:
+  prj_key: PRJ-900001
+raises:
+  error: FrameError
+  message: projects.site_diary lacks column(s) notes; load the source columns without renaming them
+  names:
+  - projects.site_diary
+  - notes

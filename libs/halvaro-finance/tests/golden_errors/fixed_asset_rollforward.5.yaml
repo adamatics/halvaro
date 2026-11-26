@@ -1,0 +1,11 @@
+# Golden error case of halvaro-finance.fixed_asset_rollforward: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: fixed_asset_rollforward
+why: an asset has no acquisition date
+args:
+- frame:
+    columns: [le_key, asset_class, acquisition_date, cost, useful_life_months, disposal_date, depreciation_method, currency]
+    rows:
+    - [LE-X, AC-X, null, 1200.0, 12, null, straight_line_monthly, DKK]
+context: month12
+raises: FrameError
+message: 1 assets have no acquisition date

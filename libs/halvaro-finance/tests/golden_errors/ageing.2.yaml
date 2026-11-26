@@ -1,0 +1,14 @@
+# Golden error case of halvaro-finance.ageing: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: ageing
+why: the buckets do not start at 0
+args:
+- frame:
+    columns: [le_key, cus_key, due_date, open_amount, item_key]
+    rows:
+    - [LE-X, CUS-X, '2026-02-10', 100.0, I-1]
+- 2026-03-31
+kwargs:
+  buckets: [30, 60]
+context: month12
+raises: FrameError
+message: buckets are increasing days past due starting at 0, for example (0, 30, 60, 90)

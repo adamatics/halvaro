@@ -1,0 +1,9 @@
+# Golden error case of halvaro-core.format_money: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: format_money
+why: the scale is none of the allowed ones
+args:
+- 1
+- DKK
+- x
+raises: FrameError
+message: scale must be None, 'k', 'm' or 'bn'

@@ -1,0 +1,18 @@
+id: err10-supplier-performance-window-bad-period
+rule: The first period is not a month written YYYY-MM.
+function: supplier_performance_window
+frames:
+  performance:
+  - sup_key: SUP-900001
+    period: 1
+    lines_due: 1
+    lines_on_time: 1
+args:
+  first_period: 2031-13
+  last_period: 2031-12
+raises:
+  error: FrameError
+  message: first_period is a month as text YYYY-MM, not '2031-13'
+  names:
+  - first_period
+  - 2031-13

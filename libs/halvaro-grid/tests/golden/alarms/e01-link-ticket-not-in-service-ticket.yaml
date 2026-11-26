@@ -1,0 +1,20 @@
+id: e01-link-ticket-not-in-service-ticket
+rule: A link to a ticket that the service ticket table does not hold is refused, because the alarm cannot be joined to a missing ticket.
+function: alarm_ticket_link
+frames:
+  alarm:
+  - sns_key: SNS-900001
+    raised_ts: 2031-03-01 00:00
+  ticket_alarm:
+  - sns_key: SNS-900001
+    raised_ts: 2031-03-01 00:00
+    link_type: opened
+    tkt_key: TKT-900009
+  service_ticket:
+  - tkt_key: TKT-900001
+raises:
+  error: FrameError
+  message: 1 links name a ticket that is not in service.service_ticket (for example TKT-900009)
+  names:
+  - TKT-900009
+  - service.service_ticket

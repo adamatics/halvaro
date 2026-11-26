@@ -1,0 +1,18 @@
+id: err15-first-record-diary-date-time-zone
+rule: A diary_date with a time zone is refused.
+function: first_record
+frames:
+  site_diary:
+  - prj_key: PRJ-900001
+    diary_date: '2031-01-05T00:00:00+01:00'
+    notes: a
+    author_emp_key: EMP-900001
+    delay_seq: 1
+args:
+  prj_key: PRJ-900001
+raises:
+  error: FrameError
+  message: projects.site_diary.diary_date has a time zone; dates here are calendar days
+  names:
+  - diary_date
+  - time zone

@@ -1,0 +1,8 @@
+# Golden error case of halvaro-core.year_of: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: year_of
+why: the text is not a month
+args:
+- x
+- 4
+raises: PeriodError
+message: '''x'' is not a period; expected YYYY-MM such as 2026-11, with a year from 0001 to 9999'

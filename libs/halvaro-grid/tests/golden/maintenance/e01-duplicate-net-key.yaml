@@ -1,0 +1,27 @@
+id: e01-duplicate-net-key
+rule: A grid element table with two rows for one net_key is refused, because the expected interval must come from one element.
+function: inspection_interval_check
+frames:
+  maintenance_plan:
+  - net_key: NET-900001
+    plan_no: 1
+    plan_type: condition_inspection
+    next_due: '2031-02-01'
+    last_done: '2030-02-01'
+    team_key: TEAM-900001
+    status: active
+    interval_months: 54
+    valid_from: '2031-01-01'
+  grid_element:
+  - net_key: NET-900001
+    condition_class: C
+    element_type: cable_section
+  - net_key: NET-900001
+    condition_class: B
+    element_type: cable_section
+raises:
+  error: FrameError
+  message: gis.grid_element has more than one row for a net_key
+  names:
+  - gis.grid_element
+  - net_key

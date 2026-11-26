@@ -1,0 +1,23 @@
+id: err14-comparable-set-profile-wrong-type
+rule: A profile that is neither a name nor a mapping is refused.
+function: comparable_set
+frames:
+  project:
+  - prj_key: PRJ-900001
+    country: DE
+    type: dh_network
+    soil_class: clay
+    route_length_m: 5000
+    legacy: false
+    data_depth: full
+    start: '2031-01-05'
+    actual_end: '2031-06-01'
+args:
+  as_of: '2031-12-01'
+  profile: 5
+raises:
+  error: FrameError
+  message: profile must be a profile name or a mapping of filter fields, not int
+  names:
+  - profile
+  - int

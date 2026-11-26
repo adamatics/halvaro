@@ -1,0 +1,24 @@
+id: err38-elements-per-spare-unit-zone-keys-not-text
+rule: zone_keys that are not text keys are refused.
+function: elements_per_spare_unit
+frames:
+  stock:
+  - site_key: SITE-900001
+    itm_key: ITM-900001
+    on_hand: 0
+  grid_element:
+  - element_type: substation
+    status: in_service
+    zone_key: ZONE-0001
+args:
+  items:
+  - ITM-900001
+  site: SITE-900001
+  zone_keys:
+  - 5
+raises:
+  error: FrameError
+  message: zone_keys are text keys without nulls
+  names:
+  - zone_keys
+  - text keys

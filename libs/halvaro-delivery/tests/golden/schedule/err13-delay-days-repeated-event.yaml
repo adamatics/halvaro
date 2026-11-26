@@ -1,0 +1,22 @@
+id: err13-delay-days-repeated-event
+rule: 'Two events with one prj_key and seq are refused: they would be summed twice.'
+function: delay_days
+frames:
+  delay_event:
+  - prj_key: PRJ-900001
+    cause_code: weather
+    responsible_party: customer
+    days: 1
+    seq: 1
+  - prj_key: PRJ-900001
+    cause_code: weather
+    responsible_party: customer
+    days: 1
+    seq: 1
+args: {}
+raises:
+  error: FrameError
+  message: projects.delay_event has 2 rows sharing prj_key and seq (for example PRJ-900001 1); a repeated event would be summed twice
+  names:
+  - PRJ-900001
+  - sharing prj_key and seq

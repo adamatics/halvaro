@@ -1,0 +1,11 @@
+id: e02-target-scope-unknown
+rule: "target_progress is refused when a target has a scope it does not know, and the message lists the known scopes."
+function: target_progress
+frames:
+  T: [{"target_no": 1, "scope": "7", "baseline_year": 2029, "target_year": 2035, "baseline_value": 100.0, "target_value": 50.0}]
+  L: [{"le_key": "LE-900001", "period": "2030-05", "scope": 1, "category": "fuel", "line_no": 1, "kgco2e": 10.0, "is_superseded": false, "restated_from_period": null}]
+args: {"as_of": "2032-02-01"}
+raises:
+  error: FrameError
+  message: "target 1 has the scope '7'; known: ['1', '2_location', '2_market', '3', 'project_intensity']"
+  names: ["scope", "'7'"]

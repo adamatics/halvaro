@@ -1,0 +1,31 @@
+name: an earlier row changed
+function: asof_stable
+by_hand: The second release holds a row B dated 2025-12-01, which is before the as-of date 2026-03-01, so the result at that date differs between the releases and the check fails naming the key B.
+input:
+  args:
+  - call: rows_until_the_date
+  - t:
+      frame:
+        columns:
+        - k
+        - d
+        rows:
+        - - A
+          - '2026-01-01'
+  - t:
+      frame:
+        columns:
+        - k
+        - d
+        rows:
+        - - A
+          - '2026-01-01'
+        - - B
+          - '2025-12-01'
+  - 2026-03-01
+  kwargs:
+    key: k
+expect:
+  raises:
+    error: AssertionError
+    message_contains: differ between releases for k ['B']

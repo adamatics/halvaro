@@ -1,0 +1,16 @@
+# Golden error case of halvaro-finance.approval_limit_breaches: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: approval_limit_breaches
+why: a purchase order is listed twice
+args:
+- frame:
+    columns: [po_key, total_value, currency, buyer_emp_key, order_date]
+    rows:
+    - [PO-X, 1000.0, DKK, EMP-X, '2026-01-05']
+    - [PO-X, 1000.0, DKK, EMP-X, '2026-01-05']
+- frame:
+    columns: [po_key, grade_level]
+    rows:
+    - [PO-X, 3]
+context: month12
+raises: FrameError
+message: po_key must be unique in the purchase orders and in buyer_grade

@@ -1,0 +1,18 @@
+# Golden error case of halvaro-core.join_report: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: join_report
+why: the right frame lacks the key column
+args:
+- frame:
+    columns:
+    - k
+    rows:
+    - - A
+- frame:
+    columns:
+    - x
+    rows:
+    - - A
+kwargs:
+  'on': k
+raises: FrameError
+message: the right frame lacks key column(s) k

@@ -1,0 +1,1105 @@
+functions:
+- deprecated: null
+  facts: []
+  id: halvaro.core.access.assert_aggregate
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/tests/test_oracle_aggregate.py::test_assert_aggregate_oracle_refusal_equals_a_loop_over_every_value
+  parameters:
+  - frame
+  - restricted_column
+  - group_columns
+  - min_group
+  - count_column
+  restricted:
+  - hr.employment_term.base_salary
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: Use this when a frame holds an aggregate of a restricted measure (pay,
+    birth date) and you must check that it names no person and has no group that is
+    too small.
+- deprecated: null
+  facts: []
+  id: halvaro.core.access.mark_aggregate
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: 'none, wrapper: calls assert_aggregate and wraps the frame, the column,
+    the group columns as a tuple and min_group in a RestrictedAggregate, no logic
+    of its own'
+  parameters:
+  - frame
+  - restricted_column
+  - group_columns
+  - min_group
+  - count_column
+  restricted:
+  - hr.employment_term.base_salary
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: Use this when you have checked an aggregate of a restricted measure and
+    want to hand it on marked as safe to show.
+- deprecated: null
+  facts: []
+  id: halvaro.core.access.require_columns
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_older_keys_access_facts.py::test_require_columns_oracle_exactly_the_restricted_list_is_refused_for_a_role_without_access
+  parameters:
+  - context
+  - columns
+  restricted:
+  - hr.employment_term.base_salary
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: Use this when a function reads columns that are restricted (pay, birth
+    date) and must refuse a session that may not read them.
+- deprecated: null
+  facts: []
+  id: halvaro.core.access.require_sources
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_access.py::test_require_sources_oracle_every_source_alone_and_in_pairs_against_the_stage_profiles
+  parameters:
+  - context
+  - sources
+  - function
+  restricted: []
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: Use this when a function reads tables of some sources and must refuse a
+    session whose stage does not hold them yet.
+- deprecated: null
+  facts: []
+  id: halvaro.core.access.source_stage
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_older_keys_access_facts.py::test_source_stage_and_visible_sources_oracle_the_stage_profiles_of_the_design_file
+  parameters:
+  - source
+  restricted: []
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: Use this when you need to know at which stage a source (hr, finance, projects
+    and so on) becomes visible to a session.
+- deprecated: null
+  facts: []
+  id: halvaro.core.access.stage_banner
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/tests/test_oracle_status_banner.py::test_stage_banner_oracle_hand_worked_texts
+  parameters:
+  - refusal
+  restricted: []
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: Use this when a stage or column refusal must be shown to the user as one
+    plain line.
+- deprecated: null
+  facts: []
+  id: halvaro.core.access.strip_restricted
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_access.py::test_strip_restricted_oracle_every_restricted_name_goes_and_nothing_else
+  parameters:
+  - frame
+  - context
+  restricted:
+  - hr.employment_term.base_salary
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: Use this when you have a frame and must remove the restricted columns (pay,
+    birth date) before a session that may not read them sees it.
+- deprecated: null
+  facts: []
+  id: halvaro.core.access.visible_sources
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_older_keys_access_facts.py::test_source_stage_and_visible_sources_oracle_the_stage_profiles_of_the_design_file
+  parameters:
+  - stage
+  restricted: []
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: Use this when you need the sources that a session at a stage can see.
+- deprecated: null
+  facts:
+  - legal.public_holidays.DK_store_bededag_abolished_from
+  - legal.public_holidays.DE_reformationstag_from
+  id: halvaro.core.calendar.add_working_days
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/tests/test_oracle_calendar.py::test_add_working_days_oracle_numpy_business_day_offset
+  parameters:
+  - start
+  - n
+  - region
+  restricted: []
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: Use this when you need the date that is a number of working days from a
+    start date, the start date counting as the first when it is a working day.
+- deprecated: null
+  facts:
+  - legal.public_holidays.DK_store_bededag_abolished_from
+  - legal.public_holidays.DE_reformationstag_from
+  id: halvaro.core.calendar.is_working_day
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/tests/test_oracle_calendar.py::test_is_working_day_oracle_hand_listed_holidays_and_numpy_business_days
+  parameters:
+  - day
+  - region
+  restricted: []
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: Use this when you need to know whether a date is a working day in a region.
+- deprecated: null
+  facts:
+  - legal.public_holidays.DK_store_bededag_abolished_from
+  - legal.public_holidays.DE_reformationstag_from
+  id: halvaro.core.calendar.net_working_days
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_calendar_repo.py::test_net_working_days_oracle_baseline_leave_counted_day_by_day
+  parameters:
+  - persons
+  - leave
+  - start
+  - end
+  restricted: []
+  since: 0.1.0
+  sources:
+  - hr.leave_record.start
+  - hr.leave_record.end
+  - hr.leave_record.leave_type
+  stage: day1
+  summary: Use this when you need, per person, the working days of a period, the leave
+    days that fall on working days and the days left after leave.
+- deprecated: null
+  facts:
+  - legal.public_holidays.DK_store_bededag_abolished_from
+  - legal.public_holidays.DE_reformationstag_from
+  id: halvaro.core.calendar.public_holidays
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/tests/test_oracle_older_calendar.py::test_public_holidays_oracle_the_set_of_a_year_equals_the_hand_list
+  parameters:
+  - year
+  - region
+  restricted: []
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: Use this when you need the public holidays of a year in one of the three
+    regions.
+- deprecated: null
+  facts: []
+  id: halvaro.core.calendar.region_of
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_calendar_repo.py::test_region_of_oracle_baseline_sites_and_teams
+  parameters:
+  - site_key
+  restricted: []
+  since: 0.1.0
+  sources:
+  - hr.site.site_key
+  - hr.site.country
+  stage: day1
+  summary: Use this when you need the calendar region (DK, DE-HH or DE-NI) of a site
+    or of a country with one region.
+- deprecated: null
+  facts:
+  - legal.public_holidays.DK_store_bededag_abolished_from
+  - legal.public_holidays.DE_reformationstag_from
+  id: halvaro.core.calendar.working_days
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/tests/test_oracle_older_calendar.py::test_working_days_oracle_numpy_business_day_count_for_random_ranges
+  parameters:
+  - start
+  - end
+  - region
+  restricted: []
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: Use this when you need the number of working days between two dates in
+    a region, both days included.
+- deprecated: null
+  facts: []
+  id: halvaro.core.facts.cfg
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_facts_repo.py::test_cfg_oracle_every_scalar_of_every_fact_file_equals_the_yaml_value
+  parameters:
+  - file
+  - path
+  restricted: []
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: Use this when you know the config file and the key path of a value but
+    not its fact id.
+- deprecated: null
+  facts: []
+  id: halvaro.core.facts.combine_status
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/tests/test_oracle_status_banner.py::test_combine_status_oracle_every_subset_of_the_statuses_and_every_order
+  parameters:
+  - statuses
+  restricted: []
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: Use this when a result rests on several facts and needs one status for
+    its envelope.
+- deprecated: null
+  facts: []
+  id: halvaro.core.facts.fact
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_older_keys_access_facts.py::test_fact_oracle_every_authored_fact_has_the_value_and_status_of_its_yaml_entry
+  parameters:
+  - fact_id
+  restricted: []
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: Use this when you need the value, the status and the source file of a fact
+    by its id, for example a rate or a legal parameter that a function reads.
+- deprecated: null
+  facts: []
+  id: halvaro.core.format.format_money
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/tests/test_oracle_format.py::test_format_money_oracle_currency_first_scales_and_exact_fractions
+  parameters:
+  - amount
+  - currency
+  - scale
+  - decimals
+  restricted: []
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: Use this when you write one amount of one currency into a text, a table
+    or a figure label.
+- deprecated: null
+  facts: []
+  id: halvaro.core.format.format_number
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/tests/test_oracle_format.py::test_format_number_oracle_exact_fractions_for_random_floats_and_decimals
+  parameters:
+  - x
+  - decimals
+  restricted: []
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: Use this when you write a number into a text, a table or a figure label.
+- deprecated: null
+  facts: []
+  id: halvaro.core.format.format_percent
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/tests/test_oracle_format.py::test_format_percent_oracle_exact_fractions_and_hand_worked_table
+  parameters:
+  - x
+  - decimals
+  restricted: []
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: Use this when you write a percentage into a text, a table or a figure label.
+- deprecated: null
+  facts: []
+  id: halvaro.core.frames.join_report
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_older_money_frames_org.py::test_join_report_oracle_counters_over_the_keys_for_four_random_pairs_of_frames
+  parameters:
+  - left
+  - right
+  - 'on'
+  - left_on
+  - right_on
+  - how
+  - context
+  - strict
+  - validate
+  - suffixes
+  restricted: []
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: Use this when you join two frames on key columns and need the keys without
+    a partner, classed as orphan, null_key or master_not_visible_at_stage.
+- deprecated: null
+  facts: []
+  id: halvaro.core.frames.reduce_chunks
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/tests/test_oracle_frames.py::test_reduce_chunks_oracle_loop_over_all_rows_for_any_cut_into_chunks
+  parameters:
+  - chunks
+  - by
+  - aggregations
+  restricted: []
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: Use this when the rows come as an iterable of frames (chunks) and you need
+    grouped sums, counts, minima or maxima with the same result as one frame, without
+    holding all rows at once.
+- deprecated: null
+  facts: []
+  id: halvaro.core.frames.require_frame_columns
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_older_money_frames_org.py::test_require_frame_columns_oracle_the_columns_of_the_data_dictionary_for_every_table
+  parameters:
+  - frame
+  - source_table
+  - columns
+  restricted: []
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: Use this when a loaded frame must carry the source column names of a table
+    before you use it, so a renamed or dropped column is caught early.
+- deprecated: null
+  facts: []
+  id: halvaro.core.keys.check_key_column
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_keys_repo.py::test_check_key_column_oracle_baseline_keys_are_clean_and_corrupted_keys_are_found
+  parameters:
+  - frame
+  - column
+  - target
+  - allow_null
+  restricted: []
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: Use this when you need to check that every value of a key column is a well
+    formed key, and optionally that its prefix is one the dictionary allows for that
+    column.
+- deprecated: null
+  facts: []
+  id: halvaro.core.keys.check_polymorphic
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_keys_repo.py::test_check_polymorphic_oracle_baseline_columns_follow_their_type
+  parameters:
+  - frame
+  - key_column
+  - type_column
+  - mapping
+  restricted: []
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: Use this when a key column can hold keys of different kinds and a type
+    column says which kind each row has, and you need the rows where the two disagree.
+- deprecated: null
+  facts: []
+  id: halvaro.core.keys.column_prefixes
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_keys_repo.py::test_column_prefixes_oracle_every_foreign_key_column_of_the_dictionary
+  parameters:
+  - column
+  restricted: []
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: Use this when you need the key prefixes that a column of the data dictionary
+    may hold, taken from its foreign key target.
+- deprecated: null
+  facts: []
+  id: halvaro.core.keys.is_valid_key
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_older_keys_access_facts.py::test_is_valid_key_oracle_baseline_keys_are_valid_and_damaged_keys_are_not
+  parameters:
+  - text
+  - prefix
+  restricted: []
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: Use this when you only need to know whether a text is a valid typed key,
+    without handling an error.
+- deprecated: null
+  facts: []
+  id: halvaro.core.keys.master_of
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_older_keys_access_facts.py::test_master_of_oracle_the_master_table_of_a_prefix_holds_exactly_the_keys_of_that_prefix
+  parameters:
+  - prefix
+  restricted: []
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: Use this when you have a key prefix and need the entity it names and the
+    table that is its master.
+- deprecated: null
+  facts: []
+  id: halvaro.core.keys.parse_key
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_older_keys_access_facts.py::test_parse_key_oracle_every_primary_key_of_the_baseline_by_string_slicing
+  parameters:
+  - text
+  restricted: []
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: Use this when you have the text of a typed key such as EMP-000001 and need
+    its prefix, number, width and family.
+- deprecated: null
+  facts: []
+  id: halvaro.core.keys.parse_label
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_keys_repo.py::test_parse_label_oracle_every_natural_label_and_gl_account_of_the_baseline
+  parameters:
+  - text
+  restricted: []
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: Use this when you have a natural label (a budget, forecast, waste or ground
+    label) or a GL account and need its parts.
+- deprecated: null
+  facts: []
+  id: halvaro.core.keys.table_key
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_older_keys_access_facts.py::test_table_key_oracle_the_key_columns_are_unique_and_not_null_in_the_baseline_and_in_the_dictionary
+  parameters:
+  - source_table
+  restricted: []
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: Use this when you need the columns that make up the primary key of a table,
+    composite keys included.
+- deprecated: null
+  facts:
+  - world.fx_eur_dkk_fixed
+  - world.fx_sek_dkk_fixed
+  id: halvaro.core.money.convert
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_older_money_frames_org.py::test_convert_oracle_the_generator_converter_and_exact_fractions_of_the_booking_rates
+  parameters:
+  - cents
+  - from_currency
+  - to_currency
+  restricted: []
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: Use this when you move whole cents between DKK, EUR and SEK on a named
+    basis.
+- deprecated: null
+  facts: []
+  id: halvaro.core.money.from_cents
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/tests/test_oracle_cents.py::test_from_cents_oracle_hand_worked_cents
+  parameters:
+  - cents
+  restricted: []
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: Use this when you have whole cents and need the amount, with a missing
+    value kept as missing.
+- deprecated: null
+  facts: []
+  id: halvaro.core.money.guarded_sum
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_money_release.py::test_guarded_sum_oracle_baseline_invoices_by_currency_and_by_entity
+  parameters:
+  - frame
+  - value
+  restricted: []
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: Use this when you need the sum of an amount or quantity column and must
+    be sure that no two currencies or units are added together.
+- deprecated: null
+  facts: []
+  id: halvaro.core.money.rdiv
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_older_money_frames_org.py::test_rdiv_oracle_exact_fractions_round_half_away_from_zero
+  parameters:
+  - a
+  - b
+  restricted: []
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: Use this when you divide whole cents by a whole number and the result must
+    be whole cents too.
+- deprecated: null
+  facts: []
+  id: halvaro.core.money.to_cents
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/tests/test_oracle_to_cents.py::test_to_cents_oracle_hand_worked_amounts_and_the_round_trip_with_from_cents
+  parameters:
+  - amount
+  restricted: []
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: Use this when you need an amount as whole cents, so that sums and comparisons
+    are exact.
+- deprecated: null
+  facts: []
+  id: halvaro.core.org.check_org_integrity
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_older_money_frames_org.py::test_check_org_integrity_oracle_the_baseline_is_clean_and_each_defect_gives_its_own_rule
+  parameters:
+  - team
+  - department
+  - site
+  - cost_centre
+  - expected
+  restricted: []
+  since: 0.1.0
+  sources:
+  - hr.team.team_key
+  - hr.team.lead_emp_key
+  - hr.department.dep_key
+  - hr.site.site_key
+  stage: day1
+  summary: Use this when you need to check the organisation frames for broken references,
+    missing leads and cost centres, and wrong counts.
+- deprecated: null
+  facts: []
+  id: halvaro.core.org.cost_centre_of_team
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_older_money_frames_org.py::test_cost_centre_of_team_oracle_every_team_of_the_baseline_against_a_dictionary
+  parameters:
+  - team
+  - team_key
+  restricted: []
+  since: 0.1.0
+  sources:
+  - hr.team.team_key
+  - hr.team.cost_centre_key
+  stage: day1
+  summary: Use this when you need the cost centre key of one team.
+- deprecated: null
+  facts: []
+  id: halvaro.core.org.grade_info
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_org_release.py::test_grade_info_oracle_baseline_rows_and_bands
+  parameters:
+  - grade
+  restricted: []
+  since: 0.1.0
+  sources:
+  - hr.grade.gra_key
+  - hr.grade.level
+  stage: day1
+  summary: Use this when you need the grade level, name and bands in DKK and EUR from
+    the grade frame.
+- deprecated: null
+  facts: []
+  id: halvaro.core.org.role_info
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_org_release.py::test_role_info_oracle_baseline_every_role_gets_its_grade
+  parameters:
+  - role
+  - grade
+  restricted: []
+  since: 0.1.0
+  sources:
+  - hr.role.role_key
+  - hr.role.dep_key
+  - hr.role.gra_key
+  - hr.grade.level
+  stage: day1
+  summary: Use this when you need per role its department and grade, with the grade
+    level, name and bands.
+- deprecated: null
+  facts: []
+  id: halvaro.core.org.team_context
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_org_release.py::test_team_context_oracle_baseline_every_team_with_site_country_and_region
+  parameters:
+  - team
+  - site
+  restricted: []
+  since: 0.1.0
+  sources:
+  - hr.team.team_key
+  - hr.team.dep_key
+  - hr.team.cost_centre_key
+  - hr.team.legal_entity_key
+  - hr.team.site_key
+  - hr.site.country
+  stage: day1
+  summary: Use this when you need per team its department, cost centre, legal entity,
+    site, country and calendar region in one frame.
+- deprecated: null
+  facts: []
+  id: halvaro.core.org.team_of_cost_centre
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_org_release.py::test_team_of_cost_centre_oracle_round_trip_with_cost_centre_of_team_for_every_team
+  parameters:
+  - team
+  - cost_centre_key
+  restricted: []
+  since: 0.1.0
+  sources:
+  - hr.team.team_key
+  - hr.team.cost_centre_key
+  stage: day1
+  summary: Use this when you need the team that owns one cost centre.
+- deprecated: null
+  facts: []
+  id: halvaro.core.periods.add_months
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/tests/test_oracle_period_text.py::test_add_months_oracle_numpy_months_and_the_group_laws
+  parameters:
+  - period
+  - n
+  restricted: []
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: Use this when you need the period a number of months after, or before,
+    a period.
+- deprecated: null
+  facts: []
+  id: halvaro.core.periods.asof_join
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/tests/test_oracle_older_periods.py::test_asof_join_oracle_a_loop_with_bisect_over_random_effective_dated_rows
+  parameters:
+  - left
+  - right
+  - date_column
+  - key
+  - valid_from
+  - valid_to
+  - suffix
+  restricted: []
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: Use this when you need to attach to each row the version of an effective
+    dated table that was valid on the row's date.
+- deprecated: null
+  facts: []
+  id: halvaro.core.periods.check_contiguity
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_periods_release.py::test_check_contiguity_oracle_baseline_employment_terms_and_injected_defects
+  parameters:
+  - frame
+  - key
+  - valid_from
+  - valid_to
+  - convention
+  - table
+  restricted: []
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: Use this when a table has effective dating (valid_from, valid_to per key)
+    and you need the rows that break the dating rules.
+- deprecated: null
+  facts: []
+  id: halvaro.core.periods.compare_periods
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/tests/test_oracle_period_text.py::test_compare_periods_oracle_month_counts_antisymmetry_and_sorting
+  parameters:
+  - a
+  - b
+  restricted: []
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: Use this when you need to order two periods written YYYY-MM.
+- deprecated: null
+  facts: []
+  id: halvaro.core.periods.interval_join
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/tests/test_oracle_periods.py::test_interval_join_oracle_nested_loop
+  parameters:
+  - points
+  - intervals
+  restricted: []
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: Use this when you need to attach to each point in time the interval that
+    contains it, such as a sample and the quality event that covers it.
+- deprecated: null
+  facts: []
+  id: halvaro.core.periods.month_end
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/tests/test_oracle_period_text.py::test_month_start_and_month_end_oracle_numpy_month_arithmetic_for_every_period_1900_to_2200
+  parameters:
+  - period
+  restricted: []
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: Use this when you need the last calendar day of a period written YYYY-MM.
+- deprecated: null
+  facts: []
+  id: halvaro.core.periods.month_start
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/tests/test_oracle_period_text.py::test_month_start_and_month_end_oracle_numpy_month_arithmetic_for_every_period_1900_to_2200
+  parameters:
+  - period
+  restricted: []
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: Use this when you need the first calendar day of a period written YYYY-MM.
+- deprecated: null
+  facts: []
+  id: halvaro.core.periods.parse_period
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/tests/test_oracle_older_periods.py::test_parse_period_oracle_every_period_text_from_0001_to_9999_equals_strptime
+  parameters:
+  - text
+  restricted: []
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: Use this when you have a period written YYYY-MM and need its year and month
+    as numbers.
+- deprecated: null
+  facts: []
+  id: halvaro.core.periods.period_of
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/tests/test_oracle_period_text.py::test_period_of_oracle_every_day_1950_to_2100_and_the_round_trips
+  parameters:
+  - day
+  restricted: []
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: Use this when you have a date and need its period written YYYY-MM.
+- deprecated: null
+  facts: []
+  id: halvaro.core.periods.period_range
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/tests/test_oracle_older_periods.py::test_period_range_oracle_numpy_months_for_random_pairs_and_reversed_pairs_are_empty
+  parameters:
+  - first
+  - last
+  restricted: []
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: Use this when you need every month between two periods, both included,
+    as a list of periods.
+- deprecated: null
+  facts: []
+  id: halvaro.core.periods.release_now
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_older_periods_release.py::test_release_now_oracle_the_data_release_rows_of_the_baseline_read_directly
+  parameters:
+  - data_releases
+  restricted: []
+  since: 0.1.0
+  sources:
+  - hr.data_release.release
+  stage: day1
+  summary: Use this when you need the one release identity (release, now, generated_at,
+    base seed and increment) that all loaded sources share.
+- deprecated: null
+  facts: []
+  id: halvaro.core.periods.rows_on
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_older_periods_release.py::test_rows_on_oracle_a_loop_over_the_term_rows_for_ten_dates
+  parameters:
+  - frame
+  - 'on'
+  - key
+  - valid_from
+  - valid_to
+  restricted: []
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: Use this when a table has effective dating (valid_from, valid_to) and you
+    need the rows that are valid on one date.
+- deprecated: null
+  facts: []
+  id: halvaro.core.periods.year_of
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/tests/test_oracle_older_periods.py::test_year_of_oracle_pandas_period_arithmetic_for_every_start_month
+  parameters:
+  - period
+  - start_month
+  restricted: []
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: 'Use this when you need the year, counted from a start month, that a period
+    belongs to: a fiscal year or a holiday year that does not begin in January.'
+- deprecated: null
+  facts: []
+  id: halvaro.core.testing.asof_stable
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/tests/test_oracle_testing.py::test_asof_stable_oracle_equal_changed_added_and_allowed_rows
+  parameters:
+  - call
+  - baseline
+  - later
+  - as_of
+  restricted: []
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: Use this when you need to prove that a result as of a date does not change
+    when a later data release is loaded, except for rows that an effective dated change
+    may alter.
+- deprecated: null
+  facts: []
+  id: halvaro.core.testing.loader_contract
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/tests/test_oracle_testing.py::test_loader_contract_oracle_each_defect_gives_exactly_one_problem_naming_the_table
+  parameters:
+  - loader
+  - expected_columns
+  restricted: []
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: Use this when you need to check that an app loader (SQL or API) keeps the
+    loading contract, and get the problems as text.
+- deprecated: null
+  facts: []
+  id: halvaro.core.testing.stage_matrix
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/tests/test_oracle_testing.py::test_stage_matrix_oracle_a_correct_function_refuses_exactly_where_sources_are_missing
+  parameters:
+  - function_id
+  - frames
+  - call
+  restricted: []
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: Use this when you need to prove that a function gives a result where all
+    its sources are visible and refuses, naming the missing sources, where they are
+    not.
+- deprecated: null
+  facts: []
+  id: halvaro.core.theme.apply_theme
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/tests/test_oracle_theme.py::test_apply_theme_oracle_text_and_categorical_contrast_and_the_figure_gets_the_tokens
+  parameters:
+  - figure
+  - mode
+  restricted: []
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: Use this when you need a chart to carry the colours and font of the light
+    or dark theme.
+- deprecated: null
+  facts: []
+  id: halvaro.core.theme.caption
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/tests/test_oracle_theme.py::test_caption_oracle_hand_worked_texts_and_date_types
+  parameters:
+  - basis
+  - as_of
+  restricted: []
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: Use this when a figure or a table needs the basis and as-of line under
+    it.
+- deprecated: null
+  facts: []
+  id: halvaro.core.theme.footer
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/tests/test_oracle_theme.py::test_footer_oracle_every_combination_of_synthetic_and_status
+  parameters:
+  - envelope
+  restricted: []
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: 'Use this when you need the caption line of a result envelope: basis and
+    as-of, ''synthetic data'' when the envelope says so and ''provisional legal parameter,
+    VERIFY'' when its status carries VERIFY.'
+- deprecated: null
+  facts: []
+  id: halvaro.core.theme.line_with_gaps
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/tests/test_oracle_theme.py::test_line_with_gaps_oracle_random_series_against_a_loop_over_neighbouring_points
+  parameters:
+  - x
+  - y
+  restricted: []
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: Use this when you need the points of a line with a null row inserted where
+    the step to the next x is too large, so that a plot breaks there instead of joining
+    across the gap.
+- deprecated: null
+  facts: []
+  id: halvaro.core.theme.map_label
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: none, returns the constant label text with the basemap attribution, no logic
+  parameters: []
+  restricted: []
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: 'Use this when you need the label of a map: ''synthetic data'' and the
+    basemap attribution, because the networks drawn on the map are fictional (visualisations.md).'
+- deprecated: null
+  facts: []
+  id: halvaro.core.theme.stage_placeholder
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: py:../libs/halvaro-core/tests/test_oracle_theme.py::test_stage_placeholder_oracle_text_of_the_refusal_and_no_other_input
+  parameters:
+  - refusal
+  restricted: []
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: 'Use this when you need the panel text for a chart whose source is above
+    the stage of the session: what is missing, at which stage it appears and what
+    the session sees.'
+- deprecated: null
+  facts: []
+  id: halvaro.core.theme.synthetic_label
+  kb: []
+  kb_versions: []
+  library: halvaro-core
+  oracle: none, returns the constant text SYNTHETIC_LABEL, no logic
+  parameters: []
+  restricted: []
+  since: 0.1.0
+  sources: []
+  stage: null
+  summary: Use this when you need the text 'synthetic data' that goes in the corner
+    of every chart, table and map, in both modes.
+snapshot: 17703967a6ef6ceed2d045ad2f0871b60e0ad55e39445d26c00f11be10bbee40

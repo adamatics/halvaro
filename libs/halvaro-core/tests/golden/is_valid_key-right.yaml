@@ -1,0 +1,8 @@
+name: right width
+function: is_valid_key
+by_hand: EMP keys have six digits; EMP-000001 has six.
+input:
+  args:
+  - EMP-000001
+expect:
+  value: true

@@ -1,0 +1,20 @@
+id: err04-price-list-on-missing-column
+rule: The price_list frame lacks a column the function needs, here change_reason.
+function: price_list_on
+frames:
+  price_list:
+  - sup_key: SUP-900001
+    itm_key: ITM-900001
+    valid_from: '2031-01-05'
+    valid_to: null
+    unit_price: 1
+    currency: EUR
+    con_key: CON-900001
+args:
+  as_of: '2031-02-01'
+raises:
+  error: FrameError
+  message: procurement.price_list frame lacks column(s) change_reason; load the source columns without renaming them
+  names:
+  - procurement.price_list
+  - change_reason

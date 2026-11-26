@@ -1,0 +1,26 @@
+id: e01-soil-for-project-without-route
+rule: Soil rows for a project that route_change does not hold are refused, because a route fact needs its route length.
+function: route_facts
+frames:
+  route_change:
+  - prj_key: PRJ-900001
+    planned_length_m: 100.0
+    as_built_length_m: 104.0
+    delta_m: 4.0
+    changed: true
+  soil:
+  - prj_key: PRJ-900002
+    version: 2
+    soil_class: clay
+    share: 0.6
+  conditions:
+  - prj_key: PRJ-900001
+    version: 2
+    crosses_poor_bearing: false
+    crosses_high_groundwater: true
+raises:
+  error: FrameError
+  message: soil or conditions for projects that route_change does not hold, for example PRJ-900002
+  names:
+  - PRJ-900002
+  - route_change

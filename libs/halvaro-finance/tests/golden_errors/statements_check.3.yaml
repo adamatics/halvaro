@@ -1,0 +1,12 @@
+# Golden error case of halvaro-finance.statements_check: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: statements_check
+why: footing is None, not a mapping
+args:
+- frame:
+    columns: [rpt_key, statement, line_no, line_code, amount, prior_year_amount, line_type]
+    rows:
+    - [R-1, balance_sheet, 1, TA, 1.0, null, total]
+kwargs: {footing: null}
+context: month12
+raises: FrameError
+message: footing must be a mapping from a line code to the tuple of its component codes, not None

@@ -1,0 +1,15 @@
+# Golden error case of halvaro-finance.journal_integrity: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: journal_integrity
+why: a journal header has no entity
+args:
+- frame:
+    columns: [le_key, journal_no, line_count]
+    rows:
+    - [null, 1, 1]
+- frame:
+    columns: [le_key, journal_no, line_no, amount, amount_dkk, currency]
+    rows:
+    - [LE-X, 1, 1, 1.0, 1.0, DKK]
+context: month12
+raises: FrameError
+message: finance.journal_header and finance.journal_line need an le_key and a journal_no in every row

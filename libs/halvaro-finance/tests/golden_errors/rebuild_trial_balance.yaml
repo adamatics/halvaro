@@ -1,0 +1,10 @@
+# Golden error case of halvaro-finance.rebuild_trial_balance: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: rebuild_trial_balance
+why: every frame is empty, so the columns the function reads are missing
+args:
+- frame: {}
+- frame: {}
+- frame: {}
+context: month12
+raises: FrameError
+message: finance.journal_line frame lacks column(s) le_key, gl_key, amount, amount_dkk, currency, period, source; load the source columns without renaming them

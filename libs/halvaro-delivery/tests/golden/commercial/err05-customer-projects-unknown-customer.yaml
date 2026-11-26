@@ -1,0 +1,23 @@
+id: err05-customer-projects-unknown-customer
+rule: A project belongs to a customer that the customer frame does not hold.
+function: customer_projects
+frames:
+  customer:
+  - cus_key: CUS-900001
+    tier: A
+    name: 1
+  project:
+  - prj_key: PRJ-900001
+    customer_key: CUS-900099
+    status: 1
+  contract:
+  - con_key: CON-900001
+    type: 1
+    cus_key: CUS-900001
+args: {}
+raises:
+  error: FrameError
+  message: projects of customers that crm.customer does not hold, for example CUS-900099
+  names:
+  - customer
+  - CUS-900099

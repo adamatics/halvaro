@@ -1,0 +1,23 @@
+id: err17-variants-table-metric-not-a-frame
+rule: A metric that is not a DataFrame is refused.
+function: variants_table
+frames:
+  project:
+  - prj_key: PRJ-900001
+    country: DE
+    type: dh_network
+    soil_class: clay
+    route_length_m: 5000
+    legacy: false
+    data_depth: full
+    start: '2031-01-05'
+    actual_end: '2031-06-01'
+args:
+  as_of: '2031-12-01'
+  metric: value
+raises:
+  error: FrameError
+  message: the metric frame must be a DataFrame with prj_key and value
+  names:
+  - metric
+  - DataFrame

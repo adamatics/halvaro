@@ -1,0 +1,23 @@
+name: Holiday leave counts in the holiday year of its end date
+function: leave_vs_ledger
+cites: [dk/ferieloven/p-0004]
+by_hand: A record that ends the day before the first day of the new holiday year counts in the old one, a record that ends on the first day counts in the new one. The ledger rows are given so that each year agrees.
+let:
+  start_month: "=fact('legal.DK.holiday.holiday_year_start.month')"
+  start_day: "=fact('legal.DK.holiday.holiday_year_start.day')"
+input:
+  leave_record:
+    columns: [emp_key, leave_type, days, end]
+    rows:
+      - [EMP-1, holiday, 2, "=date(2026, start_month, start_day) - days(1)"]
+      - [EMP-1, holiday, 4, "=date(2026, start_month, start_day)"]
+  acc:
+    columns: [emp_key, holiday_year, taken_days]
+    rows:
+      - [EMP-1, "2025/26", 2.0]
+      - [EMP-1, "2026/27", 4.0]
+  now: 2027-06-30
+expect:
+  rows:
+    - {emp_key: EMP-1, holiday_year: "2025/26", leave_days: 2, taken_days: 2.0, difference: 0.0}
+    - {emp_key: EMP-1, holiday_year: "2026/27", leave_days: 4, taken_days: 4.0, difference: 0.0}

@@ -1,0 +1,11 @@
+id: e04-limit-not-a-number
+rule: "limit_check is refused when limit is text and not a positive number of kg per metre."
+function: limit_check
+frames:
+  pm: [{"prj_key": "PRJ-900001", "kgco2e_per_m": 20.0}]
+  cs: [{"prj_key": "PRJ-900001"}]
+args: {"limit": "ten"}
+raises:
+  error: FrameError
+  message: "limit must be a positive number of kg per metre (int or float, not a float32), not 'ten'"
+  names: ["limit", "'ten'"]

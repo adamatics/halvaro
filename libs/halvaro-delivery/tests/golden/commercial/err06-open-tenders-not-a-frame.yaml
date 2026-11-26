@@ -1,0 +1,12 @@
+id: err06-open-tenders-not-a-frame
+rule: The opportunity argument is not a DataFrame.
+function: open_tenders
+args:
+  opportunity: OPP-900001
+  as_of: '2031-02-01'
+raises:
+  error: FrameError
+  message: crm.opportunity must be a DataFrame, not str
+  names:
+  - crm.opportunity
+  - str

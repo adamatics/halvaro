@@ -1,0 +1,21 @@
+# Golden error case of halvaro-finance.percent_complete: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: percent_complete
+why: a running project has an EAC of zero
+args:
+- frame:
+    columns:
+    - prj_key
+    - period
+    - actual_cost
+    - eac
+    rows:
+    - - PRJ-1
+      - 2026-03
+      - 1.0
+      - 0.0
+- {}
+kwargs:
+  cap: 0.95
+context: month12
+raises: FrameError
+message: 1 rows of projects still running have an EAC of zero or null

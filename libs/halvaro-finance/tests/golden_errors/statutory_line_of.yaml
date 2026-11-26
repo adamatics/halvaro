@@ -1,0 +1,9 @@
+# Golden error case of halvaro-finance.statutory_line_of: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: statutory_line_of
+why: every frame is empty, so the columns the function reads are missing
+args:
+- frame: {}
+- frame: {}
+context: month12
+raises: FrameError
+message: finance.gl_account frame lacks column(s) gl_key, dk_statutory_map, de_statutory_map; load the source columns without renaming them

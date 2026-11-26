@@ -1,0 +1,13 @@
+# Golden error case of halvaro-finance.employer_oncosts: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: employer_oncosts
+why: a gross salary is null
+args:
+- frame:
+    columns: [le_key, cc_key, period, gross_salary]
+    rows:
+    - [LE-X, CC-1, 2026-03, null]
+kwargs:
+  country_of: {LE-X: DK}
+context: month12
+raises: FrameError
+message: 'gross pay frame: gross_salary has nulls'

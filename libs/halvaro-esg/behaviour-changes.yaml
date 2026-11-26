@@ -1,0 +1,11 @@
+# Behaviour changes of this distribution: a changed fact value, cfg parameter, KB rule version or oracle gets an entry in the same change.
+# Fields: id, date, functions, facts, kb, before, after, class (correction | policy change). The proposal is a note of the closed repository (library versioning).
+changes:
+  - id: BC-ESG-0001
+    date: 2026-11-19
+    functions: [halvaro.esg.data_requests.answer_pack]
+    facts: []
+    kb: []
+    before: A totals row with a null year was not caught by the check for nulls and failed later with a ValueError from the conversion of NaN to an integer.
+    after: A null year is refused with FrameError "the scope totals have nulls", like a null in any other number of the row. Totals with a year are not affected.
+    class: correction

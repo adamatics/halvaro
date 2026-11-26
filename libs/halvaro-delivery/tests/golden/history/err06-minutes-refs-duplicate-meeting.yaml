@@ -1,0 +1,20 @@
+id: err06-minutes-refs-duplicate-meeting
+rule: The meeting frame has two rows for the same mtg_key.
+function: minutes_refs
+frames:
+  meeting:
+  - mtg_key: MTG-900001
+    prj_key: PRJ-900001
+    date: '2031-01-05'
+    minutes_ref: 1
+  - mtg_key: MTG-900001
+    prj_key: PRJ-900001
+    date: '2031-01-05'
+    minutes_ref: 1
+args: {}
+raises:
+  error: FrameError
+  message: projects.meeting has more than one row for MTG-900001; one row per key is required
+  names:
+  - meeting
+  - MTG-900001

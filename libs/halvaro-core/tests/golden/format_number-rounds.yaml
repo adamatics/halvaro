@@ -1,0 +1,8 @@
+name: rounds a tie away from zero
+function: format_number
+by_hand: 'No decimals: minus 1234566.5 is exactly halfway between minus 1234566 and minus 1234567; a tie rounds away from zero, so it is minus 1234567, written with thousands separators.'
+input:
+  args:
+  - -1234566.5
+expect:
+  value: -1,234,567

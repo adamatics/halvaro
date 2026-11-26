@@ -1,0 +1,12 @@
+# Golden error case of halvaro-finance.filing_status: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: filing_status
+why: dk_entities is a single text
+args:
+- frame:
+    columns: [rpt_key, le_key, period_end, filing_deadline, filed_date, filed_on_time]
+    rows:
+    - [R-X, LE-01, '2025-12-31', '2026-05-31', '2026-05-01', true]
+kwargs: {dk_entities: LE-01}
+context: month12
+raises: FrameError
+message: dk_entities is a sequence of le_key values (None for the group), not a string

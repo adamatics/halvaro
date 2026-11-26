@@ -1,0 +1,27 @@
+# Golden error case of halvaro-finance.supplier_spend: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: supplier_spend
+why: start is after end
+args:
+- frame:
+    columns:
+    - sup_key
+    - invoice_type
+    - invoice_date
+    - net_amount_dkk
+    rows:
+    - - SUP-1
+      - invoice
+      - '2026-01-05'
+      - 10.0
+- frame:
+    columns:
+    - sup_key
+    - category
+    rows:
+    - - SUP-1
+      - a
+- 2026-03-01
+- 2026-01-01
+context: month12
+raises: FrameError
+message: start 2026-03-01 is after end 2026-01-01

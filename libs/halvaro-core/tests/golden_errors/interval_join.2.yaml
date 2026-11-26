@@ -1,0 +1,20 @@
+# Golden error case of halvaro-core.interval_join: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: interval_join
+why: how is neither left nor inner
+args:
+- frame:
+    columns:
+    - ts
+    rows:
+    - - '2026-01-01'
+- frame:
+    columns:
+    - from_ts
+    - to_ts
+    rows:
+    - - '2026-01-01'
+      - '2026-01-02'
+kwargs:
+  how: outer
+raises: FrameError
+message: how must be 'left' or 'inner'

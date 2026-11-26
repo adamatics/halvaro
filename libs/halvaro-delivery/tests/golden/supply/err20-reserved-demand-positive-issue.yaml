@@ -1,0 +1,30 @@
+id: err20-reserved-demand-positive-issue
+rule: An issue_project movement with a positive quantity is refused.
+function: reserved_demand
+frames:
+  reservation:
+  - prj_key: PRJ-900001
+    itm_key: ITM-900001
+    reservation_no: 1
+    site_key: SITE-900001
+    qty: 5
+    created_date: '2031-01-05'
+    needed_by_date: '2031-03-01'
+    po_key: null
+    po_line_no: null
+  stock_movement:
+  - site_key: SITE-900001
+    itm_key: ITM-900001
+    movement_date: '2031-01-05'
+    movement_type: issue_project
+    qty: 2
+    prj_key: PRJ-900001
+    reservation_no: 1
+args:
+  as_of: '2031-02-01'
+raises:
+  error: FrameError
+  message: an issue_project movement has a positive quantity; issues are negative stock movements
+  names:
+  - issue_project
+  - positive quantity

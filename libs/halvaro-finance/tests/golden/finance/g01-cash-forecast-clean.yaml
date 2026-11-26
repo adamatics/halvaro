@@ -1,0 +1,15 @@
+name: A forecast that ties to the bank, chains and sums has no violation
+function: cash_forecast_checks
+cites: [FI.PRC.005]
+by_hand: Week 1 opens at the bank balance of 1000, net cash flow is the VAT payment of minus 300, closing is 1000 - 300 = 700 and sits inside the band 650 to 750. Nothing is broken.
+input:
+  cash_forecast:
+    columns: [le_key, forecast_date, week_no, opening_cash, net_cash_flow, closing_cash, closing_cash_p10, closing_cash_p90, receipts_customers, receipts_retention, receipts_new_billing, receipts_intercompany, payments_suppliers_open, payments_suppliers_new, payments_net_wages, payments_payroll_taxes_pensions, payments_vat, payments_intercompany, net_interest]
+    rows:
+      - [LE-01, "2025-01-31", 1, 1000.0, -300.0, 700.0, 650.0, 750.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -300.0, 0.0, 0.0]
+  bank_balance:
+    columns: [le_key, balance_date, closing_balance]
+    rows:
+      - [LE-01, "2025-01-31", 1000.0]
+expect:
+  empty: true

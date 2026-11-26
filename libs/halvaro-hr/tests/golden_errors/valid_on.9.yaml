@@ -1,0 +1,18 @@
+# Golden error case of halvaro-hr.valid_on: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: valid_on
+why: issued has a time zone
+args:
+- frame:
+    columns:
+    - emp_key
+    - qual_key
+    - issued
+    - expires
+    rows:
+    - - EMP-X1
+      - QUAL-X
+      - '2024-01-01T00:00:00+01:00'
+      - null
+- 2026-03-31
+raises: FrameError
+message: competence.certification_held.issued has a time zone; dates here are calendar days

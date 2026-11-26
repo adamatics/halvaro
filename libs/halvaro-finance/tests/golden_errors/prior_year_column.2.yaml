@@ -1,0 +1,16 @@
+# Golden error case of halvaro-finance.prior_year_column: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: prior_year_column
+why: codes is a number, not a sequence of line codes
+args:
+- frame:
+    columns: [rpt_key, statement, line_code, amount, prior_year_amount]
+    rows:
+    - [R-1, income_statement, REV, 1.0, null]
+- frame:
+    columns: [rpt_key, le_key, scope, fiscal_year]
+    rows:
+    - [R-1, LE-A, entity, 2026]
+kwargs: {codes: 5}
+context: month12
+raises: FrameError
+message: codes must be a sequence of line codes, not int (5)

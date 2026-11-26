@@ -1,0 +1,72 @@
+# Golden error case of halvaro-hr.cover_candidates: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: cover_candidates
+why: list_level is text
+args:
+- frame:
+    columns:
+    - emp_key
+    - skl_key
+    - level
+    rows: []
+- frame:
+    columns:
+    - emp_key
+    - active
+    - country
+    - role_name
+    - legal_entity_key
+    rows: []
+- frame:
+    columns:
+    - emp_key
+    - qual_key
+    - issued
+    - expires
+    rows: []
+- frame:
+    columns:
+    - qual_key
+    - prerequisite_qual_key
+    - country_scope
+    rows:
+    - - QUAL-01
+      - null
+      - null
+- frame:
+    columns:
+    - event_no
+    - qual_key
+    - date
+    - capacity
+    - seats_taken
+    - country
+    rows: []
+- frame:
+    columns:
+    - prj_key
+    - emp_key
+    - percent
+    rows: []
+- frame:
+    columns:
+    - emp_key
+    - leave_type
+    - start
+    - end
+    rows: []
+kwargs:
+  qual_key: QUAL-01
+  skl_key: SKL-01
+  prj_key: PRJ-1
+  crew: []
+  country: DK
+  start: &id001 2026-03-31
+  now: *id001
+  list_level: '2'
+  plausible_level: 1
+  leave_days: 1
+  seat_days: 1
+  leave_types:
+  - extended_leave
+raises: FrameError
+message: list_level must be a number, not '2'

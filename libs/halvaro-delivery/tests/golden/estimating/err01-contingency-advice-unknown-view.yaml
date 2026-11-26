@@ -1,0 +1,26 @@
+id: err01-contingency-advice-unknown-view
+rule: The view asked for has no rows in the cause shares.
+function: contingency_advice
+frames:
+  overrun_dist:
+  - measure: schedule
+    n: 4
+    n_legacy: 1
+    q75: 0.2
+  shares:
+  - view: all_events
+    cause_code: ground_conditions
+    days: 30
+  lines:
+  - prj_key: PRJ-900001
+    type: tender
+    cst_key: CST-900001
+    amount: 5.0
+args:
+  view: no_such_view
+raises:
+  error: FrameError
+  message: cause_shares has no rows for the view no_such_view
+  names:
+  - view
+  - no_such_view

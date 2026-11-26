@@ -1,0 +1,11 @@
+# Golden error case of halvaro-finance.labour_absorption_check: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: labour_absorption_check
+why: a journal line has no entity
+args:
+- frame:
+    columns: [le_key, gl_key, period, amount]
+    rows:
+    - [null, GL-6100, 2026-03, 100.0]
+context: month12
+raises: FrameError
+message: finance.journal_line has a row without an le_key

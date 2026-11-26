@@ -1,0 +1,16 @@
+id: err13-project-status-on-start-missing
+rule: A project without a start date is refused, with its key named.
+function: project_status_on
+frames:
+  project:
+  - prj_key: PRJ-900001
+    start: null
+    actual_end: null
+args:
+  as_of: '2031-02-01'
+raises:
+  error: FrameError
+  message: 1 projects have no start date (for example PRJ-900001); a status on a date needs it
+  names:
+  - start date
+  - PRJ-900001

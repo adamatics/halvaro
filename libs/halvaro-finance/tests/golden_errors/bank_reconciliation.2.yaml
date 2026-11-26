@@ -1,0 +1,23 @@
+# Golden error case of halvaro-finance.bank_reconciliation: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: bank_reconciliation
+why: a payment has a direction other than incoming or outgoing
+args:
+- frame:
+    columns: [le_key, bank_account, balance_date, closing_balance, currency]
+    rows:
+    - [LE-X, BANK-X, '2026-01-31', 0.0, DKK]
+- frame:
+    columns: [bank_account, payment_date, direction, amount]
+    rows:
+    - [BANK-X, '2026-01-10', sideways, 1.0]
+- frame:
+    columns: [le_key, bank_account, gl_key]
+    rows:
+    - [LE-X, BANK-X, GL-1200]
+- frame:
+    columns: [le_key, gl_key, amount]
+    rows:
+    - [LE-X, GL-1200, 0.0]
+context: month12
+raises: FrameError
+message: 'payment direction other than incoming or outgoing: [''sideways'']'

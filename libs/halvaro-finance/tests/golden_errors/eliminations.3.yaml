@@ -1,0 +1,43 @@
+# Golden error case of halvaro-finance.eliminations: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: eliminations
+why: two entries with the same year, period and entry number
+args:
+- frame:
+    columns:
+    - fiscal_year
+    - period
+    - entry_no
+    - entry_type
+    - basis
+    - debit_le_key
+    - debit_gl_key
+    - credit_le_key
+    - credit_gl_key
+    - amount_dkk
+    - difference_dkk
+    rows:
+    - - 2026
+      - 2026-03
+      - 1
+      - investment
+      - movement
+      - LE-01
+      - GL-8000
+      - LE-02
+      - GL-8100
+      - 100.0
+      - 0.0
+    - - 2026
+      - 2026-03
+      - 1
+      - investment
+      - movement
+      - LE-01
+      - GL-8000
+      - LE-02
+      - GL-8100
+      - 100.0
+      - 0.0
+context: month12
+raises: FrameError
+message: finance-reporting.consolidation_entry has more than one row for a year, period and entry number

@@ -1,0 +1,19 @@
+# Golden error case of halvaro-hr.terms_on: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: terms_on
+why: one person has two terms valid on the date
+args:
+- frame:
+    columns:
+    - emp_key
+    - valid_from
+    - valid_to
+    rows:
+    - - EMP-000001
+      - '2026-01-01'
+      - null
+    - - EMP-000001
+      - '2026-02-01'
+      - null
+- 2026-03-31
+raises: AmbiguousKey
+message: 'Key EMP-000001 matches 2 candidates: valid_from=2026-01-01, valid_from=2026-02-01. Pass a date or a more specific key.'

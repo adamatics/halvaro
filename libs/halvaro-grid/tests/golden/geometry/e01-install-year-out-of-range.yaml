@@ -1,0 +1,17 @@
+id: e01-install-year-out-of-range
+rule: An install year outside 1800 to 2200 is refused, because it is read as a calendar year.
+function: element_age
+frames:
+  grid_element:
+  - install_year: 1650
+    status: in_service
+    commissioned_date: '2005-06-01'
+args:
+  'on': '2031-01-01'
+raises:
+  error: FrameError
+  message: gis.grid_element.install_year must be a whole year from 1800 to 2200 (for example 1650)
+  names:
+  - install_year
+  - '1800'
+  - '1650'

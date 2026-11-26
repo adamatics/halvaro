@@ -1,0 +1,15 @@
+# Golden error case of halvaro-core.reduce_chunks: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: reduce_chunks
+why: an aggregation is a column name and not a (column, function) pair
+args:
+- - frame:
+      columns:
+      - g
+      - v
+      rows:
+      - - x
+        - 1
+- g
+- total: v
+raises: FrameError
+message: aggregation 'total' must be a pair (column, function), not 'v'

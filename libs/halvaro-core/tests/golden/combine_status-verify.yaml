@@ -1,0 +1,10 @@
+name: verify wins
+function: combine_status
+by_hand: A VERIFY fact makes the result VERIFY; the synthetic mark is kept next to it, so both are reported.
+input:
+  args:
+  - - verified
+    - VERIFY
+    - synthetic
+expect:
+  value: VERIFY+synthetic

@@ -1,0 +1,16 @@
+id: err10-project-status-on-as-of-null
+rule: An as_of that reads as no date (NaT) is refused.
+function: project_status_on
+frames:
+  project:
+  - prj_key: PRJ-900001
+    start: '2031-01-05'
+    actual_end: null
+args:
+  as_of: NaT
+raises:
+  error: PeriodError
+  message: as_of 'NaT' is not a date
+  names:
+  - as_of
+  - NaT

@@ -1,0 +1,30 @@
+# Golden error case of halvaro-hr.planned_vs_actual_hours: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: planned_vs_actual_hours
+why: a project has two budget estimate versions
+args:
+- frame:
+    columns:
+    - prj_key
+    - estimate_version
+    - type
+    rows:
+    - - PRJ-X
+      - 1
+      - budget
+    - - PRJ-X
+      - 2
+      - budget
+- frame:
+    columns:
+    - prj_key
+    - estimate_version
+    - cst_key
+    - quantity
+    rows: []
+- frame:
+    columns:
+    - prj_key
+    - hours
+    rows: []
+raises: FrameError
+message: more than one budget estimate version for a project (for example PRJ-X)

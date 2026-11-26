@@ -1,0 +1,9 @@
+id: e04-restated-no-original-number
+rule: "restatement_pairs is refused when a restated line does not say which line it replaces."
+function: restatement_pairs
+frames:
+  L: [{"le_key": "LE-900001", "period": "2030-05", "scope": 1, "category": "fuel", "line_no": 2, "kgco2e": 10.0, "quantity": 5.0, "efac_key": "EF-900001", "method": null, "ghg_category": "1", "restated_from_period": "2030-05", "supersedes_line_no": null, "is_superseded": false}]
+raises:
+  error: FrameError
+  message: "a restated line has no supersedes_line_no"
+  names: ["restated", "supersedes_line_no"]

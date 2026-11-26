@@ -1,0 +1,11 @@
+# Golden error case of halvaro-finance.revenue_recognised: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: revenue_recognised
+why: every frame is empty, so the columns the function reads are missing
+args:
+- frame: {}
+- {}
+kwargs:
+  cap: 1.0
+context: month12
+raises: FrameError
+message: finance.project_financials frame lacks column(s) contract_value; load the source columns without renaming them

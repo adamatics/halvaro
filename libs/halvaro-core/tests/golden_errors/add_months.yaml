@@ -1,0 +1,8 @@
+# Golden error case of halvaro-core.add_months: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: add_months
+why: the text is not a month
+args:
+- 2026-13
+- 1
+raises: PeriodError
+message: '''2026-13'' is not a period; expected YYYY-MM such as 2026-11, with a year from 0001 to 9999'

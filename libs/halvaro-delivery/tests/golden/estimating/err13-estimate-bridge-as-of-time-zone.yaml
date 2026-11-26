@@ -1,0 +1,27 @@
+id: err13-estimate-bridge-as-of-time-zone
+rule: An as_of with a time zone is refused.
+function: estimate_bridge
+frames:
+  estimate_version:
+  - prj_key: PRJ-900001
+    estimate_version: 1
+    type: tender
+    date: '2031-01-05'
+    currency: EUR
+    total_cost: 1
+  estimate_line:
+  - prj_key: PRJ-900001
+    estimate_version: 1
+    cst_key: CST-900001
+    amount: 1
+  cost_code:
+  - cst_key: CST-900001
+    category: civil
+args:
+  as_of: '2031-02-01T00:00:00+01:00'
+raises:
+  error: FrameError
+  message: as_of '2031-02-01T00:00:00+01:00' has a time zone; dates here are calendar days, pass it without one
+  names:
+  - as_of
+  - time zone

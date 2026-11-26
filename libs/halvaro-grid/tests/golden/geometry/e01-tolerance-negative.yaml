@@ -1,0 +1,19 @@
+id: e01-tolerance-negative
+rule: A negative tolerance is refused, because it is the length difference in metres that still counts as unchanged.
+function: route_change
+frames:
+  project_area:
+  - prj_key: PRJ-900001
+    kind: planned_route
+    version: 2
+    valid_from: '2030-01-01'
+    valid_to: null
+    length_m: 100.0
+args:
+  tolerance_m: -0.5
+raises:
+  error: FrameError
+  message: 'tolerance_m must be zero or more (got -0.5)'
+  names:
+  - tolerance_m
+  - zero or more

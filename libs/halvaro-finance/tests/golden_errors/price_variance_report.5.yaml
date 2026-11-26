@@ -1,0 +1,15 @@
+# Golden error case of halvaro-finance.price_variance_report: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: price_variance_report
+why: a line with a PO price has no item
+args:
+- frame:
+    columns: [sinv_key, itm_key, unit_price, po_unit_price, price_variance, currency, invoice_type]
+    rows:
+    - [S-1, null, 11.0, 10.0, 10.0, EUR, invoice]
+- frame:
+    columns: [sinv_key, sup_key]
+    rows:
+    - [S-1, SUP-X]
+context: month12
+raises: FrameError
+message: invoice lines with a PO price need an itm_key and a currency

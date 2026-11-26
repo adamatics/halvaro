@@ -1,0 +1,10 @@
+# Golden error case of halvaro-finance.three_way_match: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: three_way_match
+why: every frame is empty, so the columns the function reads are missing
+args:
+- frame: {}
+- frame: {}
+context: month12
+raises: FrameError
+message: finance.supplier_invoice_line frame lacks column(s) sinv_key, line_no, po_key, po_line_no, receipt_no, quantity, unit_price, po_unit_price, invoice_type, match_status, price_variance; load the source columns without renaming
+  them

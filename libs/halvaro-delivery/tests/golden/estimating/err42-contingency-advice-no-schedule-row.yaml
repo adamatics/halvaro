@@ -1,0 +1,27 @@
+id: err42-contingency-advice-no-schedule-row
+rule: An overrun distribution without the schedule row is refused.
+function: contingency_advice
+frames:
+  overrun_dist:
+  - measure: cost
+    n: 1
+    n_legacy: 0
+    q75: 0.2
+  shares:
+  - view: all_events
+    cause_code: ground_conditions
+    days: 1
+  lines:
+  - prj_key: PRJ-900001
+    type: tender
+    cst_key: CST-900001
+    category: civil
+    amount: 1
+    currency: EUR
+args: {}
+raises:
+  error: FrameError
+  message: overrun_distribution needs exactly one 'schedule' row
+  names:
+  - overrun_distribution
+  - schedule

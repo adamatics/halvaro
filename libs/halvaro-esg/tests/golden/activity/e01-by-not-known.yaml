@@ -1,0 +1,11 @@
+id: e01-by-not-known
+rule: consumption_by is refused when by is not one of the groupings it knows, and the message lists them.
+function: consumption_by
+frames:
+  c: [{mtr_key: MTR-900001, period: "2025-01", quantity: 100.0, unit: kWh}]
+  m: [{mtr_key: MTR-900001, carrier: electricity, unit: kWh}]
+args: {by: colour, p0: "2025-01", p1: "2025-01"}
+raises:
+  error: FrameError
+  message: "by must be one of ['carrier', 'kind', 'site'], not 'colour'"
+  names: [by, colour]

@@ -1,0 +1,9 @@
+name: whole units
+function: format_money
+by_hand: 'Currency code, a space, the amount rounded half away from zero to whole units: 1234.5 gives 1,235.'
+input:
+  args:
+  - 1234.5
+  - DKK
+expect:
+  value: DKK 1,235

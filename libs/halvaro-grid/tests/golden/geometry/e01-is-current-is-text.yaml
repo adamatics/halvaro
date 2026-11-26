@@ -1,0 +1,15 @@
+id: e01-is-current-is-text
+rule: A current flag that holds text is refused, because it must be True or False in every row.
+function: validate_versions
+frames:
+  geometry_version:
+  - net_key: NET-900001
+    valid_from: '2030-01-01'
+    valid_to: null
+    is_current: 'yes'
+raises:
+  error: FrameError
+  message: gis.geometry_version.is_current must hold True or False in every row (no nulls, text or numbers)
+  names:
+  - is_current
+  - True or False

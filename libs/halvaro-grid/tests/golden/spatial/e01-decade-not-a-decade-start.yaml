@@ -1,0 +1,21 @@
+id: e01-decade-not-a-decade-start
+rule: A decade that is not the first year of a decade is refused, because a group holds the elements installed in one whole decade.
+function: age_group_clusters
+frames:
+  grid_element:
+  - net_key: NET-900001
+    install_year: 1961
+    element_type: cable
+    zone_key: ZONE-0001
+    lon: 9.5
+    lat: 53.5
+args:
+  decade: 1963
+  element_type: cable
+raises:
+  error: FrameError
+  message: 'decade is the first year of a decade, for example 1960 (got 1963)'
+  names:
+  - decade
+  - '1963'
+  - first year of a decade

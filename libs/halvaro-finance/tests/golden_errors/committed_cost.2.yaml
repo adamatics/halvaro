@@ -1,0 +1,19 @@
+# Golden error case of halvaro-finance.committed_cost: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: committed_cost
+why: a unit price is infinite
+args:
+- frame:
+    columns: [po_key, line_no, prj_key, qty_open]
+    rows:
+    - [PO-1, 1, PRJ-1, 0.0]
+- frame:
+    columns: [po_key, line_no, unit_price, currency, cst_key]
+    rows:
+    - [PO-1, 1, .inf, DKK, CST-1]
+- frame:
+    columns: [po_key, delivery_type]
+    rows:
+    - [PO-1, project_site]
+context: month12
+raises: FrameError
+message: unit_price must be finite, not infinity

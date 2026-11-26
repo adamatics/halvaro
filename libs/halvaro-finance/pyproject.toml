@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=77", "setuptools-scm==10.3.4"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "halvaro-finance"
+dynamic = ["version"]
+description = "Finance library of the Halvaro Infra estate: ledger, subledgers, project view, exposure, payroll tie-out, statements (0.1: ledger)"
+requires-python = ">=3.10"
+license = "Apache-2.0"
+dependencies = ["halvaro-core>=0.1,<0.2", "pandas>=2.0,<3", "numpy>=1.26"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "jsonschema>=4", "pyarrow>=15", "PyYAML>=6"]
+
+# Version from the Git tag halvaro-finance/v<major>.<minor>.<patch> (standard 1.4, same form as halvaro-hr, proposed, issue #201). setuptools-scm reads the local repository, no network.
+# The build writes src/halvaro/finance/_version_scm.py (git-ignored, into the wheel). The tracked _version.py imports it and keeps the committed fallback for a checkout that is not built.
+[tool.setuptools_scm]
+root = "../.."
+tag_regex = "^halvaro-finance/v(?P<version>[0-9]+\\.[0-9]+\\.[0-9]+)$"
+git_describe_command = ["git", "describe", "--dirty", "--tags", "--long", "--match", "halvaro-finance/v*"]
+version_file = "src/halvaro/finance/_version_scm.py"
+fallback_version = "0.1.0"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+namespaces = true
+
+[tool.setuptools.package-data]
+"halvaro.finance" = ["py.typed", ".agents/skills/*/SKILL.md", ".agents/skills/*/references/*.md"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests", "repo_tests"]
+pythonpath = ["src", "../halvaro-core/src"]
+addopts = "-q --strict-markers"
+markers = [
+    "release: needs an exported release (set HALVARO_RELEASE_DIR)",
+    "slow: more than a few seconds",
+]

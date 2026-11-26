@@ -1,0 +1,31 @@
+id: err42-supplier-performance-recompute-grace-days-not-whole
+rule: grace_days that is not a whole number is refused.
+function: supplier_performance_recompute
+frames:
+  po_line:
+  - po_key: PO-900001
+    line_no: 1
+    itm_key: ITM-900001
+    qty: 5
+    promised_date: '2031-02-01'
+    requested_date: '2031-01-20'
+  purchase_order:
+  - po_key: PO-900001
+    sup_key: SUP-900001
+    prj_key: PRJ-900001
+    order_date: '2031-01-05'
+    status: open
+  goods_receipt:
+  - po_key: PO-900001
+    line_no: 1
+    receipt_date: '2031-01-20'
+    qty_accepted: 1
+args:
+  as_of: '2031-02-01'
+  grace_days: -1
+raises:
+  error: FrameError
+  message: grace_days must be a whole number of days, zero or more, not -1
+  names:
+  - grace_days
+  - whole number

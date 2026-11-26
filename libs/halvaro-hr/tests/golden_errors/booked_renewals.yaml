@@ -1,0 +1,10 @@
+# Golden error case of halvaro-hr.booked_renewals: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: booked_renewals
+why: no data release frame is passed
+args:
+- frame: {}
+- frame: {}
+- 2026-03-31
+- {}
+raises: FrameMissing
+message: 'no data_release frame was passed; pass {source: frame} for at least one source'

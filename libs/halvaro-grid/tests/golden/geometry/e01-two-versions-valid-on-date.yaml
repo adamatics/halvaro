@@ -1,0 +1,22 @@
+id: e01-two-versions-valid-on-date
+rule: Two versions of one element that are both valid on the asked day are refused, because an element has one geometry on a day.
+function: geometry_as_of
+frames:
+  geometry_version:
+  - net_key: NET-900001
+    valid_from: '2030-01-01'
+    valid_to: null
+    is_current: true
+  - net_key: NET-900001
+    valid_from: '2030-06-01'
+    valid_to: null
+    is_current: true
+args:
+  'on': '2031-01-01'
+raises:
+  error: FrameError
+  message: 1 elements have more than one version valid on 2031-01-01 (for example NET-900001)
+  names:
+  - more than one version
+  - '2031-01-01'
+  - NET-900001

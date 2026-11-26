@@ -1,0 +1,11 @@
+id: e03-limit-not-positive
+rule: "lever_report is refused when limit is not a positive number of kg per metre."
+function: lever_report
+frames:
+  pm: [{"prj_key": "PRJ-900001", "route_length_m": 100.0, "kgco2e_per_m": 20.0}]
+  levers: [{"lever": "hvo", "saved_kgco2e": 50.0}]
+args: {"limit": -4.0}
+raises:
+  error: FrameError
+  message: "limit must be a positive number of kg per metre, not -4.0"
+  names: ["limit", "-4"]

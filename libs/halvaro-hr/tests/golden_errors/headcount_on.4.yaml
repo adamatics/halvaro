@@ -1,0 +1,38 @@
+# Golden error case of halvaro-hr.headcount_on: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: headcount_on
+why: an active person sits in a team that hr.team does not have
+args:
+- frame:
+    columns:
+    - emp_key
+    - hire_date
+    - leave_date
+    - legal_entity_key
+    rows:
+    - - EMP-X1
+      - 2020-01-01
+      - null
+      - LE-X
+- frame:
+    columns:
+    - emp_key
+    - valid_from
+    - valid_to
+    - team_key
+    - fte
+    rows:
+    - - EMP-X1
+      - 2020-01-01
+      - null
+      - TEAM-Y
+      - 1.0
+- frame:
+    columns:
+    - team_key
+    - dep_key
+    rows:
+    - - TEAM-X
+      - DEP-X
+- 2026-03-31
+raises: FrameError
+message: 1 active people sit in a team that is not in the hr.team frame (for example TEAM-Y)

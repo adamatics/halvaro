@@ -1,0 +1,24 @@
+# Golden error case of halvaro-finance.cost_to_completion: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: cost_to_completion
+why: the period is not text like 2026-03
+args:
+- frame:
+    columns:
+    - prj_key
+    - period
+    - currency
+    - eac
+    - actual_cost
+    - committed_cost
+    rows:
+    - - PRJ-1
+      - 2026-03
+      - DKK
+      - 800.0
+      - 400.0
+      - 100.0
+- - PRJ-1
+- 2026-3
+context: month12
+raises: FrameError
+message: period must be text like 2025-11, not '2026-3'

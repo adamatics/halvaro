@@ -1,0 +1,21 @@
+# Golden error case of halvaro-core.check_contiguity: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: check_contiguity
+why: the convention is neither day_after nor touching
+args:
+- frame:
+    columns:
+    - k
+    - valid_from
+    - valid_to
+    rows:
+    - - A
+      - '2026-01-01'
+      - '2026-01-31'
+    - - A
+      - '2026-02-05'
+      - null
+- k
+kwargs:
+  convention: x
+raises: PeriodError
+message: convention 'x' is not day_after or touching

@@ -1,0 +1,16 @@
+# Golden error case of halvaro-finance.price_steps: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: price_steps
+why: the before frame has two prices for a supplier and item
+args:
+- frame:
+    columns: [sup_key, itm_key, unit_price, currency, change_reason]
+    rows:
+    - [SUP-X, ITM-X, 10.0, EUR, framework_amendment]
+    - [SUP-X, ITM-X, 10.0, EUR, framework_amendment]
+- frame:
+    columns: [sup_key, itm_key, unit_price, currency, change_reason]
+    rows:
+    - [SUP-X, ITM-X, 10.0, EUR, framework_amendment]
+context: month12
+raises: FrameError
+message: the before price frame has more than one price for a supplier and item

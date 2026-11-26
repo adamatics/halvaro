@@ -1,0 +1,8 @@
+# Golden error case of halvaro-finance.intercompany_match: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: intercompany_match
+why: every frame is empty, so the columns the function reads are missing
+args:
+- frame: {}
+context: month12
+raises: FrameError
+message: finance-reporting.intercompany_match frame lacks column(s) ic_ref, kind, period, amount_le01_dkk, amount_le02_dkk, amount_le02_eur, difference_dkk, status; load the source columns without renaming them

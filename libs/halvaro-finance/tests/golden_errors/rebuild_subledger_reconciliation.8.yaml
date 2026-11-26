@@ -1,0 +1,52 @@
+# Golden error case of halvaro-finance.rebuild_subledger_reconciliation: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: rebuild_subledger_reconciliation
+why: a payment allocation names a payment that is not in the payment frame
+args:
+- frame:
+    columns: [inv_key, le_key, invoice_type, invoice_date, gross_amount_le, retention_amount_le, retention_release_date, written_off_date, counterpart_le_key]
+    rows: []
+- frame:
+    columns: [le_key, invoice_type, invoice_date, payable_amount_le]
+    rows: []
+- frame:
+    columns: [le_key, bank_account, payment_no, payment_date]
+    rows: []
+- frame:
+    columns: [le_key, bank_account, payment_no, allocation_kind, document_type, booked_amount, inv_key, sinv_key, opening_item_ref]
+    rows:
+    - [LE-X, BANK-X, 1, inv, invoice, 10.0, INV-X, null, null]
+- frame:
+    columns: [le_key, gl_key, item_ref, document_date, due_date, amount, currency, cus_key, sup_key]
+    rows:
+    - [LE-X, GL-1100, OPN-1, '2025-12-01', '2026-01-15', 10.0, DKK, CUS-X, null]
+- frame:
+    columns: [asset_class, gl_cost_key, gl_accumulated_key]
+    rows: []
+- frame:
+    columns: [le_key, asset_class, period, cost_closing, accumulated_closing]
+    rows: []
+- frame:
+    columns: [le_key, period, gl_key, stock_value, allowance]
+    rows: []
+- frame:
+    columns: [ic_type, creditor_le_key, debtor_le_key, document_date, settlement_date, creditor_amount, debtor_amount]
+    rows: []
+- frame:
+    columns: [bank_account, balance_date, closing_balance]
+    rows: []
+- frame:
+    columns: [le_key, bank_account, gl_key]
+    rows: []
+- frame:
+    columns: [le_key, period, gl_key, closing_balance]
+    rows:
+    - [LE-X, 2026-01, GL-1000, 0.0]
+- frame:
+    columns: [gl_key, control_type]
+    rows:
+    - [GL-1100, ar]
+    - [GL-1110, retention]
+    - [GL-2100, ap]
+context: month12
+raises: FrameError
+message: 1 allocations name a payment that is not in finance.payment

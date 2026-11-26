@@ -1,0 +1,8 @@
+name: proposed counts as verify
+function: combine_status
+by_hand: A proposed fact is not decided by the owner, so the rule counts it as VERIFY.
+input:
+  args:
+  - - proposed
+expect:
+  value: VERIFY

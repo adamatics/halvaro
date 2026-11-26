@@ -1,0 +1,10 @@
+# Golden error case of halvaro-core.net_working_days: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: net_working_days
+why: the period ends before it starts
+args:
+- frame: {columns: [emp_key, region], rows: [[EMP-X, DK]]}
+- frame: {columns: [emp_key, start, end], rows: []}
+- 2026-03-31
+- 2026-03-01
+raises: FrameError
+message: end 2026-03-01 is before start 2026-03-31; pass the first day and the last day of the period

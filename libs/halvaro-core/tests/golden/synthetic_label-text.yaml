@@ -1,0 +1,7 @@
+name: text
+function: synthetic_label
+by_hand: The label under every figure of fictional data.
+input:
+  args: []
+expect:
+  value: synthetic data

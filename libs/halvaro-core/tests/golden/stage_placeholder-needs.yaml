@@ -1,0 +1,13 @@
+name: needs a later stage
+function: stage_placeholder
+by_hand: The placeholder is the banner text plus the sentence that the chart is not drawn.
+input:
+  args:
+  - refusal:
+      sources:
+      - finance
+      stage: month3
+      held: day1
+      function: f
+expect:
+  value: Needs finance (appears at stage month3). This session holds stage day1. The chart is not drawn.

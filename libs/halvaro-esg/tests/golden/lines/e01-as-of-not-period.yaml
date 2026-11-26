@@ -1,0 +1,10 @@
+id: e01-as-of-not-period
+rule: as_of_view is refused when as_of is not a period text like 2030-12.
+function: as_of_view
+frames:
+  L: [{le_key: LE-900001, period: "2030-05", scope: 1, category: fuel, line_no: 1, is_superseded: false, restated_from_period: null, supersedes_line_no: null}]
+args: {as_of: "2030-13"}
+raises:
+  error: FrameError
+  message: "as_of must be a period text like 2025-12, not '2030-13'"
+  names: [as_of, "2030-13"]

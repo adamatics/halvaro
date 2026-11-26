@@ -1,0 +1,30 @@
+id: err46-contingency-advice-projects-is-text
+rule: projects given as one text instead of a list is refused.
+function: contingency_advice
+frames:
+  overrun_dist:
+  - measure: schedule
+    n: 1
+    n_legacy: 0
+    q25: 0.1
+    median: 0.1
+    q75: 0.2
+  shares:
+  - view: all_events
+    cause_code: ground_conditions
+    days: 1
+  lines:
+  - prj_key: PRJ-900001
+    type: tender
+    cst_key: CST-900001
+    category: civil
+    amount: 1
+    currency: EUR
+args:
+  projects: PRJ-900001
+raises:
+  error: FrameError
+  message: projects must be a list of prj_key values
+  names:
+  - projects
+  - list

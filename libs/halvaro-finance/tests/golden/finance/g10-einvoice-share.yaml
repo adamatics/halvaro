@@ -1,0 +1,15 @@
+name: The structured share is the structured invoices over all third party invoices of the month
+function: einvoice_format_share
+cites: [FI.STD.004]
+by_hand: Three third party invoices in March, two in a structured format and one pdf. The share is 2 / 3 = 0.6667. The intercompany invoice of the month is left out.
+input:
+  customer_invoice:
+    columns: [le_key, invoice_date, invoice_format, counterpart_le_key]
+    rows:
+      - [LE-02, "2025-03-03", pdf, null]
+      - [LE-02, "2025-03-10", xrechnung, null]
+      - [LE-02, "2025-03-20", zugferd, null]
+      - [LE-02, "2025-03-21", pdf, LE-01]
+expect:
+  rows:
+    - {period: "2025-03", n_invoices: 3, n_structured: 2, share: 0.6667}

@@ -1,0 +1,15 @@
+# Golden error case of halvaro-finance.to_natural_sign: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: to_natural_sign
+why: an account has a normal balance that is neither debit nor credit
+args:
+- frame:
+    columns: [amount, gl_key]
+    rows:
+    - [1.0, GL-1000]
+- frame:
+    columns: [gl_key, normal_balance]
+    rows:
+    - [GL-1000, left]
+context: month12
+raises: FrameError
+message: finance.gl_account has accounts whose normal_balance is neither debit nor credit (for example GL-1000)

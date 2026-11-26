@@ -1,0 +1,21 @@
+id: err03-executive-attendance-unknown-status
+rule: An attendance status other than present, apology or absent is refused, with the value named.
+function: executive_attendance
+frames:
+  attendance_frame:
+  - mtg_key: MTG-900001
+    prj_key: PRJ-900001
+    date: '2031-01-05'
+    emp_key: EMP-900001
+    status: maybe
+  executives:
+  - as_of: 1
+    emp_key: EMP-900001
+    role_name: 1
+args: {}
+raises:
+  error: FrameError
+  message: 'attendance status has unknown value(s) [''maybe'']; known: present, apology, absent'
+  names:
+  - status
+  - maybe

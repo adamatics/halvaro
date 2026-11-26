@@ -1,0 +1,24 @@
+id: err18-customer-projects-unknown-by
+rule: by other than customer or tier is refused.
+function: customer_projects
+frames:
+  customer:
+  - cus_key: CUS-900001
+    name: Customer X
+    tier: key
+  project:
+  - prj_key: PRJ-900001
+    customer_key: CUS-900001
+    status: active
+  contract:
+  - con_key: CON-900001
+    cus_key: CUS-900001
+    type: customer_project
+args:
+  by: region
+raises:
+  error: FrameError
+  message: by is customer or tier
+  names:
+  - by
+  - tier

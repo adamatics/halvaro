@@ -1,0 +1,18 @@
+# Golden error case of halvaro-core.join_report: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: join_report
+why: the key column is called class, the name the report uses
+args:
+- frame:
+    columns:
+    - class
+    rows:
+    - - A
+- frame:
+    columns:
+    - class
+    rows:
+    - - A
+kwargs:
+  'on': class
+raises: FrameError
+message: 'a key column cannot be called ''class'': the report uses that name; rename it first'

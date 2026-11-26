@@ -1,0 +1,16 @@
+# Golden error case of halvaro-core.guarded_sum: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: guarded_sum
+why: the rows to sum carry two currencies
+args:
+- frame:
+    columns:
+    - currency
+    - amount
+    rows:
+    - - DKK
+      - 1
+    - - EUR
+      - 2
+- amount
+raises: SumGuardError
+message: the rows to sum carry more than one currency (DKK, EUR); group by currency or convert first (core.convert).

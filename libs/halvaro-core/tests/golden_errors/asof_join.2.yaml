@@ -1,0 +1,28 @@
+# Golden error case of halvaro-core.asof_join: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: asof_join
+why: the left date column holds a null
+args:
+- frame:
+    columns:
+    - k
+    - d
+    rows:
+    - - A
+      - 2026-02
+    - - A
+      - null
+- frame:
+    columns:
+    - k
+    - valid_from
+    - valid_to
+    - rate
+    rows:
+    - - A
+      - '2026-01-01'
+      - null
+      - 10
+- d
+- k
+raises: FrameError
+message: left column d must hold a date in every row, found 1 null value(s); drop those rows or fill the date

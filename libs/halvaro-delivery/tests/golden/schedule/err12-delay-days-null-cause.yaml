@@ -1,0 +1,16 @@
+id: err12-delay-days-null-cause
+rule: A delay event without a cause_code is refused, with the column named.
+function: delay_days
+frames:
+  delay_event:
+  - prj_key: PRJ-900001
+    cause_code: null
+    responsible_party: customer
+    days: 1
+args: {}
+raises:
+  error: FrameError
+  message: projects.delay_event has rows with a null cause_code; they would drop out of one result and not the other
+  names:
+  - delay_event
+  - cause_code

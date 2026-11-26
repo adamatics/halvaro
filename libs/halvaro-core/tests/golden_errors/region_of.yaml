@@ -1,0 +1,6 @@
+# Golden error case of halvaro-core.region_of: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: region_of
+why: a placeholder value that the function does not know or accept
+args: []
+raises: UnknownRegion
+message: country None has no region; pass a site key

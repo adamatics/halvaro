@@ -1,0 +1,18 @@
+id: err02-gantt-view-no-activity-key
+rule: The frame has no activity key column (prj_key, activity_code or name).
+function: gantt_view
+frames:
+  plan_vs_actual:
+  - baseline_start: 1
+    baseline_end: 1
+    latest_start: 1
+    latest_end: 1
+    actual_start: 1
+    actual_end: 1
+args: {}
+raises:
+  error: FrameError
+  message: activity_plan_vs_actual lacks an activity key (prj_key, activity_code or name)
+  names:
+  - activity key
+  - prj_key

@@ -1,0 +1,14 @@
+# Golden error case of halvaro-core.team_of_cost_centre: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: team_of_cost_centre
+why: no team has that cost centre
+args:
+- frame:
+    columns:
+    - team_key
+    - cost_centre_key
+    rows:
+    - - T1
+      - C1
+- C9
+raises: FrameError
+message: cost centre C9 belongs to 0 teams; expected 1

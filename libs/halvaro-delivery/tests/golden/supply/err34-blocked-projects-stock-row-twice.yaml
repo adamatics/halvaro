@@ -1,0 +1,29 @@
+id: err34-blocked-projects-stock-row-twice
+rule: A stock frame with two rows for one site and item is refused.
+function: blocked_projects
+frames:
+  reservations_open:
+  - prj_key: PRJ-900001
+    itm_key: ITM-900001
+    site_key: SITE-900001
+    qty_open: 1
+    needed_by_date: '2031-03-01'
+  stock:
+  - site_key: SITE-900001
+    itm_key: ITM-900001
+    on_hand: 0
+  - site_key: SITE-900001
+    itm_key: ITM-900001
+    on_hand: 0
+args:
+  as_of: '2031-02-01'
+  items:
+  - ITM-900001
+  active:
+  - PRJ-900001
+raises:
+  error: FrameError
+  message: the stock frame has more than one row for SITE-900001 ITM-900001; pass one stock_on frame (one row per site and item), not snapshots or movements that would be summed over every date
+  names:
+  - stock frame
+  - SITE-900001

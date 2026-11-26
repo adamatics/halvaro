@@ -1,0 +1,12 @@
+id: err04-project-status-on-not-a-frame
+rule: The project argument is not a DataFrame.
+function: project_status_on
+args:
+  project: PRJ-900001
+  as_of: '2031-02-01'
+raises:
+  error: FrameError
+  message: the projects.project frame must be a DataFrame, not str
+  names:
+  - project
+  - str

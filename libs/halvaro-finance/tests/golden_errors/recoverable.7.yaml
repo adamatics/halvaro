@@ -1,0 +1,21 @@
+# Golden error case of halvaro-finance.recoverable: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: recoverable
+why: two clauses start on the same date and are both in force
+args:
+- frame:
+    columns: [prj_key, exposure_dkk, step_percent_max]
+    rows:
+    - [PRJ-X, 500.0, 10.0]
+- frame:
+    columns: [con_key, pass_through_percent, threshold_percent, valid_from, valid_to]
+    rows:
+    - [CON-X, 50.0, null, '2026-01-01', null]
+    - [CON-X, 80.0, null, '2026-01-01', null]
+- frame:
+    columns: [prj_key, con_key, price_type]
+    rows:
+    - [PRJ-X, CON-X, indexed]
+kwargs: {'on': '2026-03-01'}
+context: month12
+raises: FrameError
+message: two price clauses start on the same date and are both in force on 2026-03-01 for contract CON-X

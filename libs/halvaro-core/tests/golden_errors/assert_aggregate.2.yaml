@@ -1,0 +1,19 @@
+# Golden error case of halvaro-core.assert_aggregate: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: assert_aggregate
+why: min_group is given and count_column holds text
+args:
+- frame:
+    columns:
+    - grade
+    - measure
+    - people
+    rows:
+    - - A
+      - 10.0
+      - three
+- measure
+kwargs:
+  min_group: 2
+  count_column: people
+raises: FrameError
+message: count_column people must hold numbers (the number of people per group) to be compared with min_group 2, found object values

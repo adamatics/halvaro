@@ -1,0 +1,9 @@
+# Golden error case of halvaro-finance.roll_retained_earnings: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: roll_retained_earnings
+why: every frame is empty, so the columns the function reads are missing
+args:
+- frame: {}
+- frame: {}
+context: month12
+raises: FrameError
+message: finance.trial_balance frame lacks column(s) le_key, period, gl_key, opening_balance, closing_balance, closing_balance_dkk; load the source columns without renaming them

@@ -1,0 +1,8 @@
+# Golden error case of halvaro-core.caption: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: caption
+why: the date is a text that is not an ISO date
+args:
+- actual cost
+- notadate
+raises: FrameError
+message: "as_of 'notadate' is not an ISO date; expected YYYY-MM-DD such as 2026-11-30"

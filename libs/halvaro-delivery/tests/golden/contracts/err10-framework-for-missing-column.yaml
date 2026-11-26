@@ -1,0 +1,19 @@
+id: err10-framework-for-missing-column
+rule: The contract frame lacks a column the function needs, here end.
+function: framework_for
+frames:
+  contract:
+  - con_key: CON-900001
+    type: supplier_framework
+    sup_key: SUP-900001
+    status: in_force
+    start: '2031-01-05'
+args:
+  sup_key: SUP-900001
+  as_of: '2031-02-01'
+raises:
+  error: FrameError
+  message: contracts.contract lacks column(s) end; load the source columns without renaming them
+  names:
+  - contracts.contract
+  - end

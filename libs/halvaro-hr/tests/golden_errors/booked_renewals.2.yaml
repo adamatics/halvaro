@@ -1,0 +1,36 @@
+# Golden error case of halvaro-hr.booked_renewals: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: booked_renewals
+why: data_releases is a list, not a mapping
+args:
+- frame:
+    columns:
+    - event_no
+    - emp_key
+    - status
+    rows:
+    - - 7
+      - EMP-X1
+      - booked
+- frame:
+    columns:
+    - event_no
+    - qual_key
+    - date
+    - end_date
+    - capacity
+    - seats_taken
+    - country
+    - location_site_key
+    rows:
+    - - 7
+      - QUAL-X
+      - 2026-05-10
+      - 2026-05-11
+      - 10
+      - 4
+      - DK
+      - SITE-01
+- 2026-03-31
+- []
+raises: FrameError
+message: 'data_releases is a mapping of source name to its data_release frame, for example {''competence'': frame}'

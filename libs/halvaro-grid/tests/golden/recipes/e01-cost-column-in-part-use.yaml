@@ -1,0 +1,25 @@
+id: e01-cost-column-in-part-use
+rule: A column named cost in a frame that feeds a list of keys is refused, because the delivery side must never receive money.
+function: grid_strain_answer
+frames:
+  strained:
+  - net_key: NET-900001
+    strained: true
+    load_strained: true
+  zone_summary:
+  - zone_key: ZONE-0001
+    n_elements: 3
+    n_strained: 1
+  part_use:
+  - itm_key: ITM-900001
+    units: 4
+    unit_cost: 9.5
+  critical_issued:
+  - itm_key: ITM-900001
+    units: 5
+raises:
+  error: FrameError
+  message: column(s) part_use.unit_cost do not belong in an answer that feeds a list of keys (stock, order, price, cost, intent)
+  names:
+  - part_use.unit_cost
+  - cost

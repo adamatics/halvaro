@@ -1,0 +1,15 @@
+# Golden error case of halvaro-hr.allocation_load: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: allocation_load
+why: limit is text, not a number of percent
+args:
+- frame:
+    columns:
+    - emp_key
+    - start
+    - end
+    - percent
+    rows: []
+kwargs:
+  limit: high
+raises: FrameError
+message: limit must be a number of percent, not 'high'

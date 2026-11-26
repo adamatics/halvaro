@@ -1,0 +1,26 @@
+id: err25-executive-attendance-person-twice-in-meeting
+rule: A person who appears twice in one meeting is refused.
+function: executive_attendance
+frames:
+  attendance_frame:
+  - mtg_key: MTG-900001
+    prj_key: PRJ-900001
+    date: '2031-01-05'
+    emp_key: EMP-900001
+    status: present
+  - mtg_key: MTG-900001
+    prj_key: PRJ-900001
+    date: '2031-01-05'
+    emp_key: EMP-900001
+    status: present
+  executives:
+  - emp_key: EMP-900001
+    role_name: director
+    as_of: '2031-01-05'
+args: {}
+raises:
+  error: FrameError
+  message: EMP-900001 appears more than once in meeting MTG-900001
+  names:
+  - EMP-900001
+  - MTG-900001

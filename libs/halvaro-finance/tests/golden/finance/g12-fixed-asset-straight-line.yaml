@@ -1,0 +1,19 @@
+name: Straight line depreciation starts the month after acquisition and ends exactly at the cost
+function: fixed_asset_rollforward
+cites: [FI.STD.023]
+by_hand: Cost 900 over 3 months, acquired in February 2023. Nothing is depreciated in February. March, April and May each take 300, so the accumulated depreciation is 0, 300, 600 and 900 at the end of February to May and the net book value is 900, 600, 300 and 0.
+context: month3
+input:
+  fixed_asset:
+    columns: [le_key, asset_class, acquisition_date, cost, useful_life_months, disposal_date, depreciation_method, currency]
+    rows:
+      - [LE-01, IT, "=date(2023, 2, 10)", 900.0, 3, null, straight_line_monthly, DKK]
+expect:
+  rows_by:
+    key: period
+    rows:
+      - {period: "2023-02", additions: 900.0, accumulated_closing: 0.0, net_book_value: 900.0}
+      - {period: "2023-03", depreciation: 300.0, accumulated_closing: 300.0, net_book_value: 600.0}
+      - {period: "2023-04", depreciation: 300.0, accumulated_closing: 600.0, net_book_value: 300.0}
+      - {period: "2023-05", depreciation: 300.0, accumulated_closing: 900.0, net_book_value: 0.0}
+      - {period: "2023-06", depreciation: 0.0, accumulated_closing: 900.0}

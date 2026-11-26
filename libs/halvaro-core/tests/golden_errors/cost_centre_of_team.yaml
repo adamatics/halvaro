@@ -1,0 +1,8 @@
+# Golden error case of halvaro-core.cost_centre_of_team: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: cost_centre_of_team
+why: every frame is empty, so the columns the function reads are missing
+args:
+- frame: {}
+- x
+raises: FrameError
+message: hr.team frame lacks column(s) team_key, cost_centre_key

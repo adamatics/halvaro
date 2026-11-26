@@ -1,0 +1,33 @@
+# Golden error case of halvaro-hr.planned_vs_actual_hours: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: planned_vs_actual_hours
+why: a cost key is not of the form CST-digits
+args:
+- frame:
+    columns:
+    - prj_key
+    - estimate_version
+    - type
+    rows:
+    - - PRJ-X
+      - 1
+      - budget
+- frame:
+    columns:
+    - prj_key
+    - estimate_version
+    - cst_key
+    - quantity
+    rows:
+    - - PRJ-X
+      - 1
+      - LAB-1
+      - 10.0
+- frame:
+    columns:
+    - prj_key
+    - hours
+    rows:
+    - - PRJ-X
+      - 5.0
+raises: FrameError
+message: projects.estimate_line.cst_key 'LAB-1' is not of the form CST-<digits>

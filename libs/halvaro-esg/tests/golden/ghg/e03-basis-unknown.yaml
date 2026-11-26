@@ -1,0 +1,10 @@
+id: e03-basis-unknown
+rule: "scope3_by_category is refused when basis is neither current nor first_booked."
+function: scope3_by_category
+frames:
+  L: [{"le_key": "LE-900001", "period": "2030-05", "scope": 1, "category": "fuel", "line_no": 1, "kgco2e": 10.0, "quantity": 5.0, "efac_key": "EF-900001", "method": null, "ghg_category": "1", "restated_from_period": null, "supersedes_line_no": null, "is_superseded": false}]
+args: {"year": 2030, "basis": "latest"}
+raises:
+  error: FrameError
+  message: "basis must be 'current' or 'first_booked', not 'latest'"
+  names: ["basis", "'latest'"]

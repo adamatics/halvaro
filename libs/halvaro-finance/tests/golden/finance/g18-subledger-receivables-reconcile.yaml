@@ -1,0 +1,41 @@
+name: Receivables and retention rebuilt from one invoice equal the control accounts
+function: rebuild_subledger_reconciliation
+cites: [FI.PRC.019]
+by_hand: One invoice of 1000 of which 100 is held as retention, unpaid at the month end. The receivables subledger is 1000 - 100 = 900 and the retention subledger is 100. The trial balance holds 900 on the receivables account and 100 on the retention account, so both reconcile with a difference of 0.
+context: month3
+input:
+  customer_invoice:
+    columns: [inv_key, le_key, invoice_type, invoice_date, gross_amount_le, retention_amount_le, retention_release_date, written_off_date, counterpart_le_key]
+    rows:
+      - [I1, LE-01, invoice, "2023-01-15", 1000.0, 100.0, null, null, null]
+  supplier_invoice: {columns: [le_key, invoice_type, invoice_date, payable_amount_le], rows: []}
+  payment: {columns: [le_key, bank_account, payment_no, payment_date], rows: []}
+  payment_allocation: {columns: [le_key, bank_account, payment_no, allocation_kind, document_type, booked_amount, inv_key, sinv_key, opening_item_ref], rows: []}
+  opening_balance_item:
+    columns: [le_key, gl_key, item_ref, document_date, due_date, amount, currency, cus_key, sup_key]
+    rows:
+      - [LE-01, GL-1100, O1, "2022-12-01", null, 0.0, DKK, null, null]
+  fixed_asset: {columns: [asset_class, gl_cost_key, gl_accumulated_key], rows: []}
+  fixed_asset_schedule: {columns: [le_key, asset_class, period, cost_closing, accumulated_closing], rows: []}
+  inventory_valuation: {columns: [le_key, period, gl_key, stock_value, allowance], rows: []}
+  intercompany: {columns: [ic_type, creditor_le_key, debtor_le_key, document_date, settlement_date, creditor_amount, debtor_amount], rows: []}
+  bank_balance: {columns: [bank_account, balance_date, closing_balance], rows: []}
+  bank_account: {columns: [le_key, bank_account, gl_key], rows: []}
+  trial_balance:
+    columns: [le_key, period, gl_key, closing_balance]
+    rows:
+      - [LE-01, "2023-01", GL-1100, 900.0]
+      - [LE-01, "2023-01", GL-1190, 100.0]
+      - [LE-01, "2023-01", GL-2100, 0.0]
+  gl_account:
+    columns: [gl_key, control_type]
+    rows:
+      - [GL-1100, ar]
+      - [GL-1190, retention]
+      - [GL-2100, ap]
+expect:
+  rows_by:
+    key: subledger
+    rows:
+      - {subledger: receivables, subledger_balance: 900.0, ledger_balance: 900.0, difference: 0.0, reconciled: true}
+      - {subledger: retention_receivable, subledger_balance: 100.0, ledger_balance: 100.0, difference: 0.0, reconciled: true}

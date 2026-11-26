@@ -1,0 +1,23 @@
+id: err27-executive-gap-first-record-twice
+rule: More than one first record for the project is refused.
+function: executive_gap
+frames:
+  first:
+  - &id001
+    prj_key: PRJ-900001
+    diary_date: '2031-01-05'
+  - *id001
+  exec_attendance:
+  - mtg_key: MTG-900001
+    prj_key: PRJ-900001
+    date: '2031-01-05'
+    emp_key: EMP-900001
+    role_name: director
+args:
+  prj_key: PRJ-900001
+raises:
+  error: FrameError
+  message: project PRJ-900001 has 2 first records; pass the output of first_record
+  names:
+  - PRJ-900001
+  - first records

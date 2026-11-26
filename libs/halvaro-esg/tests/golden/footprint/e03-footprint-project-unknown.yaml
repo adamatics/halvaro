@@ -1,0 +1,10 @@
+id: e03-footprint-project-unknown
+rule: "per_metre is refused when a project of the footprint is not in projects.project."
+function: per_metre
+frames:
+  PF: [{"prj_key": "PRJ-900002", "period": "2030-05", "total_kgco2e": 100.0}]
+  P: [{"prj_key": "PRJ-900001", "route_length_m": 50.0, "start": "2030-01-01", "status": "done"}]
+raises:
+  error: FrameError
+  message: "1 projects of the footprint are not in projects.project (for example PRJ-900002)"
+  names: ["projects.project", "PRJ-900002"]

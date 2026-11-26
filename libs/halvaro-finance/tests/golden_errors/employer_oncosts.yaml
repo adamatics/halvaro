@@ -1,0 +1,10 @@
+# Golden error case of halvaro-finance.employer_oncosts: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: employer_oncosts
+why: every frame is empty, so the columns the function reads are missing
+args:
+- frame: {}
+kwargs:
+  country_of: {}
+context: month12
+raises: FrameError
+message: gross pay frame frame lacks column(s) le_key, cc_key, period, gross_salary; load the source columns without renaming them

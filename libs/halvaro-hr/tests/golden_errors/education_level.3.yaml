@@ -1,0 +1,13 @@
+# Golden error case of halvaro-hr.education_level: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: education_level
+why: an education row has no emp_key
+args:
+- frame:
+    columns:
+    - emp_key
+    - level_rank
+    rows:
+    - - null
+      - 2
+raises: FrameError
+message: competence.education_record has a null emp_key

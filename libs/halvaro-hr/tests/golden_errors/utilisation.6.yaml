@@ -1,0 +1,61 @@
+# Golden error case of halvaro-hr.utilisation: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: utilisation
+why: two terms are valid at the middle of a period
+args:
+- frame:
+    columns:
+    - emp_key
+    - work_date
+    - hours
+    rows:
+    - - EMP-X1
+      - 2026-03-03
+      - 5.0
+- frame:
+    columns:
+    - emp_key
+    - period_start
+    - period_end
+    - hours
+    rows:
+    - - EMP-X1
+      - 2026-03-01
+      - 2026-03-31
+      - 100.0
+- frame:
+    columns:
+    - emp_key
+    - valid_from
+    - valid_to
+    - team_key
+    - role_key
+    rows:
+    - - EMP-X1
+      - 2020-01-01
+      - null
+      - TEAM-X
+      - ROLE-X
+    - - EMP-X1
+      - 2020-01-01
+      - null
+      - TEAM-X
+      - ROLE-X
+- frame:
+    columns:
+    - team_key
+    - dep_key
+    rows:
+    - - TEAM-X
+      - DEP-X
+- frame:
+    columns:
+    - dep_key
+    - dep_code
+    rows:
+    - - DEP-X
+      - ENG
+kwargs:
+  project_roles:
+  - ROLE-X
+raises: FrameError
+message: hr.employment_term has two terms valid at the middle of a period

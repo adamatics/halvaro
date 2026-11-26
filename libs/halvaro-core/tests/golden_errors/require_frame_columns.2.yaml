@@ -1,0 +1,13 @@
+# Golden error case of halvaro-core.require_frame_columns: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: require_frame_columns
+why: the named column is not a column of the table in the data dictionary; the message ends in the columns of the table, a list that grows with the data dictionary
+args:
+- frame:
+    columns:
+    - role_key
+    rows:
+    - - R1
+- hr.grade
+- nonexistent_col
+raises: FrameError
+message_starts: 'nonexistent_col is not column(s) of hr.grade; its columns are '

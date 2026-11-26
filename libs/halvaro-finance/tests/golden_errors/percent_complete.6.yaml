@@ -1,0 +1,13 @@
+# Golden error case of halvaro-finance.percent_complete: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: percent_complete
+why: no key of actual_end is a project of the frame
+args:
+- frame:
+    columns: [prj_key, period, actual_cost, eac]
+    rows:
+    - [PRJ-X, 2026-03, 400.0, 800.0]
+- {PRJ-Y: '2026-02-28'}
+kwargs: {cap: 0.9}
+context: month12
+raises: FrameError
+message: none of the keys of actual_end is a prj_key of the frame; pass a Series indexed by prj_key

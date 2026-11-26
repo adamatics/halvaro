@@ -1,0 +1,17 @@
+id: err04-cause-bars-view-unknown-view
+rule: The view asked for has no rows in cause_shares.
+function: cause_bars_view
+frames:
+  cause_shares:
+  - view: all_events
+    cause_code: 1
+    days: 1
+    events: 1
+args:
+  view: no_such_view
+raises:
+  error: FrameError
+  message: cause_shares has no rows for the view no_such_view
+  names:
+  - view
+  - no_such_view

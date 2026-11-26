@@ -1,0 +1,11 @@
+# Golden error case of halvaro-finance.bank_reconciliation: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: bank_reconciliation
+why: every frame is empty, so the columns the function reads are missing
+args:
+- frame: {}
+- frame: {}
+- frame: {}
+- frame: {}
+context: month12
+raises: FrameError
+message: finance.bank_balance frame lacks column(s) le_key, bank_account, balance_date, closing_balance, currency; load the source columns without renaming them

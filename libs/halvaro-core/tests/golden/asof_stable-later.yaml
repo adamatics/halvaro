@@ -1,0 +1,29 @@
+name: later rows only
+function: asof_stable
+by_hand: The row added later is dated after the as-of date, so the result at that date is the same on both releases.
+input:
+  args:
+  - call: rows_until_the_date
+  - t:
+      frame:
+        columns:
+        - k
+        - d
+        rows:
+        - - A
+          - '2026-01-01'
+  - t:
+      frame:
+        columns:
+        - k
+        - d
+        rows:
+        - - A
+          - '2026-01-01'
+        - - B
+          - '2026-06-01'
+  - 2026-03-01
+  kwargs:
+    key: k
+expect:
+  value: true

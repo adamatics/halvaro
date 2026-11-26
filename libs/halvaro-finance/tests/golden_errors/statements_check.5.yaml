@@ -1,0 +1,12 @@
+# Golden error case of halvaro-finance.statements_check: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: statements_check
+why: a tolerance is negative
+args:
+- frame:
+    columns: [rpt_key, statement, line_no, line_code, amount, prior_year_amount, line_type]
+    rows:
+    - [R-X, income_statement, 1, REV, 100.0, null, line]
+kwargs: {tolerance: -1}
+context: month12
+raises: FrameError
+message: tolerance must be zero or more

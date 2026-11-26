@@ -1,0 +1,25 @@
+# Golden error case of halvaro-finance.statement_from_ledger: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: statement_from_ledger
+why: a balance sheet account ends the year with a balance but has no row in the last period
+args:
+- frame:
+    columns: [le_key, period, gl_key, debit, credit, closing_balance]
+    rows:
+    - [LE-X, 2026-01, GL-1000, 0.0, 100.0, 50.0]
+    - [LE-X, 2026-02, GL-5100, 0.0, 100.0, 100.0]
+- frame:
+    columns: [gl_key, statement, dk_statutory_map]
+    rows:
+    - [GL-1000, BS, null]
+    - [GL-5100, IS, DK-REV]
+- frame:
+    columns: [map_code, line_code, statement, normal_side]
+    rows:
+    - [DK-REV, REV, IS, credit]
+- LE-X
+- DK
+- 2026
+kwargs: {require_full_year: false}
+context: month12
+raises: FrameError
+message: 1 balance sheet accounts end the year with a balance but have no row in the last period 2026-02 (for example GL-1000)

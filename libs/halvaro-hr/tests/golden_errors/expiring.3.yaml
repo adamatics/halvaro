@@ -1,0 +1,30 @@
+# Golden error case of halvaro-hr.expiring: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: expiring
+why: the valid frame is for another date than as_of
+args:
+- frame:
+    columns:
+    - emp_key
+    - qual_key
+    - issued
+    - expires
+    - as_of
+    rows:
+    - - EMP-000001
+      - QUAL-01
+      - '2023-01-10'
+      - '2027-01-01'
+      - '2026-01-01'
+- frame:
+    columns:
+    - emp_key
+    - qual_key
+    - course_date
+    - event_no
+    - free_seats
+    rows: []
+- 2026-02-01
+kwargs:
+  window_days: 30
+raises: FrameError
+message: the valid frame is for 2026-01-01, not 2026-02-01; call valid_on with the same date

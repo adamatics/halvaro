@@ -1,0 +1,8 @@
+# Golden error case of halvaro-core.year_of: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: year_of
+why: the start month is not 1 to 12
+args:
+- 2026-03
+- 13
+raises: PeriodError
+message: start month 13 is not 1 to 12

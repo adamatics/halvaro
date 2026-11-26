@@ -1,0 +1,18 @@
+id: err01-first-record-diary-without-date
+rule: The first diary row of the project (delay_seq 1) has no diary_date, so its first record cannot be dated.
+function: first_record
+frames:
+  site_diary:
+  - prj_key: PRJ-900001
+    diary_date: null
+    notes: 1
+    author_emp_key: AUTHOR-900001
+    delay_seq: 1
+args:
+  prj_key: PRJ-900001
+raises:
+  error: FrameError
+  message: 1 diary rows of PRJ-900001 with delay_seq 1 have no diary_date
+  names:
+  - PRJ-900001
+  - diary_date

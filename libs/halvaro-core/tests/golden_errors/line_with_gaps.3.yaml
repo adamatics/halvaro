@@ -1,0 +1,8 @@
+# Golden error case of halvaro-core.line_with_gaps: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: line_with_gaps
+why: x is a scalar and not a list
+args:
+- 5
+- - 1
+raises: FrameError
+message: x must be a list, array or Series of values, not 5

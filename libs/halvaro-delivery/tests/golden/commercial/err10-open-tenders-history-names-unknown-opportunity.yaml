@@ -1,0 +1,31 @@
+id: err10-open-tenders-history-names-unknown-opportunity
+rule: A stage history row of an opportunity that crm.opportunity does not hold is refused, with the key named.
+function: open_tenders
+frames:
+  opportunity:
+  - opp_key: OPP-900001
+    name: Tender A
+    cus_key: CUS-900001
+    stage: tender
+    is_open: true
+    project_type: district_heating
+    country: DK
+    soil_class: clay
+    route_length_m: 1
+    zone_key: ZONE-0001
+    bid_deadline: '2031-03-01'
+    requirements: null
+    carbon_limit_kgco2e_per_m: null
+    created_date: '2031-01-05'
+  stage_history:
+  - opp_key: OPP-900002
+    stage: tender
+    entered_date: '2031-01-05'
+args:
+  as_of: '2031-02-01'
+raises:
+  error: FrameError
+  message: crm.opportunity_stage_history names opportunities that crm.opportunity does not hold, for example OPP-900002
+  names:
+  - OPP-900002
+  - crm.opportunity

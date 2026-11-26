@@ -1,0 +1,27 @@
+id: err33-blocked-projects-stock-of-another-date
+rule: A stock frame of another date than the question is refused.
+function: blocked_projects
+frames:
+  reservations_open:
+  - prj_key: PRJ-900001
+    itm_key: ITM-900001
+    site_key: SITE-900001
+    qty_open: 1
+    needed_by_date: '2031-03-01'
+  stock:
+  - site_key: SITE-900001
+    itm_key: ITM-900001
+    on_hand: 0
+    as_of: '2031-01-05'
+args:
+  as_of: '2031-02-01'
+  items:
+  - ITM-900001
+  active:
+  - PRJ-900001
+raises:
+  error: FrameError
+  message: the stock frame is for 2031-01-05, not for 2031-02-01; build it with stock_on for the same date
+  names:
+  - stock frame
+  - '2031-01-05'

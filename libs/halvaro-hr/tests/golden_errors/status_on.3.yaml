@@ -1,0 +1,23 @@
+# Golden error case of halvaro-hr.status_on: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: status_on
+why: as_of is a number
+args:
+- frame:
+    columns:
+    - emp_key
+    - hire_date
+    - leave_date
+    rows: []
+- frame:
+    columns:
+    - emp_key
+    - leave_type
+    - start
+    - end
+    rows: []
+- 5
+kwargs:
+  unavailable_leave_types:
+  - sick
+raises: PeriodError
+message: as_of 5 is a number, not a date

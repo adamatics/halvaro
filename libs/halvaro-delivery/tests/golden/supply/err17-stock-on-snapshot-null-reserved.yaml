@@ -1,0 +1,27 @@
+id: err17-stock-on-snapshot-null-reserved
+rule: A snapshot row of the date with a null reserved is refused.
+function: stock_on
+frames:
+  stock_movement:
+  - site_key: SITE-900001
+    itm_key: ITM-900001
+    movement_date: '2031-01-05'
+    movement_type: receipt
+    qty: 5
+    prj_key: null
+    reservation_no: null
+  stock_level:
+  - site_key: SITE-900001
+    itm_key: ITM-900001
+    as_of_date: '2031-02-01'
+    on_hand: 5
+    reserved: .nan
+    available: 5
+args:
+  as_of: '2031-02-01'
+raises:
+  error: FrameError
+  message: the stock snapshot of the date has a null on_hand or reserved
+  names:
+  - snapshot
+  - reserved

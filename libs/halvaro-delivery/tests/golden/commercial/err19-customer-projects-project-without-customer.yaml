@@ -1,0 +1,23 @@
+id: err19-customer-projects-project-without-customer
+rule: A project without a customer_key is refused.
+function: customer_projects
+frames:
+  customer:
+  - cus_key: CUS-900001
+    name: Customer X
+    tier: key
+  project:
+  - prj_key: PRJ-900001
+    customer_key: null
+    status: active
+  contract:
+  - con_key: CON-900001
+    cus_key: CUS-900001
+    type: customer_project
+args: {}
+raises:
+  error: FrameError
+  message: a project without a customer_key or a customer without a tier cannot be placed in a tier share
+  names:
+  - customer_key
+  - tier

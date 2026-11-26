@@ -1,0 +1,64 @@
+# Golden error case of halvaro-hr.controlled_work_audit: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: controlled_work_audit
+why: a role group maps to a number, not to a role name or a list of role names
+args:
+- frame:
+    columns:
+    - emp_key
+    - work_date
+    - prj_key
+    - cst_key
+    rows: []
+- frame:
+    columns:
+    - emp_key
+    - prj_key
+    - start
+    - end
+    rows: []
+- frame:
+    columns:
+    - prj_key
+    - type
+    rows: []
+- frame:
+    columns:
+    - emp_key
+    - valid_from
+    - valid_to
+    - role_key
+    rows: []
+- frame:
+    columns:
+    - role_key
+    - name
+    rows: []
+- frame:
+    columns:
+    - emp_key
+    - legal_entity_key
+    - hire_date
+    rows: []
+- frame:
+    columns:
+    - emp_key
+    - qual_key
+    - issued
+    - expires
+    rows: []
+- frame:
+    columns:
+    - rule_id
+    - qual_key
+    - roles
+    - entity
+    - project_types
+    - cst
+    - allocation
+    rows: []
+- 2026-03-31
+kwargs:
+  role_groups:
+    G: 5
+raises: FrameError
+message: role_groups must map each group name to a role name or a list of role names; group 'G' has 5

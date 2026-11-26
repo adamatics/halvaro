@@ -1,0 +1,27 @@
+id: err06-price-adjustment-terms-as-of-number
+rule: The day argument as_of is a number, not a date or ISO text, so the function refuses it.
+function: price_adjustment_terms
+frames:
+  clause:
+  - con_key: CON-900001
+    clause_no: 1
+    clause_type: 1
+    variant: 1
+    param_name: 1
+    param_value: 1
+    param2_name: 1
+    param2_value: 1
+    valid_from: '2031-01-05'
+    valid_to: '2031-01-05'
+  contract:
+  - con_key: CON-900001
+    type: 1
+    price_type: 1
+args:
+  as_of: 7
+raises:
+  error: FrameError
+  message: as_of 7 is a number, not a date
+  names:
+  - as_of
+  - '7'

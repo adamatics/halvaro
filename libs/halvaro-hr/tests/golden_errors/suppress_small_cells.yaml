@@ -1,0 +1,8 @@
+# Golden error case of halvaro-hr.suppress_small_cells: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: suppress_small_cells
+why: the gap table has none of the columns it needs
+args:
+- frame: {}
+- - x
+raises: FrameError
+message: gap table frame lacks column(s) x, n_women, n_men

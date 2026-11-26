@@ -1,0 +1,18 @@
+id: e01-gap-days-negative
+rule: A negative number of days between two faults is refused, because a repeat is a fault within that many days of the last one.
+function: repeat_faults
+frames:
+  fault_event:
+  - net_key: NET-900001
+    fault_ts: 2031-02-03 10:00
+    tkt_key: TKT-900001
+    repeat_of_tkt_key: null
+    cause: frost
+args:
+  gap_days: -1
+raises:
+  error: FrameError
+  message: 'gap_days must be a whole number of days, zero or more (got -1)'
+  names:
+  - gap_days
+  - zero or more

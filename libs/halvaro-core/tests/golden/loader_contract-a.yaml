@@ -1,0 +1,11 @@
+name: a correct loader
+function: loader_contract
+by_hand: A loader that serves the exact columns in order, honours columns and gives chunks that add up has no problem.
+input:
+  args:
+  - call: contract_loader
+  - hr.employee:
+    - emp_key
+    - team_key
+expect:
+  value: []

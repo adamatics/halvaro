@@ -1,0 +1,29 @@
+name: day 1 source
+function: stage_matrix
+by_hand: hr.site is a day 1 source, so every stage sees it and gives a result.
+input:
+  args:
+  - halvaro.core.calendar.region_of
+  - hr.site:
+      frame:
+        columns:
+        - site_key
+        - country
+        rows:
+        - - SITE-01
+          - DK
+  - call: needs_hr_site
+expect:
+  value:
+  - stage: day1
+    expected: result
+    outcome: result
+    ok: true
+  - stage: month3
+    expected: result
+    outcome: result
+    ok: true
+  - stage: month12
+    expected: result
+    outcome: result
+    ok: true

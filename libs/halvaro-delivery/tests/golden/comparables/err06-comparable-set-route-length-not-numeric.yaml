@@ -1,0 +1,22 @@
+id: err06-comparable-set-route-length-not-numeric
+rule: A text route_length_m column is refused.
+function: comparable_set
+frames:
+  project:
+  - prj_key: PRJ-900001
+    country: DE
+    type: dh_network
+    soil_class: clay
+    route_length_m: long
+    legacy: false
+    data_depth: full
+    start: '2031-01-05'
+    actual_end: '2031-06-01'
+args:
+  as_of: '2031-12-01'
+raises:
+  error: FrameError
+  message: projects.project.route_length_m must be numeric
+  names:
+  - route_length_m
+  - numeric

@@ -1,0 +1,12 @@
+# Golden error case of halvaro-hr.allocation_hours: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: allocation_hours
+why: every frame is empty, so the columns the function reads are missing
+args:
+- frame: {}
+- frame: {}
+- frame: {}
+- frame: {}
+- frame: {}
+- 2026-03-31
+raises: FrameError
+message: hr.allocation frame lacks column(s) emp_key, start, end, percent

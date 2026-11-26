@@ -1,0 +1,10 @@
+id: e01-year-not-whole
+rule: project_scope_split is refused when year is text and not a whole year.
+function: project_scope_split
+frames:
+  L: [{prj_key: PRJ-900001, period: "2030-05", scope: 1, ghg_category: "1", category: fuel, line_no: 1, kgco2e: 10.0, is_superseded: false, restated_from_period: null}]
+args: {year: "2030"}
+raises:
+  error: FrameError
+  message: "year must be a whole year, not '2030'"
+  names: [year, "2030"]

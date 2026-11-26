@@ -1,0 +1,14 @@
+# Golden case (standard 3.2): input, expected output, the provisions it tests. Expected values are derived by hand from the rule and the facts, never from the function.
+# A string that starts with "=" is a formula over facts: fact('id'), date(y, m, d), days(n), round, min, max and the names of "let". No legal number is typed in a case.
+name: DK holiday year, the first day belongs to the new holiday year
+function: holiday_year_label
+cites: [dk/ferieloven/p-0004]
+by_hand: The date is the first day of the holiday year that starts in 2026, so the label is start year 2026, slash, last two digits of the end year.
+let:
+  start_month: "=fact('legal.DK.holiday.holiday_year_start.month')"
+  start_day: "=fact('legal.DK.holiday.holiday_year_start.day')"
+input:
+  country: DK
+  as_of: "=date(2026, start_month, start_day)"
+expect:
+  value: "2026/27"

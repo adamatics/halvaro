@@ -1,0 +1,22 @@
+# Golden error case of halvaro-finance.price_variance_report: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: price_variance_report
+why: price_steps lists a supplier and item twice
+args:
+- frame:
+    columns: [sinv_key, itm_key, unit_price, po_unit_price, price_variance, currency, invoice_type]
+    rows:
+    - [S-1, ITM-X, 11.0, 10.0, 10.0, EUR, invoice]
+- frame:
+    columns: [sinv_key, sup_key]
+    rows:
+    - [S-1, SUP-X]
+kwargs:
+  price_steps:
+    frame:
+      columns: [sup_key, itm_key, step_percent]
+      rows:
+      - [SUP-X, ITM-X, 5.0]
+      - [SUP-X, ITM-X, 5.0]
+context: month12
+raises: FrameError
+message: price_steps has more than one row for a sup_key and itm_key

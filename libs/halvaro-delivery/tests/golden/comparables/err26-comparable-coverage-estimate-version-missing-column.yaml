@@ -1,0 +1,21 @@
+id: err26-comparable-coverage-estimate-version-missing-column
+rule: An estimate_version frame without the type column is refused.
+function: comparable_coverage
+frames:
+  comparable: &id001
+  - prj_key: PRJ-900001
+  project:
+  - prj_key: PRJ-900001
+    final_cost: 1
+    route_length_m: 1
+  estimate_version: *id001
+  project_role: *id001
+args:
+  time_entry_projects:
+  - PRJ-900001
+raises:
+  error: FrameError
+  message: projects.estimate_version frame lacks column(s) type
+  names:
+  - projects.estimate_version
+  - type

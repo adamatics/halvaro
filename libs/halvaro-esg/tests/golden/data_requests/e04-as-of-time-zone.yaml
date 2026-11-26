@@ -1,0 +1,10 @@
+id: e04-as-of-time-zone
+rule: "request_timeliness is refused when as_of carries a time zone, because the day must be a calendar day without one."
+function: request_timeliness
+frames:
+  R: [{"cus_key": "CUS-900001", "request_no": 1, "request_type": "tender_requirement", "opp_key": "OPP-900001", "limit_kgco2e_per_m": 20.0, "received": "2031-03-01", "due": "2031-03-31", "answered_date": null}]
+args: {"as_of": "2031-04-15T00:00:00+02:00"}
+raises:
+  error: FrameError
+  message: "as_of '2031-04-15T00:00:00+02:00' is not a date without a time zone"
+  names: ["as_of", "time zone"]

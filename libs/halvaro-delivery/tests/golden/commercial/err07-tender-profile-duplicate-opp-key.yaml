@@ -1,0 +1,27 @@
+id: err07-tender-profile-duplicate-opp-key
+rule: An opp_key held twice in crm.opportunity is refused.
+function: tender_profile
+frames:
+  opportunity:
+  - opp_key: OPP-900001
+    cus_key: CUS-900001
+    project_type: x
+    country: DK
+    soil_class: clay
+    route_length_m: 1
+    bid_deadline: '2031-03-01'
+  - opp_key: OPP-900001
+    cus_key: CUS-900001
+    project_type: x
+    country: DK
+    soil_class: clay
+    route_length_m: 1
+    bid_deadline: '2031-03-01'
+args:
+  opp_key: OPP-900001
+raises:
+  error: FrameError
+  message: crm.opportunity has more than one row for a opp_key; one row per key is required
+  names:
+  - crm.opportunity
+  - opp_key

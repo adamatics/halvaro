@@ -1,0 +1,22 @@
+# Golden error case of halvaro-finance.ledger_gross_pay: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: ledger_gross_pay
+why: accounts is a text, not a tuple of account keys
+args:
+- frame:
+    columns:
+    - le_key
+    - cc_key
+    - gl_key
+    - period
+    - amount
+    rows:
+    - - LE-01
+      - CC-1
+      - GL-7000
+      - 2026-03
+      - 1.0
+kwargs:
+  accounts: GL-7000
+context: month12
+raises: FrameError
+message: accounts is a tuple of account keys

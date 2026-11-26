@@ -1,0 +1,25 @@
+id: err06-risk-lessons-summary-null-cause
+rule: A risk has no cause_code.
+function: risk_lessons_summary
+frames:
+  risk:
+  - prj_key: PRJ-900001
+    cause_code: null
+    status: 1
+    delay_seq: 1
+    risk_no: 1
+  lesson_learned:
+  - prj_key: PRJ-900001
+    category: 1
+    delay_seq: 1
+  delay_event:
+  - prj_key: PRJ-900001
+    seq: 1
+    cause_code: 1
+args: {}
+raises:
+  error: FrameError
+  message: projects.risk.cause_code has nulls
+  names:
+  - cause_code
+  - risk

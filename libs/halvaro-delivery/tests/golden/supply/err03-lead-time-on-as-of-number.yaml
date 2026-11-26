@@ -1,0 +1,18 @@
+id: err03-lead-time-on-as-of-number
+rule: The day argument as_of is a number, not a date or ISO text, so the function refuses it.
+function: lead_time_on
+frames:
+  lead_time:
+  - sup_key: SUP-900001
+    itm_key: ITM-900001
+    valid_from: '2031-01-05'
+    valid_to: '2031-01-05'
+    lead_time_weeks: 1
+args:
+  as_of: 7
+raises:
+  error: FrameError
+  message: as_of 7 is a number, not a date
+  names:
+  - as_of
+  - '7'

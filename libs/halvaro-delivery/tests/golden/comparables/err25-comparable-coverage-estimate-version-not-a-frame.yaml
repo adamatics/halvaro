@@ -1,0 +1,21 @@
+id: err25-comparable-coverage-estimate-version-not-a-frame
+rule: An estimate_version that is not a DataFrame is refused.
+function: comparable_coverage
+frames:
+  comparable: &id001
+  - prj_key: PRJ-900001
+  project:
+  - prj_key: PRJ-900001
+    final_cost: 1
+    route_length_m: 1
+  project_role: *id001
+args:
+  estimate_version: final
+  time_entry_projects:
+  - PRJ-900001
+raises:
+  error: FrameError
+  message: projects.estimate_version must be a DataFrame
+  names:
+  - projects.estimate_version
+  - DataFrame

@@ -1,0 +1,27 @@
+id: err04-activity-plan-vs-actual-as-of-number
+rule: The day argument as_of is a number, not a date or ISO text, so the function refuses it.
+function: activity_plan_vs_actual
+frames:
+  plan_activity:
+  - prj_key: PRJ-900001
+    plan_version: 1
+    activity_code: 1
+    name: 1
+    start: '2031-01-05'
+    end: '2031-01-05'
+    predecessor: 1
+    critical: 1
+  actual_activity:
+  - prj_key: PRJ-900001
+    activity_code: 1
+    actual_start: 1
+    actual_end: 1
+    percent_complete: 1
+args:
+  as_of: 7
+raises:
+  error: PeriodError
+  message: as_of 7 is a number, not a date; pass a date, a Timestamp or an ISO text such as 2026-11-30
+  names:
+  - as_of
+  - '7'

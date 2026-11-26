@@ -1,0 +1,15 @@
+id: err15-performance-view-more-on-time-than-due
+rule: A performance row with more lines on time than due is refused.
+function: performance_view
+frames:
+  performance:
+  - sup_key: SUP-900001
+    lines_due: 1
+    lines_on_time: 2
+args: {}
+raises:
+  error: FrameError
+  message: supplier performance has nulls or more lines on time than due
+  names:
+  - supplier performance
+  - on time

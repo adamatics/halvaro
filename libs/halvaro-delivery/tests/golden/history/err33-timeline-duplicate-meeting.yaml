@@ -1,0 +1,47 @@
+id: err33-timeline-duplicate-meeting
+rule: A meeting held twice in projects.meeting is refused.
+function: timeline
+frames:
+  site_diary:
+  - prj_key: PRJ-900001
+    diary_date: '2031-01-05'
+    delay_seq: 1
+    notes: a
+  risk:
+  - prj_key: PRJ-900001
+    risk_no: 1
+    raised: '2031-01-05'
+    title: t
+    status: open
+  meeting:
+  - &id001
+    mtg_key: MTG-900001
+    prj_key: PRJ-900001
+    date: '2031-01-05'
+    meeting_type: 1
+    title: t
+  - *id001
+  decision:
+  - mtg_key: MTG-900001
+    seq: 1
+    text: t
+    decision_type: scope
+  delay_event:
+  - prj_key: PRJ-900001
+    seq: 1
+    start: '2031-01-05'
+    days: 1
+    cause_code: weather
+  plan_version:
+  - prj_key: PRJ-900001
+    plan_version: 1
+    created: '2031-01-05'
+    reason: x
+args:
+  prj_key: PRJ-900001
+raises:
+  error: FrameError
+  message: projects.meeting has more than one row for a meeting
+  names:
+  - projects.meeting
+  - more than one row

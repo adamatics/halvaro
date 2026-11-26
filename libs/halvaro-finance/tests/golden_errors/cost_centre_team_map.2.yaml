@@ -1,0 +1,16 @@
+# Golden error case of halvaro-finance.cost_centre_team_map: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: cost_centre_team_map
+why: a cost centre is listed twice
+args:
+- frame:
+    columns: [cc_key, team_key]
+    rows:
+    - [CC-1, TEAM-1]
+    - [CC-1, TEAM-1]
+- frame:
+    columns: [team_key, cost_centre_key]
+    rows:
+    - [TEAM-1, CC-1]
+context: month12
+raises: FrameError
+message: finance.cost_centre and hr.team need one row per key

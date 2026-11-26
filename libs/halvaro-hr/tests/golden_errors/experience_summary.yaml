@@ -1,0 +1,7 @@
+# Golden error case of halvaro-hr.experience_summary: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: experience_summary
+why: every frame is empty, so the columns the function reads are missing
+args:
+- frame: {}
+raises: FrameError
+message: projects.project_role roster frame lacks column(s) prj_key, emp_key, project_role, hours_total, basis

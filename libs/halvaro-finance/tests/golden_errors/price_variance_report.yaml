@@ -1,0 +1,9 @@
+# Golden error case of halvaro-finance.price_variance_report: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: price_variance_report
+why: every frame is empty, so the columns the function reads are missing
+args:
+- frame: {}
+- frame: {}
+context: month12
+raises: FrameError
+message: finance.supplier_invoice_line frame lacks column(s) sinv_key, itm_key, unit_price, po_unit_price, price_variance, currency, invoice_type; load the source columns without renaming them

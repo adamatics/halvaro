@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=77", "setuptools-scm==10.3.4"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "halvaro-hr"
+dynamic = ["version"]
+description = "HR library of the Halvaro Infra estate: organisation, holiday, pay, crosswalk, staffing and certificates (0.1: organisation)"
+requires-python = ">=3.10"
+license = "Apache-2.0"
+dependencies = ["halvaro-core>=0.1,<0.2", "pandas>=2.0,<3"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "jsonschema>=4", "pyarrow>=15"]
+
+# Version from the Git tag halvaro-hr/v<major>.<minor>.<patch> (standard 1.4, proposed form, issue #196). setuptools-scm reads the local repository, no network.
+# The build writes src/halvaro/hr/_version_scm.py (git-ignored, into the wheel). The tracked _version.py imports it and keeps the committed fallback for a checkout that is not built.
+# The build output must not be a tracked file: it would make the tree dirty during the build and pip refuses the wheel (tested, issue #196). tests/test_hr_version.py guards this.
+[tool.setuptools_scm]
+root = "../.."
+tag_regex = "^halvaro-hr/v(?P<version>[0-9]+\\.[0-9]+\\.[0-9]+)$"
+git_describe_command = ["git", "describe", "--dirty", "--tags", "--long", "--match", "halvaro-hr/v*"]
+version_file = "src/halvaro/hr/_version_scm.py"
+fallback_version = "1.0.0"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+namespaces = true
+
+[tool.setuptools.package-data]
+"halvaro.hr" = ["py.typed", ".agents/skills/*/SKILL.md", ".agents/skills/*/references/*.md"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests", "repo_tests"]
+pythonpath = ["src", "../halvaro-core/src"]
+addopts = "-q --strict-markers"
+markers = [
+    "release: needs an exported release (set HALVARO_RELEASE_DIR)",
+    "slow: more than a few seconds",
+]

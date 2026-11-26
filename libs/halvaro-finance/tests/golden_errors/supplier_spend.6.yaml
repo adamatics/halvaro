@@ -1,0 +1,18 @@
+# Golden error case of halvaro-finance.supplier_spend: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: supplier_spend
+why: a supplier key is listed twice
+args:
+- frame:
+    columns: [sup_key, invoice_type, invoice_date, net_amount_dkk]
+    rows:
+    - [SUP-X, invoice, '2026-01-05', 100.0]
+- frame:
+    columns: [sup_key, category]
+    rows:
+    - [SUP-X, steel]
+    - [SUP-X, steel]
+- '2026-01-01'
+- '2026-01-31'
+context: month12
+raises: FrameError
+message: procurement.supplier has duplicate sup_key values

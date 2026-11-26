@@ -1,0 +1,13 @@
+id: e01-interval-not-positive
+rule: A sensor interval of zero or less is refused, because the hours of a sample are its interval.
+function: interval_hours
+frames:
+  sensor:
+  - sns_key: SNS-900001
+    interval_s: 0
+raises:
+  error: FrameError
+  message: telemetry.sensor.interval_s must be positive for every sensor
+  names:
+  - telemetry.sensor.interval_s
+  - positive

@@ -1,0 +1,8 @@
+# Golden error case of halvaro-core.assert_aggregate: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: assert_aggregate
+why: every frame is empty, so the columns the function reads are missing
+args:
+- frame: {}
+- x
+raises: FrameError
+message: column x is missing in the frame

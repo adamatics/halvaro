@@ -1,0 +1,15 @@
+# Golden error case of halvaro-hr.expiry_report: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: expiry_report
+why: every frame is empty, so the columns the function reads are missing
+args:
+- frame: {}
+- frame: {}
+- frame: {}
+- frame: {}
+- frame: {}
+- 2026-03-31
+kwargs:
+  expiry_date: 2026-03-31
+  qual_key: QUAL-01
+raises: FrameError
+message: booked_renewals output frame lacks column(s) emp_key, qual_key, course_date, course_end, event_no, free_seats

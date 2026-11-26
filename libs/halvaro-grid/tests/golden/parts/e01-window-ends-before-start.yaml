@@ -1,0 +1,23 @@
+id: e01-window-ends-before-start
+rule: A window whose last day is before its first day is refused, because it holds no day.
+function: critical_spares_issued
+frames:
+  ticket_item_use:
+  - tkt_key: TKT-900001
+    itm_key: ITM-900001
+    qty: 2
+    used_on: '2031-03-03'
+    uom: each
+  item:
+  - itm_key: ITM-900001
+    critical: true
+args:
+  window:
+  - '2031-04-01'
+  - '2031-03-01'
+raises:
+  error: FrameError
+  message: 'window ends before it starts (got [''2031-04-01'', ''2031-03-01''])'
+  names:
+  - window
+  - ends before it starts

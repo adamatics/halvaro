@@ -1,0 +1,15 @@
+id: err14-attendance-view-present-null
+rule: An attendance row with a null present is refused.
+function: attendance_view
+frames:
+  attendance:
+  - mtg_key: MTG-900001
+    date: '2031-01-05'
+    present: null
+args: {}
+raises:
+  error: FrameError
+  message: attendance.present has nulls
+  names:
+  - attendance.present
+  - nulls

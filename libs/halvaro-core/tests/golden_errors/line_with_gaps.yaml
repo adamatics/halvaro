@@ -1,0 +1,9 @@
+# Golden error case of halvaro-core.line_with_gaps: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: line_with_gaps
+why: x and y differ in length
+args:
+- - 1
+- - 1
+  - 2
+raises: FrameError
+message: x and y must have the same length

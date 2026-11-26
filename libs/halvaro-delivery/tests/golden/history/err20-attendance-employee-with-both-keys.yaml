@@ -1,0 +1,23 @@
+id: err20-attendance-employee-with-both-keys
+rule: An employee attendee that carries both emp_key and cnt_key is refused.
+function: attendance
+frames:
+  meeting:
+  - mtg_key: MTG-900001
+    prj_key: PRJ-900001
+    date: '2031-01-05'
+    meeting_type: 1
+  meeting_attendance:
+  - mtg_key: MTG-900001
+    attendee_type: employee
+    emp_key: EMP-900001
+    cnt_key: CNT-900001
+    status: present
+    role_in_meeting: 1
+args: {}
+raises:
+  error: FrameError
+  message: an attendee must have exactly one of emp_key (employee) and cnt_key (external), matching attendee_type
+  names:
+  - emp_key
+  - cnt_key

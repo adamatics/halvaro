@@ -1,0 +1,22 @@
+# Golden error case of halvaro-hr.executives_on: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: executives_on
+why: the org frame has a column twice
+args:
+- frame:
+    columns:
+    - emp_key
+    - as_of
+    - active
+    - role_name
+    - dep_code
+    - team_key
+    - emp_key
+    rows: []
+- frame:
+    columns:
+    - name
+    rows:
+    - - Chief Financial Officer
+- - Chief Financial Officer
+raises: FrameError
+message: the org and role frames must not have duplicate column names

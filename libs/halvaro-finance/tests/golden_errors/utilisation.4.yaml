@@ -1,0 +1,31 @@
+# Golden error case of halvaro-finance.utilisation: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: utilisation
+why: two rows for an entity, department and period
+args:
+- frame:
+    columns:
+    - le_key
+    - dep_key
+    - period
+    - utilisation_pct
+    - project_hours
+    - service_hours
+    - available_hours
+    rows:
+    - - LE-01
+      - DEP-1
+      - 2026-01
+      - 75.0
+      - 100.0
+      - 20.0
+      - 160.0
+    - - LE-01
+      - DEP-1
+      - 2026-01
+      - 75.0
+      - 100.0
+      - 20.0
+      - 160.0
+context: month12
+raises: FrameError
+message: finance.mgmt_pl_department has more than one row for an entity, department and period

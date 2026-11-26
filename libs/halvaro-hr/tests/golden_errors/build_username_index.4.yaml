@@ -1,0 +1,24 @@
+# Golden error case of halvaro-hr.build_username_index: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: build_username_index
+why: a username has no start date
+args:
+- frame:
+    columns:
+    - username
+    - emp_key
+    - valid_from
+    - valid_to
+    rows:
+    - - ab
+      - EMP-X1
+      - null
+      - null
+- frame:
+    columns:
+    - account_name
+    - team_key
+    - valid_from
+    - valid_to
+    rows: []
+raises: FrameError
+message: 1 rows of the username sources have no valid_from; every username needs a holder and a start date

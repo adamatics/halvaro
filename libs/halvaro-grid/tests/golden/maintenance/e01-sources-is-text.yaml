@@ -1,0 +1,18 @@
+id: e01-sources-is-text
+rule: A list of ticket sources given as one text is refused, because it would be split into single letters.
+function: planned_backlog
+frames:
+  service_ticket:
+  - tkt_key: TKT-900001
+    source: planned_maintenance
+    due_date: '2031-02-01'
+    resolved_ts: 2031-02-02 10:00
+    team_key: TEAM-900001
+args:
+  sources: planned_maintenance
+raises:
+  error: FrameError
+  message: 'sources must be a tuple of ticket sources, not a single text (got ''planned_maintenance'')'
+  names:
+  - sources
+  - single text

@@ -1,0 +1,16 @@
+id: err05-attendance-view-unknown-by
+rule: The by argument is not month or year.
+function: attendance_view
+frames:
+  attendance:
+  - mtg_key: MTG-900001
+    date: '2031-01-05'
+    present: 1
+args:
+  by: week
+raises:
+  error: FrameError
+  message: by is month or year
+  names:
+  - by
+  - month or year

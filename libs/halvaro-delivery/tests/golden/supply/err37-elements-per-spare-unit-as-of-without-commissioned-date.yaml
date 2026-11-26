@@ -1,0 +1,23 @@
+id: err37-elements-per-spare-unit-as-of-without-commissioned-date
+rule: An as_of with a grid_element frame that has no commissioned_date is refused.
+function: elements_per_spare_unit
+frames:
+  stock:
+  - site_key: SITE-900001
+    itm_key: ITM-900001
+    on_hand: 0
+  grid_element:
+  - element_type: substation
+    status: in_service
+    zone_key: ZONE-0001
+args:
+  items:
+  - ITM-900001
+  site: SITE-900001
+  as_of: '2031-02-01'
+raises:
+  error: FrameError
+  message: gis.grid_element lacks commissioned_date; load the source columns without renaming them
+  names:
+  - commissioned_date
+  - gis.grid_element

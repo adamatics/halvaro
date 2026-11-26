@@ -1,0 +1,11 @@
+name: ratio
+function: format_percent
+by_hand: A ratio of 0.256 is 25.6 percent with one decimal.
+input:
+  args:
+  - 0.256
+  - 1
+  kwargs:
+    ratio: true
+expect:
+  value: 25.6%

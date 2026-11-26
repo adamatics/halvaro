@@ -1,0 +1,9 @@
+id: e05-product-share-row-missing
+rule: "product_basis_share is refused when the factor table holds no row of the product footprint share."
+function: product_basis_share
+frames:
+  factors: [{"category": "gas", "kgco2e_per_unit": 0.2}]
+raises:
+  error: FrameError
+  message: "energy-esg.emission_factor has 0 rows of purchased_goods_product_footprint; one is expected"
+  names: ["purchased_goods_product_footprint", "0 rows"]

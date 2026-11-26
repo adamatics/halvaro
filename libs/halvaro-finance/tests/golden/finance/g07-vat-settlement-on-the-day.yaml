@@ -1,0 +1,19 @@
+name: A payment of the payable on the payment day of the next month settles the return
+function: vat_settlement
+cites: [FI.STD.011]
+by_hand: Payable 150, paid 150 outgoing in the month after the period on the day of the fact, so the difference is 150 - 150 = 0 and the day agrees. The stored difference is 0.
+let:
+  day: "=fact('fin.vat.DK.payment_day_of_next_month')"
+context: month12
+input:
+  vat_return:
+    columns: [le_key, period, vat_payable, settlement_difference]
+    rows:
+      - [LE-01, "2025-01", 150.0, 0.0]
+  payment:
+    columns: [le_key, payment_date, direction, amount, description]
+    rows:
+      - [LE-01, "=date(2025, 2, day)", outgoing, 150.0, VAT payment]
+expect:
+  rows:
+    - {payment_month: "2025-02", paid_signed: 150.0, settlement_difference: 0.0, stored_difference: 0.0, agrees: true, day_agrees: true}

@@ -1,0 +1,20 @@
+id: err01-framework-for-as-of-number
+rule: The day argument as_of is a number, not a date or ISO text, so the function refuses it.
+function: framework_for
+frames:
+  contract:
+  - con_key: CON-900001
+    type: 1
+    sup_key: SUP-900001
+    status: 1
+    start: '2031-01-05'
+    end: '2031-01-05'
+args:
+  sup_key: SUP-900001
+  as_of: 7
+raises:
+  error: FrameError
+  message: as_of 7 is a number, not a date
+  names:
+  - as_of
+  - '7'

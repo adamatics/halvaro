@@ -1,0 +1,21 @@
+# Golden error case of halvaro-finance.percent_complete: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: percent_complete
+why: the period is not text like 2026-03
+args:
+- frame:
+    columns:
+    - prj_key
+    - period
+    - actual_cost
+    - eac
+    rows:
+    - - PRJ-1
+      - 2026-3
+      - 1.0
+      - 5.0
+- {}
+kwargs:
+  cap: 0.95
+context: month12
+raises: FrameError
+message: finance.project_financials.period must be text like 2025-03 for every row

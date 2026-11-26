@@ -1,0 +1,16 @@
+id: e01-summary-lacks-valid
+rule: A peak load frame without the valid column is refused, because the ranking only counts valid peaks.
+function: rank_zones
+frames:
+  summary:
+  - zone_key: ZONE-0001
+    sns_key: SNS-900001
+    level: zone
+    basis: load_percent
+    peak_percent: 95.0
+raises:
+  error: FrameError
+  message: peak_load output frame lacks column(s) valid; load the source columns without renaming them
+  names:
+  - valid
+  - peak_load output

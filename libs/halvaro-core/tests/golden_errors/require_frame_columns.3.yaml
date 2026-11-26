@@ -1,0 +1,13 @@
+# Golden error case of halvaro-core.require_frame_columns: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: require_frame_columns
+why: the column is in the data dictionary but the frame lacks it
+args:
+- frame:
+    columns:
+    - other
+    rows:
+    - - x
+- hr.grade
+- gra_key
+raises: FrameError
+message: the frame for hr.grade lacks column(s) gra_key; it has other. Load the source column names without renaming them.

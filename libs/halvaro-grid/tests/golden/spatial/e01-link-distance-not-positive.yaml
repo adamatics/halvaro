@@ -1,0 +1,27 @@
+id: e01-link-distance-not-positive
+rule: A linking distance of zero or less is refused, because elements are joined into a cluster when they lie within it.
+function: fault_clusters
+frames:
+  density:
+  - net_key: NET-900001
+    element_type: cable
+    lon: 10.0
+    lat: 55.0
+    n_faults: 3
+  grid_element:
+  - net_key: NET-900001
+    element_type: cable
+    zone_key: ZONE-0001
+    lon: 10.0
+    lat: 55.0
+    commissioned_date: '2031-01-05'
+    status: in_service
+    install_year: 2005
+args:
+  link_m: -5.0
+raises:
+  error: FrameError
+  message: 'link_m must be a number of metres, link_m above zero (got -5.0)'
+  names:
+  - link_m
+  - above zero

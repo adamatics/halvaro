@@ -1,0 +1,25 @@
+id: e01-kind-not-a-route-kind
+rule: A route kind other than planned_route or as_built_route is refused, because only those two kinds of project area are routes.
+function: route_ground_intersection
+frames:
+  project_area:
+  - prj_key: PRJ-900001
+    version: 2
+    kind: planned_route
+    geom: LINESTRING(0 0, 10 0)
+  ground_condition:
+  - area_id: AREA-900001
+    geom: POLYGON((0 -5, 10 -5, 10 5, 0 5, 0 -5))
+    soil_class: clay
+    groundwater: low
+    bearing_capacity: good
+    survey_kind: desk
+args:
+  kind: planned
+raises:
+  error: FrameError
+  message: kind is planned_route or as_built_route (got 'planned')
+  names:
+  - kind
+  - planned_route
+  - as_built_route

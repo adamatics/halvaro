@@ -1,0 +1,91 @@
+# Golden error case of halvaro-hr.controlled_work_audit: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: controlled_work_audit
+why: a rule names a role that hr.role does not have
+args:
+- frame:
+    columns:
+    - emp_key
+    - work_date
+    - prj_key
+    - cst_key
+    rows:
+    - - EMP-X1
+      - 2026-03-03
+      - PRJ-X
+      - null
+- frame:
+    columns:
+    - emp_key
+    - prj_key
+    - start
+    - end
+    rows:
+    - - EMP-X1
+      - PRJ-X
+      - 2026-03-02
+      - 2026-03-06
+- frame:
+    columns:
+    - prj_key
+    - type
+    rows:
+    - - PRJ-X
+      - T1
+- frame:
+    columns:
+    - emp_key
+    - valid_from
+    - valid_to
+    - role_key
+    rows:
+    - - EMP-X1
+      - 2020-01-01
+      - null
+      - ROLE-X
+- frame:
+    columns:
+    - role_key
+    - name
+    rows:
+    - - ROLE-X
+      - Welder
+- frame:
+    columns:
+    - emp_key
+    - legal_entity_key
+    - hire_date
+    rows:
+    - - EMP-X1
+      - LE-X
+      - 2020-01-01
+- frame:
+    columns:
+    - emp_key
+    - qual_key
+    - issued
+    - expires
+    rows:
+    - - EMP-X1
+      - QUAL-X
+      - 2025-01-01
+      - 2027-01-01
+- frame:
+    columns:
+    - rule_id
+    - qual_key
+    - roles
+    - entity
+    - project_types
+    - cst
+    - allocation
+    rows:
+    - - R1
+      - QUAL-X
+      - Ghost
+      - null
+      - null
+      - null
+      - true
+- 2026-03-31
+raises: FrameError
+message: 'rule R1 names roles that hr.role does not have: [''Ghost'']'

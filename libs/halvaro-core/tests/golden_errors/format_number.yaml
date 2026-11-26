@@ -1,0 +1,7 @@
+# Golden error case of halvaro-core.format_number: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: format_number
+why: a list is not one number
+args:
+- [1, 2]
+raises: FrameError
+message: format_number takes one number, not list; format each value (a figure never mixes two currencies)

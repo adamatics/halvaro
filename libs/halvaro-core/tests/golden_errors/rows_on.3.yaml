@@ -1,0 +1,12 @@
+# Golden error case of halvaro-core.rows_on: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: rows_on
+why: the frame has no valid_from and valid_to columns
+args:
+- frame:
+    columns:
+    - k
+    rows:
+    - - A
+- 2026-03-01
+raises: FrameError
+message: column valid_from is missing in the frame; effective dated frames need valid_from and valid_to

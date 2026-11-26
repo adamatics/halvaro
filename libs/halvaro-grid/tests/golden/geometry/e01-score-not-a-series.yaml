@@ -1,0 +1,14 @@
+id: e01-score-not-a-series
+rule: A score given as a list instead of a Series is refused, because the class is worked out per row of a Series.
+function: condition_class_from_score
+args:
+  score:
+  - 50.0
+  - 120.0
+raises:
+  error: FrameError
+  message: score must be a Series, not list
+  names:
+  - score
+  - Series
+  - list

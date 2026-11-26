@@ -1,0 +1,8 @@
+# Golden error case of halvaro-finance.einvoice_format_share: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: einvoice_format_share
+why: every frame is empty, so the columns the function reads are missing
+args:
+- frame: {}
+context: month12
+raises: FrameError
+message: finance.customer_invoice frame lacks column(s) le_key, invoice_date, invoice_format, counterpart_le_key; load the source columns without renaming them

@@ -1,0 +1,17 @@
+# Golden error case of halvaro-finance.mgmt_pl_check: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: mgmt_pl_check
+why: an entity, department and period is listed twice
+args:
+- frame:
+    columns: [le_key, dep_key, period, total_revenue, total_cost, operating_result, project_labour_cost, project_other_direct_cost, service_direct_cost, stock_and_inventory_cost, staff_cost, labour_absorbed,
+      overhead_cost, overhead_allocated, depreciation_and_amortisation, other_operating_cost]
+    rows:
+    - [LE-X, DEP-X, 2026-01, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+    - [LE-X, DEP-X, 2026-01, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+- frame:
+    columns: [le_key, period, gl_key, debit, credit]
+    rows:
+    - [LE-X, 2026-01, GL-5100, 0.0, 0.0]
+context: month12
+raises: FrameError
+message: finance.mgmt_pl_department has more than one row for an entity, department and period

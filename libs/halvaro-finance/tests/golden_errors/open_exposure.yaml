@@ -1,0 +1,9 @@
+# Golden error case of halvaro-finance.open_exposure: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: open_exposure
+why: every frame is empty, so the columns the function reads are missing
+args:
+- frame: {}
+- frame: {}
+context: month12
+raises: FrameError
+message: delivery exposed_demand frame frame lacks column(s) prj_key, sup_key, itm_key, qty_open, source, after_effective_date; load the source columns without renaming them

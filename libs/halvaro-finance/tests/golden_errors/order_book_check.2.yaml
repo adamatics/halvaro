@@ -1,0 +1,12 @@
+# Golden error case of halvaro-finance.order_book_check: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: order_book_check
+why: the tolerance is negative
+args:
+- frame:
+    columns: [le_key, project_type, period, backlog_opening, order_intake_total, revenue_recognised, backlog_closing]
+    rows:
+    - [LE-X, network, 2026-01, 100.0, 50.0, 30.0, 120.0]
+kwargs: {tolerance: -1}
+context: month12
+raises: FrameError
+message: tolerance must be a number of at least 0, not -1

@@ -1,0 +1,24 @@
+id: err03-comparable-coverage-unknown-project
+rule: A project of the comparable set is not in the project frame.
+function: comparable_coverage
+frames:
+  comparable:
+  - prj_key: PRJ-900001
+  project:
+  - prj_key: PRJ-900002
+    final_cost: 1
+    route_length_m: 1
+  estimate_version:
+  - prj_key: PRJ-900001
+    type: 1
+  project_role:
+  - prj_key: PRJ-900001
+args:
+  time_entry_projects:
+  - PRJ-900001
+raises:
+  error: FrameError
+  message: 1 projects of the set are not in the project frame (for example PRJ-900001)
+  names:
+  - project
+  - PRJ-900001

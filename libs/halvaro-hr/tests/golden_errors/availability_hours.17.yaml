@@ -1,0 +1,45 @@
+# Golden error case of halvaro-hr.availability_hours: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: availability_hours
+why: the same period is given twice
+args:
+- frame:
+    columns:
+    - emp_key
+    - hire_date
+    - leave_date
+    rows:
+    - - EMP-X1
+      - 2020-01-01
+      - null
+- frame:
+    columns:
+    - emp_key
+    - valid_from
+    - valid_to
+    - team_key
+    - fte
+    rows:
+    - - EMP-X1
+      - 2020-01-01
+      - null
+      - TEAM-X
+      - 1.0
+- frame:
+    columns:
+    - emp_key
+    - start
+    - end
+    rows: []
+- frame:
+    columns:
+    - team_key
+    - site_key
+    rows:
+    - - TEAM-X
+      - SITE-01
+- - &id001
+    - 2026-03-02
+    - 2026-03-06
+  - *id001
+raises: FrameError
+message: periods has the same period twice

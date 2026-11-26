@@ -1,0 +1,56 @@
+# Golden error case of halvaro-hr.expiry_report: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: expiry_report
+why: the capacity of a training event of the qualification is text
+args:
+- frame:
+    columns:
+    - emp_key
+    - qual_key
+    - issued
+    - expires
+    rows: []
+- frame:
+    columns:
+    - emp_key
+    - qual_key
+    - course_date
+    - course_end
+    - event_no
+    - free_seats
+    rows: []
+- frame:
+    columns:
+    - event_no
+    - qual_key
+    - date
+    - capacity
+    - seats_taken
+    - country
+    - location_site_key
+    rows:
+    - - 1
+      - QUAL-01
+      - 2026-04-15
+      - many
+      - 2
+      - DK
+      - SITE-01
+- frame:
+    columns:
+    - emp_key
+    - leave_date
+    - legal_entity_key
+    rows: []
+- frame:
+    columns:
+    - emp_key
+    - leave_type
+    - start
+    - end
+    rows: []
+- &id001 2026-03-31
+kwargs:
+  expiry_date: *id001
+  qual_key: QUAL-01
+raises: FrameError
+message: competence.training_event capacity and seats_taken must be numbers

@@ -1,0 +1,8 @@
+# Golden error case of halvaro-finance.utilisation: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: utilisation
+why: every frame is empty, so the columns the function reads are missing
+args:
+- frame: {}
+context: month12
+raises: FrameError
+message: finance.mgmt_pl_department frame lacks column(s) le_key, dep_key, period, utilisation_pct, project_hours, service_hours, available_hours; load the source columns without renaming them

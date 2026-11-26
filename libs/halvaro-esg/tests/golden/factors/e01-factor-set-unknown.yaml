@@ -1,0 +1,10 @@
+id: e01-factor-set-unknown
+rule: factor_set_diff is refused when a named factor set is not in the factor table.
+function: factor_set_diff
+frames:
+  factors: [{efac_key: EF-900001, category: gas, carrier: natural_gas, region: DE, method: null, kgco2e_per_unit: 0.2, valid_from: "2030-01-01", valid_to: null, factor_set: FS-900001, synthetic: true, verify_note: VERIFY}]
+args: {old_set: FS-900001, new_set: FS-900002}
+raises:
+  error: FrameError
+  message: "new_set: factor set FS-900002 is not in the table"
+  names: [new_set, FS-900002]

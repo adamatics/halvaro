@@ -1,0 +1,36 @@
+name: A payment after the date does not reduce the open receivable on the date
+function: open_items_ar
+cites: [FI.PRC.003, FI.REF.022]
+by_hand: Invoice of 1000 of which 100 is retention. A payment of 400 on 2025-02-15 is before the date 2025-03-31 and counts, a payment of 200 on 2025-04-10 is after it and does not. Open = 1000 - 400 = 600, of which 100 is retention held.
+context: month3
+input:
+  customer_invoice:
+    columns: [inv_key, le_key, cus_key, invoice_type, invoice_date, due_date, gross_amount_le, retention_amount_le, retention_release_date, written_off_date, counterpart_le_key]
+    rows:
+      - [I1, LE-01, CUS-1, invoice, "2025-01-10", "2025-02-10", 1000.0, 100.0, null, null, null]
+  payment_allocation:
+    columns: [le_key, bank_account, payment_no, allocation_kind, document_type, booked_amount, inv_key, sinv_key, opening_item_ref]
+    rows:
+      - [LE-01, BA-1, 1, inv, invoice, 400.0, I1, null, null]
+      - [LE-01, BA-1, 2, inv, invoice, 200.0, I1, null, null]
+  payment:
+    columns: [le_key, bank_account, payment_no, payment_date]
+    rows:
+      - [LE-01, BA-1, 1, "2025-02-15"]
+      - [LE-01, BA-1, 2, "2025-04-10"]
+  gl_account:
+    columns: [gl_key, control_type]
+    rows:
+      - [GL-1100, ar]
+      - [GL-1190, retention]
+      - [GL-2100, ap]
+  opening_balance_item:
+    columns: [le_key, gl_key, item_ref, document_date, due_date, amount, currency, cus_key, sup_key]
+    rows:
+      - [LE-01, GL-1100, O1, "2024-12-01", null, 0.0, DKK, null, null]
+  as_of: "=date(2025, 3, 31)"
+expect:
+  rows_by:
+    key: source
+    rows:
+      - {source: invoice, item_key: I1, invoice_amount: 1000.0, paid: 400.0, written_off: 0.0, open_amount: 600.0, retention_held: 100.0, currency: DKK}

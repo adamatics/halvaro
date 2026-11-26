@@ -1,0 +1,11 @@
+# Golden error case of halvaro-finance.einvoice_format_share: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: einvoice_format_share
+why: an invoice has no invoice_format
+args:
+- frame:
+    columns: [le_key, cus_key, invoice_date, invoice_format, counterpart_le_key]
+    rows:
+    - [LE-02, CUS-X, '2026-03-03', null, null]
+context: month12
+raises: FrameError
+message: invoices without an invoice_format

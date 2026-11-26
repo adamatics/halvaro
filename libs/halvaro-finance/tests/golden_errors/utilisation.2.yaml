@@ -1,0 +1,26 @@
+# Golden error case of halvaro-finance.utilisation: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: utilisation
+why: by is neither period nor department
+args:
+- frame:
+    columns:
+    - le_key
+    - dep_key
+    - period
+    - utilisation_pct
+    - project_hours
+    - service_hours
+    - available_hours
+    rows:
+    - - LE-01
+      - DEP-1
+      - 2026-01
+      - 75.0
+      - 100.0
+      - 20.0
+      - 160.0
+kwargs:
+  by: week
+context: month12
+raises: FrameError
+message: by is 'period' or 'department'

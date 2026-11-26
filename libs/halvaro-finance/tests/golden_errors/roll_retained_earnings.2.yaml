@@ -1,0 +1,18 @@
+# Golden error case of halvaro-finance.roll_retained_earnings: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: roll_retained_earnings
+why: the retained earnings account is not a balance sheet account
+args:
+- frame:
+    columns: [le_key, period, gl_key, opening_balance, closing_balance, closing_balance_dkk]
+    rows:
+    - [LE-X, 2026-12, GL-3300, 0.0, 0.0, 0.0]
+- frame:
+    columns: [gl_key, statement]
+    rows:
+    - [GL-1000, BS]
+    - [GL-3300, BS]
+    - [GL-5100, IS]
+kwargs: {retained_earnings_gl: GL-5100}
+context: month12
+raises: FrameError
+message: GL-5100 is not a balance sheet account of finance.gl_account

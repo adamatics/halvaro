@@ -1,0 +1,7 @@
+# Golden error case of halvaro-core.visible_sources: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: visible_sources
+why: a placeholder value that the function does not know or accept
+args:
+- x
+raises: ProfileError
+message: stage 'x' is not one of day1, month3, month12

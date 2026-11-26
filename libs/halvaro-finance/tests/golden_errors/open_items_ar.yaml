@@ -1,0 +1,14 @@
+# Golden error case of halvaro-finance.open_items_ar: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: open_items_ar
+why: every frame is empty, so the columns the function reads are missing
+args:
+- frame: {}
+- frame: {}
+- frame: {}
+- frame: {}
+- frame: {}
+- 2026-03-31
+context: month12
+raises: FrameError
+message: finance.customer_invoice frame lacks column(s) inv_key, le_key, cus_key, invoice_type, invoice_date, due_date, gross_amount_le, retention_amount_le, retention_release_date, written_off_date, counterpart_le_key; load the source
+  columns without renaming them

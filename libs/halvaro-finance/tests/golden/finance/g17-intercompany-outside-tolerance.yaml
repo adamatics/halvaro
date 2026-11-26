@@ -1,0 +1,18 @@
+name: Sides that differ by more than the tolerance are listed
+function: intercompany_agreement
+cites: [FI.REF.014]
+by_hand: The creditor books 100 euro and the debtor books 700 DKK, less than the booking rate of the fact gives for 100 euro. The difference is beyond the tolerance of 1 DKK, so outside_tolerance is listed for the document. The stored difference is 0 and the stored flag says matched, so the stored difference and the flag are listed too.
+let:
+  rate: "=fact('world.fx_eur_dkk_fixed')"
+context: month3
+input:
+  intercompany:
+    columns: [ic_type, document_date, creditor_amount, creditor_currency, debtor_amount, currency, difference_dkk, matched]
+    rows:
+      - [recharge, "2025-01-31", 100.0, EUR, 700.0, DKK, 0.0, true]
+  intercompany_balance:
+    columns: [period, creditor_le_key, debtor_le_key, balance_type, creditor_balance, creditor_currency, debtor_balance, debtor_currency, difference_dkk, agrees]
+    rows: []
+expect:
+  contains:
+    rule: [outside_tolerance, difference_dkk, matched_flag]

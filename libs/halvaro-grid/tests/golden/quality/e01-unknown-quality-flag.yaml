@@ -1,0 +1,16 @@
+id: e01-unknown-quality-flag
+rule: A quality flag that is none of ok, estimated, suspect or missing is refused, because only those four flags are defined.
+function: valid_samples
+frames:
+  measurement:
+  - sns_key: SNS-900001
+    ts: 2031-03-01 00:00
+    value: 1.0
+    quality_flag: fine
+raises:
+  error: FrameError
+  message: telemetry.measurement.quality_flag holds ['fine']; the flags are ok, estimated, suspect, missing
+  names:
+  - quality_flag
+  - fine
+  - ok

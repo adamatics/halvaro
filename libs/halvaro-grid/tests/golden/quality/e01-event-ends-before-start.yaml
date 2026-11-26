@@ -1,0 +1,20 @@
+id: e01-event-ends-before-start
+rule: A data quality event that ends before it starts is refused, because it covers no time.
+function: classify_flags
+frames:
+  measurement:
+  - sns_key: SNS-900001
+    ts: 2031-03-01 00:00
+    value: 1.0
+    quality_flag: ok
+  events:
+  - sns_key: SNS-900001
+    from_ts: 2031-03-01 02:00
+    to_ts: 2031-03-01 01:00
+    type: dropout
+raises:
+  error: FrameError
+  message: telemetry.data_quality_event has an event that ends before it starts
+  names:
+  - telemetry.data_quality_event
+  - ends before it starts

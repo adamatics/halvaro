@@ -1,0 +1,22 @@
+# Golden error case of halvaro-hr.skill_latest: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: skill_latest
+why: competence.skill has one skl_key twice
+args:
+- frame:
+    columns:
+    - emp_key
+    - skl_key
+    - level
+    - assessed_on
+    rows: []
+- frame:
+    columns:
+    - skl_key
+    - name
+    rows:
+    - - SKL-X
+      - a
+    - - SKL-X
+      - b
+raises: FrameError
+message: competence.skill has duplicate skl_key values

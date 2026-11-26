@@ -1,0 +1,18 @@
+id: err51-supplier-performance-window-more-on-time-than-due
+rule: A row with more lines on time than lines due is refused.
+function: supplier_performance_window
+frames:
+  performance:
+  - sup_key: SUP-900001
+    period: 2031-01
+    lines_due: 2
+    lines_on_time: 3
+args:
+  first_period: 2031-01
+  last_period: 2031-02
+raises:
+  error: FrameError
+  message: supplier performance has more lines on time than lines due, or negative lines
+  names:
+  - supplier performance
+  - on time

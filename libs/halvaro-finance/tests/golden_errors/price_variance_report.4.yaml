@@ -1,0 +1,15 @@
+# Golden error case of halvaro-finance.price_variance_report: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: price_variance_report
+why: a PO price is zero
+args:
+- frame:
+    columns: [sinv_key, itm_key, unit_price, po_unit_price, price_variance, currency, invoice_type]
+    rows:
+    - [S-1, ITM-X, 11.0, 0.0, 10.0, EUR, invoice]
+- frame:
+    columns: [sinv_key, sup_key]
+    rows:
+    - [S-1, SUP-X]
+context: month12
+raises: FrameError
+message: 1 invoice lines have a PO price of 0; the relative difference is undefined

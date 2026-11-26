@@ -1,0 +1,16 @@
+# Golden error case of halvaro-finance.exposure_bridge: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: exposure_bridge
+why: the finance result has two rows for a project
+args:
+- frame:
+    columns: [prj_key, exposure_po_dkk, exposure_reserved_dkk, exposure_dkk]
+    rows:
+    - [PRJ-X, 10.0, 5.0, 15.0]
+- frame:
+    columns: [prj_key, price_exposure_dkk]
+    rows:
+    - [PRJ-X, 20.0]
+    - [PRJ-X, 20.0]
+context: month12
+raises: FrameError
+message: finance_exposure result has more than one row for a project

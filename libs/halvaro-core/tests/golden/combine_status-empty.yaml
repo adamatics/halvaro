@@ -1,0 +1,8 @@
+name: empty list
+function: combine_status
+by_hand: 'No fact was used, so nothing is provisional: the status of the result is ok.'
+input:
+  args:
+  - []
+expect:
+  value: ok

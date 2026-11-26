@@ -1,0 +1,8 @@
+# Golden error case of halvaro-finance.retention_receivable: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: retention_receivable
+why: every frame is empty, so the columns the function reads are missing
+args:
+- frame: {}
+context: month12
+raises: FrameError
+message: open_items_ar output frame lacks column(s) item_key, le_key, cus_key, document_date, release_date, retention_held, currency, source; load the source columns without renaming them

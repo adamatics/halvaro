@@ -1,0 +1,49 @@
+# Golden error case of halvaro-hr.booked_renewals: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: booked_renewals
+why: a booked seat names an event that is not in the event frame
+args:
+- frame:
+    columns:
+    - event_no
+    - emp_key
+    - status
+    rows:
+    - - 9
+      - EMP-X1
+      - booked
+- frame:
+    columns:
+    - event_no
+    - qual_key
+    - date
+    - end_date
+    - capacity
+    - seats_taken
+    - country
+    - location_site_key
+    rows:
+    - - 7
+      - QUAL-X
+      - 2026-05-10
+      - 2026-05-11
+      - 10
+      - 4
+      - DK
+      - SITE-01
+- 2026-03-31
+- competence:
+    frame:
+      columns:
+      - release
+      - now
+      - generated_at
+      - base_seed
+      - increment
+      rows:
+      - - r1
+        - '2026-03-31'
+        - '2026-04-01'
+        - 1
+        - 0
+raises: FrameError
+message: 1 booked seats name an event_no that is not in competence.training_event (for example 9)

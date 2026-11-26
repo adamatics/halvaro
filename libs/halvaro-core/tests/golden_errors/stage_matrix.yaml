@@ -1,0 +1,9 @@
+# Golden error case of halvaro-core.stage_matrix: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: stage_matrix
+why: the function id is not registered
+args:
+- halvaro.core.nope.nope
+- {}
+- x
+raises: HalvaroError
+message: halvaro.core.nope.nope is not a registered function

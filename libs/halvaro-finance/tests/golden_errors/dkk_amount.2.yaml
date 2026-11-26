@@ -1,0 +1,10 @@
+# Golden error case of halvaro-finance.dkk_amount: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: dkk_amount
+why: the daily basis is asked for a group statement
+args:
+- []
+- []
+kwargs: {basis: daily, group: true}
+context: month12
+raises: BasisError
+message: group statements use the fixed booking rates; the daily basis is for realised FX at settlement only

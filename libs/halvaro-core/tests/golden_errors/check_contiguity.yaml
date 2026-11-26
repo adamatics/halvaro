@@ -1,0 +1,8 @@
+# Golden error case of halvaro-core.check_contiguity: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: check_contiguity
+why: the frame has no valid_from and valid_to columns
+args:
+- frame: {}
+- k
+raises: FrameError
+message: column valid_from is missing in the frame; effective dated frames need valid_from and valid_to

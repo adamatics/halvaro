@@ -1,0 +1,26 @@
+id: err29-decisions-already-has-added-column
+rule: 'A decision frame that already has prj_key is refused: decisions adds it.'
+function: decisions
+frames:
+  decision:
+  - mtg_key: MTG-900001
+    seq: 1
+    decision_type: scope
+    impact_cost: 1
+    impact_days: 1
+    currency: EUR
+    delay_seq: null
+    co_no: null
+    prj_key: PRJ-900001
+  meeting:
+  - mtg_key: MTG-900001
+    prj_key: PRJ-900001
+    date: '2031-01-05'
+    meeting_type: 1
+args: {}
+raises:
+  error: FrameError
+  message: projects.decision already has column(s) prj_key; pass the source frame
+  names:
+  - prj_key
+  - projects.decision

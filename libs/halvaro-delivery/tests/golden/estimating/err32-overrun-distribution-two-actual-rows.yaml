@@ -1,0 +1,21 @@
+id: err32-overrun-distribution-two-actual-rows
+rule: Two actual overrun rows for one project are refused.
+function: overrun_distribution
+frames:
+  overrun:
+  - prj_key: PRJ-900001
+    overrun: 0.1
+  - prj_key: PRJ-900001
+    overrun: 0.1
+  project:
+  - prj_key: PRJ-900001
+    final_cost: 1
+    legacy: false
+    currency: EUR
+args: {}
+raises:
+  error: FrameError
+  message: the overrun frame has more than one actual row for PRJ-900001
+  names:
+  - PRJ-900001
+  - actual row

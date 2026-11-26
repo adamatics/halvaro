@@ -1,0 +1,12 @@
+id: e01-geom-not-a-series
+rule: A geometry given as plain text instead of a Series of WKT text is refused, because each row is parsed on its own.
+function: parse_geom
+args:
+  geom: POINT (1 1)
+raises:
+  error: FrameError
+  message: geom must be a Series of WKT text, not str
+  names:
+  - geom
+  - Series
+  - str

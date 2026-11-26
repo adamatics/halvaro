@@ -1,0 +1,1934 @@
+functions:
+- deprecated: null
+  facts: []
+  id: halvaro.finance.cash.cash_forecast_checks
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:halvaro_gen/world/finance/checks.py::cash_forecast_ties
+  parameters:
+  - cash_forecast
+  - bank_balance
+  - opening_tolerance
+  - chain_tolerance
+  - component_tolerance
+  - roll_tolerance
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance.cash_forecast.le_key
+  - finance.cash_forecast.forecast_date
+  - finance.cash_forecast.week_no
+  - finance.cash_forecast.opening_cash
+  - finance.cash_forecast.net_cash_flow
+  - finance.cash_forecast.closing_cash
+  - finance.cash_forecast.closing_cash_p10
+  - finance.cash_forecast.closing_cash_p90
+  - finance.cash_forecast.receipts_customers
+  - finance.cash_forecast.receipts_retention
+  - finance.cash_forecast.receipts_new_billing
+  - finance.cash_forecast.receipts_intercompany
+  - finance.cash_forecast.payments_suppliers_open
+  - finance.cash_forecast.payments_suppliers_new
+  - finance.cash_forecast.payments_net_wages
+  - finance.cash_forecast.payments_payroll_taxes_pensions
+  - finance.cash_forecast.payments_vat
+  - finance.cash_forecast.payments_intercompany
+  - finance.cash_forecast.net_interest
+  - finance.bank_balance.le_key
+  - finance.bank_balance.balance_date
+  - finance.bank_balance.closing_balance
+  stage: month3
+  summary: Use this when you need to check that a weekly cash forecast ties to the
+    bank, chains from week to week and keeps its band.
+- deprecated: null
+  facts: []
+  id: halvaro.finance.cash.forecast_accuracy
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:tests/test_finance_planning.py::test_cash_forecast_band_covers_most_actuals_but_not_all
+  parameters:
+  - cash_forecast
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance.cash_forecast.le_key
+  - finance.cash_forecast.week_no
+  - finance.cash_forecast.closing_cash
+  - finance.cash_forecast.closing_cash_p10
+  - finance.cash_forecast.closing_cash_p90
+  - finance.cash_forecast.actual_closing_cash_ex_rcf
+  stage: month3
+  summary: Use this when you need to know how well a cash forecast covered the actual
+    closing cash, by entity and forecast horizon.
+- deprecated: null
+  facts: []
+  id: halvaro.finance.cash.liquidity_headroom
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:halvaro_gen/world/finance/checks.py::cash_forecast_ties
+  parameters:
+  - cash_forecast
+  - tolerance
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance.cash_forecast.le_key
+  - finance.cash_forecast.forecast_date
+  - finance.cash_forecast.week_no
+  - finance.cash_forecast.closing_cash
+  - finance.cash_forecast.closing_cash_p10
+  - finance.cash_forecast.minimum_cash_floor
+  - finance.cash_forecast.rcf_limit
+  - finance.cash_forecast.rcf_drawn
+  - finance.cash_forecast.rcf_available
+  - finance.cash_forecast.headroom_to_floor
+  - finance.cash_forecast.headroom_to_floor_p10
+  - finance.cash_forecast.floor_breach_risk
+  stage: month3
+  summary: Use this when you need the headroom of a cash forecast to the minimum cash
+    floor and the first week in which the low case falls below it.
+- deprecated: null
+  facts: []
+  id: halvaro.finance.consolidation.eliminations
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:tests/test_finance_reporting.py::test_consolidation_entries_balance_and_match
+  parameters:
+  - consolidation_entry
+  - group_trial_balance
+  - tolerance
+  - period_tolerance
+  - required_types
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance-reporting.consolidation_entry.fiscal_year
+  - finance-reporting.consolidation_entry.period
+  - finance-reporting.consolidation_entry.entry_no
+  - finance-reporting.consolidation_entry.entry_type
+  - finance-reporting.consolidation_entry.basis
+  - finance-reporting.consolidation_entry.debit_le_key
+  - finance-reporting.consolidation_entry.debit_gl_key
+  - finance-reporting.consolidation_entry.credit_le_key
+  - finance-reporting.consolidation_entry.credit_gl_key
+  - finance-reporting.consolidation_entry.amount_dkk
+  - finance-reporting.consolidation_entry.difference_dkk
+  - finance-reporting.group_trial_balance.period
+  - finance-reporting.group_trial_balance.elimination_dkk
+  stage: month12
+  summary: 'Use this when you need to check the consolidation entries of the group:
+    that they are positive, balanced, between two different accounts, complete by
+    type, and zero over a period.'
+- deprecated: null
+  facts: []
+  id: halvaro.finance.consolidation.group_trial_balance
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:tests/test_finance_reporting.py::test_group_trial_balance_balances
+  parameters:
+  - journal_line
+  - reporting_adjustment
+  - consolidation_entry
+  - opening_sources
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance.journal_line.le_key
+  - finance.journal_line.period
+  - finance.journal_line.gl_key
+  - finance.journal_line.amount_dkk
+  - finance.journal_line.source
+  - finance-reporting.reporting_adjustment.period
+  - finance-reporting.reporting_adjustment.gl_key
+  - finance-reporting.reporting_adjustment.debit_dkk
+  - finance-reporting.reporting_adjustment.credit_dkk
+  stage: month12
+  summary: 'Use this when you need the movement of the group per period and account
+    in DKK: the two entities plus the reporting adjustments plus the eliminations.'
+- deprecated: null
+  facts:
+  - world.fx_eur_dkk_fixed
+  id: halvaro.finance.consolidation.intercompany_match
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:tests/test_finance_reporting.py::test_consolidation_entries_balance_and_match
+  parameters:
+  - match
+  - tolerance_dkk
+  - eur_rate
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance-reporting.intercompany_match.ic_ref
+  - finance-reporting.intercompany_match.amount_le01_dkk
+  - finance-reporting.intercompany_match.amount_le02_dkk
+  - finance-reporting.intercompany_match.amount_le02_eur
+  - finance-reporting.intercompany_match.difference_dkk
+  - finance-reporting.intercompany_match.status
+  stage: month12
+  summary: Use this when you need the intercompany pairs of the two legal entities
+    recomputed and compared with what is stored.
+- deprecated: null
+  facts:
+  - world.fx_eur_dkk_fixed
+  id: halvaro.finance.consolidation.translation_check
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:repo_tests/test_oracle_consolidation_release.py::test_oracle_translation_check_baseline_per_period_recomputed_with_exact_decimals
+  parameters:
+  - trial_balance
+  - month
+  - rate_tolerance
+  - eur_rate
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance.trial_balance.le_key
+  - finance.trial_balance.period
+  - finance.trial_balance.gl_key
+  - finance.trial_balance.closing_balance
+  - finance.trial_balance.currency
+  - finance.trial_balance.closing_balance_dkk
+  stage: month3
+  summary: Use this when you check the rounding of the line by line EUR to DKK translation
+    of a trial balance at each fiscal year end.
+- deprecated: null
+  facts: []
+  id: halvaro.finance.exposure.approval_limit_breaches
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:tests/test_exposure.py::test_approval_limit_breaches_by_grade_and_currency
+  parameters:
+  - purchase_order
+  - buyer_grade
+  - limits
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - procurement.purchase_order.po_key
+  - procurement.purchase_order.total_value
+  - procurement.purchase_order.currency
+  - procurement.purchase_order.buyer_emp_key
+  - procurement.purchase_order.order_date
+  stage: month12
+  summary: Use this when you check that the buyers of purchase orders had the authority
+    for the value, by the grade of the buyer on the order date.
+- deprecated: null
+  facts:
+  - world.fx_eur_dkk_fixed
+  - world.fx_sek_dkk_fixed
+  id: halvaro.finance.exposure.committed_cost
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:tests/test_finance.py::test_e3_stock_runs_out_and_orders_are_committed
+  parameters:
+  - open_po_lines
+  - po_line
+  - purchase_order
+  - spot_orders
+  - delivery_type
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - procurement.po_line.po_key
+  - procurement.po_line.line_no
+  - procurement.po_line.unit_price
+  - procurement.po_line.currency
+  - procurement.po_line.cst_key
+  - procurement.purchase_order.po_key
+  - procurement.purchase_order.delivery_type
+  stage: month12
+  summary: Use this when you need the value of the purchase orders that are still
+    open, by project and cost code, in the order currency and in DKK.
+- deprecated: null
+  facts: []
+  id: halvaro.finance.exposure.exposure_bridge
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:tests/test_oracle_exposure.py::test_oracle_exposure_bridge_identity_and_sums_on_seeded_random_frames
+  parameters:
+  - open_exposure_result
+  - finance_exposure_result
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance.project_financials.price_exposure
+  - procurement.po_line.received_qty
+  - inventory.reservation.qty_open
+  stage: month12
+  summary: Use this when you need to explain the gap between the open quantity and
+    the finance definitions of the price exposure, per project.
+- deprecated: null
+  facts: []
+  id: halvaro.finance.exposure.finance_exposure
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:halvaro_gen/world/procurement/truth.py::e2_exposure
+  parameters:
+  - project_financials
+  - period
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance.project_financials.prj_key
+  - finance.project_financials.period
+  - finance.project_financials.currency
+  - finance.project_financials.price_exposure
+  - finance.project_financials.price_recoverable
+  stage: month3
+  summary: 'Use this when you need the price exposure of the projects at a period
+    as the finance data defines it: the cumulative exposure and the part that can
+    be recovered.'
+- deprecated: null
+  facts: []
+  id: halvaro.finance.exposure.open_exposure
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:halvaro_gen/world/procurement/truth.py::e2_exposure
+  parameters:
+  - exposed_demand
+  - steps
+  - only_amended
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - procurement.price_list.unit_price
+  - procurement.price_list.change_reason
+  - procurement.price_list.valid_from
+  - procurement.price_list.currency
+  - procurement.po_line.qty
+  - procurement.po_line.received_qty
+  - inventory.reservation.qty_open
+  stage: month12
+  summary: Use this when you need the added cost of a price step on the demand that
+    is still open, per project, in DKK.
+- deprecated: null
+  facts: []
+  id: halvaro.finance.exposure.price_steps
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:tests/test_procurement.py::test_e2_price_step
+  parameters:
+  - price_before
+  - price_after
+  - reason
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - procurement.price_list.unit_price
+  - procurement.price_list.change_reason
+  - procurement.price_list.valid_from
+  - procurement.price_list.currency
+  stage: month12
+  summary: Use this when you need the change of the price of each supplier and item
+    between the day before an effective date and the effective date.
+- deprecated: null
+  facts: []
+  id: halvaro.finance.exposure.price_variance_report
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:tests/test_exposure.py::test_price_variance_report_by_supplier_and_item_and_the_step
+  parameters:
+  - supplier_invoice_line
+  - supplier_invoice
+  - price_steps
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance.supplier_invoice_line.sinv_key
+  - finance.supplier_invoice_line.itm_key
+  - finance.supplier_invoice_line.quantity
+  - finance.supplier_invoice_line.unit_price
+  - finance.supplier_invoice_line.po_unit_price
+  - finance.supplier_invoice_line.price_variance
+  - finance.supplier_invoice_line.currency
+  - finance.supplier_invoice_line.invoice_type
+  - finance.supplier_invoice.sinv_key
+  - finance.supplier_invoice.sup_key
+  stage: month3
+  summary: Use this when you need how far the invoiced prices of each supplier and
+    item sit from the purchase order price.
+- deprecated: null
+  facts: []
+  id: halvaro.finance.exposure.recoverable
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:halvaro_gen/world/procurement/truth.py::e2_exposure
+  parameters:
+  - open_exposure_result
+  - terms
+  - contracts
+  - apply_threshold
+  - 'on'
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - contracts.contract.price_type
+  - contracts.clause.param_value
+  - contracts.clause.param2_value
+  stage: month12
+  summary: Use this when you need the part of the price exposure that the customer
+    contract passes on to the customer, per project.
+- deprecated: null
+  facts: []
+  id: halvaro.finance.exposure.supplier_spend
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:tests/test_exposure.py::test_supplier_spend_window_credit_notes_and_missing_suppliers
+  parameters:
+  - supplier_invoice
+  - supplier
+  - start
+  - end
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance.supplier_invoice.sup_key
+  - finance.supplier_invoice.invoice_type
+  - finance.supplier_invoice.invoice_date
+  - finance.supplier_invoice.net_amount_dkk
+  - procurement.supplier.sup_key
+  - procurement.supplier.category
+  stage: month12
+  summary: Use this when you need what was spent per supplier and category in DKK
+    over a range of invoice dates.
+- deprecated: null
+  facts: []
+  id: halvaro.finance.exposure.three_way_match
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:tests/tieout_c.py::t19_price_variance
+  parameters:
+  - supplier_invoice_line
+  - goods_receipt
+  - price_tolerance_percent
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance.supplier_invoice_line.sinv_key
+  - finance.supplier_invoice_line.line_no
+  - finance.supplier_invoice_line.po_key
+  - finance.supplier_invoice_line.po_line_no
+  - finance.supplier_invoice_line.receipt_no
+  - finance.supplier_invoice_line.quantity
+  - finance.supplier_invoice_line.unit_price
+  - finance.supplier_invoice_line.po_unit_price
+  - finance.supplier_invoice_line.invoice_type
+  - finance.supplier_invoice_line.match_status
+  - finance.supplier_invoice_line.price_variance
+  - procurement.goods_receipt.po_key
+  - procurement.goods_receipt.line_no
+  - procurement.goods_receipt.receipt_no
+  - procurement.goods_receipt.qty_accepted
+  stage: month12
+  summary: Use this when you check each supplier invoice line against the purchase
+    order price and the quantity accepted on the receipt.
+- deprecated: null
+  facts:
+  - world.fx_eur_dkk_fixed
+  - world.fx_sek_dkk_fixed
+  id: halvaro.finance.ledger.dkk_amount
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:halvaro_gen/world/finance/core.py::conv
+  parameters:
+  - amount
+  - currency
+  - basis
+  - fx_rate
+  - 'on'
+  - group
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance.fx_rate.currency
+  - finance.fx_rate.rate
+  - finance.fx_rate.booking_rate
+  - finance.fx_rate.rate_date
+  stage: month3
+  summary: 'Use this when you need amounts in DKK to the cent: on the booking basis
+    with the fixed rates of core, or on the daily basis with the latest rate on or
+    before each date.'
+- deprecated: null
+  facts:
+  - fin.bookkeeping.journal_numbering
+  - world.fx_eur_dkk_fixed
+  - world.fx_sek_dkk_fixed
+  id: halvaro.finance.ledger.journal_integrity
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:halvaro_gen/world/finance/checks.py::journals_balance
+  parameters:
+  - journal_header
+  - journal_line
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance.journal_header.le_key
+  - finance.journal_header.journal_no
+  - finance.journal_header.line_count
+  - finance.journal_line.le_key
+  - finance.journal_line.journal_no
+  - finance.journal_line.line_no
+  - finance.journal_line.amount
+  - finance.journal_line.amount_dkk
+  - finance.journal_line.currency
+  stage: month3
+  summary: 'Use this when you check the journals of the ledger: every journal has
+    its lines, balances to the cent and is numbered without gaps.'
+- deprecated: null
+  facts: []
+  id: halvaro.finance.ledger.manual_journals
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:halvaro_gen/world/finance/facts.py::build_truth
+  parameters:
+  - journal_header
+  - journal_line
+  - gl_key
+  - prj_key
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance.journal_header.le_key
+  - finance.journal_header.journal_no
+  - finance.journal_header.source
+  - finance.journal_header.posting_date
+  - finance.journal_header.description
+  - finance.journal_line.le_key
+  - finance.journal_line.journal_no
+  - finance.journal_line.line_no
+  - finance.journal_line.gl_key
+  - finance.journal_line.prj_key
+  - finance.journal_line.amount
+  - finance.journal_line.amount_dkk
+  - finance.journal_line.currency
+  stage: month3
+  summary: Use this when you need the lines of the journals that were posted by hand,
+    optionally only those on one account or one project.
+- deprecated: null
+  facts:
+  - fin.bookkeeping.fiscal_year_start_month
+  id: halvaro.finance.ledger.rebuild_trial_balance
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:tests/test_finance.py::test_trial_balance_zero_per_entity_and_period
+  parameters:
+  - journal_line
+  - opening_balance_item
+  - gl_account
+  - carry_results
+  - retained_earnings_gl
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance.journal_line.le_key
+  - finance.journal_line.gl_key
+  - finance.journal_line.amount
+  - finance.journal_line.amount_dkk
+  - finance.journal_line.currency
+  - finance.journal_line.period
+  - finance.journal_line.source
+  - finance.opening_balance_item.le_key
+  - finance.opening_balance_item.gl_key
+  - finance.opening_balance_item.amount
+  - finance.opening_balance_item.amount_dkk
+  - finance.gl_account.gl_key
+  - finance.gl_account.statement
+  stage: month3
+  summary: Use this when you need the trial balance per entity, period and account
+    rebuilt from the journal lines and the opening items.
+- deprecated: null
+  facts:
+  - fin.bookkeeping.fiscal_year_start_month
+  id: halvaro.finance.ledger.roll_retained_earnings
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:halvaro_gen/world/finance/views.py::trial_balance
+  parameters:
+  - trial_balance
+  - gl_account
+  - retained_earnings_gl
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance.trial_balance.le_key
+  - finance.trial_balance.period
+  - finance.trial_balance.gl_key
+  - finance.trial_balance.opening_balance
+  - finance.trial_balance.closing_balance
+  - finance.trial_balance.closing_balance_dkk
+  - finance.gl_account.gl_key
+  - finance.gl_account.statement
+  stage: month3
+  summary: Use this when a trial balance was built without carrying results and you
+    need the results of completed fiscal years moved into the retained earnings account.
+- deprecated: null
+  facts: []
+  id: halvaro.finance.ledger.statutory_line_of
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:tests/test_finance.py::test_gl_account_has_statutory_maps
+  parameters:
+  - gl_account
+  - statutory_map_line
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance.gl_account.gl_key
+  - finance.gl_account.dk_statutory_map
+  - finance.gl_account.de_statutory_map
+  - finance.statutory_map_line.map_code
+  - finance.statutory_map_line.line_code
+  stage: month3
+  summary: Use this when you need the statutory statement line that each ledger account
+    belongs to, for Denmark and for Germany.
+- deprecated: null
+  facts: []
+  id: halvaro.finance.ledger.to_natural_sign
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:halvaro_gen/world/finance/checks.py::journals_balance
+  parameters:
+  - frame
+  - gl_account
+  - column
+  - gl_column
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance.gl_account.gl_key
+  - finance.gl_account.normal_balance
+  stage: month3
+  summary: 'Use this when a ledger column is debit positive and you need it in the
+    sign people read: revenue and liabilities positive.'
+- deprecated: null
+  facts: []
+  id: halvaro.finance.payroll.cost_centre_team_map
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:repo_tests/test_oracle_payroll_release.py::test_oracle_cost_centre_team_map_baseline_against_pair_set_differences
+  parameters:
+  - cost_centre
+  - team
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance.cost_centre.cc_key
+  - finance.cost_centre.team_key
+  - hr.team.team_key
+  - hr.team.cost_centre_key
+  stage: month3
+  summary: Use this when you check that finance cost centres and hr teams point at
+    each other.
+- deprecated: null
+  facts:
+  - fin.payroll_on_costs.DK.employer_pension_share
+  - fin.payroll_on_costs.DE.employer_pension_share
+  - fin.payroll_on_costs.DK.employer_social_share
+  - fin.payroll_on_costs.DE.employer_social_share
+  id: halvaro.finance.payroll.employer_oncosts
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:tests/test_finance_planning.py::test_payroll_summary_components_tie_to_the_ledger
+  parameters:
+  - gross
+  - country_of
+  - base
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance.payroll_summary.le_key
+  - finance.payroll_summary.cc_key
+  - finance.payroll_summary.period
+  - finance.payroll_summary.component
+  - finance.payroll_summary.amount
+  stage: month3
+  summary: Use this when you need the employer pension and social contributions on
+    gross pay, per entity, cost centre and month, by country.
+- deprecated: null
+  facts: []
+  id: halvaro.finance.payroll.labour_absorption_check
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:halvaro_gen/world/finance/checks.py::labour_absorption
+  parameters:
+  - journal_line
+  - project_labour
+  - project_absorbed
+  - service_absorbed
+  - service_accounts
+  - max_warranty_share
+  - tolerance
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance.journal_line.le_key
+  - finance.journal_line.gl_key
+  - finance.journal_line.period
+  - finance.journal_line.amount
+  stage: month3
+  summary: Use this when you check that labour booked on projects and on service is
+    absorbed in the ledger, per entity and month for projects and over the whole window
+    for service.
+- deprecated: null
+  facts: []
+  id: halvaro.finance.payroll.ledger_gross_pay
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:tests/test_finance_planning.py::test_payroll_summary_components_tie_to_the_ledger
+  parameters:
+  - journal_line
+  - accounts
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance.journal_line.le_key
+  - finance.journal_line.cc_key
+  - finance.journal_line.gl_key
+  - finance.journal_line.period
+  - finance.journal_line.amount
+  stage: month3
+  summary: Use this when you need the gross salary booked in the ledger per legal
+    entity, cost centre and month, to tie out against the payroll summary.
+- deprecated: null
+  facts:
+  - policy.reconciliation.tolerance.payroll_per_cost_centre_month_dkk
+  id: halvaro.finance.payroll.tie_out
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:halvaro_gen/world/finance/checks.py::payroll_vs_hr
+  parameters:
+  - ledger_gross
+  - hr_aggregate
+  - tolerance
+  - band_floor_factor
+  - band_ceiling_factor
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance.journal_line.le_key
+  - finance.journal_line.cc_key
+  - finance.payroll_hr_reconciliation.difference
+  - finance.payroll_hr_reconciliation.within_tolerance
+  - finance.payroll_hr_reconciliation.within_band_envelope
+  stage: month3
+  summary: Use this when you check the gross pay of the ledger against the aggregate
+    of the hr side, per group of cost centres and month.
+- deprecated: null
+  facts: []
+  id: halvaro.finance.planning.budget_variance
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:tests/test_finance_planning.py::test_budget_version_totals_tie_to_the_lines
+  parameters:
+  - budget_line
+  - cost_centre_actual
+  - version
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance.budget_line.le_key
+  - finance.budget_line.budget_version
+  - finance.budget_line.cc_key
+  - finance.budget_line.gl_key
+  - finance.budget_line.period
+  - finance.budget_line.amount
+  - finance.budget_line.amount_dkk
+  - finance.cost_centre_actual.le_key
+  - finance.cost_centre_actual.cc_key
+  - finance.cost_centre_actual.gl_key
+  - finance.cost_centre_actual.period
+  - finance.cost_centre_actual.amount
+  - finance.cost_centre_actual.amount_dkk
+  stage: month3
+  summary: Use this when you compare what was booked with what was budgeted, by entity,
+    cost centre, account and period, for one budget version.
+- deprecated: null
+  facts: []
+  id: halvaro.finance.planning.forecast_vs_budget
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:tests/test_finance_planning.py::test_forecast_lines_are_anchored_on_actuals
+  parameters:
+  - forecast_line
+  - forecast_version
+  - budget_line
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance.forecast_line.le_key
+  - finance.forecast_line.forecast_version
+  - finance.forecast_line.cc_key
+  - finance.forecast_line.gl_key
+  - finance.forecast_line.period
+  - finance.forecast_line.amount_dkk
+  - finance.forecast_line.basis
+  - finance.forecast_version.forecast_version
+  - finance.forecast_version.actuals_through_period
+  - finance.forecast_version.budget_version
+  - finance.budget_line.le_key
+  - finance.budget_line.budget_version
+  - finance.budget_line.cc_key
+  - finance.budget_line.gl_key
+  - finance.budget_line.period
+  - finance.budget_line.amount_dkk
+  stage: month3
+  summary: Use this when you compare each forecast version with the budget it is based
+    on, by entity, cost centre, account and period in DKK.
+- deprecated: null
+  facts: []
+  id: halvaro.finance.planning.mgmt_pl_check
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:tests/test_finance_planning.py::test_mgmt_pl_ties_to_the_ledger
+  parameters:
+  - mgmt_pl_department
+  - trial_balance
+  - result_accounts
+  - revenue_accounts
+  - tolerance
+  - line_tolerance
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance.mgmt_pl_department.le_key
+  - finance.mgmt_pl_department.dep_key
+  - finance.mgmt_pl_department.period
+  - finance.mgmt_pl_department.total_revenue
+  - finance.mgmt_pl_department.total_cost
+  - finance.mgmt_pl_department.operating_result
+  - finance.trial_balance.le_key
+  - finance.trial_balance.period
+  - finance.trial_balance.gl_key
+  - finance.trial_balance.debit
+  - finance.trial_balance.credit
+  stage: month3
+  summary: Use this when you check that the management P&L agrees with the ledger
+    and adds up within each department row.
+- deprecated: null
+  facts: []
+  id: halvaro.finance.planning.utilisation
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:tests/test_finance_planning.py::test_mgmt_pl_utilisation_columns
+  parameters:
+  - mgmt_pl_department
+  - by
+  - tolerance
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance.mgmt_pl_department.le_key
+  - finance.mgmt_pl_department.dep_key
+  - finance.mgmt_pl_department.period
+  - finance.mgmt_pl_department.utilisation_pct
+  - finance.mgmt_pl_department.project_hours
+  - finance.mgmt_pl_department.service_hours
+  - finance.mgmt_pl_department.available_hours
+  stage: month3
+  summary: Use this when you need booked hours over available hours in percent, per
+    department and period or per department over all periods.
+- deprecated: null
+  facts: []
+  id: halvaro.finance.project_view.contract_position
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:tests/tieout_c.py::t17_project_revenue
+  parameters:
+  - project_financials
+  - actual_end
+  - cap
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance.project_financials.prj_key
+  - finance.project_financials.period
+  - finance.project_financials.actual_cost
+  - finance.project_financials.eac
+  - finance.project_financials.contract_value
+  - finance.project_financials.billed
+  stage: month3
+  summary: Use this when you need revenue recognised less billed on each project row,
+    split into the contract asset and the contract liability.
+- deprecated: null
+  facts: []
+  id: halvaro.finance.project_view.cost_per_metre_by_cost_code
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:repo_tests/test_oracle_project_costs_release.py::test_oracle_cost_per_metre_by_cost_code_baseline_per_project_and_code_against_plain_loops
+  parameters:
+  - comparable_set
+  - project_cost_breakdown
+  - project
+  - route_change
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance.project_cost_breakdown.prj_key
+  - finance.project_cost_breakdown.period
+  - finance.project_cost_breakdown.cst_key
+  - finance.project_cost_breakdown.currency
+  - finance.project_cost_breakdown.actual_amount
+  - finance.project_cost_breakdown.incurred_in_period
+  - finance.project_cost_breakdown.estimate_amount
+  - projects.project.prj_key
+  - projects.project.route_length_m
+  stage: month12
+  summary: Use this when you compare projects by actual cost per metre of route for
+    each cost code, with the median over the projects.
+- deprecated: null
+  facts: []
+  id: halvaro.finance.project_view.cost_to_completion
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:tests/test_finance.py::test_e3_stock_runs_out_and_orders_are_committed
+  parameters:
+  - project_financials
+  - prj_keys
+  - period
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance.project_financials.prj_key
+  - finance.project_financials.period
+  - finance.project_financials.eac
+  - finance.project_financials.actual_cost
+  - finance.project_financials.committed_cost
+  - finance.project_financials.currency
+  stage: month3
+  summary: 'Use this when you need the cost still to come on a list of projects in
+    one period: EAC less actual cost, with the committed cost shown apart.'
+- deprecated: null
+  facts: []
+  id: halvaro.finance.project_view.labour_cost_overrun
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:repo_tests/test_oracle_project_costs_release.py::test_oracle_labour_cost_overrun_baseline_per_project_against_plain_loops
+  parameters:
+  - project_cost_breakdown
+  - project_budget_line
+  - cost_code
+  - window_start
+  - window_end
+  - active_only
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance.project_cost_breakdown.prj_key
+  - finance.project_cost_breakdown.period
+  - finance.project_cost_breakdown.cst_key
+  - finance.project_cost_breakdown.currency
+  - finance.project_cost_breakdown.actual_amount
+  - finance.project_cost_breakdown.incurred_in_period
+  - finance.project_cost_breakdown.estimate_amount
+  - finance.project_budget_line.prj_key
+  - finance.project_budget_line.cst_key
+  - finance.project_budget_line.budget_version
+  - finance.project_budget_line.budget_amount
+  - finance.project_budget_line.currency
+  - projects.cost_code.cst_key
+  - projects.cost_code.category
+  - projects.cost_code.is_group
+  stage: month12
+  summary: Use this when you rank projects by how far their labour cost has run over
+    the labour budget in a window of months.
+- deprecated: null
+  facts: []
+  id: halvaro.finance.project_view.loss_provision
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:tests/tieout_c.py::t17_project_revenue
+  parameters:
+  - project_financials
+  - actual_end
+  - cap
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance.project_financials.prj_key
+  - finance.project_financials.period
+  - finance.project_financials.actual_cost
+  - finance.project_financials.eac
+  - finance.project_financials.contract_value
+  stage: month3
+  summary: 'Use this when you need the provision for the loss that a project is expected
+    to make: the part of the expected loss not yet recognised.'
+- deprecated: null
+  facts: []
+  id: halvaro.finance.project_view.margin_trail
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:tests/test_finance.py::test_e1_write_down_and_margin_path
+  parameters:
+  - project_financials
+  - prj_key
+  - write_down
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance.project_financials.prj_key
+  - finance.project_financials.period
+  - finance.project_financials.contract_value
+  - finance.project_financials.eac
+  - finance.project_financials.actual_cost
+  - finance.project_financials.revenue_recognised
+  - finance.project_financials.loss_provision
+  stage: month3
+  summary: Use this when you follow the margin of one project period by period, with
+    the period and amount of its write-down. For the margins alone, of all projects
+    at once, project_margin is enough.
+- deprecated: null
+  facts: []
+  id: halvaro.finance.project_view.order_book_check
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:halvaro_gen/world/finance/checks.py::order_book_identity
+  parameters:
+  - order_intake_backlog
+  - tolerance
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance.order_intake_backlog.le_key
+  - finance.order_intake_backlog.project_type
+  - finance.order_intake_backlog.period
+  - finance.order_intake_backlog.backlog_opening
+  - finance.order_intake_backlog.order_intake_total
+  - finance.order_intake_backlog.revenue_recognised
+  - finance.order_intake_backlog.backlog_closing
+  stage: month3
+  summary: 'Use this when you check the order book of each entity and project type:
+    the closing backlog is the opening plus order intake less revenue recognised,
+    and the opening is the previous closing.'
+- deprecated: null
+  facts: []
+  id: halvaro.finance.project_view.percent_complete
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:tests/tieout_c.py::t17_project_revenue
+  parameters:
+  - project_financials
+  - actual_end
+  - cap
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance.project_financials.prj_key
+  - finance.project_financials.period
+  - finance.project_financials.actual_cost
+  - finance.project_financials.eac
+  stage: month3
+  summary: 'Use this when you need the percent of completion of each project row by
+    cost to cost: actual cost over the estimate at completion.'
+- deprecated: null
+  facts: []
+  id: halvaro.finance.project_view.project_margin
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:tests/test_finance.py::test_e1_write_down_and_margin_path
+  parameters:
+  - project_financials
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance.project_financials.prj_key
+  - finance.project_financials.period
+  - finance.project_financials.contract_value
+  - finance.project_financials.eac
+  - finance.project_financials.actual_cost
+  - finance.project_financials.revenue_recognised
+  - finance.project_financials.loss_provision
+  stage: month3
+  summary: 'Use this when you need the two named margins of a project and period in
+    percent: the margin to date and the margin forecast at completion. Never one "margin".
+    To follow one project period by period together with its write-down, use margin_trail.'
+- deprecated: null
+  facts: []
+  id: halvaro.finance.project_view.revenue_recognised
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:tests/tieout_c.py::t17_project_revenue
+  parameters:
+  - project_financials
+  - actual_end
+  - cap
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance.project_financials.prj_key
+  - finance.project_financials.period
+  - finance.project_financials.actual_cost
+  - finance.project_financials.eac
+  - finance.project_financials.contract_value
+  stage: month3
+  summary: 'Use this when you need the revenue recognised to date on each project
+    row: the contract value times the cost to cost fraction.'
+- deprecated: null
+  facts: []
+  id: halvaro.finance.project_view.write_down_journal
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:halvaro_gen/world/finance/facts.py::build_truth
+  parameters:
+  - manual
+  - prj_key
+  - gl_key
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance.journal_header.source
+  - finance.journal_header.posting_date
+  - finance.journal_line.prj_key
+  - finance.journal_line.gl_key
+  - finance.journal_line.amount
+  - finance.journal_line.amount_dkk
+  stage: month3
+  summary: Use this when you need the write-down lines booked on one project, from
+    the manual journals.
+- deprecated: null
+  facts:
+  - frep.annual_reports.DK.filing_deadline_months_after_year_end
+  id: halvaro.finance.statements.filing_status
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:tests/test_finance_reporting.py::test_report_order_and_dates
+  parameters:
+  - statutory_report
+  - dk_entities
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance-reporting.statutory_report.rpt_key
+  - finance-reporting.statutory_report.period_end
+  - finance-reporting.statutory_report.filing_deadline
+  - finance-reporting.statutory_report.filed_date
+  - finance-reporting.statutory_report.le_key
+  - finance-reporting.statutory_report.filed_on_time
+  stage: month12
+  summary: Use this when you need to know whether each annual report was filed on
+    time, from the deadline and the filed date.
+- deprecated: null
+  facts: []
+  id: halvaro.finance.statements.prior_year_column
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:tests/test_finance_reporting.py::test_prior_year_column_is_previous_year
+  parameters:
+  - statement_line
+  - statutory_report
+  - codes
+  - tolerance
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance-reporting.statement_line.rpt_key
+  - finance-reporting.statement_line.line_code
+  - finance-reporting.statement_line.amount
+  - finance-reporting.statement_line.prior_year_amount
+  - finance-reporting.statement_line.statement
+  - finance-reporting.statutory_report.rpt_key
+  - finance-reporting.statutory_report.le_key
+  - finance-reporting.statutory_report.scope
+  - finance-reporting.statutory_report.fiscal_year
+  stage: month12
+  summary: Use this when you check that the prior year column of each report equals
+    the amount of the report of the year before.
+- deprecated: null
+  facts:
+  - frep.annual_reports.DK.size_thresholds.net_revenue
+  - frep.annual_reports.DK.size_thresholds.balance_sheet_total
+  - frep.annual_reports.DK.size_thresholds.average_full_time_employees
+  id: halvaro.finance.statements.size_class
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:tests/test_statements.py::test_size_class_edges_envelope_and_group_keys
+  parameters:
+  - statutory_report
+  - dk_entities
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance-reporting.statutory_report.rpt_key
+  - finance-reporting.statutory_report.le_key
+  - finance-reporting.statutory_report.revenue
+  - finance-reporting.statutory_report.total_assets
+  - finance-reporting.statutory_report.average_employees
+  - finance-reporting.statutory_report.size_criteria_met
+  stage: month12
+  summary: 'Use this when you need how many of the three Danish size criteria a report
+    exceeds: revenue, balance sheet total and average employees.'
+- deprecated: null
+  facts: []
+  id: halvaro.finance.statements.statement_from_ledger
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:tests/test_finance_reporting.py::test_statements_tie_to_the_ledger
+  parameters:
+  - trial_balance
+  - gl_account
+  - statutory_map_line
+  - le_key
+  - country
+  - fiscal_year
+  - require_full_year
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance.trial_balance.le_key
+  - finance.trial_balance.period
+  - finance.trial_balance.gl_key
+  - finance.trial_balance.debit
+  - finance.trial_balance.credit
+  - finance.trial_balance.closing_balance
+  - finance.gl_account.gl_key
+  - finance.gl_account.statement
+  - finance.gl_account.dk_statutory_map
+  - finance.gl_account.de_statutory_map
+  - finance.statutory_map_line.map_code
+  - finance.statutory_map_line.line_code
+  - finance.statutory_map_line.normal_side
+  - finance-reporting.statement_line.amount
+  stage: month12
+  summary: Use this when you rebuild the statutory lines of one entity and fiscal
+    year from its trial balance, in the entity currency and the natural sign.
+- deprecated: null
+  facts: []
+  id: halvaro.finance.statements.statements_check
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:tests/test_finance_reporting.py::test_balance_sheets_balance_and_cash_flow_reconciles
+  parameters:
+  - statement_line
+  - tolerance
+  - link_tolerance
+  - footing
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance-reporting.statement_line.rpt_key
+  - finance-reporting.statement_line.statement
+  - finance-reporting.statement_line.line_no
+  - finance-reporting.statement_line.line_code
+  - finance-reporting.statement_line.amount
+  - finance-reporting.statement_line.prior_year_amount
+  - finance-reporting.statement_line.line_type
+  stage: month12
+  summary: Use this when you check a set of statutory statements for lines that do
+    not foot and links that do not hold, per report.
+- deprecated: null
+  facts: []
+  id: halvaro.finance.subledgers.ageing
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:tests/test_finance.py::test_subledgers_reconcile_to_control_accounts_every_month_end
+  parameters:
+  - open_items
+  - as_of
+  - party
+  - buckets
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance.customer_invoice.due_date
+  - finance.customer_invoice.le_key
+  - finance.customer_invoice.cus_key
+  - finance.supplier_invoice.due_date
+  - finance.supplier_invoice.sup_key
+  stage: month3
+  summary: Use this when you need open items grouped by party and by days past due
+    on a date.
+- deprecated: null
+  facts:
+  - fin.payment.bad_debt_write_off_after_days_overdue
+  id: halvaro.finance.subledgers.bad_debt_candidates
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:tests/test_finance.py::test_customer_invoices_and_payments_are_consistent
+  parameters:
+  - open_items
+  - as_of
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance.customer_invoice.due_date
+  - finance.customer_invoice.le_key
+  stage: month3
+  summary: Use this when you need the receivables that are overdue by at least the
+    write-off days of the fact.
+- deprecated: null
+  facts: []
+  id: halvaro.finance.subledgers.bank_reconciliation
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:tests/test_finance.py::test_bank_balance_equals_cash_accounts_and_payments
+  parameters:
+  - bank_balance
+  - payment
+  - bank_account
+  - opening_balance_item
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance.bank_balance.bank_account
+  - finance.bank_balance.balance_date
+  - finance.bank_balance.closing_balance
+  - finance.payment.bank_account
+  - finance.payment.payment_date
+  - finance.payment.direction
+  - finance.payment.amount
+  - finance.bank_account.gl_key
+  - finance.opening_balance_item.amount
+  stage: month3
+  summary: Use this when you need the ledger balance of every bank account rebuilt
+    from the opening balance and the payments, compared with the stored daily balance.
+- deprecated: null
+  facts:
+  - world.fx_eur_dkk_fixed
+  - world.fx_sek_dkk_fixed
+  id: halvaro.finance.subledgers.customer_exposure
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:repo_tests/test_oracle_subledgers_release.py::test_oracle_customer_exposure_baseline_invoices_per_customer_with_exact_decimals
+  parameters:
+  - open_items
+  - customer
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance.customer_invoice.cus_key
+  - finance.customer_invoice.le_key
+  - crm.customer.cus_key
+  - crm.customer.credit_limit
+  - crm.customer.currency
+  stage: month12
+  summary: Use this when you need the open receivables of each customer in DKK against
+    the credit limit of the customer.
+- deprecated: null
+  facts:
+  - fin.fixed_assets.DK.method
+  - fin.fixed_assets.DE.method
+  - fin.finance_planning_and_registers.fixed_asset_register.depreciation_start
+  - world.window_start
+  - world.now
+  id: halvaro.finance.subledgers.fixed_asset_rollforward
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:tests/test_finance.py::test_fixed_asset_register_and_schedule
+  parameters:
+  - fixed_asset
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance.fixed_asset.le_key
+  - finance.fixed_asset.asset_class
+  - finance.fixed_asset.acquisition_date
+  - finance.fixed_asset.cost
+  - finance.fixed_asset.useful_life_months
+  - finance.fixed_asset.disposal_date
+  - finance.fixed_asset.depreciation_method
+  - finance.fixed_asset.currency
+  stage: month3
+  summary: Use this when you need the monthly cost and accumulated depreciation of
+    the fixed asset register, per entity and asset class.
+- deprecated: null
+  facts:
+  - world.fx_eur_dkk_fixed
+  - world.fx_sek_dkk_fixed
+  id: halvaro.finance.subledgers.intercompany_agreement
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:halvaro_gen/world/finance/checks.py::intercompany_agrees
+  parameters:
+  - intercompany
+  - intercompany_balance
+  - tolerance_dkk
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance.intercompany.ic_type
+  - finance.intercompany.document_date
+  - finance.intercompany.creditor_amount
+  - finance.intercompany.creditor_currency
+  - finance.intercompany.debtor_amount
+  - finance.intercompany.currency
+  - finance.intercompany.difference_dkk
+  - finance.intercompany.matched
+  - finance.intercompany_balance.period
+  - finance.intercompany_balance.balance_type
+  - finance.intercompany_balance.creditor_le_key
+  - finance.intercompany_balance.debtor_le_key
+  - finance.intercompany_balance.creditor_balance
+  - finance.intercompany_balance.creditor_currency
+  - finance.intercompany_balance.debtor_balance
+  - finance.intercompany_balance.debtor_currency
+  - finance.intercompany_balance.difference_dkk
+  - finance.intercompany_balance.agrees
+  stage: month3
+  summary: Use this when you need to check that the two sides of the intercompany
+    records agree.
+- deprecated: null
+  facts:
+  - fin.finance_planning_and_registers.inventory_valuation.slow_moving_allowance_rate
+  id: halvaro.finance.subledgers.inventory_valuation_check
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:tests/test_finance_planning.py::test_inventory_valuation_ties_to_the_ledger
+  parameters:
+  - inventory_valuation
+  - trial_balance
+  - allowance_gl
+  - tolerance
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance.inventory_valuation.le_key
+  - finance.inventory_valuation.site_key
+  - finance.inventory_valuation.item_category
+  - finance.inventory_valuation.period
+  - finance.inventory_valuation.gl_key
+  - finance.inventory_valuation.stock_value
+  - finance.inventory_valuation.slow_moving_value
+  - finance.inventory_valuation.allowance
+  - finance.inventory_valuation.net_stock_value
+  - finance.trial_balance.le_key
+  - finance.trial_balance.period
+  - finance.trial_balance.gl_key
+  - finance.trial_balance.closing_balance
+  stage: month3
+  summary: Use this when you need to check the inventory valuation for missing amounts,
+    the allowance rule and agreement with the ledger.
+- deprecated: null
+  facts: []
+  id: halvaro.finance.subledgers.open_items_ap
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:tests/test_finance.py::test_subledgers_reconcile_to_control_accounts_every_month_end
+  parameters:
+  - supplier_invoice
+  - payment_allocation
+  - payment
+  - opening_balance_item
+  - gl_account
+  - as_of
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance.supplier_invoice.sinv_key
+  - finance.supplier_invoice.le_key
+  - finance.supplier_invoice.sup_key
+  - finance.supplier_invoice.invoice_type
+  - finance.supplier_invoice.invoice_date
+  - finance.supplier_invoice.due_date
+  - finance.supplier_invoice.payable_amount_le
+  - finance.payment_allocation.le_key
+  - finance.payment_allocation.bank_account
+  - finance.payment_allocation.payment_no
+  - finance.payment_allocation.allocation_kind
+  - finance.payment_allocation.document_type
+  - finance.payment_allocation.booked_amount
+  - finance.payment_allocation.sinv_key
+  - finance.payment_allocation.opening_item_ref
+  - finance.payment.le_key
+  - finance.payment.bank_account
+  - finance.payment.payment_no
+  - finance.payment.payment_date
+  - finance.opening_balance_item.le_key
+  - finance.opening_balance_item.gl_key
+  - finance.opening_balance_item.item_ref
+  - finance.opening_balance_item.document_date
+  - finance.opening_balance_item.due_date
+  - finance.opening_balance_item.amount
+  - finance.opening_balance_item.currency
+  - finance.opening_balance_item.sup_key
+  - finance.gl_account.gl_key
+  - finance.gl_account.control_type
+  stage: month3
+  summary: Use this when you need the open payables of every supplier invoice and
+    opening item on a date.
+- deprecated: null
+  facts: []
+  id: halvaro.finance.subledgers.open_items_ar
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:tests/test_finance.py::test_subledgers_reconcile_to_control_accounts_every_month_end
+  parameters:
+  - customer_invoice
+  - payment_allocation
+  - payment
+  - opening_balance_item
+  - gl_account
+  - as_of
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance.customer_invoice.inv_key
+  - finance.customer_invoice.le_key
+  - finance.customer_invoice.cus_key
+  - finance.customer_invoice.invoice_type
+  - finance.customer_invoice.invoice_date
+  - finance.customer_invoice.due_date
+  - finance.customer_invoice.gross_amount_le
+  - finance.customer_invoice.retention_amount_le
+  - finance.customer_invoice.retention_release_date
+  - finance.customer_invoice.written_off_date
+  - finance.customer_invoice.counterpart_le_key
+  - finance.payment_allocation.le_key
+  - finance.payment_allocation.bank_account
+  - finance.payment_allocation.payment_no
+  - finance.payment_allocation.allocation_kind
+  - finance.payment_allocation.document_type
+  - finance.payment_allocation.booked_amount
+  - finance.payment_allocation.inv_key
+  - finance.payment_allocation.opening_item_ref
+  - finance.payment.le_key
+  - finance.payment.bank_account
+  - finance.payment.payment_no
+  - finance.payment.payment_date
+  - finance.opening_balance_item.le_key
+  - finance.opening_balance_item.gl_key
+  - finance.opening_balance_item.item_ref
+  - finance.opening_balance_item.document_date
+  - finance.opening_balance_item.due_date
+  - finance.opening_balance_item.amount
+  - finance.opening_balance_item.currency
+  - finance.opening_balance_item.cus_key
+  - finance.gl_account.gl_key
+  - finance.gl_account.control_type
+  stage: month3
+  summary: Use this when you need the open receivables of every domestic invoice and
+    opening item on a date.
+- deprecated: null
+  facts: []
+  id: halvaro.finance.subledgers.rebuild_subledger_reconciliation
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:tests/test_finance.py::test_subledgers_reconcile_to_control_accounts_every_month_end
+  parameters:
+  - customer_invoice
+  - supplier_invoice
+  - payment
+  - payment_allocation
+  - opening_balance_item
+  - fixed_asset
+  - fixed_asset_schedule
+  - inventory_valuation
+  - intercompany
+  - bank_balance
+  - bank_account
+  - trial_balance
+  - gl_account
+  - allowance_gl
+  - intercompany_accounts
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance.customer_invoice.inv_key
+  - finance.customer_invoice.le_key
+  - finance.customer_invoice.invoice_type
+  - finance.customer_invoice.invoice_date
+  - finance.customer_invoice.gross_amount_le
+  - finance.customer_invoice.retention_amount_le
+  - finance.customer_invoice.retention_release_date
+  - finance.customer_invoice.written_off_date
+  - finance.customer_invoice.counterpart_le_key
+  - finance.supplier_invoice.le_key
+  - finance.supplier_invoice.invoice_type
+  - finance.supplier_invoice.invoice_date
+  - finance.supplier_invoice.payable_amount_le
+  - finance.payment.le_key
+  - finance.payment.bank_account
+  - finance.payment.payment_no
+  - finance.payment.payment_date
+  - finance.payment_allocation.le_key
+  - finance.payment_allocation.bank_account
+  - finance.payment_allocation.payment_no
+  - finance.payment_allocation.allocation_kind
+  - finance.payment_allocation.document_type
+  - finance.payment_allocation.booked_amount
+  - finance.payment_allocation.inv_key
+  - finance.payment_allocation.sinv_key
+  - finance.payment_allocation.opening_item_ref
+  - finance.opening_balance_item.le_key
+  - finance.opening_balance_item.gl_key
+  - finance.opening_balance_item.item_ref
+  - finance.opening_balance_item.document_date
+  - finance.opening_balance_item.due_date
+  - finance.opening_balance_item.amount
+  - finance.opening_balance_item.currency
+  - finance.opening_balance_item.cus_key
+  - finance.opening_balance_item.sup_key
+  - finance.fixed_asset.asset_class
+  - finance.fixed_asset.gl_cost_key
+  - finance.fixed_asset.gl_accumulated_key
+  - finance.fixed_asset_schedule.le_key
+  - finance.fixed_asset_schedule.asset_class
+  - finance.fixed_asset_schedule.period
+  - finance.fixed_asset_schedule.cost_closing
+  - finance.fixed_asset_schedule.accumulated_closing
+  - finance.inventory_valuation.le_key
+  - finance.inventory_valuation.period
+  - finance.inventory_valuation.gl_key
+  - finance.inventory_valuation.stock_value
+  - finance.inventory_valuation.allowance
+  - finance.intercompany.ic_type
+  - finance.intercompany.creditor_le_key
+  - finance.intercompany.debtor_le_key
+  - finance.intercompany.document_date
+  - finance.intercompany.settlement_date
+  - finance.intercompany.creditor_amount
+  - finance.intercompany.debtor_amount
+  - finance.bank_balance.bank_account
+  - finance.bank_balance.balance_date
+  - finance.bank_balance.closing_balance
+  - finance.bank_account.le_key
+  - finance.bank_account.bank_account
+  - finance.bank_account.gl_key
+  - finance.trial_balance.le_key
+  - finance.trial_balance.period
+  - finance.trial_balance.gl_key
+  - finance.trial_balance.closing_balance
+  - finance.gl_account.gl_key
+  - finance.gl_account.control_type
+  stage: month3
+  summary: Use this when you need every subledger compared with its control account
+    in the ledger at each month end.
+- deprecated: null
+  facts: []
+  id: halvaro.finance.subledgers.retention_receivable
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:tests/test_finance.py::test_subledgers_reconcile_to_control_accounts_every_month_end
+  parameters:
+  - open_items
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance.customer_invoice.inv_key
+  - finance.customer_invoice.le_key
+  - finance.customer_invoice.cus_key
+  - finance.customer_invoice.retention_amount_le
+  - finance.customer_invoice.retention_release_date
+  - finance.opening_balance_item.due_date
+  stage: month3
+  summary: Use this when you need the retention held on receivables per item and in
+    total per entity.
+- deprecated: null
+  facts: []
+  id: halvaro.finance.vat_tax.einvoice_format_share
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:tests/test_vat_tax.py::test_einvoice_share_and_gap
+  parameters:
+  - customer_invoice
+  - le_key
+  - structured
+  - invoice_types
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance.customer_invoice.le_key
+  - finance.customer_invoice.invoice_date
+  - finance.customer_invoice.invoice_format
+  - finance.customer_invoice.counterpart_le_key
+  - finance.customer_invoice.invoice_type
+  stage: month3
+  summary: Use this when you need the share of structured e-invoices among the third
+    party invoices of one entity, by month.
+- deprecated: null
+  facts:
+  - fin.e_invoicing.DE.mandatory_issue_from
+  - fin.e_invoicing.DE.pdf_allowed_until
+  id: halvaro.finance.vat_tax.einvoice_gap
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:repo_tests/test_oracle_vat_tax_release.py::test_oracle_einvoice_gap_baseline_invoices_filtered_with_plain_loops
+  parameters:
+  - customer_invoice
+  - as_of
+  - le_key
+  - months
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance.customer_invoice.le_key
+  - finance.customer_invoice.cus_key
+  - finance.customer_invoice.invoice_date
+  - finance.customer_invoice.invoice_format
+  - finance.customer_invoice.counterpart_le_key
+  stage: month3
+  summary: Use this when you need the customers of one entity that still receive pdf
+    invoices shortly before structured invoices become mandatory.
+- deprecated: null
+  facts:
+  - frep.corporate_tax.DK.rate
+  - frep.corporate_tax.DE.rate
+  - frep.corporate_tax.tax_losses.utilisation_cap_share_of_taxable_income
+  id: halvaro.finance.vat_tax.tax_provision
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:tests/test_finance_reporting.py::test_tax_in_statements_equals_provision
+  parameters:
+  - provision
+  - tolerance
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance-reporting.tax_provision.fiscal_year
+  - finance-reporting.tax_provision.tax_rate
+  - finance-reporting.tax_provision.profit_before_tax
+  - finance-reporting.tax_provision.non_deductible_expenses
+  - finance-reporting.tax_provision.exempt_income
+  - finance-reporting.tax_provision.temporary_difference_movement
+  - finance-reporting.tax_provision.taxable_income_before_losses
+  - finance-reporting.tax_provision.tax_loss_utilised
+  - finance-reporting.tax_provision.tax_loss_added
+  - finance-reporting.tax_provision.tax_loss_carried_forward
+  - finance-reporting.tax_provision.taxable_income
+  - finance-reporting.tax_provision.current_tax
+  - finance-reporting.tax_provision.deferred_tax_movement
+  - finance-reporting.tax_provision.total_tax_expense
+  - finance-reporting.tax_provision.le_key
+  stage: month12
+  summary: Use this when you need the corporate tax provision of each entity and fiscal
+    year recomputed from its inputs and compared with the stored rows.
+- deprecated: null
+  facts:
+  - fin.vat.DK.standard_rate
+  - fin.vat.DE.standard_rate
+  id: halvaro.finance.vat_tax.vat_code_check
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:halvaro_gen/world/finance/checks.py::vat_lines_equal_vat_accounts
+  parameters:
+  - journal_line
+  - min_base
+  - ratio_tolerance
+  - tolerance
+  - settlement_sources
+  - vat_accounts
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance.journal_line.le_key
+  - finance.journal_line.gl_key
+  - finance.journal_line.period
+  - finance.journal_line.amount
+  - finance.journal_line.vat_code
+  - finance.journal_line.vat_base
+  - finance.journal_line.source
+  stage: month3
+  summary: Use this when you need to check that the VAT codes of the ledger lines
+    carry the right rate, sit on the right accounts and agree with the postings on
+    the VAT accounts.
+- deprecated: null
+  facts:
+  - frep.vat.DK.filing_due_day_of_next_month
+  - frep.vat.DE.filing_due_day_of_next_month
+  id: halvaro.finance.vat_tax.vat_filing_calendar
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:tests/test_finance_reporting.py::test_vat_return_settlement_and_status
+  parameters:
+  - vat_return
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance-reporting.vat_return.le_key
+  - finance-reporting.vat_return.period
+  - finance-reporting.vat_return.filing_due_date
+  stage: month12
+  summary: Use this when you need the filing due date of each VAT return and want
+    to compare it with the stored date.
+- deprecated: null
+  facts:
+  - frep.vat.boxes.output_domestic.label
+  - frep.vat.boxes.output_acquisition_eu.label
+  - frep.vat.boxes.output_acquisition_non_eu.label
+  - frep.vat.boxes.input_domestic.label
+  - frep.vat.boxes.input_acquisition_eu.label
+  - frep.vat.boxes.input_acquisition_non_eu.label
+  - frep.vat.boxes.input_import.label
+  id: halvaro.finance.vat_tax.vat_return_from_ledger
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:tests/test_finance_reporting.py::test_vat_returns_equal_vat_coded_lines
+  parameters:
+  - journal_line
+  - boxes
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance.journal_line.le_key
+  - finance.journal_line.gl_key
+  - finance.journal_line.period
+  - finance.journal_line.amount
+  - finance.journal_line.vat_code
+  - finance.journal_line.vat_base
+  - finance.journal_line.currency
+  stage: month3
+  summary: Use this when you need the VAT return of each entity and month rebuilt
+    from the VAT coded ledger lines.
+- deprecated: null
+  facts:
+  - fin.vat.DK.payment_day_of_next_month
+  - fin.vat.DE.payment_day_of_next_month
+  id: halvaro.finance.vat_tax.vat_settlement
+  kb: []
+  kb_versions: []
+  library: halvaro-finance
+  oracle: py:tests/test_finance_reporting.py::test_vat_return_settlement_and_status
+  parameters:
+  - vat_return
+  - payment
+  - description
+  - tolerance
+  - context
+  restricted: []
+  since: 0.1.0
+  sources:
+  - finance-reporting.vat_return.le_key
+  - finance-reporting.vat_return.period
+  - finance-reporting.vat_return.vat_payable
+  - finance-reporting.vat_return.settlement_difference
+  - finance.payment.le_key
+  - finance.payment.payment_date
+  - finance.payment.direction
+  - finance.payment.amount
+  - finance.payment.description
+  stage: month12
+  summary: Use this when you need to compare the VAT payable of each return with the
+    VAT payment of the following month.
+snapshot: 17703967a6ef6ceed2d045ad2f0871b60e0ad55e39445d26c00f11be10bbee40

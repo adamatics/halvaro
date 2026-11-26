@@ -1,0 +1,22 @@
+# Golden error case of halvaro-hr.staffing_candidates: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: staffing_candidates
+why: valid is given without qual_keys
+args:
+- frame:
+    columns:
+    - emp_key
+    - rank
+    rows:
+    - - EMP-X1
+      - 1
+- {}
+kwargs:
+  valid:
+    now:
+      frame:
+        columns:
+        - emp_key
+        - qual_key
+        rows: []
+raises: FrameError
+message: valid needs qual_keys, the qualifications to check

@@ -1,0 +1,24 @@
+id: err18-variants-table-metric-missing-column
+rule: A metric frame without a value column is refused, with the column named.
+function: variants_table
+frames:
+  project:
+  - prj_key: PRJ-900001
+    country: DE
+    type: dh_network
+    soil_class: clay
+    route_length_m: 5000
+    legacy: false
+    data_depth: full
+    start: '2031-01-05'
+    actual_end: '2031-06-01'
+  metric:
+  - prj_key: PRJ-900001
+args:
+  as_of: '2031-12-01'
+raises:
+  error: FrameError
+  message: the metric frame lacks column(s) value
+  names:
+  - metric
+  - value

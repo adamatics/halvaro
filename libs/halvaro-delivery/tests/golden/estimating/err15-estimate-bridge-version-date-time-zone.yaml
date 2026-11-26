@@ -1,0 +1,27 @@
+id: err15-estimate-bridge-version-date-time-zone
+rule: A version date with a time zone is refused.
+function: estimate_bridge
+frames:
+  estimate_version:
+  - prj_key: PRJ-900001
+    estimate_version: 1
+    type: tender
+    date: '2031-01-05T00:00:00+01:00'
+    currency: EUR
+    total_cost: 1
+  estimate_line:
+  - prj_key: PRJ-900001
+    estimate_version: 1
+    cst_key: CST-900001
+    amount: 1
+  cost_code:
+  - cst_key: CST-900001
+    category: civil
+args:
+  as_of: '2031-02-01'
+raises:
+  error: FrameError
+  message: projects.estimate_version.date has a time zone; dates here are calendar days
+  names:
+  - estimate_version.date
+  - time zone

@@ -1,0 +1,18 @@
+name: An allowance that is not the fact rate times the slow moving value breaks the allowance rule
+function: inventory_valuation_check
+cites: [FI.REF.024]
+by_hand: The slow moving value is 200 and the stored allowance is 50 instead of the rate of the fact times 200. The net stock of 950 is consistent with it, so allowance_rate is broken, and the ledger allowance, which holds the stored 50, agrees.
+context: month3
+input:
+  inventory_valuation:
+    columns: [le_key, site_key, item_category, period, gl_key, stock_value, slow_moving_value, allowance, net_stock_value]
+    rows:
+      - [LE-01, SITE-01, cable, "2023-01", GL-2010, 1000.0, 200.0, 50.0, 950.0]
+  trial_balance:
+    columns: [le_key, period, gl_key, closing_balance]
+    rows:
+      - [LE-01, "2023-01", GL-2010, 1000.0]
+      - [LE-01, "2023-01", GL-2015, -50.0]
+expect:
+  contains:
+    rule: [allowance_rate]

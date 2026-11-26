@@ -1,0 +1,14 @@
+# Golden error case of halvaro-core.cost_centre_of_team: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: cost_centre_of_team
+why: the team key is not in the team frame
+args:
+- frame:
+    columns:
+    - team_key
+    - cost_centre_key
+    rows:
+    - - T1
+      - C1
+- T9
+raises: FrameError
+message: team T9 has 0 rows in hr.team; expected 1

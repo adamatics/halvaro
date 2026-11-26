@@ -1,0 +1,50 @@
+# Golden error case of halvaro-hr.org_on: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: org_on
+why: a person employed on the date has no employment term
+args:
+- frame:
+    columns:
+    - emp_key
+    - gender
+    - hire_date
+    - leave_date
+    - legal_entity_key
+    rows:
+    - - EMP-X1
+      - f
+      - 2020-01-01
+      - null
+      - LE-X
+- frame:
+    columns:
+    - emp_key
+    - valid_from
+    - valid_to
+    - team_key
+    - role_key
+    - grade_key
+    - fte
+    rows: []
+- frame:
+    columns:
+    - team_key
+    rows: []
+- frame:
+    columns:
+    - role_key
+    - name
+    rows: []
+- frame:
+    columns:
+    - gra_key
+    - level
+    rows: []
+- frame:
+    columns:
+    - dep_key
+    - dep_code
+    rows: []
+- frame: {}
+- 2026-03-31
+raises: FrameError
+message: 1 people employed on 2026-03-31 have no employment term on that date (for example EMP-X1); terms start on the window start 2023-01-01, check hr.employment_term

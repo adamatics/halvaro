@@ -1,0 +1,19 @@
+id: e01-cause-outside-accepted-list
+rule: A cause that is not in the accepted list is refused, because the counts must not hold causes nobody accepted.
+function: fault_causes
+frames:
+  fault_event:
+  - net_key: NET-900001
+    fault_ts: 2031-02-03 10:00
+    tkt_key: TKT-900001
+    repeat_of_tkt_key: null
+    cause: frost
+args:
+  allowed_causes:
+  - wear
+raises:
+  error: FrameError
+  message: 'causes outside the accepted list: [''frost'']'
+  names:
+  - accepted list
+  - frost

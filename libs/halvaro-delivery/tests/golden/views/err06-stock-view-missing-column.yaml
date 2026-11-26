@@ -1,0 +1,17 @@
+id: err06-stock-view-missing-column
+rule: The stock frame lacks a column the view needs, here available.
+function: stock_view
+frames:
+  stock:
+  - as_of: 1
+    site_key: SIT-900001
+    itm_key: ITM-900001
+    on_hand: 1
+    reserved: 1
+args: {}
+raises:
+  error: FrameError
+  message: stock lacks column(s) available
+  names:
+  - stock
+  - available

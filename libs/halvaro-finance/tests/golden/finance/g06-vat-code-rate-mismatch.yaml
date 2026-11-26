@@ -1,0 +1,14 @@
+name: A domestic code with an amount that is not the standard rate of its base is a rate mismatch
+function: vat_code_check
+cites: [FI.STD.011]
+by_hand: A base of 1000 should carry rate x 1000. The line carries 10 less, a ratio 0.01 below the rate and beyond the tolerance of 0.001, and the base is above the minimum of 1000. The only violation is rate_mismatch; the coded lines still equal the postings on the VAT account.
+let:
+  rate: "=fact('fin.vat.DK.standard_rate')"
+input:
+  journal_line:
+    columns: [le_key, gl_key, period, amount, vat_code, vat_base, currency, source]
+    rows:
+      - [LE-01, GL-4710, "2025-01", "=-(rate * 1000 - 10)", DK25, 1000.0, DKK, ar]
+expect:
+  rows:
+    - {rule: rate_mismatch}

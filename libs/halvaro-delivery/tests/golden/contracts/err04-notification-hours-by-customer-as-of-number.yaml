@@ -1,0 +1,23 @@
+id: err04-notification-hours-by-customer-as-of-number
+rule: The day argument as_of is a number, not a date or ISO text, so the function refuses it.
+function: notification_hours_by_customer
+frames:
+  clause:
+  - param_name: 1
+    param_value: 1
+    con_key: CON-900001
+    clause_no: 1
+    clause_type: 1
+    valid_from: '2031-01-05'
+    valid_to: '2031-01-05'
+  contract:
+  - con_key: CON-900001
+    cus_key: CUS-900001
+args:
+  as_of: 7
+raises:
+  error: FrameError
+  message: as_of 7 is a number, not a date
+  names:
+  - as_of
+  - '7'

@@ -1,0 +1,18 @@
+# Golden error case of halvaro-finance.roll_retained_earnings: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: roll_retained_earnings
+why: the retained earnings opening balance jumps at a fiscal year start
+args:
+- frame:
+    columns: [le_key, period, gl_key, opening_balance, closing_balance, closing_balance_dkk]
+    rows:
+    - [LE-X, 2026-12, GL-3300, 0.0, 100.0, 0.0]
+    - [LE-X, 2027-01, GL-3300, 500.0, 500.0, 0.0]
+- frame:
+    columns: [gl_key, statement]
+    rows:
+    - [GL-1000, BS]
+    - [GL-3300, BS]
+    - [GL-5100, IS]
+context: month12
+raises: FrameError
+message: the trial balance already carries the results into GL-3300 (its opening balance jumps at 1 fiscal year starts, for example LE-X 2027-01); pass a table built with carry_results=False

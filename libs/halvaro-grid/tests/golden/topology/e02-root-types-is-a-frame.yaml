@@ -1,0 +1,17 @@
+id: e02-root-types-is-a-frame
+rule: build_tree is refused when root_types is a frame, and the message names its type, not its rows.
+function: build_tree
+frames:
+  network_connection:
+  - net_from: NET-900001
+    net_to: NET-900002
+    role: feeder
+    zone_key: ZONE-0001
+  root_types:
+  - element_type: pump_station
+raises:
+  error: FrameError
+  message: root_types is a tuple of element types (got DataFrame)
+  names:
+  - root_types
+  - DataFrame

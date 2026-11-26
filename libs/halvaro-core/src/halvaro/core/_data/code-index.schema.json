@@ -1,0 +1,24 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "halvaro code index record",
+ "type": "object",
+ "required": ["id", "summary", "since", "library", "kb", "facts", "sources", "stage", "tags", "restricted", "parameters"],
+ "additionalProperties": false,
+ "properties": {
+  "id": {"type": "string", "pattern": "^halvaro\\.[a-z_]+\\.[a-z_]+\\.[a-z_0-9]+$"},
+  "summary": {"type": "string", "minLength": 1},
+  "since": {"type": "string"},
+  "deprecated": {"type": ["string", "null"]},
+  "library": {"type": "string"},
+  "version": {"type": "string", "description": "optional: the committed index no longer stamps it (issue 241); export_index returns it in memory"},
+  "kb": {"type": "array", "items": {"type": "string"}},
+  "kb_versions": {"type": "array", "items": {"type": "string", "pattern": "^.+@.+$"}},
+  "facts": {"type": "array", "items": {"type": "string"}},
+  "sources": {"type": "array", "items": {"type": "string", "pattern": "^[a-z0-9-]+\\.[a-z0-9_]+\\.[a-z0-9_]+$"}},
+  "stage": {"type": ["string", "null"], "enum": ["day1", "month3", "month12", null]},
+  "oracle": {"type": ["string", "null"]},
+  "tags": {"type": "array", "items": {"type": "string", "pattern": "^[A-Z][0-9]+b?$"}},
+  "restricted": {"type": "array", "items": {"type": "string"}},
+  "parameters": {"type": "array", "items": {"type": "string"}}
+ }
+}

@@ -1,0 +1,25 @@
+id: e01-completeness-sensor-not-in-sensor
+rule: A measurement of a sensor that the sensor table does not hold is refused, because its install date and interval are needed.
+function: completeness
+frames:
+  measurement:
+  - sns_key: SNS-900002
+    ts: 2031-03-01 00:00
+    value: 1.0
+    quality_flag: ok
+  sensor:
+  - sns_key: SNS-900001
+    net_key: NET-900001
+    rated_value: 100.0
+    install_date: '2030-01-01'
+    sensor_type: load_percent
+    interval_s: 900
+args:
+  window_start: '2031-03-01'
+  window_end: '2031-03-02'
+raises:
+  error: FrameError
+  message: 1 sensors of the measurements are not in telemetry.sensor (for example SNS-900002)
+  names:
+  - SNS-900002
+  - telemetry.sensor

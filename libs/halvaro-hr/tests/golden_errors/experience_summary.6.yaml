@@ -1,0 +1,28 @@
+# Golden error case of halvaro-hr.experience_summary: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: experience_summary
+why: hr.employee has one emp_key twice
+args:
+- frame:
+    columns:
+    - prj_key
+    - emp_key
+    - project_role
+    - hours_total
+    - basis
+    rows:
+    - - PRJ-X
+      - EMP-X1
+      - electrician
+      - 10.0
+      - roster
+- frame:
+    columns:
+    - emp_key
+    - leave_date
+    rows:
+    - - EMP-X1
+      - null
+    - - EMP-X1
+      - null
+raises: FrameError
+message: hr.employee has duplicate emp_key values; one row per person is required

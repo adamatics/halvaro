@@ -1,0 +1,21 @@
+id: err30-estimate-amount-per-metre-length-not-numeric
+rule: A text route_length_m in the project frame is refused.
+function: estimate_amount_per_metre
+frames:
+  lines:
+  - prj_key: PRJ-900001
+    type: tender
+    cst_key: CST-900001
+    category: civil
+    amount: 1
+    currency: EUR
+  project:
+  - prj_key: PRJ-900001
+    route_length_m: long
+args: {}
+raises:
+  error: FrameError
+  message: route_length_m must be numeric
+  names:
+  - route_length_m
+  - numeric

@@ -1,0 +1,29 @@
+id: e01-bands-empty
+rule: An empty list of load bands is refused, because the hours are counted above each band.
+function: hours_above
+frames:
+  zone_series:
+  - zone_key: ZONE-0001
+    sns_key: SNS-900001
+    level: zone
+    basis: load_percent
+    ts: 2031-01-10 00:00
+    quality_flag: ok
+    ok: true
+    load_percent: 85.0
+  sensor:
+  - sns_key: SNS-900001
+    zone_key: ZONE-0001
+    sensor_type: load_percent
+    interval_s: 3600
+    critical_role: none
+    rated_value: 100.0
+    station_key: STN-900001
+args:
+  bands: []
+raises:
+  error: FrameError
+  message: 'bands must be a list of numbers (got [])'
+  names:
+  - bands
+  - list of numbers

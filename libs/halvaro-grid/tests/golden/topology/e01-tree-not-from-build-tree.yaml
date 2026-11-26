@@ -1,0 +1,12 @@
+id: e01-tree-not-from-build-tree
+rule: A tree that is not the result of build_tree is refused, because a trace follows its parent and child links.
+function: trace
+args:
+  tree: not a tree
+  net_key: NET-900001
+raises:
+  error: FrameError
+  message: 'tree must be the result of build_tree (got str)'
+  names:
+  - tree
+  - build_tree

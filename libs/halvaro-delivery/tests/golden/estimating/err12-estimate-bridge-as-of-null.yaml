@@ -1,0 +1,27 @@
+id: err12-estimate-bridge-as-of-null
+rule: An as_of that reads as no date (NaT) is refused.
+function: estimate_bridge
+frames:
+  estimate_version:
+  - prj_key: PRJ-900001
+    estimate_version: 1
+    type: tender
+    date: '2031-01-05'
+    currency: EUR
+    total_cost: 1
+  estimate_line:
+  - prj_key: PRJ-900001
+    estimate_version: 1
+    cst_key: CST-900001
+    amount: 1
+  cost_code:
+  - cst_key: CST-900001
+    category: civil
+args:
+  as_of: NaT
+raises:
+  error: FrameError
+  message: as_of 'NaT' is not a date
+  names:
+  - as_of
+  - NaT

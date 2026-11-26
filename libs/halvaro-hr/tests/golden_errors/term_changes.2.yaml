@@ -1,0 +1,15 @@
+# Golden error case of halvaro-hr.term_changes: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: term_changes
+why: a change_reason holds a name that is not known
+args:
+- frame:
+    columns:
+    - emp_key
+    - valid_from
+    - change_reason
+    rows:
+    - - EMP-X1
+      - 2025-01-01
+      - bonus
+raises: FrameError
+message: 'unknown change_reason name(s) ''bonus''; known: hire, window_start, summary, pay_review, promotion, fte_change'

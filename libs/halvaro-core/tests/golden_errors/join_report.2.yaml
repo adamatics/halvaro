@@ -1,0 +1,19 @@
+# Golden error case of halvaro-core.join_report: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: join_report
+why: how is not one of inner, left, right, outer
+args:
+- frame:
+    columns:
+    - k
+    rows:
+    - - 1
+- frame:
+    columns:
+    - k
+    rows:
+    - - 1
+kwargs:
+  'on': k
+  how: x
+raises: FrameError
+message: how 'x' is not one of inner, left, right, outer

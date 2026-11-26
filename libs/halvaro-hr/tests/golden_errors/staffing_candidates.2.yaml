@@ -1,0 +1,23 @@
+# Golden error case of halvaro-hr.staffing_candidates: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: staffing_candidates
+why: a status frame has one person twice
+args:
+- frame:
+    columns:
+    - emp_key
+    - rank
+    rows:
+    - - EMP-X1
+      - 1
+- now:
+    frame:
+      columns:
+      - emp_key
+      - status
+      rows:
+      - - EMP-X1
+        - available
+      - - EMP-X1
+        - left
+raises: FrameError
+message: status frame now has more than one row for a person

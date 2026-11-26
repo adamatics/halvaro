@@ -1,0 +1,25 @@
+id: e01-window-not-two-dates
+rule: A window that is not two dates is refused, because the summary counts the days from the first to the last day, both included.
+function: callout_summary
+frames:
+  service_ticket:
+  - tkt_key: TKT-900001
+    team_key: TEAM-900001
+    opened: '2031-01-05 08:00'
+    callout_kind: planned
+  ticket_labour:
+  - tkt_key: TKT-900001
+    work_date: '2031-01-05'
+    hours: 2.0
+    overtime_hours: 0.0
+    travel_hours: 0.5
+args:
+  window:
+  - soon
+  - later
+raises:
+  error: FrameError
+  message: "window must be two dates (first day, last day, both included) (got ['soon', 'later'])"
+  names:
+  - window
+  - two dates

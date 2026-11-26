@@ -1,0 +1,15 @@
+id: err03-customer-carbon-limit-missing-column
+rule: The opportunity frame lacks a column the function needs, here cus_key.
+function: customer_carbon_limit
+frames:
+  opportunity:
+  - opp_key: OPP-900001
+    carbon_limit_kgco2e_per_m: 1
+    route_length_m: 1
+args: {}
+raises:
+  error: FrameError
+  message: crm.opportunity lacks column(s) cus_key; load the source columns without renaming them
+  names:
+  - opportunity
+  - cus_key

@@ -1,0 +1,19 @@
+name: a call that needs a later source
+function: stage_matrix
+by_hand: hr.site is a day 1 source, so the matrix expects a result at every stage; the call needs finance.journal_line, which appears at month 3, so day 1 gives a refusal instead of a result and the matrix fails.
+input:
+  args:
+  - halvaro.core.calendar.region_of
+  - hr.site:
+      frame:
+        columns:
+        - site_key
+        - country
+        rows:
+        - - SITE-01
+          - DK
+  - call: needs_finance_line
+expect:
+  raises:
+    error: AssertionError
+    message_contains: day1 expected result, got refusal

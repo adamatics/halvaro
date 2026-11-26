@@ -1,0 +1,18 @@
+name: Carry-in against the default cap shows headroom, at the cap and above it
+function: carry_over_position
+cites: [dk/ferieloven/p-0021]
+by_hand: Headroom is the cap minus the carried-in days. At the cap it is zero, one day above it is minus one, two days below it is plus two.
+let:
+  cap: "=fact('legal.DK.holiday.carryover.default_max_days')"
+input:
+  ent:
+    columns: [emp_key, holiday_year, carried_in_days, carry_over_agreement, opening_balance]
+    rows:
+      - [EMP-1, "2026/27", "=cap", false, false]
+      - [EMP-2, "2026/27", "=cap + 1", false, false]
+      - [EMP-3, "2026/27", "=cap - 2", false, false]
+expect:
+  rows:
+    - {emp_key: EMP-1, basis: default, cap: "=cap", headroom: 0.0, at_cap: true}
+    - {emp_key: EMP-2, basis: default, cap: "=cap", headroom: -1.0, at_cap: false}
+    - {emp_key: EMP-3, basis: default, cap: "=cap", headroom: 2.0, at_cap: false}

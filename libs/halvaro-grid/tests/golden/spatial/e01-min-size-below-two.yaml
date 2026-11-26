@@ -1,0 +1,23 @@
+id: e01-min-size-below-two
+rule: A cluster size of less than two is refused, because one element is not a cluster.
+function: age_group_clusters
+frames:
+  grid_element:
+  - net_key: NET-900001
+    element_type: cable
+    zone_key: ZONE-0001
+    lon: 10.0
+    lat: 55.0
+    commissioned_date: '2031-01-05'
+    status: in_service
+    install_year: 2005
+args:
+  decade: 2000
+  element_type: cable
+  min_size: 1
+raises:
+  error: FrameError
+  message: 'min_size must be a whole number of two or more (got 1)'
+  names:
+  - min_size
+  - two or more

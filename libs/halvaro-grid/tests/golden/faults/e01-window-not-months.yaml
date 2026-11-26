@@ -1,0 +1,25 @@
+id: e01-window-not-months
+rule: A comparison window that is not a (first, last) pair of months is refused, because the rates are counted per calendar month.
+function: fault_rate
+frames:
+  fault_event:
+  - net_key: NET-900001
+    fault_ts: 2031-02-03 10:00
+    tkt_key: TKT-900001
+    repeat_of_tkt_key: null
+    cause: frost
+args:
+  group:
+  - NET-900001
+  baseline:
+  - 2030-01
+  - 2030-06
+  window:
+  - soon
+  - later
+raises:
+  error: FrameError
+  message: window must be a (first, last) pair of months like 2025-12 (got ('soon', 'later'))
+  names:
+  - window
+  - pair of months

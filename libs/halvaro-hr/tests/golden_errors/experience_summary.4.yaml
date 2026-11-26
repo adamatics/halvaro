@@ -1,0 +1,19 @@
+# Golden error case of halvaro-hr.experience_summary: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: experience_summary
+why: a row has no project_role
+args:
+- frame:
+    columns:
+    - prj_key
+    - emp_key
+    - project_role
+    - hours_total
+    - basis
+    rows:
+    - - PRJ-1
+      - EMP-000001
+      - null
+      - 1.0
+      - time_entries
+raises: FrameError
+message: the roster has rows with a null project_role

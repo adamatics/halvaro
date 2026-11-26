@@ -1,0 +1,11 @@
+id: e03-quantity-tolerance-negative
+rule: "recompute_diff is refused when quantity_tolerance is negative, because it must be a number of zero or more."
+function: recompute_diff
+frames:
+  lines: [{"ref_key": "MTR-900001", "period": "2030-05", "scope": 2, "ghg_category": "2", "method": "location", "category": "electricity", "subcategory": "grid", "quantity": 100.0, "kgco2e": 10.0}]
+  expected: [{"ref_key": "MTR-900001", "period": "2030-05", "scope": 2, "ghg_category": "2", "method": "location", "category": "electricity", "subcategory": "grid", "quantity": 100.0, "expected_kg": 10.0}]
+args: {"quantity_tolerance": -1.0}
+raises:
+  error: FrameError
+  message: "quantity_tolerance must be a number of zero or more"
+  names: ["quantity_tolerance", "zero or more"]

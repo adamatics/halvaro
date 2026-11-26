@@ -1,0 +1,17 @@
+name: Only customers that still receive a pdf invoice in the window are listed
+function: einvoice_gap
+cites: [FI.STD.004]
+by_hand: Within the six months up to 2025-03-31 customer CUS-1 has one pdf and one structured invoice and CUS-2 has structured invoices only. CUS-1 is listed with 1 pdf of 2 invoices and its last invoice is the later one, in a structured format. The invoice of CUS-3 is older than six months and is not in the window.
+context: month3
+input:
+  customer_invoice:
+    columns: [le_key, cus_key, invoice_date, invoice_format, counterpart_le_key]
+    rows:
+      - [LE-02, CUS-1, "2025-02-03", pdf, null]
+      - [LE-02, CUS-1, "2025-03-04", xrechnung, null]
+      - [LE-02, CUS-2, "2025-03-05", xrechnung, null]
+      - [LE-02, CUS-3, "2024-08-01", pdf, null]
+  as_of: "=date(2025, 3, 31)"
+expect:
+  rows:
+    - {cus_key: CUS-1, n_pdf: 1, n_invoices: 2, last_format: xrechnung}

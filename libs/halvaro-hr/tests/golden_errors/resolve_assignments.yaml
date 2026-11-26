@@ -1,0 +1,10 @@
+# Golden error case of halvaro-hr.resolve_assignments: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: resolve_assignments
+why: every frame is empty, so the columns the function reads are missing
+args:
+- frame: {}
+- frame: {}
+- frame: {}
+- 2026-03-31
+raises: FrameError
+message: it-assets.assignment frame lacks column(s) assigned_username, valid_from, valid_to, assignment_type, pool_team_key

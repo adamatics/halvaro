@@ -1,0 +1,9 @@
+# Golden error case of halvaro-finance.inventory_valuation_check: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: inventory_valuation_check
+why: every frame is empty, so the columns the function reads are missing
+args:
+- frame: {}
+- frame: {}
+context: month12
+raises: FrameError
+message: finance.inventory_valuation frame lacks column(s) le_key, site_key, item_category, period, gl_key, stock_value, slow_moving_value, allowance, net_stock_value; load the source columns without renaming them

@@ -1,0 +1,17 @@
+id: e01-duplicate-sensor-day
+rule: Two daily rows for one sensor and date are refused, because the board shows one value per sensor and day.
+function: sensor_quality_board
+frames:
+  daily:
+  - sns_key: SNS-900001
+    date: '2031-03-01'
+    availability_pct: 100.0
+  - sns_key: SNS-900001
+    date: '2031-03-01'
+    availability_pct: 90.0
+raises:
+  error: FrameError
+  message: telemetry.measurement_daily has more than one row for the same sensor and date
+  names:
+  - telemetry.measurement_daily
+  - same sensor and date

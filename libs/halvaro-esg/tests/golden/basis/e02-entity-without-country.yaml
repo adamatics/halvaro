@@ -1,0 +1,9 @@
+id: e02-entity-without-country
+rule: "size_evidence is refused when an entity of the statutory report has no country in country_of."
+function: size_evidence
+frames:
+  SR: [{"le_key": "LE-900001", "fiscal_year": 2030, "average_employees": 40, "revenue": 1000000.0, "reporting_class": "B", "scope": "entity"}]
+raises:
+  error: FrameError
+  message: "no country for the entity LE-900001"
+  names: ["entity", "LE-900001"]

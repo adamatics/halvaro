@@ -1,0 +1,8 @@
+# Golden error case of halvaro-finance.vat_code_check: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: vat_code_check
+why: every frame is empty, so the columns the function reads are missing
+args:
+- frame: {}
+context: month12
+raises: FrameError
+message: finance.journal_line frame lacks column(s) le_key, gl_key, period, amount, vat_code, vat_base, source; load the source columns without renaming them

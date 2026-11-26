@@ -1,0 +1,12 @@
+# Golden error case of halvaro-finance.translation_check: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: translation_check
+why: the month is 13
+args:
+- frame:
+    columns: [le_key, period, gl_key, closing_balance, currency, closing_balance_dkk]
+    rows:
+    - [LE-Y, 2026-12, GL-1000, 100.0, EUR, 746.04]
+kwargs: {month: 13}
+context: month12
+raises: FrameError
+message: month is a whole month number from 1 to 12

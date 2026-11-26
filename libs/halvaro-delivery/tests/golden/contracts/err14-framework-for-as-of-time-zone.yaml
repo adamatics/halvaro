@@ -1,0 +1,20 @@
+id: err14-framework-for-as-of-time-zone
+rule: An as_of with a time zone is refused.
+function: framework_for
+frames:
+  contract:
+  - con_key: CON-900001
+    type: supplier_framework
+    sup_key: SUP-900001
+    status: in_force
+    start: '2031-01-05'
+    end: null
+args:
+  sup_key: SUP-900001
+  as_of: '2031-02-01T00:00:00+01:00'
+raises:
+  error: FrameError
+  message: as_of '2031-02-01T00:00:00+01:00' is not a date without a time zone
+  names:
+  - as_of
+  - time zone

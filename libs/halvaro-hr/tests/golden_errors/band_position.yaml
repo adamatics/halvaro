@@ -1,0 +1,16 @@
+# Golden error case of halvaro-hr.band_position: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: band_position
+why: the pay frame lacks the grade and rate columns
+args:
+- frame:
+    columns:
+    - rate_dkk
+    - compa
+    rows: []
+- frame: {}
+context:
+  stage: month12
+  role: analyst
+  restricted_ok: true
+raises: FrameError
+message: pay frame (from pay_frame) frame lacks column(s) emp_key, grade_key, currency, rate_local

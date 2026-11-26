@@ -1,0 +1,13 @@
+# Golden error case of halvaro-finance.employer_oncosts: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: employer_oncosts
+why: an entity of the frame has no country
+args:
+- frame:
+    columns: [le_key, cc_key, period, gross_salary]
+    rows:
+    - [LE-X, CC-1, 2026-03, 1000.0]
+kwargs:
+  country_of: {LE-Y: DK}
+context: month12
+raises: FrameError
+message: country_of maps every le_key of the frame to DK or DE

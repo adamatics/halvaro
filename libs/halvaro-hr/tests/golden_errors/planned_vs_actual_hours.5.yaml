@@ -1,0 +1,33 @@
+# Golden error case of halvaro-hr.planned_vs_actual_hours: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: planned_vs_actual_hours
+why: estimate_version is a number in one frame and text in the other
+args:
+- frame:
+    columns:
+    - prj_key
+    - estimate_version
+    - type
+    rows:
+    - - PRJ-X
+      - 1
+      - budget
+- frame:
+    columns:
+    - prj_key
+    - estimate_version
+    - cst_key
+    - quantity
+    rows:
+    - - PRJ-X
+      - '1'
+      - CST-110
+      - 10.0
+- frame:
+    columns:
+    - prj_key
+    - hours
+    rows:
+    - - PRJ-X
+      - 5.0
+raises: FrameError
+message: estimate_version differs in type between projects.estimate_version and projects.estimate_line

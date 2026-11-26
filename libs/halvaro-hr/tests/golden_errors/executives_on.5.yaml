@@ -1,0 +1,35 @@
+# Golden error case of halvaro-hr.executives_on: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: executives_on
+why: the org frame is for two dates
+args:
+- frame:
+    columns:
+    - emp_key
+    - as_of
+    - active
+    - role_name
+    - dep_code
+    - team_key
+    rows:
+    - - EMP-000001
+      - '2026-03-31'
+      - true
+      - CEO
+      - X
+      - T
+    - - EMP-000001
+      - '2026-04-30'
+      - true
+      - CEO
+      - X
+      - T
+- frame:
+    columns:
+    - role_key
+    - name
+    rows:
+    - - R1
+      - CEO
+- - CEO
+raises: FrameError
+message: the org frame must be for one date, it has 2 as_of values

@@ -1,0 +1,8 @@
+name: too short
+function: is_valid_key
+by_hand: One digit is not the width of an EMP key.
+input:
+  args:
+  - EMP-1
+expect:
+  value: false

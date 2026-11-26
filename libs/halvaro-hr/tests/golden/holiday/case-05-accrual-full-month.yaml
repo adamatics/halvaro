@@ -1,0 +1,22 @@
+name: DK accrual of a full month of employment is the monthly rate
+function: accrual_expected
+cites: [dk/ferieloven/p-0005]
+by_hand: A person employed from the first day of the month accrues one monthly rate for that month.
+let:
+  rate: "=fact('legal.DK.holiday.accrual_days_per_month')"
+input:
+  employee:
+    columns: [emp_key, hire_date, leave_date]
+    rows:
+      - [EMP-1, 2026-10-01, null]
+  leave_record:
+    columns: [emp_key, leave_type, start, end]
+    rows: []
+  acc:
+    columns: [emp_key, holiday_year, period, accrued_days]
+    rows:
+      - [EMP-1, "2026/27", "2026-10", "=rate"]
+  now: 2026-10-31
+expect:
+  rows:
+    - {period: "2026-10", expected_days: "=round(rate, 2)", difference: 0.0, missing_month: false, within_tolerance: true}

@@ -1,0 +1,20 @@
+id: err10-timeline-view-present-null
+rule: An attendance row with a null present is refused.
+function: timeline_view
+frames:
+  timeline:
+  - date: '2031-01-05'
+    kind: meeting
+    source: projects.meeting
+    source_key: MTG-900001
+    text: t
+  attendance:
+  - mtg_key: MTG-900001
+    present: null
+args: {}
+raises:
+  error: FrameError
+  message: attendance.present has nulls
+  names:
+  - attendance.present
+  - nulls

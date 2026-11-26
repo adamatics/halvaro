@@ -1,0 +1,24 @@
+id: e01-freq-not-month-or-week
+rule: A period size other than month or week is refused, because the call-outs are grouped by one of those two.
+function: callout_summary
+frames:
+  service_ticket:
+  - tkt_key: TKT-900001
+    team_key: TEAM-900001
+    opened: 2031-03-03 08:00
+    callout_kind: standby
+  ticket_labour:
+  - tkt_key: TKT-900001
+    work_date: '2031-03-03'
+    hours: 2.0
+    overtime_hours: 0.0
+    travel_hours: 0.0
+args:
+  freq: day
+raises:
+  error: FrameError
+  message: 'freq must be ''month'' or ''week'' (got ''day'')'
+  names:
+  - freq
+  - month
+  - week

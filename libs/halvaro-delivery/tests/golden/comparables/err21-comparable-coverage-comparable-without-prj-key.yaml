@@ -1,0 +1,24 @@
+id: err21-comparable-coverage-comparable-without-prj-key
+rule: A comparable frame without prj_key is refused.
+function: comparable_coverage
+frames:
+  comparable:
+  - name: x
+  project:
+  - prj_key: PRJ-900001
+    final_cost: 1
+    route_length_m: 1
+  estimate_version:
+  - prj_key: PRJ-900001
+    type: final
+  project_role:
+  - prj_key: PRJ-900001
+args:
+  time_entry_projects:
+  - PRJ-900001
+raises:
+  error: FrameError
+  message: comparable must be a DataFrame with prj_key (the frame of comparable_set)
+  names:
+  - comparable
+  - prj_key

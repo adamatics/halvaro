@@ -1,0 +1,16 @@
+id: err10-delay-days-days-null
+rule: A null in days is refused.
+function: delay_days
+frames:
+  delay_event:
+  - prj_key: PRJ-900001
+    cause_code: weather
+    responsible_party: customer
+    days: .nan
+args: {}
+raises:
+  error: FrameError
+  message: projects.delay_event.days has nulls
+  names:
+  - delay_event.days
+  - nulls

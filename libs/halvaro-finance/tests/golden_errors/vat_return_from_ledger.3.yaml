@@ -1,0 +1,12 @@
+# Golden error case of halvaro-finance.vat_return_from_ledger: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: vat_return_from_ledger
+why: an entity has lines in two currencies
+args:
+- frame:
+    columns: [le_key, gl_key, period, amount, vat_code, vat_base, currency]
+    rows:
+    - [LE-01, GL-4710, 2026-01, -250.0, DK25, 1000.0, DKK]
+    - [LE-01, GL-4710, 2026-01, -250.0, DK25, 1000.0, EUR]
+context: month12
+raises: FrameError
+message: an entity has lines in more than one currency; the return is in the entity currency

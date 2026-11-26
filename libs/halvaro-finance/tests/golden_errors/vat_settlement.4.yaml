@@ -1,0 +1,15 @@
+# Golden error case of halvaro-finance.vat_settlement: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: vat_settlement
+why: a VAT payment has no payment date
+args:
+- frame:
+    columns: [le_key, period, vat_payable, settlement_difference]
+    rows:
+    - [LE-01, 2026-01, 100.0, 0.0]
+- frame:
+    columns: [le_key, payment_date, direction, amount, description]
+    rows:
+    - [LE-01, null, outgoing, 100.0, VAT payment]
+context: month12
+raises: FrameError
+message: a VAT payment has no payment date

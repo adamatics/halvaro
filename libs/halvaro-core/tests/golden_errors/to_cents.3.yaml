@@ -1,0 +1,7 @@
+# Golden error case of halvaro-core.to_cents: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: to_cents
+why: the amount is too large for 64 bit cents
+args:
+- 1.0e+18
+raises: FrameError
+message: to_cents got 1 amount(s) of more than 9.2e16 whose cents do not fit in 64 bits

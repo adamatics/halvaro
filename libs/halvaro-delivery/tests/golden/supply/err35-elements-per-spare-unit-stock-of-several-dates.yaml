@@ -1,0 +1,27 @@
+id: err35-elements-per-spare-unit-stock-of-several-dates
+rule: A stock frame that holds several dates is refused when no as_of is given.
+function: elements_per_spare_unit
+frames:
+  stock:
+  - site_key: SITE-900001
+    itm_key: ITM-900001
+    on_hand: 0
+    as_of: '2031-01-05'
+  - site_key: SITE-900001
+    itm_key: ITM-900002
+    on_hand: 0
+    as_of: '2031-01-06'
+  grid_element:
+  - element_type: substation
+    status: in_service
+    zone_key: ZONE-0001
+args:
+  items:
+  - ITM-900001
+  site: SITE-900001
+raises:
+  error: FrameError
+  message: the stock frame holds more than one date (2031-01-05, 2031-01-06); pass one stock_on frame
+  names:
+  - stock frame
+  - more than one date

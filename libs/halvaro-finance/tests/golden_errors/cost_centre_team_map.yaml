@@ -1,0 +1,9 @@
+# Golden error case of halvaro-finance.cost_centre_team_map: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: cost_centre_team_map
+why: every frame is empty, so the columns the function reads are missing
+args:
+- frame: {}
+- frame: {}
+context: month12
+raises: FrameError
+message: finance.cost_centre frame lacks column(s) cc_key, team_key; load the source columns without renaming them

@@ -1,0 +1,29 @@
+id: err35-experience-network-project-types-is-text
+rule: project_types given as one text instead of a list is refused.
+function: experience_network
+frames:
+  project_role:
+  - prj_key: PRJ-900001
+    emp_key: EMP-900001
+    project_role: engineer
+    start: '2031-01-05'
+    end: '2031-03-01'
+    hours_total: 10
+    basis: time_entry
+  project:
+  - prj_key: PRJ-900001
+    type: dh_network
+    soil_class: clay
+    country: DE
+    legacy: false
+args:
+  prj_keys:
+  - PRJ-900001
+  project_types: dh_network
+  as_of: '2031-02-01'
+raises:
+  error: FrameError
+  message: project_types must be a list of values, not a single text
+  names:
+  - project_types
+  - single text

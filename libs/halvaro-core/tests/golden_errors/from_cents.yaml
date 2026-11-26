@@ -1,0 +1,7 @@
+# Golden error case of halvaro-core.from_cents: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: from_cents
+why: the text is not a number; the end of the message is the one of int() and is not pinned
+args:
+- x
+raises: ValueError
+message_starts: 'invalid literal for int() with base 10:'

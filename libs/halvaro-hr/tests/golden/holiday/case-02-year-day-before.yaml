@@ -1,0 +1,12 @@
+name: DK holiday year, the day before the first day belongs to the old holiday year
+function: holiday_year_label
+cites: [dk/ferieloven/p-0004]
+by_hand: One day before the first day of the holiday year that starts in 2026 lies in the holiday year that started in 2025.
+let:
+  start_month: "=fact('legal.DK.holiday.holiday_year_start.month')"
+  start_day: "=fact('legal.DK.holiday.holiday_year_start.day')"
+input:
+  country: DK
+  as_of: "=date(2026, start_month, start_day) - days(1)"
+expect:
+  value: "2025/26"

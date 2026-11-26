@@ -1,0 +1,21 @@
+id: err29-estimate-amount-per-metre-amount-not-numeric
+rule: A text amount in the lines is refused.
+function: estimate_amount_per_metre
+frames:
+  lines:
+  - prj_key: PRJ-900001
+    type: tender
+    cst_key: CST-900001
+    category: civil
+    amount: high
+    currency: EUR
+  project:
+  - prj_key: PRJ-900001
+    route_length_m: 1000
+args: {}
+raises:
+  error: FrameError
+  message: the amount of the lines must be numeric without nulls
+  names:
+  - amount
+  - numeric

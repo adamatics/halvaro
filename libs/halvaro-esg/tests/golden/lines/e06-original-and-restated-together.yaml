@@ -1,0 +1,9 @@
+id: e06-original-and-restated-together
+rule: "assert_no_double_count is refused when an original line sits in the frame together with the restated line that replaces it."
+function: assert_no_double_count
+frames:
+  L: [{"le_key": "LE-900001", "period": "2030-05", "scope": 1, "category": "fuel", "line_no": 1, "kgco2e": 10.0, "quantity": 5.0, "efac_key": "EF-900001", "method": null, "ghg_category": "1", "restated_from_period": null, "supersedes_line_no": null, "is_superseded": false}, {"le_key": "LE-900001", "period": "2030-05", "scope": 1, "category": "fuel", "line_no": 2, "kgco2e": 10.0, "quantity": 5.0, "efac_key": "EF-900002", "method": null, "ghg_category": "1", "restated_from_period": "2030-08", "supersedes_line_no": 1, "is_superseded": false}]
+raises:
+  error: FrameError
+  message: "1 original lines are in the frame together with the restated lines that replace them (years 2030); use current_basis or as_first_booked"
+  names: ["original", "restated", "2030"]

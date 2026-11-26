@@ -1,0 +1,16 @@
+# Golden error case of halvaro-finance.tie_out: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: tie_out
+why: suppressed is text instead of true or false
+args:
+- frame:
+    columns: [le_key, cc_key, period, ledger_gross_pay]
+    rows:
+    - [LE-X, CC-1, 2026-03, 1000.0]
+- frame:
+    columns: [le_key, cc_key, period, currency, hr_gross_pay, band_minimum_total, band_maximum_total, cost_centres, suppressed]
+    rows:
+    - [LE-X, CC-1, 2026-03, DKK, 1000.0, 900.0, 1100.0, CC-1, 'no']
+kwargs: {tolerance: 1.0}
+context: month12
+raises: FrameError
+message: 'hr payroll aggregate: suppressed must be true or false on every row'

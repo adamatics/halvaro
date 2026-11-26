@@ -1,0 +1,8 @@
+# Golden error case of halvaro-hr.staffing_candidates: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: staffing_candidates
+why: every frame is empty, so the columns the function reads are missing
+args:
+- frame: {}
+- frame: {}
+raises: FrameError
+message: experience_summary output frame lacks column(s) emp_key, rank

@@ -1,0 +1,14 @@
+id: e01-design-capacity-not-positive
+rule: A zone with a design capacity of zero or less is refused, because the load percent is a share of that capacity.
+function: zone_design_capacity
+frames:
+  supply_zone:
+  - zone_key: ZONE-0001
+    design_capacity: 0.0
+    design_capacity_unit: MW
+raises:
+  error: FrameError
+  message: gis.supply_zone needs a positive design_capacity and a unit for every zone
+  names:
+  - design_capacity
+  - positive

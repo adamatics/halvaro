@@ -1,0 +1,9 @@
+# Golden error case of halvaro-hr.status_on: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: status_on
+why: every frame is empty, so the columns the function reads are missing
+args:
+- frame: {}
+- frame: {}
+- 2026-03-31
+raises: FrameError
+message: hr.employee frame lacks column(s) emp_key, hire_date, leave_date

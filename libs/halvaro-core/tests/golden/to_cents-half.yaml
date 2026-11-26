@@ -1,0 +1,8 @@
+name: tie to the even cent
+function: to_cents
+by_hand: 0.125 is exactly 12.5 cents; the docstring says a tie goes to the even cent, which is 12.
+input:
+  args:
+  - 0.125
+expect:
+  value: 12

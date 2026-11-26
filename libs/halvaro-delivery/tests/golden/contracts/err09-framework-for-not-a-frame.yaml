@@ -1,0 +1,13 @@
+id: err09-framework-for-not-a-frame
+rule: The contract argument is not a DataFrame.
+function: framework_for
+args:
+  contract: CON-900001
+  sup_key: SUP-900001
+  as_of: '2031-02-01'
+raises:
+  error: FrameError
+  message: contracts.contract must be a DataFrame, not str
+  names:
+  - contracts.contract
+  - str

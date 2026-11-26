@@ -1,0 +1,8 @@
+# Golden error case of halvaro-finance.fixed_asset_rollforward: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: fixed_asset_rollforward
+why: every frame is empty, so the columns the function reads are missing
+args:
+- frame: {}
+context: month12
+raises: FrameError
+message: finance.fixed_asset frame lacks column(s) le_key, asset_class, acquisition_date, cost, useful_life_months, disposal_date, depreciation_method, currency; load the source columns without renaming them

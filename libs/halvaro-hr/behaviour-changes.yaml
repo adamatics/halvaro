@@ -1,0 +1,70 @@
+# Behaviour changes of this distribution: a changed fact value, cfg parameter, KB rule version or oracle gets an entry in the same change.
+# Fields: id, date, functions, facts, kb, before, after, class (correction | policy change). Proposal: the library versioning note of the closed repository.
+changes:
+  - id: BC-HR-0001
+    date: 2026-11-15
+    functions:
+      - halvaro.hr.holiday.holiday_balance
+      - halvaro.hr.holiday.holiday_ledger
+      - halvaro.hr.holiday.carry_over_position
+      - halvaro.hr.holiday.carry_over_projection
+      - halvaro.hr.holiday.accrual_expected
+      - halvaro.hr.holiday.leave_vs_ledger
+      - halvaro.hr.holiday.high_carry_over
+    facts: []
+    kb: []
+    before: >-
+      holiday_balance returned a dict; the six other functions returned a pandas DataFrame (high_carry_over with attrs["policy_status"] when its default threshold was used). The typed models
+      LedgerRow, CarryOverRow and the others were built beside the result with Model.from_frame(frame) and HolidayBalance.from_dict(result) (version 0.2).
+    after: >-
+      holiday_balance returns HolidayBalance (a frozen model, result.to_dict() gives the old dict). holiday_ledger, carry_over_position, carry_over_projection, accrual_expected,
+      leave_vs_ledger and high_carry_over return an immutable sequence of their row model (LedgerRows, CarryOverRows, CarryOverProjectionRows, AccrualRows, LeaveLedgerRows,
+      HighCarryOverRows), and result.to_frame() gives the old DataFrame with the same columns in the same order and the same dtypes. High_carry_over keeps the status of the policy fact
+      in result.policy_status (and in to_frame().attrs["policy_status"]). carry_over_projection accepts the result of holiday_ledger or a frame. No fact value, field name, unit, order or
+      computed value changes; on the baseline release to_frame() equals the old frame of every function. A caller that used a frame method on a result (.set_index, .loc, .emp_key.tolist())
+      reads result.to_frame() first; a caller that indexed the dict reads the attribute or result.to_dict(). MAJOR version of halvaro-hr (1.0.0, issue #233).
+    class: policy change
+  - id: BC-HR-0002
+    date: 2026-11-21
+    functions:
+      - halvaro.hr.payroll.payroll_aggregate
+    facts: []
+    kb: []
+    before: >-
+      payroll_aggregate with a context that is None or not a Context raised AttributeError ('restricted_ok'); text in fte or base_salary raised a bare TypeError.
+    after: >-
+      payroll_aggregate raises FrameError for a context that is not a Context (the message of the staged hr functions) and for text in fte or base_salary (the message names the columns, never a value). No result of a valid call changes. A duck-typed context object (one that is not a halvaro.core.Context, even if it has stage, role and restricted_ok) is now refused too, like in the @staged functions.
+    class: correction
+  - id: BC-HR-0003
+    date: 2026-11-21
+    functions:
+      - halvaro.hr.certs.expiry_report
+    facts: []
+    kb: []
+    before: >-
+      expiry_report with unavailable_leave_types=None or a number raised a bare TypeError, a non-numeric capacity or seats_taken of the training events raised a bare TypeError, and a expiry_date that is not a date raised a PeriodError whose message said "as_of".
+    after: >-
+      expiry_report raises FrameError for unavailable_leave_types that is not a leave type name or a list of them and for a capacity or seats_taken that is not a number; the PeriodError for a bad expiry_date names expiry_date. No result of a valid call changes.
+    class: correction
+  - id: BC-HR-0004
+    date: 2026-11-21
+    functions:
+      - halvaro.hr.coverage.cover_candidates
+    facts: []
+    kb: []
+    before: >-
+      cover_candidates with leave_types=None, crew=None, a text list_level (or plausible_level, leave_days, seat_days), a text percent in crew_plan on another project or a non-numeric skill level raised a bare TypeError or ValueError.
+    after: >-
+      cover_candidates raises FrameError for each of these inputs, naming the argument or column and, except for a percent, the value found. No result of a valid call changes.
+    class: correction
+  - id: BC-HR-0005
+    date: 2026-11-21
+    functions:
+      - halvaro.hr.controlled.controlled_work_audit
+    facts: []
+    kb: []
+    before: >-
+      controlled_work_audit with a role_groups value that is not iterable ({"G": 5}), or role_groups that is not a mapping, raised a bare TypeError or AttributeError.
+    after: >-
+      controlled_work_audit raises FrameError naming role_groups and the group. No result of a valid call changes.
+    class: correction

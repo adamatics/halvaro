@@ -1,0 +1,8 @@
+id: e03-result-not-an-envelope
+rule: "provenance is refused when a result it is given is not an Envelope or a Provenance."
+function: provenance
+positional: ["not a result"]
+raises:
+  error: FrameError
+  message: "provenance takes Envelope or Provenance results, not str"
+  names: ["Envelope", "str"]

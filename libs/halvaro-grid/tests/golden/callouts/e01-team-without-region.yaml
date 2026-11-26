@@ -1,0 +1,29 @@
+id: e01-team-without-region
+rule: A recompute with a team_region that has no region for a team of the tickets is refused, because the service-hours clock needs the holiday region of every team.
+function: sla_attainment
+frames:
+  service_ticket:
+  - tkt_key: TKT-900001
+    team_key: TEAM-900001
+    opened: 2031-03-03 08:00
+    ticket_type: corrective
+    sla_met: true
+    priority: high
+    first_response_ts: 2031-03-03 09:00
+    on_site_ts: null
+    resolved_ts: null
+    due_date: null
+    sla_response_target_h: 4.0
+    sla_attendance_target_h: 8.0
+    status: closed
+    response_h: 1.0
+    attendance_h: null
+args:
+  team_region:
+    TEAM-900002: DK
+raises:
+  error: FrameError
+  message: team_region has no region for team(s) ['TEAM-900001']
+  names:
+  - team_region
+  - TEAM-900001
