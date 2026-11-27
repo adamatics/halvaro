@@ -5,7 +5,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_crm.py::test_story_tenders
   parameters:
   - opportunity
   - context
@@ -25,7 +24,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_crm.py::test_customers_and_anchors
   parameters:
   - customer
   - project
@@ -59,7 +57,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_crm.py::test_story_tenders
   parameters:
   - opportunity
   - as_of
@@ -92,7 +89,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_crm.py::test_story_tenders
   parameters:
   - opportunity
   - opp_key
@@ -118,7 +114,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_crm.py::test_funnel_is_plausible
   parameters:
   - opportunity
   - customer
@@ -148,7 +143,6 @@ functions:
   - DA.REF.212
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_release.py::test_legacy_projects_are_summary_only
   parameters:
   - comparable
   - project
@@ -176,7 +170,6 @@ functions:
   - DA.REF.212
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_projects.py::test_six_comparables
   parameters:
   - project
   - profile
@@ -207,7 +200,6 @@ functions:
   - DA.REF.212
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_projects.py::test_six_comparables
   parameters:
   - context
   restricted: []
@@ -224,7 +216,6 @@ functions:
   - DA.REF.212
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:halvaro_gen/world/energy_esg/truth.py::esg_truth
   parameters:
   - project
   - rules
@@ -255,7 +246,6 @@ functions:
   - DA.REF.216
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_contracts.py::test_clauses_are_clean
   parameters:
   - clause
   - as_of
@@ -287,7 +277,6 @@ functions:
   - DA.REF.216
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_contracts.py::test_project_contracts_resolve
   parameters:
   - project
   - contract
@@ -315,7 +304,6 @@ functions:
   - DA.REF.216
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_contracts.py::test_supplier_frameworks
   parameters:
   - contract
   - sup_key
@@ -342,7 +330,6 @@ functions:
   - DA.REF.216
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_contracts.py::test_warranty_follows_legal_parameters
   parameters:
   - clause
   - contract
@@ -376,7 +363,6 @@ functions:
   - DA.REF.216
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_contracts.py::test_incident_notification_clauses
   parameters:
   - clause
   - contract
@@ -408,7 +394,6 @@ functions:
   - DA.REF.216
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_contracts.py::test_incident_notification_clauses
   parameters:
   - clause
   - contract
@@ -440,7 +425,6 @@ functions:
   - DA.REF.216
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_contracts.py::test_obligations_are_consistent
   parameters:
   - obligation
   - as_of
@@ -467,7 +451,6 @@ functions:
   - DA.REF.216
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_contracts.py::test_price_revision_nordvolt
   parameters:
   - clause
   - contract
@@ -501,7 +484,6 @@ functions:
   - DA.REF.212
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_project_history.py::test_ground_conditions_dominate_german_dh_on_clay
   parameters:
   - delay_event
   - project
@@ -528,7 +510,6 @@ functions:
   - DA.REF.212
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_oracle_estimating.py::test_oracle_contingency_advice_net_of_the_allowance_line
   parameters:
   - overrun_dist
   - shares
@@ -559,7 +540,6 @@ functions:
   - DA.REF.212
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_projects.py::test_estimates
   parameters:
   - lines
   - project
@@ -582,7 +562,6 @@ functions:
   - DA.REF.212
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_projects.py::test_estimates
   parameters:
   - estimate_version
   - estimate_line
@@ -617,7 +596,6 @@ functions:
   - DA.REF.212
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_projects.py::test_cell_calibration
   parameters:
   - overrun
   - project
@@ -642,7 +620,6 @@ functions:
   - DA.REF.212
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_project_history.py::test_ground_conditions_dominate_german_dh_on_clay
   parameters:
   - risk
   - lesson_learned
@@ -673,7 +650,6 @@ functions:
   - DA.REF.103
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_project_history.py::test_attendees_employed_and_not_on_leave
   parameters:
   - meeting
   - meeting_attendance
@@ -703,7 +679,6 @@ functions:
   - DA.REF.103
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_project_history.py::test_hamburg_timeline
   parameters:
   - decision
   - meeting
@@ -733,7 +708,6 @@ functions:
   - DA.REF.103
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_project_history.py::test_hamburg_timeline
   parameters:
   - attendance_frame
   - executives
@@ -754,7 +728,6 @@ functions:
   - DA.REF.103
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_project_history.py::test_hamburg_timeline
   parameters:
   - first
   - exec_attendance
@@ -776,7 +749,6 @@ functions:
   - DA.REF.103
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_release.py::test_rule18_project_role_hours_equal_time_entries
   parameters:
   - project_role
   - project
@@ -812,7 +784,6 @@ functions:
   - DA.REF.103
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_project_history.py::test_hamburg_timeline
   parameters:
   - site_diary
   - prj_key
@@ -835,7 +806,6 @@ functions:
   - DA.REF.103
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_project_history.py::test_hamburg_timeline
   parameters:
   - meeting
   - context
@@ -856,7 +826,6 @@ functions:
   - DA.REF.103
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_release.py::test_rule18_project_role_hours_equal_time_entries
   parameters:
   - project_role
   - project
@@ -883,7 +852,6 @@ functions:
   - DA.REF.103
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_project_history.py::test_hamburg_timeline
   parameters:
   - prj_key
   - site_diary
@@ -914,7 +882,6 @@ functions:
   - DA.REF.007
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_procurement.py::test_price_list_no_overlap_and_indexation
   parameters:
   - price_list
   - window
@@ -941,7 +908,6 @@ functions:
   - DA.REF.007
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_procurement.py::test_e2_price_step
   parameters:
   - price_list
   - as_of
@@ -969,7 +935,6 @@ functions:
   - DA.REF.212
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_projects.py::test_status_counts
   parameters:
   - project
   - as_of
@@ -991,7 +956,6 @@ functions:
   - DA.REF.212
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_projects.py::test_counts_and_keys
   parameters:
   - project
   - story_prj_keys
@@ -1014,7 +978,6 @@ functions:
   - DA.REF.212
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_projects.py::test_status_counts
   parameters:
   - project
   - as_of
@@ -1036,7 +999,6 @@ functions:
   - DA.REF.212
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_projects.py::test_story_project
   parameters:
   - plan_activity
   - actual_activity
@@ -1072,7 +1034,6 @@ functions:
   - DA.REF.212
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_projects.py::test_delay_events
   parameters:
   - delay_event
   - project
@@ -1099,7 +1060,6 @@ functions:
   - DA.REF.212
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_projects.py::test_milestones_and_plans
   parameters:
   - milestone
   - as_of
@@ -1121,7 +1081,6 @@ functions:
   - DA.REF.212
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_projects.py::test_story_project
   parameters:
   - plan_version
   - as_of
@@ -1145,7 +1104,6 @@ functions:
   - DA.REF.212
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_projects.py::test_cell_calibration
   parameters:
   - project
   - as_of
@@ -1170,7 +1128,6 @@ functions:
   - DA.REF.218
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_inventory.py::test_e3_central_switchgear_runs_out
   parameters:
   - items
   - stock
@@ -1202,7 +1159,6 @@ functions:
   - DA.REF.218
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_inventory.py::test_e3_central_switchgear_runs_out
   parameters:
   - reservations_open
   - stock
@@ -1231,7 +1187,6 @@ functions:
   - DA.REF.218
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_inventory.py::test_e3_central_switchgear_runs_out
   parameters:
   - stock
   - grid_element
@@ -1261,7 +1216,6 @@ functions:
   - DA.REF.218
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_procurement.py::test_e2_exactly_seven_projects
   parameters:
   - open_lines
   - reservations_open
@@ -1303,7 +1257,6 @@ functions:
   - DA.REF.218
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_inventory.py::test_e3_lead_time_table_and_open_orders
   parameters:
   - lead_on
   - min_rise_weeks
@@ -1324,7 +1277,6 @@ functions:
   - DA.REF.218
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_procurement.py::test_e3_lead_time_series
   parameters:
   - lead_time
   - as_of
@@ -1348,7 +1300,6 @@ functions:
   - DA.REF.218
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_network_contingency_stock_views.py::test_minimum_stock_rule_window_and_stocked_items
   parameters:
   - stock_movement
   - lead_time
@@ -1385,7 +1336,6 @@ functions:
   - DA.REF.218
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_procurement.py::test_receipts_and_statuses
   parameters:
   - po_line
   - purchase_order
@@ -1422,7 +1372,6 @@ functions:
   - DA.REF.218
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_inventory.py::test_reservations_do_not_exceed_demand
   parameters:
   - reservation
   - stock_movement
@@ -1457,7 +1406,6 @@ functions:
   - DA.REF.218
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_procurement.py::test_e3_spot_orders_and_expedite_freight
   parameters:
   - po_line
   - purchase_order
@@ -1499,7 +1447,6 @@ functions:
   - DA.REF.218
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_inventory.py::test_stock_never_negative_and_matches_levels
   parameters:
   - stock_movement
   - as_of
@@ -1530,7 +1477,6 @@ functions:
   - DA.REF.218
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_procurement.py::test_supplier_performance
   parameters:
   - po_line
   - purchase_order
@@ -1561,7 +1507,6 @@ functions:
   - DA.REF.218
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_procurement.py::test_e3_supplier_performance_collapses
   parameters:
   - performance
   - first_period
@@ -1586,7 +1531,6 @@ functions:
   - DA.REF.218
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_inventory.py::test_e3_central_switchgear_runs_out
   parameters:
   - items
   - zones
@@ -1622,7 +1566,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_oracle_views.py::test_oracle_attendance_view_cells_sum_to_present
   parameters:
   - attendance
   - by
@@ -1642,7 +1585,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_oracle_views.py::test_oracle_cause_bars_view_days_per_cause
   parameters:
   - cause_shares
   - view
@@ -1663,7 +1605,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_oracle_views.py::test_oracle_experience_network_view_counts_and_pass_through
   parameters:
   - network
   - as_of
@@ -1683,7 +1624,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_oracle_views.py::test_oracle_gantt_view_bars_per_activity
   parameters:
   - plan_vs_actual
   - as_of
@@ -1703,7 +1643,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_oracle_views.py::test_oracle_performance_view_summed_lines
   parameters:
   - performance
   - lead_on
@@ -1723,7 +1662,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_oracle_views.py::test_oracle_stock_view_long_frame_per_key
   parameters:
   - stock
   - open_lines
@@ -1743,7 +1681,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_oracle_views.py::test_oracle_timeline_view_order_and_attendance
   parameters:
   - timeline
   - attendance
@@ -1767,7 +1704,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-delivery
-  oracle: py:tests/test_oracle_views.py::test_oracle_waterfall_view_steps
   parameters:
   - lines
   - from_type
@@ -1784,4 +1720,4 @@ functions:
   stage: month12
   summary: Use this when you need the step from one estimate type to another by cost
     category, per currency, for a waterfall chart.
-snapshot: 17703967a6ef6ceed2d045ad2f0871b60e0ad55e39445d26c00f11be10bbee40
+snapshot: 6003af6603e62041f2287625f4a646d2c06d1c9b8dded7d0dd813a9aa65bb987

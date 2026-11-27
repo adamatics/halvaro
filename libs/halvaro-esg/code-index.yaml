@@ -5,7 +5,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-esg
-  oracle: py:tests/test_oracle_activity.py::test_oracle_check_meters_every_route
   parameters:
   - m
   - unit_by_carrier
@@ -27,7 +26,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-esg
-  oracle: py:tests/test_energy_esg.py::test_lines_follow_consumption
   parameters:
   - c
   - m
@@ -57,7 +55,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-esg
-  oracle: py:tests/test_energy_esg.py::test_e12_renewable_contract_scope2
   parameters:
   - c
   - m
@@ -85,7 +82,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-esg
-  oracle: py:tests/test_oracle_activity.py::test_oracle_energy_cost_every_route
   parameters:
   - c
   - m
@@ -112,7 +108,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-esg
-  oracle: py:tests/test_oracle_activity.py::test_oracle_energy_use_mwh_every_route
   parameters:
   - c
   - m
@@ -136,7 +131,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-esg
-  oracle: py:tests/test_finance.py::test_energy_invoice_keys_link_energy_esg_to_supplier_invoices
   parameters:
   - c
   - si
@@ -159,7 +153,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-esg
-  oracle: py:tests/test_energy_esg.py::test_energy_audit_hannover_due
   parameters:
   - A
   - as_of
@@ -184,7 +177,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-esg
-  oracle: py:tests/test_oracle_audit_targets.py::test_oracle_target_progress_every_route
   parameters:
   - T
   - L
@@ -221,7 +213,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-esg
-  oracle: py:tests/test_oracle_basis.py::test_oracle_provenance_every_route
   parameters: []
   restricted: []
   since: 0.1.0
@@ -235,7 +226,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-esg
-  oracle: py:tests/test_energy_esg.py::test_safety_and_wording
   parameters:
   - decision
   - context
@@ -256,7 +246,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-esg
-  oracle: py:tests/test_oracle_basis.py::test_oracle_size_evidence_every_route
   parameters:
   - SR
   - country_of
@@ -279,7 +268,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-esg
-  oracle: py:tests/test_oracle_data_requests.py::test_oracle_answer_pack_every_route
   parameters:
   - req
   - totals
@@ -299,7 +287,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-esg
-  oracle: py:tests/test_energy_esg.py::test_customer_data_requests
   parameters:
   - R
   - as_of
@@ -325,7 +312,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-esg
-  oracle: py:tests/test_oracle_data_requests.py::test_oracle_request_timeliness_every_route
   parameters:
   - R
   - as_of
@@ -351,7 +337,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-esg
-  oracle: py:tests/test_energy_esg.py::test_customer_data_requests
   parameters:
   - R
   - CL
@@ -381,7 +366,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-esg
-  oracle: py:tests/test_energy_esg.py::test_every_line_uses_a_valid_factor_or_is_restated
   parameters:
   - factors
   - category
@@ -413,7 +397,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-esg
-  oracle: py:tests/test_energy_esg.py::test_e12_factor_set_update_and_restatement
   parameters:
   - factors
   - old_set
@@ -442,7 +425,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-esg
-  oracle: py:tests/test_energy_esg.py::test_factors_are_synthetic_and_dated
   parameters:
   - factors
   - context
@@ -463,7 +445,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-esg
-  oracle: py:halvaro_gen/world/energy_esg/truth.py::esg_truth
   parameters:
   - factors
   - context
@@ -483,7 +464,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-esg
-  oracle: py:tests/test_energy_esg.py::test_h6_per_metre_footprint
   parameters:
   - factors
   - context
@@ -502,7 +482,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-esg
-  oracle: py:tests/test_energy_esg.py::test_h6_per_metre_footprint
   parameters:
   - PF
   - P
@@ -531,7 +510,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-esg
-  oracle: py:tests/test_energy_esg.py::test_h6_per_metre_footprint
   parameters:
   - pm
   - cs
@@ -561,7 +539,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-esg
-  oracle: py:tests/test_energy_esg.py::test_h6_per_metre_footprint
   parameters:
   - PF
   - P
@@ -590,7 +567,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-esg
-  oracle: py:tests/test_energy_esg.py::test_project_footprints_equal_project_lines
   parameters:
   - L
   - basis
@@ -618,7 +594,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-esg
-  oracle: py:tests/test_energy_esg.py::test_project_footprints_equal_project_lines
   parameters:
   - L
   - year
@@ -646,7 +621,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-esg
-  oracle: py:tests/test_oracle_footprint.py::test_oracle_tender_estimate_every_route
   parameters:
   - EB
   - CC
@@ -682,7 +656,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-esg
-  oracle: py:tests/test_oracle_ghg.py::test_oracle_intensity_every_route
   parameters:
   - L
   - SR
@@ -717,7 +690,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-esg
-  oracle: py:tests/test_energy_esg.py::test_e12_renewable_contract_scope2
   parameters:
   - L
   - C
@@ -748,7 +720,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-esg
-  oracle: py:tests/test_energy_esg.py::test_e12_renewable_contract_scope2
   parameters:
   - L
   - year
@@ -776,7 +747,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-esg
-  oracle: py:halvaro_gen/world/energy_esg/truth.py::esg_truth
   parameters:
   - L
   - year
@@ -804,7 +774,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-esg
-  oracle: py:tests/test_oracle_ghg.py::test_oracle_scope3_coverage_every_route
   parameters:
   - L
   - screening
@@ -834,7 +803,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-esg
-  oracle: py:halvaro_gen/world/energy_esg/truth.py::esg_truth
   parameters:
   - L
   - year
@@ -864,7 +832,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-esg
-  oracle: py:tests/test_energy_esg.py::test_emission_totals_for_finance
   parameters:
   - L
   - C
@@ -905,7 +872,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-esg
-  oracle: py:tests/test_oracle_ghg.py::test_oracle_winter_decomposition_every_route
   parameters:
   - C
   - M
@@ -936,7 +902,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-esg
-  oracle: py:halvaro_gen/world/energy_esg/truth.py::esg_truth
   parameters:
   - L
   - prev
@@ -964,7 +929,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-esg
-  oracle: py:repo_tests/test_oracle_levers_release.py::test_oracle_lever_fuel_switch_equals_a_line_by_line_repricing_of_the_baseline_diesel_lines
   parameters:
   - L
   - F
@@ -1004,7 +968,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-esg
-  oracle: py:repo_tests/test_oracle_levers_release.py::test_oracle_lever_material_substitution_equals_the_direct_formula_on_baseline_item_pairs
   parameters:
   - G
   - item
@@ -1033,7 +996,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-esg
-  oracle: py:tests/test_oracle_levers.py::test_oracle_lever_report_hand_worked_numbers_and_ordering
   parameters:
   - pm
   - levers
@@ -1054,7 +1016,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-esg
-  oracle: py:halvaro_gen/world/energy_esg/truth.py::esg_truth
   parameters:
   - L
   - context
@@ -1079,7 +1040,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-esg
-  oracle: py:repo_tests/test_oracle_lines_release.py::test_oracle_as_of_view_equals_a_plain_loop_over_the_baseline_lines
   parameters:
   - L
   - as_of
@@ -1105,7 +1065,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-esg
-  oracle: py:halvaro_gen/world/energy_esg/truth.py::esg_truth
   parameters:
   - L
   - context
@@ -1131,7 +1090,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-esg
-  oracle: py:halvaro_gen/world/energy_esg/truth.py::esg_truth
   parameters:
   - L
   - context
@@ -1156,7 +1114,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-esg
-  oracle: py:halvaro_gen/world/energy_esg/truth.py::esg_truth
   parameters:
   - L
   - F
@@ -1191,7 +1148,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-esg
-  oracle: py:tests/test_energy_esg.py::test_restatement_keeps_old_lines
   parameters:
   - L
   - context
@@ -1219,7 +1175,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-esg
-  oracle: py:tests/test_energy_esg.py::test_keys_valid_and_foreign_keys
   parameters:
   - L
   - F
@@ -1254,7 +1209,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-esg
-  oracle: py:tests/test_energy_esg.py::test_project_footprints_equal_project_lines
   parameters:
   - goods_receipt
   - po_line
@@ -1301,7 +1255,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-esg
-  oracle: py:tests/test_energy_esg.py::test_lines_follow_consumption
   parameters:
   - c
   - m
@@ -1344,7 +1297,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-esg
-  oracle: py:tests/test_energy_esg.py::test_project_footprints_equal_project_lines
   parameters:
   - po_line
   - item
@@ -1392,7 +1344,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-esg
-  oracle: py:tests/test_energy_esg.py::test_waste_and_travel
   parameters:
   - w
   - f
@@ -1423,7 +1374,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-esg
-  oracle: py:tests/test_energy_esg.py::test_scope_totals_equal_sum_of_lines
   parameters:
   - lines
   - expected
@@ -1451,7 +1401,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-esg
-  oracle: py:repo_tests/test_oracle_score_release.py::test_oracle_indicator_values_equal_direct_pandas_readings_of_the_baseline
   parameters:
   - T
   - L
@@ -1512,7 +1461,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-esg
-  oracle: py:tests/test_oracle_score.py::test_oracle_score_indicators_scores_and_bands_follow_the_proposed_limits
   parameters:
   - v
   - policy
@@ -1537,7 +1485,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-esg
-  oracle: py:tests/test_oracle_score.py::test_oracle_scorecard_is_the_weighted_mean_over_the_weight_present
   parameters:
   - s
   - policy
@@ -1553,4 +1500,4 @@ functions:
   stage: month12
   summary: Use this when you need the weighted overall score and band of the scored
     indicators, with the missing data list and the demo label.
-snapshot: 17703967a6ef6ceed2d045ad2f0871b60e0ad55e39445d26c00f11be10bbee40
+snapshot: 6003af6603e62041f2287625f4a646d2c06d1c9b8dded7d0dd813a9aa65bb987

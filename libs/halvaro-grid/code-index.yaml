@@ -5,7 +5,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-grid
-  oracle: py:halvaro_gen/world/telemetry/build.py::_rule_frame
   parameters:
   - sensor
   - alarm_names
@@ -33,7 +32,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-grid
-  oracle: py:halvaro_gen/world/telemetry/truth.py::compute
   parameters:
   - alarm
   - first_month
@@ -56,7 +54,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-grid
-  oracle: py:tests/test_service.py::test_alarm_tickets_are_deduplicated
   parameters:
   - alarm
   - ticket_alarm
@@ -81,7 +78,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-grid
-  oracle: py:halvaro_gen/world/service/demand.py::alarm_incidents
   parameters:
   - alarm
   - merge_gap_hours
@@ -102,7 +98,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-grid
-  oracle: py:tests/test_telemetry.py::test_alarms_recomputed_from_raw
   parameters:
   - measurement
   - sensor
@@ -135,7 +130,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-grid
-  oracle: py:tests/test_service.py::test_condition_assessments
   parameters:
   - condition_assessment
   - grid_element
@@ -160,7 +154,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-grid
-  oracle: py:repo_tests/test_oracle_assets_release.py::test_oracle_element_peak_load_baseline_per_element
   parameters:
   - sensor
   - measurement_daily
@@ -189,7 +182,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-grid
-  oracle: py:repo_tests/test_oracle_assets_release.py::test_oracle_strained_elements_baseline_per_element
   parameters:
   - element_peaks
   - grid_element
@@ -222,7 +214,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-grid
-  oracle: py:repo_tests/test_oracle_assets_release.py::test_oracle_zone_strain_summary_baseline_per_zone_and_customer
   parameters:
   - strained
   - supply_zone
@@ -241,7 +232,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-grid
-  oracle: py:tests/test_service.py::test_labour_overtime_and_collisions
   parameters:
   - service_ticket
   - ticket_labour
@@ -270,7 +260,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-grid
-  oracle: py:repo_tests/test_oracle_callouts_release.py::test_oracle_on_call_baseline_every_day_every_team
   parameters:
   - on_call_rota
   - on_date
@@ -293,7 +282,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-grid
-  oracle: py:repo_tests/test_oracle_callouts_release.py::test_oracle_requires_authorisation_baseline_per_team_and_plan_type
   parameters:
   - maintenance_plan
   - active_status
@@ -316,7 +304,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-grid
-  oracle: py:tests/test_service.py::test_sla_and_credits
   parameters:
   - service_ticket
   - team_region
@@ -354,7 +341,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-grid
-  oracle: py:tests/test_telemetry.py::test_weather
   parameters:
   - weather_daily
   - core_c
@@ -376,7 +362,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-grid
-  oracle: py:tests/test_telemetry.py::test_zone_load_summary_story_e10
   parameters:
   - zone_series
   - sensor
@@ -400,7 +385,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-grid
-  oracle: py:tests/test_telemetry.py::test_zone_load_summary_story_e10
   parameters:
   - zone_series
   - sensor
@@ -426,7 +410,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-grid
-  oracle: py:tests/test_telemetry.py::test_zone_load_summary_story_e10
   parameters:
   - zone_series
   - sensor
@@ -463,7 +446,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-grid
-  oracle: py:tests/test_telemetry.py::test_zone_load_summary_story_e10
   parameters:
   - summary
   - context
@@ -481,7 +463,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-grid
-  oracle: py:halvaro_gen/world/gis/facts.py::story_facts
   parameters:
   - grid_element
   - heat_diversity
@@ -504,7 +485,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-grid
-  oracle: py:halvaro_gen/world/telemetry/truth.py::winter_label
   parameters:
   - ts
   - months
@@ -522,7 +502,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-grid
-  oracle: py:halvaro_gen/world/gis/facts.py::story_facts
   parameters:
   - supply_zone
   - context
@@ -541,7 +520,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-grid
-  oracle: py:tests/test_telemetry.py::test_zone_load_summary_story_e10
   parameters:
   - measurement
   - sensor
@@ -569,7 +547,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-grid
-  oracle: py:tests/test_service.py::test_e4_winter_spike_is_explained_by_wear_and_load
   parameters:
   - fault_event
   - group
@@ -594,7 +571,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-grid
-  oracle: py:halvaro_gen/world/service/truth.py::compute
   parameters:
   - fault_event
   - group
@@ -617,7 +593,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-grid
-  oracle: py:tests/test_service.py::test_fault_events_consistent
   parameters:
   - fault_event
   - gap_days
@@ -638,7 +613,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-grid
-  oracle: py:halvaro_gen/world/gis/network.py::condition_class
   parameters:
   - score
   - bands
@@ -656,7 +630,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-grid
-  oracle: py:repo_tests/test_oracle_geometry_release.py::test_oracle_element_age_baseline_per_element
   parameters:
   - grid_element
   - 'on'
@@ -676,7 +649,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-grid
-  oracle: py:tests/test_gis.py::test_geometry_versions
   parameters:
   - geometry_version
   - 'on'
@@ -699,7 +671,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-grid
-  oracle: py:tests/test_gis.py::test_project_areas
   parameters:
   - geom
   - to_4326
@@ -718,7 +689,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-grid
-  oracle: py:tests/test_gis.py::test_story_e13
   parameters:
   - project_area
   - tolerance_m
@@ -742,7 +712,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-grid
-  oracle: py:tests/test_gis.py::test_geometry_versions
   parameters:
   - geometry_version
   - grid_element
@@ -767,7 +736,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-grid
-  oracle: py:repo_tests/test_oracle_maintenance_release.py::test_oracle_due_within_baseline_per_team_and_plan_type
   parameters:
   - maintenance_plan
   - as_of
@@ -805,7 +773,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-grid
-  oracle: py:repo_tests/test_oracle_maintenance_release.py::test_oracle_inspection_interval_check_baseline_per_plan
   parameters:
   - maintenance_plan
   - grid_element
@@ -833,7 +800,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-grid
-  oracle: py:tests/test_maintenance.py::test_overdue_plans_grace_status_and_missing_dates
   parameters:
   - maintenance_plan
   - as_of
@@ -859,7 +825,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-grid
-  oracle: py:tests/test_service.py::test_winter_deferral_of_planned_work_in_dk_teams
   parameters:
   - service_ticket
   - sources
@@ -882,7 +847,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-grid
-  oracle: py:tests/test_service.py::test_parts_and_interface
   parameters:
   - ticket_item_use
   - item
@@ -907,7 +871,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-grid
-  oracle: py:tests/test_service.py::test_parts_and_interface
   parameters:
   - ticket_item_use
   - service_ticket
@@ -935,7 +898,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-grid
-  oracle: py:tests/test_telemetry.py::test_data_quality_layer
   parameters:
   - measurement
   - events
@@ -960,7 +922,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-grid
-  oracle: py:tests/test_telemetry.py::test_data_quality_layer
   parameters:
   - measurement
   - sensor
@@ -986,7 +947,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-grid
-  oracle: py:tests/test_telemetry.py::test_daily_aggregates_equal_raw
   parameters:
   - measurement
   - context
@@ -1006,7 +966,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-grid
-  oracle: py:tests/test_telemetry.py::test_telemetry_gap
   parameters:
   - measurement
   - sensor
@@ -1035,7 +994,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-grid
-  oracle: py:tests/test_telemetry.py::test_daily_aggregates_equal_raw
   parameters:
   - daily
   - context
@@ -1054,7 +1012,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-grid
-  oracle: py:tests/test_telemetry.py::test_daily_aggregates_equal_raw
   parameters:
   - measurement
   - context
@@ -1074,7 +1031,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-grid
-  oracle: py:tests/test_oracle_recipes.py::test_oracle_grid_strain_answer_hand_worked_pieces_and_key_lists
   parameters:
   - strained
   - zone_summary
@@ -1097,7 +1053,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-grid
-  oracle: py:tests/test_gis.py::test_ground_conditions
   parameters:
   - route_change
   - soil
@@ -1121,7 +1076,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-grid
-  oracle: py:tests/test_telemetry.py::test_zone_load_summary_story_e10
   parameters:
   - ranking
   - peak_profile
@@ -1147,7 +1101,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-grid
-  oracle: py:tests/test_telemetry.py::test_truth_keys
   parameters:
   - measurement
   - sensor
@@ -1172,7 +1125,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-grid
-  oracle: py:tests/test_telemetry.py::test_values_look_physical
   parameters:
   - sensor
   - context
@@ -1190,7 +1142,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-grid
-  oracle: py:repo_tests/test_oracle_series_release.py::test_oracle_outdoor_at_baseline_with_gaps_per_timestamp
   parameters:
   - weather_observation
   - ts
@@ -1213,7 +1164,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-grid
-  oracle: py:tests/test_oracle_series.py::test_oracle_to_local_two_years_hour_by_hour_against_zoneinfo
   parameters:
   - ts
   - country
@@ -1233,7 +1183,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-grid
-  oracle: py:tests/test_gis.py::test_e4_cluster
   parameters:
   - grid_element
   - decade
@@ -1260,7 +1209,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-grid
-  oracle: py:tests/test_service.py::test_e4_winter_spike_is_explained_by_wear_and_load
   parameters:
   - density
   - grid_element
@@ -1287,7 +1235,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-grid
-  oracle: py:tests/test_service.py::test_e4_winter_spike_is_explained_by_wear_and_load
   parameters:
   - fault_event
   - grid_element
@@ -1317,7 +1264,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-grid
-  oracle: py:tests/test_gis.py::test_ground_conditions
   parameters:
   - route_shares
   - context
@@ -1335,7 +1281,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-grid
-  oracle: py:tests/test_gis.py::test_story_e13
   parameters:
   - route_shares
   - poor_bearing
@@ -1356,7 +1301,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-grid
-  oracle: py:tests/test_gis.py::test_ground_conditions
   parameters:
   - project_area
   - ground_condition
@@ -1385,7 +1329,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-grid
-  oracle: py:tests/test_gis.py::test_topology
   parameters:
   - network_connection
   - grid_element
@@ -1407,7 +1350,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-grid
-  oracle: py:tests/test_gis.py::test_topology
   parameters:
   - tree
   - net_key
@@ -1421,4 +1363,4 @@ functions:
   stage: month12
   summary: Use this when you need the elements downstream or upstream of one element
     of a tree built by build_tree.
-snapshot: 17703967a6ef6ceed2d045ad2f0871b60e0ad55e39445d26c00f11be10bbee40
+snapshot: 6003af6603e62041f2287625f4a646d2c06d1c9b8dded7d0dd813a9aa65bb987

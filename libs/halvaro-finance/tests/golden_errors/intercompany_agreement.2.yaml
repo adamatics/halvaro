@@ -1,0 +1,12 @@
+# Golden error case of halvaro-finance.intercompany_agreement: the message is the golden text (tests/test_golden_errors.py); change it only on purpose.
+function: intercompany_agreement
+why: the tolerance is negative (CFO scenarios lane, issue #668: the docstring promised this error and the function did not raise it)
+args:
+- frame:
+    columns: [ic_type, document_date, creditor_amount, creditor_currency, debtor_amount, currency, difference_dkk, matched]
+- frame:
+    columns: [period, creditor_le_key, debtor_le_key, balance_type, creditor_balance, creditor_currency, debtor_balance, debtor_currency, difference_dkk, agrees]
+kwargs: {tolerance_dkk: -1}
+context: month12
+raises: FrameError
+message: tolerance_dkk must be zero or more

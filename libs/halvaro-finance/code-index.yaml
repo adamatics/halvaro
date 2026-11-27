@@ -5,7 +5,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:halvaro_gen/world/finance/checks.py::cash_forecast_ties
   parameters:
   - cash_forecast
   - bank_balance
@@ -48,7 +47,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:tests/test_finance_planning.py::test_cash_forecast_band_covers_most_actuals_but_not_all
   parameters:
   - cash_forecast
   - context
@@ -70,7 +68,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:halvaro_gen/world/finance/checks.py::cash_forecast_ties
   parameters:
   - cash_forecast
   - tolerance
@@ -99,7 +96,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:tests/test_finance_reporting.py::test_consolidation_entries_balance_and_match
   parameters:
   - consolidation_entry
   - group_trial_balance
@@ -133,7 +129,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:tests/test_finance_reporting.py::test_group_trial_balance_balances
   parameters:
   - journal_line
   - reporting_adjustment
@@ -162,7 +157,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:tests/test_finance_reporting.py::test_consolidation_entries_balance_and_match
   parameters:
   - match
   - tolerance_dkk
@@ -187,7 +181,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:repo_tests/test_oracle_consolidation_release.py::test_oracle_translation_check_baseline_per_period_recomputed_with_exact_decimals
   parameters:
   - trial_balance
   - month
@@ -212,7 +205,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:tests/test_exposure.py::test_approval_limit_breaches_by_grade_and_currency
   parameters:
   - purchase_order
   - buyer_grade
@@ -237,7 +229,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:tests/test_finance.py::test_e3_stock_runs_out_and_orders_are_committed
   parameters:
   - open_po_lines
   - po_line
@@ -264,7 +255,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:tests/test_oracle_exposure.py::test_oracle_exposure_bridge_identity_and_sums_on_seeded_random_frames
   parameters:
   - open_exposure_result
   - finance_exposure_result
@@ -284,7 +274,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:halvaro_gen/world/procurement/truth.py::e2_exposure
   parameters:
   - project_financials
   - period
@@ -307,7 +296,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:halvaro_gen/world/procurement/truth.py::e2_exposure
   parameters:
   - exposed_demand
   - steps
@@ -332,7 +320,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:tests/test_procurement.py::test_e2_price_step
   parameters:
   - price_before
   - price_after
@@ -354,7 +341,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:tests/test_exposure.py::test_price_variance_report_by_supplier_and_item_and_the_step
   parameters:
   - supplier_invoice_line
   - supplier_invoice
@@ -382,7 +368,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:halvaro_gen/world/procurement/truth.py::e2_exposure
   parameters:
   - open_exposure_result
   - terms
@@ -405,7 +390,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:tests/test_exposure.py::test_supplier_spend_window_credit_notes_and_missing_suppliers
   parameters:
   - supplier_invoice
   - supplier
@@ -430,7 +414,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:tests/tieout_c.py::t19_price_variance
   parameters:
   - supplier_invoice_line
   - goods_receipt
@@ -465,7 +448,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:halvaro_gen/world/finance/core.py::conv
   parameters:
   - amount
   - currency
@@ -494,7 +476,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:halvaro_gen/world/finance/checks.py::journals_balance
   parameters:
   - journal_header
   - journal_line
@@ -520,7 +501,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:halvaro_gen/world/finance/facts.py::build_truth
   parameters:
   - journal_header
   - journal_line
@@ -553,7 +533,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:tests/test_finance.py::test_trial_balance_zero_per_entity_and_period
   parameters:
   - journal_line
   - opening_balance_item
@@ -587,7 +566,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:halvaro_gen/world/finance/views.py::trial_balance
   parameters:
   - trial_balance
   - gl_account
@@ -613,7 +591,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:tests/test_finance.py::test_gl_account_has_statutory_maps
   parameters:
   - gl_account
   - statutory_map_line
@@ -635,7 +612,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:halvaro_gen/world/finance/checks.py::journals_balance
   parameters:
   - frame
   - gl_account
@@ -656,7 +632,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:repo_tests/test_oracle_payroll_release.py::test_oracle_cost_centre_team_map_baseline_against_pair_set_differences
   parameters:
   - cost_centre
   - team
@@ -681,7 +656,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:tests/test_finance_planning.py::test_payroll_summary_components_tie_to_the_ledger
   parameters:
   - gross
   - country_of
@@ -704,7 +678,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:halvaro_gen/world/finance/checks.py::labour_absorption
   parameters:
   - journal_line
   - project_labour
@@ -731,7 +704,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:tests/test_finance_planning.py::test_payroll_summary_components_tie_to_the_ledger
   parameters:
   - journal_line
   - accounts
@@ -754,7 +726,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:halvaro_gen/world/finance/checks.py::payroll_vs_hr
   parameters:
   - ledger_gross
   - hr_aggregate
@@ -779,7 +750,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:tests/test_finance_planning.py::test_budget_version_totals_tie_to_the_lines
   parameters:
   - budget_line
   - cost_centre_actual
@@ -810,7 +780,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:tests/test_finance_planning.py::test_forecast_lines_are_anchored_on_actuals
   parameters:
   - forecast_line
   - forecast_version
@@ -844,7 +813,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:tests/test_finance_planning.py::test_mgmt_pl_ties_to_the_ledger
   parameters:
   - mgmt_pl_department
   - trial_balance
@@ -876,7 +844,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:tests/test_finance_planning.py::test_mgmt_pl_utilisation_columns
   parameters:
   - mgmt_pl_department
   - by
@@ -901,7 +868,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:tests/tieout_c.py::t17_project_revenue
   parameters:
   - project_financials
   - actual_end
@@ -925,7 +891,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:repo_tests/test_oracle_project_costs_release.py::test_oracle_cost_per_metre_by_cost_code_baseline_per_project_and_code_against_plain_loops
   parameters:
   - comparable_set
   - project_cost_breakdown
@@ -953,7 +918,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:tests/test_finance.py::test_e3_stock_runs_out_and_orders_are_committed
   parameters:
   - project_financials
   - prj_keys
@@ -977,7 +941,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:repo_tests/test_oracle_project_costs_release.py::test_oracle_labour_cost_overrun_baseline_per_project_against_plain_loops
   parameters:
   - project_cost_breakdown
   - project_budget_line
@@ -1013,7 +976,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:tests/tieout_c.py::t17_project_revenue
   parameters:
   - project_financials
   - actual_end
@@ -1036,7 +998,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:tests/test_finance.py::test_e1_write_down_and_margin_path
   parameters:
   - project_financials
   - prj_key
@@ -1062,7 +1023,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:halvaro_gen/world/finance/checks.py::order_book_identity
   parameters:
   - order_intake_backlog
   - tolerance
@@ -1087,7 +1047,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:tests/tieout_c.py::t17_project_revenue
   parameters:
   - project_financials
   - actual_end
@@ -1109,7 +1068,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:tests/test_finance.py::test_e1_write_down_and_margin_path
   parameters:
   - project_financials
   - context
@@ -1133,7 +1091,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:tests/tieout_c.py::t17_project_revenue
   parameters:
   - project_financials
   - actual_end
@@ -1156,7 +1113,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:halvaro_gen/world/finance/facts.py::build_truth
   parameters:
   - manual
   - prj_key
@@ -1181,7 +1137,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:tests/test_finance_reporting.py::test_report_order_and_dates
   parameters:
   - statutory_report
   - dk_entities
@@ -1204,7 +1159,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:tests/test_finance_reporting.py::test_prior_year_column_is_previous_year
   parameters:
   - statement_line
   - statutory_report
@@ -1235,7 +1189,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:tests/test_statements.py::test_size_class_edges_envelope_and_group_keys
   parameters:
   - statutory_report
   - dk_entities
@@ -1258,7 +1211,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:tests/test_finance_reporting.py::test_statements_tie_to_the_ledger
   parameters:
   - trial_balance
   - gl_account
@@ -1294,7 +1246,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:tests/test_finance_reporting.py::test_balance_sheets_balance_and_cash_flow_reconciles
   parameters:
   - statement_line
   - tolerance
@@ -1320,7 +1271,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:tests/test_finance.py::test_subledgers_reconcile_to_control_accounts_every_month_end
   parameters:
   - open_items
   - as_of
@@ -1345,7 +1295,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:tests/test_finance.py::test_customer_invoices_and_payments_are_consistent
   parameters:
   - open_items
   - as_of
@@ -1364,7 +1313,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:tests/test_finance.py::test_bank_balance_equals_cash_accounts_and_payments
   parameters:
   - bank_balance
   - payment
@@ -1394,7 +1342,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:repo_tests/test_oracle_subledgers_release.py::test_oracle_customer_exposure_baseline_invoices_per_customer_with_exact_decimals
   parameters:
   - open_items
   - customer
@@ -1421,7 +1368,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:tests/test_finance.py::test_fixed_asset_register_and_schedule
   parameters:
   - fixed_asset
   - context
@@ -1447,7 +1393,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:halvaro_gen/world/finance/checks.py::intercompany_agrees
   parameters:
   - intercompany
   - intercompany_balance
@@ -1484,7 +1429,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:tests/test_finance_planning.py::test_inventory_valuation_ties_to_the_ledger
   parameters:
   - inventory_valuation
   - trial_balance
@@ -1516,7 +1460,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:tests/test_finance.py::test_subledgers_reconcile_to_control_accounts_every_month_end
   parameters:
   - supplier_invoice
   - payment_allocation
@@ -1566,7 +1509,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:tests/test_finance.py::test_subledgers_reconcile_to_control_accounts_every_month_end
   parameters:
   - customer_invoice
   - payment_allocation
@@ -1620,7 +1562,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:tests/test_finance.py::test_subledgers_reconcile_to_control_accounts_every_month_end
   parameters:
   - customer_invoice
   - supplier_invoice
@@ -1717,7 +1658,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:tests/test_finance.py::test_subledgers_reconcile_to_control_accounts_every_month_end
   parameters:
   - open_items
   - context
@@ -1739,7 +1679,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:tests/test_vat_tax.py::test_einvoice_share_and_gap
   parameters:
   - customer_invoice
   - le_key
@@ -1765,7 +1704,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:repo_tests/test_oracle_vat_tax_release.py::test_oracle_einvoice_gap_baseline_invoices_filtered_with_plain_loops
   parameters:
   - customer_invoice
   - as_of
@@ -1792,7 +1730,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:tests/test_finance_reporting.py::test_tax_in_statements_equals_provision
   parameters:
   - provision
   - tolerance
@@ -1826,7 +1763,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:halvaro_gen/world/finance/checks.py::vat_lines_equal_vat_accounts
   parameters:
   - journal_line
   - min_base
@@ -1857,7 +1793,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:tests/test_finance_reporting.py::test_vat_return_settlement_and_status
   parameters:
   - vat_return
   - context
@@ -1883,7 +1818,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:tests/test_finance_reporting.py::test_vat_returns_equal_vat_coded_lines
   parameters:
   - journal_line
   - boxes
@@ -1909,7 +1843,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-finance
-  oracle: py:tests/test_finance_reporting.py::test_vat_return_settlement_and_status
   parameters:
   - vat_return
   - payment
@@ -1931,4 +1864,4 @@ functions:
   stage: month12
   summary: Use this when you need to compare the VAT payable of each return with the
     VAT payment of the following month.
-snapshot: 17703967a6ef6ceed2d045ad2f0871b60e0ad55e39445d26c00f11be10bbee40
+snapshot: 6003af6603e62041f2287625f4a646d2c06d1c9b8dded7d0dd813a9aa65bb987

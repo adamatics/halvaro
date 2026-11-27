@@ -497,6 +497,8 @@ def intercompany_agreement(intercompany: pd.DataFrame, intercompany_balance: pd.
     _need(intercompany, ["ic_type", "document_date", "creditor_amount", "creditor_currency", "debtor_amount", "currency", "difference_dkk", "matched"], "finance.intercompany")
     _need(intercompany_balance, ["period", "creditor_le_key", "debtor_le_key", "balance_type", "creditor_balance", "creditor_currency", "debtor_balance", "debtor_currency", "difference_dkk", "agrees"],
           "finance.intercompany_balance")
+    if isinstance(tolerance_dkk, bool) or not isinstance(tolerance_dkk, (int, float, np.number)) or not np.isfinite(tolerance_dkk) or tolerance_dkk < 0:
+        raise FrameError("tolerance_dkk must be zero or more")
 
     def dkk(amount: pd.Series, currency: pd.Series) -> np.ndarray:
         out = np.zeros(len(amount), dtype=np.int64)

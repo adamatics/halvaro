@@ -5,7 +5,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/tests/test_oracle_aggregate.py::test_assert_aggregate_oracle_refusal_equals_a_loop_over_every_value
   parameters:
   - frame
   - restricted_column
@@ -26,9 +25,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: 'none, wrapper: calls assert_aggregate and wraps the frame, the column,
-    the group columns as a tuple and min_group in a RestrictedAggregate, no logic
-    of its own'
   parameters:
   - frame
   - restricted_column
@@ -48,7 +44,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_older_keys_access_facts.py::test_require_columns_oracle_exactly_the_restricted_list_is_refused_for_a_role_without_access
   parameters:
   - context
   - columns
@@ -65,7 +60,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_access.py::test_require_sources_oracle_every_source_alone_and_in_pairs_against_the_stage_profiles
   parameters:
   - context
   - sources
@@ -82,7 +76,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_older_keys_access_facts.py::test_source_stage_and_visible_sources_oracle_the_stage_profiles_of_the_design_file
   parameters:
   - source
   restricted: []
@@ -97,7 +90,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/tests/test_oracle_status_banner.py::test_stage_banner_oracle_hand_worked_texts
   parameters:
   - refusal
   restricted: []
@@ -112,7 +104,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_access.py::test_strip_restricted_oracle_every_restricted_name_goes_and_nothing_else
   parameters:
   - frame
   - context
@@ -129,7 +120,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_older_keys_access_facts.py::test_source_stage_and_visible_sources_oracle_the_stage_profiles_of_the_design_file
   parameters:
   - stage
   restricted: []
@@ -145,7 +135,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/tests/test_oracle_calendar.py::test_add_working_days_oracle_numpy_business_day_offset
   parameters:
   - start
   - n
@@ -164,7 +153,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/tests/test_oracle_calendar.py::test_is_working_day_oracle_hand_listed_holidays_and_numpy_business_days
   parameters:
   - day
   - region
@@ -181,7 +169,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_calendar_repo.py::test_net_working_days_oracle_baseline_leave_counted_day_by_day
   parameters:
   - persons
   - leave
@@ -204,7 +191,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/tests/test_oracle_older_calendar.py::test_public_holidays_oracle_the_set_of_a_year_equals_the_hand_list
   parameters:
   - year
   - region
@@ -220,7 +206,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_calendar_repo.py::test_region_of_oracle_baseline_sites_and_teams
   parameters:
   - site_key
   restricted: []
@@ -239,7 +224,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/tests/test_oracle_older_calendar.py::test_working_days_oracle_numpy_business_day_count_for_random_ranges
   parameters:
   - start
   - end
@@ -256,7 +240,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_facts_repo.py::test_cfg_oracle_every_scalar_of_every_fact_file_equals_the_yaml_value
   parameters:
   - file
   - path
@@ -272,7 +255,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/tests/test_oracle_status_banner.py::test_combine_status_oracle_every_subset_of_the_statuses_and_every_order
   parameters:
   - statuses
   restricted: []
@@ -287,7 +269,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_older_keys_access_facts.py::test_fact_oracle_every_authored_fact_has_the_value_and_status_of_its_yaml_entry
   parameters:
   - fact_id
   restricted: []
@@ -302,7 +283,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/tests/test_oracle_format.py::test_format_money_oracle_currency_first_scales_and_exact_fractions
   parameters:
   - amount
   - currency
@@ -320,7 +300,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/tests/test_oracle_format.py::test_format_number_oracle_exact_fractions_for_random_floats_and_decimals
   parameters:
   - x
   - decimals
@@ -335,7 +314,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/tests/test_oracle_format.py::test_format_percent_oracle_exact_fractions_and_hand_worked_table
   parameters:
   - x
   - decimals
@@ -350,7 +328,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_older_money_frames_org.py::test_join_report_oracle_counters_over_the_keys_for_four_random_pairs_of_frames
   parameters:
   - left
   - right
@@ -374,7 +351,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/tests/test_oracle_frames.py::test_reduce_chunks_oracle_loop_over_all_rows_for_any_cut_into_chunks
   parameters:
   - chunks
   - by
@@ -392,7 +368,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_older_money_frames_org.py::test_require_frame_columns_oracle_the_columns_of_the_data_dictionary_for_every_table
   parameters:
   - frame
   - source_table
@@ -409,7 +384,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_keys_repo.py::test_check_key_column_oracle_baseline_keys_are_clean_and_corrupted_keys_are_found
   parameters:
   - frame
   - column
@@ -428,7 +402,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_keys_repo.py::test_check_polymorphic_oracle_baseline_columns_follow_their_type
   parameters:
   - frame
   - key_column
@@ -446,7 +419,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_keys_repo.py::test_column_prefixes_oracle_every_foreign_key_column_of_the_dictionary
   parameters:
   - column
   restricted: []
@@ -461,7 +433,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_older_keys_access_facts.py::test_is_valid_key_oracle_baseline_keys_are_valid_and_damaged_keys_are_not
   parameters:
   - text
   - prefix
@@ -477,7 +448,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_older_keys_access_facts.py::test_master_of_oracle_the_master_table_of_a_prefix_holds_exactly_the_keys_of_that_prefix
   parameters:
   - prefix
   restricted: []
@@ -492,7 +462,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_older_keys_access_facts.py::test_parse_key_oracle_every_primary_key_of_the_baseline_by_string_slicing
   parameters:
   - text
   restricted: []
@@ -507,7 +476,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_keys_repo.py::test_parse_label_oracle_every_natural_label_and_gl_account_of_the_baseline
   parameters:
   - text
   restricted: []
@@ -522,7 +490,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_older_keys_access_facts.py::test_table_key_oracle_the_key_columns_are_unique_and_not_null_in_the_baseline_and_in_the_dictionary
   parameters:
   - source_table
   restricted: []
@@ -539,7 +506,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_older_money_frames_org.py::test_convert_oracle_the_generator_converter_and_exact_fractions_of_the_booking_rates
   parameters:
   - cents
   - from_currency
@@ -556,7 +522,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/tests/test_oracle_cents.py::test_from_cents_oracle_hand_worked_cents
   parameters:
   - cents
   restricted: []
@@ -571,7 +536,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_money_release.py::test_guarded_sum_oracle_baseline_invoices_by_currency_and_by_entity
   parameters:
   - frame
   - value
@@ -587,7 +551,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_older_money_frames_org.py::test_rdiv_oracle_exact_fractions_round_half_away_from_zero
   parameters:
   - a
   - b
@@ -603,7 +566,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/tests/test_oracle_to_cents.py::test_to_cents_oracle_hand_worked_amounts_and_the_round_trip_with_from_cents
   parameters:
   - amount
   restricted: []
@@ -618,7 +580,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_older_money_frames_org.py::test_check_org_integrity_oracle_the_baseline_is_clean_and_each_defect_gives_its_own_rule
   parameters:
   - team
   - department
@@ -641,7 +602,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_older_money_frames_org.py::test_cost_centre_of_team_oracle_every_team_of_the_baseline_against_a_dictionary
   parameters:
   - team
   - team_key
@@ -658,7 +618,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_org_release.py::test_grade_info_oracle_baseline_rows_and_bands
   parameters:
   - grade
   restricted: []
@@ -675,7 +634,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_org_release.py::test_role_info_oracle_baseline_every_role_gets_its_grade
   parameters:
   - role
   - grade
@@ -695,7 +653,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_org_release.py::test_team_context_oracle_baseline_every_team_with_site_country_and_region
   parameters:
   - team
   - site
@@ -717,7 +674,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_org_release.py::test_team_of_cost_centre_oracle_round_trip_with_cost_centre_of_team_for_every_team
   parameters:
   - team
   - cost_centre_key
@@ -734,7 +690,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/tests/test_oracle_period_text.py::test_add_months_oracle_numpy_months_and_the_group_laws
   parameters:
   - period
   - n
@@ -750,7 +705,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/tests/test_oracle_older_periods.py::test_asof_join_oracle_a_loop_with_bisect_over_random_effective_dated_rows
   parameters:
   - left
   - right
@@ -771,7 +725,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_periods_release.py::test_check_contiguity_oracle_baseline_employment_terms_and_injected_defects
   parameters:
   - frame
   - key
@@ -791,7 +744,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/tests/test_oracle_period_text.py::test_compare_periods_oracle_month_counts_antisymmetry_and_sorting
   parameters:
   - a
   - b
@@ -806,7 +758,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/tests/test_oracle_periods.py::test_interval_join_oracle_nested_loop
   parameters:
   - points
   - intervals
@@ -822,7 +773,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/tests/test_oracle_period_text.py::test_month_start_and_month_end_oracle_numpy_month_arithmetic_for_every_period_1900_to_2200
   parameters:
   - period
   restricted: []
@@ -836,7 +786,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/tests/test_oracle_period_text.py::test_month_start_and_month_end_oracle_numpy_month_arithmetic_for_every_period_1900_to_2200
   parameters:
   - period
   restricted: []
@@ -850,7 +799,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/tests/test_oracle_older_periods.py::test_parse_period_oracle_every_period_text_from_0001_to_9999_equals_strptime
   parameters:
   - text
   restricted: []
@@ -865,7 +813,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/tests/test_oracle_period_text.py::test_period_of_oracle_every_day_1950_to_2100_and_the_round_trips
   parameters:
   - day
   restricted: []
@@ -879,7 +826,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/tests/test_oracle_older_periods.py::test_period_range_oracle_numpy_months_for_random_pairs_and_reversed_pairs_are_empty
   parameters:
   - first
   - last
@@ -895,7 +841,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_older_periods_release.py::test_release_now_oracle_the_data_release_rows_of_the_baseline_read_directly
   parameters:
   - data_releases
   restricted: []
@@ -911,7 +856,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/repo_tests/test_oracle_older_periods_release.py::test_rows_on_oracle_a_loop_over_the_term_rows_for_ten_dates
   parameters:
   - frame
   - 'on'
@@ -930,7 +874,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/tests/test_oracle_older_periods.py::test_year_of_oracle_pandas_period_arithmetic_for_every_start_month
   parameters:
   - period
   - start_month
@@ -946,7 +889,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/tests/test_oracle_testing.py::test_asof_stable_oracle_equal_changed_added_and_allowed_rows
   parameters:
   - call
   - baseline
@@ -965,7 +907,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/tests/test_oracle_testing.py::test_loader_contract_oracle_each_defect_gives_exactly_one_problem_naming_the_table
   parameters:
   - loader
   - expected_columns
@@ -981,7 +922,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/tests/test_oracle_testing.py::test_stage_matrix_oracle_a_correct_function_refuses_exactly_where_sources_are_missing
   parameters:
   - function_id
   - frames
@@ -999,7 +939,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/tests/test_oracle_theme.py::test_apply_theme_oracle_text_and_categorical_contrast_and_the_figure_gets_the_tokens
   parameters:
   - figure
   - mode
@@ -1015,7 +954,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/tests/test_oracle_theme.py::test_caption_oracle_hand_worked_texts_and_date_types
   parameters:
   - basis
   - as_of
@@ -1031,7 +969,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/tests/test_oracle_theme.py::test_footer_oracle_every_combination_of_synthetic_and_status
   parameters:
   - envelope
   restricted: []
@@ -1047,7 +984,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/tests/test_oracle_theme.py::test_line_with_gaps_oracle_random_series_against_a_loop_over_neighbouring_points
   parameters:
   - x
   - y
@@ -1064,7 +1000,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: none, returns the constant label text with the basemap attribution, no logic
   parameters: []
   restricted: []
   since: 0.1.0
@@ -1078,7 +1013,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: py:../libs/halvaro-core/tests/test_oracle_theme.py::test_stage_placeholder_oracle_text_of_the_refusal_and_no_other_input
   parameters:
   - refusal
   restricted: []
@@ -1094,7 +1028,6 @@ functions:
   kb: []
   kb_versions: []
   library: halvaro-core
-  oracle: none, returns the constant text SYNTHETIC_LABEL, no logic
   parameters: []
   restricted: []
   since: 0.1.0
@@ -1102,4 +1035,4 @@ functions:
   stage: null
   summary: Use this when you need the text 'synthetic data' that goes in the corner
     of every chart, table and map, in both modes.
-snapshot: 17703967a6ef6ceed2d045ad2f0871b60e0ad55e39445d26c00f11be10bbee40
+snapshot: 6003af6603e62041f2287625f4a646d2c06d1c9b8dded7d0dd813a9aa65bb987

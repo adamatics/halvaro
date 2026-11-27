@@ -65,3 +65,11 @@ changes:
     before: "codes that was a number, None or a sequence with a non-text item raised FrameError saying codes must not be a string."
     after: "The message says what was found: a number or other non-iterable, or a sequence with an item that is not text; the string case keeps its meaning. No valid input changes."
     class: correction
+  - id: BC-FIN-0009
+    date: 2026-11-26
+    functions: [halvaro.finance.subledgers.intercompany_agreement]
+    facts: []
+    kb: []
+    before: "A tolerance_dkk that was negative, not finite or not a number was accepted, although Raises names FrameError for a negative or non-numeric tolerance; the result then listed every document or none."
+    after: "Such a tolerance raises FrameError 'tolerance_dkk must be zero or more'. Zero and positive numbers (int, float, numpy numbers) give the same result as before."
+    class: correction
