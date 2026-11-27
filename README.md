@@ -11,6 +11,6 @@ index `halvaro/libs` on AdaLab's devpi service:
 This repository receives a filtered export of the libraries from the closed repository where they are developed. Every commit here is one release tag
 there. A pull request is welcome; an accepted change is carried back to the closed repository and comes back with the next export.
 
-Exported from halvaro-delivery/v0.1.1 (commit 587082da0d5c70fbb765a167dcc5ced48c0a2763).
+Exported from halvaro-esg/v0.1.1 (commit 587082da0d5c70fbb765a167dcc5ced48c0a2763).
 
 Licence: Apache-2.0, see LICENSE.
